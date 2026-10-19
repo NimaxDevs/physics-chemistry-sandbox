@@ -6,6 +6,7 @@ customtkinter.set_default_color_theme("blue")
 
 app = customtkinter.CTk()
 app.geometry("1100x580")
+app.resizable(False, False)
 app.title("Physics & Chemistry Sandbox Launcher")
 
 def physicsSelectorButtonEvent():
@@ -32,10 +33,32 @@ optionsFrame = customtkinter.CTkFrame(master = app,
                                       corner_radius = 5)
 optionsFrame.place(relx = 0, rely = 0, anchor = tkinter.NW)
 
+mainFrame = customtkinter.CTkFrame(master = app,
+                                   width = 900,
+                                   height = 580,
+                                   fg_color = "transparent")
+mainFrame.place(relx = 0.59, rely = 0.5, anchor = tkinter.CENTER)
+
 titleLabel = customtkinter.CTkLabel(master = optionsFrame,
                                     text = "Physics & Chemistry\nSandbox Launcher",
                                     font = customtkinter.CTkFont(size = 18, weight = "bold"))
 titleLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.CENTER)
+
+welcomeLabel = customtkinter.CTkLabel(master = mainFrame,
+                                      text = "Welcome to the Physics & Chemistry\nSandbox Launcher!",
+                                      font = customtkinter.CTkFont(size = 20, weight = "bold"))
+welcomeLabel.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
+
+welcomeSubLabel = customtkinter.CTkLabel(master = mainFrame,
+                                         text = "Select one of the tabs on the left to start.",
+                                         font = customtkinter.CTkFont(size = 15, weight = "normal"))
+welcomeSubLabel.place(relx = 0.5, rely = 0.59, anchor = tkinter.CENTER)
+
+postDataLabel = customtkinter.CTkLabel(master = mainFrame,
+                                       text = "The name of the app is just a placeholder. I'll find a good one.",
+                                       font = customtkinter.CTkFont(size = 10, weight = "normal"))
+postDataLabel.place(relx = 0.5, rely = 0.95, anchor = tkinter.CENTER)
+
 
 physicsSelectorButton = customtkinter.CTkButton(master = optionsFrame,
                                                 text = "Physics Tab",
