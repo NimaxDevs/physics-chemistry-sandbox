@@ -31,7 +31,9 @@ def chemistrySelectorButtonEvent():
     thePlaceTabSelected = False
     launcherSettingsSelected = False
     gitHubSelected = False
-    print(chemistryTabSelected)
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    chemistryTab(chemistryTabSelected)
     
 def thePlaceSelectorButtonEvent():
     thePlaceTabSelected = True
@@ -39,7 +41,9 @@ def thePlaceSelectorButtonEvent():
     chemistryTabSelected = False
     launcherSettingsSelected = False
     gitHubSelected = False
-    print(thePlaceTabSelected)
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    thePlaceTab(thePlaceTabSelected)
 
 def launcherSettingsButtonEvent():
     launcherSettingsSelected = True
@@ -47,7 +51,9 @@ def launcherSettingsButtonEvent():
     chemistryTabSelected = False
     thePlaceTabSelected = False
     gitHubSelected = False
-    print(launcherSettingsSelected)
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    launcherSettings(launcherSettingsSelected)
 
 def gitHubButtonEvent():
     gitHubSelected = True
@@ -55,7 +61,9 @@ def gitHubButtonEvent():
     chemistryTabSelected = False
     thePlaceTabSelected = False
     launcherSettingsSelected = False  
-    print(gitHubSelected)
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    gitHub(gitHubSelected)
 
 def quitLauncherButtonEvent():
     print("Launcher quit")
@@ -118,6 +126,66 @@ def physicsTab(bool):
                                                             corner_radius = 5,
                                                             border_width = 1)
         temperatureSimulationFrame.place(relx = 0.87, rely = 0.7, anchor = tkinter.CENTER)
+
+def chemistryTab(bool):
+    if bool == True:
+        bohrAtomSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                           width = 210,
+                                                           height = 210,
+                                                           corner_radius = 5,
+                                                           border_width = 1)
+        bohrAtomSimulationFrame.place(relx = 0.15, rely = 0.2, anchor = tkinter.CENTER)
+
+        solutionMakerFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                              width = 210,
+                                                              height = 210,
+                                                              corner_radius = 5,
+                                                              border_width = 1)
+        solutionMakerFrame.place(relx = 0.39, rely = 0.2, anchor = tkinter.CENTER)
+
+        molecularLabFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                             width = 210,
+                                                             height = 210,
+                                                             corner_radius = 5,
+                                                             border_width = 1)
+        molecularLabFrame.place(relx = 0.63, rely = 0.2, anchor = tkinter.CENTER)
+
+        reactionLabFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                  width = 210,
+                                                  height = 210,
+                                                  corner_radius = 5,
+                                                  border_width = 1)
+        reactionLabFrame.place(relx = 0.87, rely = 0.2, anchor = tkinter.CENTER)
+
+        combustionSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                           width = 210,
+                                                           height = 210,
+                                                           corner_radius = 5,
+                                                           border_width = 1)
+        combustionSimulationFrame.place(relx = 0.15, rely = 0.7, anchor = tkinter.CENTER)
+
+        smokeSimulation = customtkinter.CTkFrame(master = mainFrame,
+                                                 width = 210,
+                                                 height = 210,
+                                                 corner_radius = 5,
+                                                 border_width = 1)
+        smokeSimulation.place(relx = 0.39, rely = 0.7, anchor = tkinter.CENTER)
+
+        atomCollisionSimulation = customtkinter.CTkFrame(master = mainFrame,
+                                                         width = 210,
+                                                         height = 210,
+                                                         corner_radius = 5,
+                                                         border_width = 1)
+        atomCollisionSimulation.place(relx = 0.63, rely = 0.7, anchor = tkinter.CENTER)
+
+def thePlaceTab(bool):
+    pass
+
+def launcherSettings(bool):
+    pass
+
+def gitHub(bool):
+    pass
 
 optionsFrame = customtkinter.CTkFrame(master = app,
                                       width = 200,
