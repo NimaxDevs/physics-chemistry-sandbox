@@ -2,30 +2,122 @@ import customtkinter, tkinter
 from tkinter import * 
 
 customtkinter.set_appearance_mode("dark")
-customtkinter.set_default_color_theme("blue")
+customtkinter.set_default_color_theme("themes/rime.json")
 
 app = customtkinter.CTk()
 app.geometry("1100x580")
 app.resizable(False, False)
 app.title("Physics & Chemistry Sandbox Launcher")
 
+physicsTabSelected = False
+chemistryTabSelected = False
+thePlaceTabSelected = False
+launcherSettingsSelected = False
+gitHubSelected = False
+
 def physicsSelectorButtonEvent():
-    pass
+    physicsTabSelected = True
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False
+    gitHubSelected = False
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    physicsTab(physicsTabSelected)
 
 def chemistrySelectorButtonEvent():
-    pass
-
+    chemistryTabSelected = True
+    physicsTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False
+    gitHubSelected = False
+    print(chemistryTabSelected)
+    
 def thePlaceSelectorButtonEvent():
-    pass
+    thePlaceTabSelected = True
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    launcherSettingsSelected = False
+    gitHubSelected = False
+    print(thePlaceTabSelected)
 
 def launcherSettingsButtonEvent():
-    pass
+    launcherSettingsSelected = True
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    gitHubSelected = False
+    print(launcherSettingsSelected)
 
 def gitHubButtonEvent():
-    pass
+    gitHubSelected = True
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False  
+    print(gitHubSelected)
 
 def quitLauncherButtonEvent():
-    pass
+    print("Launcher quit")
+    app.quit()
+
+def physicsTab(bool):
+    if bool == True:
+        projectileSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                   width = 210,
+                                   height = 210,
+                                   corner_radius = 5,
+                                   border_width = 1)
+        projectileSimulationFrame.place(relx = 0.15, rely = 0.2, anchor = tkinter.CENTER)
+
+        pendulumSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                           width = 210,
+                                           height = 210,
+                                           corner_radius = 5,
+                                           border_width = 1)
+        pendulumSimulationFrame.place(relx = 0.39, rely = 0.2, anchor = tkinter.CENTER)
+
+        springSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                   width = 210,
+                                                   height = 210,
+                                                   corner_radius = 5,
+                                                   border_width = 1)
+        springSimulationFrame.place(relx = 0.63, rely = 0.2, anchor = tkinter.CENTER)
+
+        planetOrbitsSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                           width = 210,
+                                                           height = 210,
+                                                           corner_radius = 5,
+                                                           border_width = 1)
+        planetOrbitsSimulationFrame.place(relx = 0.87, rely = 0.2, anchor = tkinter.CENTER)
+
+        gravitySimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                        width = 210,
+                                                        height = 210,
+                                                        corner_radius = 5,
+                                                        border_width = 1)
+        gravitySimulationFrame.place(relx = 0.15, rely = 0.7, anchor = tkinter.CENTER)
+
+        refractionSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                           width = 210,
+                                                           height = 210,
+                                                           corner_radius = 5,
+                                                           border_width = 1)
+        refractionSimulationFrame.place(relx = 0.39, rely = 0.7, anchor = tkinter.CENTER)
+
+        fluidSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                      width = 210,
+                                                      height = 210,
+                                                      corner_radius = 5,
+                                                      border_width = 1)
+        fluidSimulationFrame.place(relx = 0.63, rely = 0.7, anchor = tkinter.CENTER)
+
+        temperatureSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                            width = 210,
+                                                            height = 210,
+                                                            corner_radius = 5,
+                                                            border_width = 1)
+        temperatureSimulationFrame.place(relx = 0.87, rely = 0.7, anchor = tkinter.CENTER)
 
 optionsFrame = customtkinter.CTkFrame(master = app,
                                       width = 200,
@@ -58,7 +150,6 @@ postDataLabel = customtkinter.CTkLabel(master = mainFrame,
                                        text = "The name of the app is just a placeholder. I'll find a good one.",
                                        font = customtkinter.CTkFont(size = 10, weight = "normal"))
 postDataLabel.place(relx = 0.5, rely = 0.95, anchor = tkinter.CENTER)
-
 
 physicsSelectorButton = customtkinter.CTkButton(master = optionsFrame,
                                                 text = "Physics Tab",
