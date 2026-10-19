@@ -1,24 +1,31 @@
+#Do I even have to describe these two lines
 import customtkinter, tkinter
 from tkinter import * 
 
+#The CTk appearance settings go here
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("themes/rime.json")
 
+#The CTk settings go here
 app = customtkinter.CTk()
 app.geometry("1100x580")
 app.resizable(False, False)
 app.title("Physics & Chemistry Sandbox Launcher")
 
+#The global variables go here
 physicsTabSelected = False
 chemistryTabSelected = False
 thePlaceTabSelected = False
 launcherSettingsSelected = False
+creditsTabSelected = False
 
+#The button events (functions) go here
 def physicsSelectorButtonEvent():
     physicsTabSelected = True
     chemistryTabSelected = False
     thePlaceTabSelected = False
     launcherSettingsSelected = False
+    creditsTabSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     physicsTab(physicsTabSelected)
@@ -28,6 +35,7 @@ def chemistrySelectorButtonEvent():
     physicsTabSelected = False
     thePlaceTabSelected = False
     launcherSettingsSelected = False
+    creditsTabSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     chemistryTab(chemistryTabSelected)
@@ -37,6 +45,7 @@ def thePlaceSelectorButtonEvent():
     physicsTabSelected = False
     chemistryTabSelected = False
     launcherSettingsSelected = False
+    creditsTabSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     thePlaceTab(thePlaceTabSelected)
@@ -46,18 +55,31 @@ def launcherSettingsButtonEvent():
     physicsTabSelected = False
     chemistryTabSelected = False
     thePlaceTabSelected = False
+    creditsTabSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
-    launcherSettings(launcherSettingsSelected)
+    launcherSettingsTab(launcherSettingsSelected)
 
 def gitHubButtonEvent():
     #opens the URL of my GitHub
+    print("The GitHub page will NOT open right now")
     pass
+
+def creditsButtonEvent():
+    creditsTabSelected = True
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    creditsTab(creditsTabSelected)
 
 def quitLauncherButtonEvent():
     print("Launcher quit")
     app.quit()
 
+#The tab functions go here
 def physicsTab(bool):
     if bool == True:
         projectileSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
@@ -168,11 +190,32 @@ def chemistryTab(bool):
         atomCollisionSimulation.place(relx = 0.63, rely = 0.7, anchor = tkinter.CENTER)
 
 def thePlaceTab(bool):
+    if bool == True:
+        thePlaceFrame = customtkinter.CTkFrame(master = mainFrame,
+                                               width = 550,
+                                               height = 400,
+                                               corner_radius = 5,
+                                               border_width = 1)
+        thePlaceFrame.place(relx = 0.32, rely = 0.36, anchor = tkinter.CENTER)
+
+def launcherSettingsTab(bool):
+    print("The launcher settings are in this tab")
+    launcherSettingsPlaceholderLabel = customtkinter.CTkLabel(master = mainFrame,
+                                          text = "Launcher Settings\n(the settings are OBVIOUSLY here but you just can't see them...)",
+                                          font = customtkinter.CTkFont(size = 20, weight = "bold"))
+    launcherSettingsPlaceholderLabel.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
     pass
 
-def launcherSettings(bool):
-    pass
+def creditsTab(bool):
+    if bool == True:
+        #I'll write the credits here (developper, assets, themes, libraries)
+        print("The credits are in this tab")
+        creditsPlaceholderLabel = customtkinter.CTkLabel(master = mainFrame,
+                                      text = "Credits\n(nothing for now)",
+                                      font = customtkinter.CTkFont(size = 20, weight = "bold"))
+        creditsPlaceholderLabel.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
+#The frames go here
 optionsFrame = customtkinter.CTkFrame(master = app,
                                       width = 200,
                                       height = 580,
@@ -185,6 +228,7 @@ mainFrame = customtkinter.CTkFrame(master = app,
                                    fg_color = "transparent")
 mainFrame.place(relx = 0.59, rely = 0.5, anchor = tkinter.CENTER)
 
+#The labels go here
 titleLabel = customtkinter.CTkLabel(master = optionsFrame,
                                     text = "Physics & Chemistry\nSandbox Launcher",
                                     font = customtkinter.CTkFont(size = 18, weight = "bold"))
@@ -205,6 +249,7 @@ postDataLabel = customtkinter.CTkLabel(master = mainFrame,
                                        font = customtkinter.CTkFont(size = 10, weight = "normal"))
 postDataLabel.place(relx = 0.5, rely = 0.95, anchor = tkinter.CENTER)
 
+#The buttons go here
 physicsSelectorButton = customtkinter.CTkButton(master = optionsFrame,
                                                 text = "Physics Tab",
                                                 width = 130,
@@ -239,7 +284,7 @@ launcherSettingsButton = customtkinter.CTkButton(master = optionsFrame,
                                                  corner_radius = 5,
                                                  border_width = 1,
                                                  command = launcherSettingsButtonEvent)
-launcherSettingsButton.place(relx = 0.5, rely = 0.7, anchor = tkinter.CENTER)
+launcherSettingsButton.place(relx = 0.5, rely = 0.6, anchor = tkinter.CENTER)
 
 gitHubButton = customtkinter.CTkButton(master = optionsFrame,
                                        text = "GitHub",
@@ -248,7 +293,16 @@ gitHubButton = customtkinter.CTkButton(master = optionsFrame,
                                        corner_radius = 5,
                                        border_width = 1,
                                        command = gitHubButtonEvent)
-gitHubButton.place(relx = 0.5, rely = 0.8, anchor = tkinter.CENTER)
+gitHubButton.place(relx = 0.5, rely = 0.7, anchor = tkinter.CENTER)
+
+creditsButton = customtkinter.CTkButton(master = optionsFrame,
+                                        text = "Credits",
+                                        width = 130,
+                                        height = 25,
+                                        corner_radius = 5,
+                                        border_width = 1,
+                                        command = creditsButtonEvent)
+creditsButton.place(relx = 0.5, rely = 0.8, anchor = tkinter.CENTER)
 
 quitLauncherButton = customtkinter.CTkButton(master = optionsFrame,
                                              text = "Quit Launcher",
@@ -259,4 +313,5 @@ quitLauncherButton = customtkinter.CTkButton(master = optionsFrame,
                                              command = quitLauncherButtonEvent)
 quitLauncherButton.place(relx = 0.5, rely = 0.9, anchor = tkinter.CENTER)
 
+#The main loop is ran here
 app.mainloop()
