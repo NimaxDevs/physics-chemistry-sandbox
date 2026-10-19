@@ -72,31 +72,31 @@ def quitLauncherButtonEvent():
 def physicsTab(bool):
     if bool == True:
         projectileSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
-                                   width = 210,
-                                   height = 210,
-                                   corner_radius = 5,
-                                   border_width = 1)
-        projectileSimulationFrame.place(relx = 0.15, rely = 0.2, anchor = tkinter.CENTER)
-
-        pendulumSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
-                                           width = 210,
-                                           height = 210,
-                                           corner_radius = 5,
-                                           border_width = 1)
-        pendulumSimulationFrame.place(relx = 0.39, rely = 0.2, anchor = tkinter.CENTER)
-
-        springSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
-                                                   width = 210,
-                                                   height = 210,
-                                                   corner_radius = 5,
-                                                   border_width = 1)
-        springSimulationFrame.place(relx = 0.63, rely = 0.2, anchor = tkinter.CENTER)
-
-        planetOrbitsSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                            width = 210,
                                                            height = 210,
                                                            corner_radius = 5,
                                                            border_width = 1)
+        projectileSimulationFrame.place(relx = 0.15, rely = 0.2, anchor = tkinter.CENTER)
+
+        pendulumSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                         width = 210,
+                                                         height = 210,
+                                                         corner_radius = 5,
+                                                         border_width = 1)
+        pendulumSimulationFrame.place(relx = 0.39, rely = 0.2, anchor = tkinter.CENTER)
+
+        springSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                       width = 210,
+                                                       height = 210,
+                                                       corner_radius = 5,
+                                                       border_width = 1)
+        springSimulationFrame.place(relx = 0.63, rely = 0.2, anchor = tkinter.CENTER)
+
+        planetOrbitsSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                             width = 210,
+                                                             height = 210,
+                                                             corner_radius = 5,
+                                                             border_width = 1)
         planetOrbitsSimulationFrame.place(relx = 0.87, rely = 0.2, anchor = tkinter.CENTER)
 
         gravitySimulationFrame = customtkinter.CTkFrame(master = mainFrame,
@@ -130,24 +130,24 @@ def physicsTab(bool):
 def chemistryTab(bool):
     if bool == True:
         bohrAtomSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
-                                                           width = 210,
-                                                           height = 210,
-                                                           corner_radius = 5,
-                                                           border_width = 1)
+                                                         width = 210,
+                                                         height = 210,
+                                                         corner_radius = 5,
+                                                         border_width = 1)
         bohrAtomSimulationFrame.place(relx = 0.15, rely = 0.2, anchor = tkinter.CENTER)
 
         solutionMakerFrame = customtkinter.CTkFrame(master = mainFrame,
-                                                              width = 210,
-                                                              height = 210,
-                                                              corner_radius = 5,
-                                                              border_width = 1)
+                                                    width = 210,
+                                                    height = 210,
+                                                    corner_radius = 5,
+                                                    border_width = 1)
         solutionMakerFrame.place(relx = 0.39, rely = 0.2, anchor = tkinter.CENTER)
 
         molecularLabFrame = customtkinter.CTkFrame(master = mainFrame,
-                                                             width = 210,
-                                                             height = 210,
-                                                             corner_radius = 5,
-                                                             border_width = 1)
+                                                   width = 210,
+                                                   height = 210,
+                                                   corner_radius = 5,
+                                                   border_width = 1)
         molecularLabFrame.place(relx = 0.63, rely = 0.2, anchor = tkinter.CENTER)
 
         reactionLabFrame = customtkinter.CTkFrame(master = mainFrame,
@@ -238,12 +238,12 @@ chemistrySelectorButton = customtkinter.CTkButton(master = optionsFrame,
 chemistrySelectorButton.place(relx = 0.5, rely = 0.3, anchor = tkinter.CENTER)
 
 thePlaceSelectorButton = customtkinter.CTkButton(master = optionsFrame,
-                                              text = "The Place",
-                                              width = 130,
-                                              height = 25,
-                                              corner_radius = 5,
-                                              border_width = 1,
-                                              command = thePlaceSelectorButtonEvent)
+                                                 text = "The Place",
+                                                 width = 130,
+                                                 height = 25,
+                                                 corner_radius = 5,
+                                                 border_width = 1,
+                                                 command = thePlaceSelectorButtonEvent)
 thePlaceSelectorButton.place(relx = 0.5, rely = 0.4, anchor = tkinter.CENTER)
 
 launcherSettingsButton = customtkinter.CTkButton(master = optionsFrame,
