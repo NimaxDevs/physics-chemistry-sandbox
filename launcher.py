@@ -198,6 +198,11 @@ def thePlaceTab(bool):
                                                border_width = 1)
         thePlaceFrame.place(relx = 0.32, rely = 0.36, anchor = tkinter.CENTER)
 
+        thePlacePlaceholderLabel = customtkinter.CTkLabel(master = thePlaceFrame,
+                                                  text = "Invisible place",
+                                                  font = customtkinter.CTkFont(size = 20, weight = "bold"))
+        thePlacePlaceholderLabel.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
+
 def launcherSettingsTab(bool):
     print("The launcher settings are in this tab")
     launcherSettingsPlaceholderLabel = customtkinter.CTkLabel(master = mainFrame,
