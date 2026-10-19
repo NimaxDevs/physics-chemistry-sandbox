@@ -13,14 +13,12 @@ physicsTabSelected = False
 chemistryTabSelected = False
 thePlaceTabSelected = False
 launcherSettingsSelected = False
-gitHubSelected = False
 
 def physicsSelectorButtonEvent():
     physicsTabSelected = True
     chemistryTabSelected = False
     thePlaceTabSelected = False
     launcherSettingsSelected = False
-    gitHubSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     physicsTab(physicsTabSelected)
@@ -30,7 +28,6 @@ def chemistrySelectorButtonEvent():
     physicsTabSelected = False
     thePlaceTabSelected = False
     launcherSettingsSelected = False
-    gitHubSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     chemistryTab(chemistryTabSelected)
@@ -40,7 +37,6 @@ def thePlaceSelectorButtonEvent():
     physicsTabSelected = False
     chemistryTabSelected = False
     launcherSettingsSelected = False
-    gitHubSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     thePlaceTab(thePlaceTabSelected)
@@ -50,20 +46,13 @@ def launcherSettingsButtonEvent():
     physicsTabSelected = False
     chemistryTabSelected = False
     thePlaceTabSelected = False
-    gitHubSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     launcherSettings(launcherSettingsSelected)
 
 def gitHubButtonEvent():
-    gitHubSelected = True
-    physicsTabSelected = False
-    chemistryTabSelected = False
-    thePlaceTabSelected = False
-    launcherSettingsSelected = False  
-    for child in mainFrame.winfo_children():
-        child.destroy()
-    gitHub(gitHubSelected)
+    #opens the URL of my GitHub
+    pass
 
 def quitLauncherButtonEvent():
     print("Launcher quit")
@@ -182,9 +171,6 @@ def thePlaceTab(bool):
     pass
 
 def launcherSettings(bool):
-    pass
-
-def gitHub(bool):
     pass
 
 optionsFrame = customtkinter.CTkFrame(master = app,
