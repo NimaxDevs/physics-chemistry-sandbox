@@ -325,9 +325,78 @@ def physicsTab(bool):
                                                                     font = customtkinter.CTkFont(size = 12, weight = "normal"))
         pendulumSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
 
+        springSimulationTitleLabel = customtkinter.CTkLabel(master = springSimulationFrame,
+                                                            justify = LEFT,
+                                                            text = "Spring Simulation",
+                                                            font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        springSimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
 
+        springSimulationDescriptionLabel = customtkinter.CTkLabel(master = springSimulationFrame,
+                                                                  justify = LEFT,
+                                                                  text = "Simulates a spring suspended\nto a fixed point under the influence\nof gravity.",
+                                                                  font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        springSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
 
+        planetOrbitsSimulationTitleLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationFrame,
+                                                                  justify = LEFT,
+                                                                  text = "Planet Orbits",
+                                                                  font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        planetOrbitsSimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
 
+        planetOrbitsSimulationDescriptionLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationFrame,
+                                                                        justify = LEFT,
+                                                                        text = "Solves the N-body problem\nto simulate your favorite planets \nbut also your own ones.",
+                                                                        font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        planetOrbitsSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        gravitySimulationTitleLabel = customtkinter.CTkLabel(master = gravitySimulationFrame,
+                                                             justify = LEFT,
+                                                             text = "Gravity Simulator",
+                                                             font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        gravitySimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        gravitySimulationDescriptionLabel = customtkinter.CTkLabel(master = gravitySimulationFrame,
+                                                                   justify = LEFT,
+                                                                   text = "Simulates an object falling\nunder the influence of\ngravity.",
+                                                                   font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        gravitySimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        refractionSimulationTitleLabel = customtkinter.CTkLabel(master = refractionSimulationFrame,
+                                                                justify = LEFT,
+                                                                text = "Refraction Simulation",
+                                                                font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        refractionSimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        refractionSimulationDescriptionLabel = customtkinter.CTkLabel(master = refractionSimulationFrame,
+                                                                      justify = LEFT,
+                                                                      text = "Simulates light changing velocity\nand angle under the influence of\na fluid.",
+                                                                      font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        refractionSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        fluidSimulationTitleLabel = customtkinter.CTkLabel(master = fluidSimulationFrame,
+                                                           justify = LEFT,
+                                                           text = "Fluid Simulation",
+                                                           font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        fluidSimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        fluidSimulationDescriptionLabel = customtkinter.CTkLabel(master = fluidSimulationFrame,
+                                                                 justify = LEFT,
+                                                                 text = "Simulates a given fluid whose\ndensity, viscosity and volume can\nbe changed.",
+                                                                 font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        fluidSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        temperatureSimulationTitleLabel = customtkinter.CTkLabel(master = temperatureSimulationFrame,
+                                                                 justify = LEFT,
+                                                                 text = "Temperature Simulation",
+                                                                 font = customtkinter.CTkFont(size = 16, weight = "bold"))
+        temperatureSimulationTitleLabel.place(relx = 0.04, rely = 0.55, anchor = tkinter.W)
+
+        temperatureSimulationDescriptionLabel = customtkinter.CTkLabel(master = temperatureSimulationFrame,
+                                                                       justify = LEFT,
+                                                                       text = "Simulates the increase\nor decrease of entropy when\napplying heat or cold.",
+                                                                       font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        temperatureSimulationDescriptionLabel.place(relx = 0.05, rely = 0.68, anchor = tkinter.W)
+        
 
 def chemistryTab(bool):
     if bool == True:
