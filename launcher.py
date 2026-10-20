@@ -12,12 +12,32 @@ app.geometry("1100x580")
 app.resizable(False, False)
 app.title("Physics & Chemistry Sandbox Launcher")
 
-#The global variables go here
+#The main menu variables go here
 physicsTabSelected = False
 chemistryTabSelected = False
 thePlaceTabSelected = False
 launcherSettingsSelected = False
 creditsTabSelected = False
+
+#The sub menu variables go here
+##The physics simulations here
+projectileSimulationConfigTabSelected = False
+pendulumSimulationConfigTabSelected = False
+springSimulationConfigTabSelected = False
+planetOrbitsSimulationConfigTabSelected = False
+gravitySimulationConfigTabSelected = False
+refractionSimulationConfigTabSelected = False
+fluidSimulationConfigTabSelected = False
+temperatureSimulationConfigTabSelected = False
+
+##The chemistry simulations here
+bohrAtomSimulationConfigTabSelected = False
+solutionMakerConfigTabSelected = False
+molecularLabConfigTabSelected = False
+reactionLabConfigTabSelected = False
+combustionSimulationConfigTabSelected = False
+smokeSimulationConfigTabSelected = False
+atomCollisionSimulationTabSelected = False
 
 #The button events (functions) go here
 def physicsSelectorButtonEvent():
@@ -138,6 +158,8 @@ def physicsTab(bool):
                                                             border_width = 1)
         temperatureSimulationFrame.place(relx = 0.87, rely = 0.7, anchor = tkinter.CENTER)
 
+        
+
 def chemistryTab(bool):
     if bool == True:
         bohrAtomSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
@@ -220,7 +242,54 @@ def creditsTab(bool):
                                       font = customtkinter.CTkFont(size = 20, weight = "bold"))
         creditsPlaceholderLabel.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
-#The frames go here
+#The sub tabs of the physics tab (physics simulations) are here
+def projectileSimulationConfigTab(bool):
+    pass
+
+def pendulumSimulationConfigTab(bool):
+    pass
+
+def springSimulationConfigTab(bool):
+    pass
+
+def planetOrbitsSimulationConfigTab(bool):
+    pass
+
+def gravitySimulationConfigTab(bool):
+    pass
+
+def refractionSimulationConfigTab(bool):
+    pass
+
+def fluidSimulationConfigTab(bool):
+    pass
+
+def temperatureSimulationConfigTab(bool):
+    pass
+
+#The sub tabs of the chemistry tab (chemistry simulations) are here
+def bohrAtomSimulationConfigTab(bool):
+    pass
+
+def solutionMakerConfigTab(bool):
+    pass
+
+def molecularLabConfigTab(bool):
+    pass
+
+def reactionLabConfigTab(bool):
+    pass
+
+def combustionSimulationConfigTab(bool):
+    pass
+
+def smokeSimulationConfigTab(bool):
+    pass
+
+def atomCollisionSimulationTab(bool):
+    pass
+
+#The main frames go here
 optionsFrame = customtkinter.CTkFrame(master = app,
                                       width = 200,
                                       height = 580,
