@@ -104,6 +104,7 @@ def quitLauncherButtonEvent():
     print("Launcher quit")
     app.quit()
 
+#The buttons to configure the physics simulations are here
 def projectileSimulationConfigButtonEvent():
     pass
 
@@ -128,9 +129,33 @@ def fluidSimulationConfigButtonEvent():
 def temperatureSimulationConfigButtonEvent():
     pass
 
+#The buttons to configure the chemistry simulations are here
+def bohrAtomSimulationConfigButtonEvent():
+    pass
+
+def solutionMakerConfigButtonEvent():
+    pass
+
+def molecularLabConfigButtonEvent():
+    pass
+
+def reactionLabConfigButtonEvent():
+    pass
+
+def combustionSimulationConfigButtonEvent():
+    pass
+
+def smokeSimulationConfigButtonEvent():
+    pass
+
+def atomCollisionSimulationConfigButtonEvent():
+    pass
+
+
 #The tab functions go here
 def physicsTab(bool):
     if bool == True:
+        #The frames for the simulations are here
         projectileSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                            width = 210,
                                                            height = 280,
@@ -187,7 +212,7 @@ def physicsTab(bool):
                                                             border_width = 1)
         temperatureSimulationFrame.place(relx = 0.87, rely = 0.75, anchor = tkinter.CENTER)
 
-        #buttons here
+        #The buttons to configure the simulations are here
         projectileSimulationConfigButton = customtkinter.CTkButton(master = projectileSimulationFrame,
                                                                    text = "Configure",
                                                                    width = 200,
@@ -260,7 +285,7 @@ def physicsTab(bool):
                                                                     command = temperatureSimulationConfigButtonEvent)
         temperatureSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
 
-        
+        #The image labels for the simulations are here
         projectileSimulationImageLabel = customtkinter.CTkLabel(master = projectileSimulationFrame,
                                                                 image = placeholderImage,
                                                                 text = "")
@@ -301,6 +326,7 @@ def physicsTab(bool):
                                                                  text = "")
         temperatureSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
 
+        #The title and description labels for the simulations are here
         projectileSimulationTitleLabel = customtkinter.CTkLabel(master = projectileSimulationFrame,
                                                                 justify = LEFT,
                                                                 text = "Projectile Simulation",
@@ -397,57 +423,120 @@ def physicsTab(bool):
                                                                        font = customtkinter.CTkFont(size = 12, weight = "normal"))
         temperatureSimulationDescriptionLabel.place(relx = 0.05, rely = 0.68, anchor = tkinter.W)
         
-
 def chemistryTab(bool):
     if bool == True:
         bohrAtomSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                          width = 210,
-                                                         height = 210,
+                                                         height = 280,
                                                          corner_radius = 5,
                                                          border_width = 1)
-        bohrAtomSimulationFrame.place(relx = 0.15, rely = 0.2, anchor = tkinter.CENTER)
+        bohrAtomSimulationFrame.place(relx = 0.15, rely = 0.25, anchor = tkinter.CENTER)
 
         solutionMakerFrame = customtkinter.CTkFrame(master = mainFrame,
                                                     width = 210,
-                                                    height = 210,
+                                                    height = 280,
                                                     corner_radius = 5,
                                                     border_width = 1)
-        solutionMakerFrame.place(relx = 0.39, rely = 0.2, anchor = tkinter.CENTER)
+        solutionMakerFrame.place(relx = 0.39, rely = 0.25, anchor = tkinter.CENTER)
 
         molecularLabFrame = customtkinter.CTkFrame(master = mainFrame,
                                                    width = 210,
-                                                   height = 210,
+                                                   height = 280,
                                                    corner_radius = 5,
                                                    border_width = 1)
-        molecularLabFrame.place(relx = 0.63, rely = 0.2, anchor = tkinter.CENTER)
+        molecularLabFrame.place(relx = 0.63, rely = 0.25, anchor = tkinter.CENTER)
 
         reactionLabFrame = customtkinter.CTkFrame(master = mainFrame,
                                                   width = 210,
-                                                  height = 210,
+                                                  height = 280,
                                                   corner_radius = 5,
                                                   border_width = 1)
-        reactionLabFrame.place(relx = 0.87, rely = 0.2, anchor = tkinter.CENTER)
+        reactionLabFrame.place(relx = 0.87, rely = 0.25, anchor = tkinter.CENTER)
 
         combustionSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                            width = 210,
-                                                           height = 210,
+                                                           height = 280,
                                                            corner_radius = 5,
                                                            border_width = 1)
-        combustionSimulationFrame.place(relx = 0.15, rely = 0.7, anchor = tkinter.CENTER)
+        combustionSimulationFrame.place(relx = 0.15, rely = 0.75, anchor = tkinter.CENTER)
 
         smokeSimulation = customtkinter.CTkFrame(master = mainFrame,
                                                  width = 210,
-                                                 height = 210,
+                                                 height = 280,
                                                  corner_radius = 5,
                                                  border_width = 1)
-        smokeSimulation.place(relx = 0.39, rely = 0.7, anchor = tkinter.CENTER)
+        smokeSimulation.place(relx = 0.39, rely = 0.75, anchor = tkinter.CENTER)
 
-        atomCollisionSimulation = customtkinter.CTkFrame(master = mainFrame,
+        atomCollisionSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                          width = 210,
-                                                         height = 210,
+                                                         height = 280,
                                                          corner_radius = 5,
                                                          border_width = 1)
-        atomCollisionSimulation.place(relx = 0.63, rely = 0.7, anchor = tkinter.CENTER)
+        atomCollisionSimulationFrame.place(relx = 0.63, rely = 0.75, anchor = tkinter.CENTER)
+
+        #The buttons to configure the simulations are here
+        bohrAtomSimulationConfigButton = customtkinter.CTkButton(master = bohrAtomSimulationFrame,
+                                                                text = "Configure",
+                                                                width = 200,
+                                                                height = 50,
+                                                                corner_radius = 5,
+                                                                border_width = 1,
+                                                                command = bohrAtomSimulationConfigButtonEvent)
+        bohrAtomSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        solutionMakerConfigButton = customtkinter.CTkButton(master = solutionMakerFrame,
+                                                            text = "Configure",
+                                                            width = 200,
+                                                            height = 50,
+                                                            corner_radius = 5,
+                                                            border_width = 1,
+                                                            command = solutionMakerConfigButtonEvent)
+        solutionMakerConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        molecularLabConfigButton = customtkinter.CTkButton(master = molecularLabFrame,
+                                                            text = "Configure",
+                                                            width = 200,
+                                                            height = 50,
+                                                            corner_radius = 5,
+                                                            border_width = 1,
+                                                            command = molecularLabConfigButtonEvent)
+        molecularLabConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        reactionLabConfigButton = customtkinter.CTkButton(master = reactionLabFrame,
+                                                          text = "Configure",
+                                                          width = 200,
+                                                          height = 50,
+                                                          corner_radius = 5,
+                                                          border_width = 1,
+                                                          command = reactionLabConfigButtonEvent)
+        reactionLabConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        combustionSimulationConfigButton = customtkinter.CTkButton(master = combustionSimulationFrame,
+                                                                   text = "Configure",
+                                                                   width = 200,
+                                                                   height = 50,
+                                                                   corner_radius = 5,
+                                                                   border_width = 1,
+                                                                   command = combustionSimulationConfigButtonEvent)
+        combustionSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        smokeSimulationConfigButton = customtkinter.CTkButton(master = smokeSimulation,
+                                                              text = "Configure",
+                                                              width = 200,
+                                                              height = 50,
+                                                              corner_radius = 5,
+                                                              border_width = 1,
+                                                              command = smokeSimulationConfigButtonEvent)
+        smokeSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        atomCollisionSimulationConfigButton = customtkinter.CTkButton(master = atomCollisionSimulationFrame,
+                                                                      text = "Configure",
+                                                                      width = 200,
+                                                                      height = 50,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      command = atomCollisionSimulationConfigButtonEvent)
+        atomCollisionSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
 
 def thePlaceTab(bool):
     if bool == True:
