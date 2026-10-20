@@ -51,6 +51,21 @@ def physicsSelectorButtonEvent():
     thePlaceTabSelected = False
     launcherSettingsSelected = False
     creditsTabSelected = False
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     physicsTab(physicsTabSelected)
@@ -61,6 +76,21 @@ def chemistrySelectorButtonEvent():
     thePlaceTabSelected = False
     launcherSettingsSelected = False
     creditsTabSelected = False
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     chemistryTab(chemistryTabSelected)
@@ -71,6 +101,21 @@ def thePlaceSelectorButtonEvent():
     chemistryTabSelected = False
     launcherSettingsSelected = False
     creditsTabSelected = False
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     thePlaceTab(thePlaceTabSelected)
@@ -81,6 +126,21 @@ def launcherSettingsButtonEvent():
     chemistryTabSelected = False
     thePlaceTabSelected = False
     creditsTabSelected = False
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     launcherSettingsTab(launcherSettingsSelected)
@@ -96,6 +156,21 @@ def creditsButtonEvent():
     chemistryTabSelected = False
     thePlaceTabSelected = False
     launcherSettingsSelected = False
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
     for child in mainFrame.winfo_children():
         child.destroy()
     creditsTab(creditsTabSelected)
@@ -306,26 +381,179 @@ def temperatureSimulationConfigButtonEvent():
 
 #The buttons to configure the chemistry simulations are here
 def bohrAtomSimulationConfigButtonEvent():
-    pass
+    bohrAtomSimulationConfigTabSelected = True
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False
+    creditsTabSelected = False
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    bohrAtomSimulationConfigTab(bohrAtomSimulationConfigTabSelected)    
 
 def solutionMakerConfigButtonEvent():
-    pass
+    solutionMakerConfigTabSelected = True
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False
+    creditsTabSelected = False
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    solutionMakerConfigTab(solutionMakerConfigTabSelected)
 
 def molecularLabConfigButtonEvent():
-    pass
+    molecularLabConfigTabSelected = True
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False
+    creditsTabSelected = False
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    molecularLabConfigTab(molecularLabConfigTabSelected)
 
 def reactionLabConfigButtonEvent():
-    pass
+    reactionLabConfigTabSelected = True
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False
+    creditsTabSelected = False
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    reactionLabConfigTab(reactionLabConfigTabSelected)
 
 def combustionSimulationConfigButtonEvent():
-    pass
+    combustionSimulationConfigTabSelected = True
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False
+    creditsTabSelected = False
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    combustionSimulationConfigTab(combustionSimulationConfigTabSelected)
 
 def smokeSimulationConfigButtonEvent():
-    pass
+    smokeSimulationConfigTabSelected = True
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    atomCollisionSimulationTabSelected = False
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False
+    creditsTabSelected = False
+    for child in mainFrame.winfo_children():
+        child.destroy()   
+    smokeSimulationConfigTab(smokeSimulationConfigTabSelected)
 
 def atomCollisionSimulationConfigButtonEvent():
-    pass
-
+    atomCollisionSimulationTabSelected = True
+    projectileSimulationConfigTabSelected = False
+    pendulumSimulationConfigTabSelected = False
+    springSimulationConfigTabSelected = False
+    planetOrbitsSimulationConfigTabSelected = False
+    gravitySimulationConfigTabSelected = False
+    refractionSimulationConfigTabSelected = False
+    fluidSimulationConfigTabSelected = False
+    temperatureSimulationConfigTabSelected = False
+    bohrAtomSimulationConfigTabSelected = False
+    solutionMakerConfigTabSelected = False
+    molecularLabConfigTabSelected = False
+    reactionLabConfigTabSelected = False
+    combustionSimulationConfigTabSelected = False
+    smokeSimulationConfigTabSelected = False
+    physicsTabSelected = False
+    chemistryTabSelected = False
+    thePlaceTabSelected = False
+    launcherSettingsSelected = False
+    creditsTabSelected = False
+    for child in mainFrame.winfo_children():
+        child.destroy()
+    atomCollisionSimulationTab(atomCollisionSimulationTabSelected)   
 
 #The tab functions go here
 def physicsTab(bool):
@@ -869,51 +1097,79 @@ def creditsTab(bool):
 #The sub tabs of the physics tab (physics simulations) are here
 def projectileSimulationConfigTab(bool):
     if bool == True:
+        print("the projectile config tab works")
         pass
         
-
 def pendulumSimulationConfigTab(bool):
-    pass
+    if bool == True:
+        print("the pendulum config tab works")
+        pass
 
 def springSimulationConfigTab(bool):
-    pass
+    if bool == True:
+        print("the spring config tab works")
+        pass
 
 def planetOrbitsSimulationConfigTab(bool):
-    pass
+    if bool == True:
+        print("the planet orbits config tab works")
+        pass
 
 def gravitySimulationConfigTab(bool):
-    pass
+    if bool == True:
+        print("the gravity config tab works")
+        pass
 
 def refractionSimulationConfigTab(bool):
-    pass
+    if bool == True:
+        print("the refraction config tab works")
+        pass
 
 def fluidSimulationConfigTab(bool):
-    pass
+    if bool == True:
+        print("the fluid config tab works")
+        pass
 
 def temperatureSimulationConfigTab(bool):
-    pass
+    if bool == True:
+        print("the temperature config tab works")
+        pass
 
 #The sub tabs of the chemistry tab (chemistry simulations) are here
 def bohrAtomSimulationConfigTab(bool):
-    pass
+    if bool == True:
+        print("the Bohr atom config tab works")
+        pass
 
 def solutionMakerConfigTab(bool):
-    pass
+    if bool == True:
+        print("the solution maker config tab works")
+        pass
 
 def molecularLabConfigTab(bool):
-    pass
+    if bool == True:
+        print("the molecular lab config tab works")
+        pass
 
 def reactionLabConfigTab(bool):
-    pass
+    if bool == True:
+        print("the reaction lab config tab works")
+        pass
 
 def combustionSimulationConfigTab(bool):
-    pass
+    if bool == True:
+        print("the combustion config tab works")
+        pass
 
 def smokeSimulationConfigTab(bool):
-    pass
+    if bool == True:
+        print("the smoke config tab works")
+        pass
 
 def atomCollisionSimulationTab(bool):
-    pass
+    if bool == True:
+        print("the atom collision config tab works")
+        pass
 
 #The main frames go here
 optionsFrame = customtkinter.CTkFrame(master = app,
