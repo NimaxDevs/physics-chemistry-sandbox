@@ -1,6 +1,7 @@
 #Do I even have to describe these two lines
 import customtkinter, tkinter
 from tkinter import * 
+from PIL import Image
 
 #The CTk appearance settings go here
 customtkinter.set_appearance_mode("dark")
@@ -11,6 +12,10 @@ app = customtkinter.CTk()
 app.geometry("1100x580")
 app.resizable(False, False)
 app.title("Physics & Chemistry Sandbox Launcher")
+
+placeholderImage = customtkinter.CTkImage(light_image = Image.open("images/placeholders/atom_image.png"),
+                                          dark_image = Image.open("images/placeholders/atom_image.png"),
+                                          size = (150, 100))
 
 #The main menu variables go here
 physicsTabSelected = False
@@ -254,6 +259,75 @@ def physicsTab(bool):
                                                                     border_width = 1,
                                                                     command = temperatureSimulationConfigButtonEvent)
         temperatureSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        
+        projectileSimulationImageLabel = customtkinter.CTkLabel(master = projectileSimulationFrame,
+                                                                image = placeholderImage,
+                                                                text = "")
+        projectileSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        pendulumSimulationImageLabel = customtkinter.CTkLabel(master = pendulumSimulationFrame,
+                                                              image = placeholderImage,
+                                                              text = "")
+        pendulumSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        springSimulationImageLabel = customtkinter.CTkLabel(master = springSimulationFrame,
+                                                            image = placeholderImage,
+                                                            text = "")
+        springSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        planetOrbitsSimulationImageLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationFrame,
+                                                                  image = placeholderImage,
+                                                                  text = "")
+        planetOrbitsSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        gravitySimulationImageLabel = customtkinter.CTkLabel(master = gravitySimulationFrame,
+                                                             image = placeholderImage,
+                                                             text = "")
+        gravitySimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        refractionSimulationImageLabel = customtkinter.CTkLabel(master = refractionSimulationFrame,
+                                                                image = placeholderImage,
+                                                                text = "")
+        refractionSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        fluidSimulationImageLabel = customtkinter.CTkLabel(master = fluidSimulationFrame,
+                                                           image = placeholderImage,
+                                                           text = "")
+        fluidSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        temperatureSimulationImageLabel = customtkinter.CTkLabel(master = temperatureSimulationFrame,
+                                                                 image = placeholderImage,
+                                                                 text = "")
+        temperatureSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        projectileSimulationTitleLabel = customtkinter.CTkLabel(master = projectileSimulationFrame,
+                                                                justify = LEFT,
+                                                                text = "Projectile Simulation",
+                                                                font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        projectileSimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        projectileSimulationDescriptionLabel = customtkinter.CTkLabel(master = projectileSimulationFrame,
+                                                                      justify = LEFT,
+                                                                      text = "Simulates a projectile being\nthrown at a specific velocity\nand angle.",
+                                                                      font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        projectileSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        pendulumSimulationTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationFrame,
+                                                              justify = LEFT,
+                                                              text = "Pendulum Simulation",
+                                                              font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        pendulumSimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        pendulumSimulationDescriptionLabel = customtkinter.CTkLabel(master = pendulumSimulationFrame,
+                                                                    justify = LEFT,
+                                                                    text = "Simulates a mass suspended\nto a fixed point swinging back\nand forth.",
+                                                                    font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        pendulumSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+
+
+
 
 def chemistryTab(bool):
     if bool == True:
