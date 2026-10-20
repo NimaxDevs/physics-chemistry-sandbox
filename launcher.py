@@ -425,6 +425,7 @@ def physicsTab(bool):
         
 def chemistryTab(bool):
     if bool == True:
+        #The frames for the simulations are here
         bohrAtomSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                          width = 210,
                                                          height = 280,
@@ -460,12 +461,12 @@ def chemistryTab(bool):
                                                            border_width = 1)
         combustionSimulationFrame.place(relx = 0.15, rely = 0.75, anchor = tkinter.CENTER)
 
-        smokeSimulation = customtkinter.CTkFrame(master = mainFrame,
+        smokeSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                  width = 210,
                                                  height = 280,
                                                  corner_radius = 5,
                                                  border_width = 1)
-        smokeSimulation.place(relx = 0.39, rely = 0.75, anchor = tkinter.CENTER)
+        smokeSimulationFrame.place(relx = 0.39, rely = 0.75, anchor = tkinter.CENTER)
 
         atomCollisionSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                          width = 210,
@@ -520,7 +521,7 @@ def chemistryTab(bool):
                                                                    command = combustionSimulationConfigButtonEvent)
         combustionSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
 
-        smokeSimulationConfigButton = customtkinter.CTkButton(master = smokeSimulation,
+        smokeSimulationConfigButton = customtkinter.CTkButton(master = smokeSimulationFrame,
                                                               text = "Configure",
                                                               width = 200,
                                                               height = 50,
@@ -537,6 +538,127 @@ def chemistryTab(bool):
                                                                       border_width = 1,
                                                                       command = atomCollisionSimulationConfigButtonEvent)
         atomCollisionSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        #The image labels for the simulations are here
+        bohrAtomSimulationImageLabel = customtkinter.CTkLabel(master = bohrAtomSimulationFrame,
+                                                              image = placeholderImage,
+                                                              text = "")
+        bohrAtomSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        solutionMakerImageLabel = customtkinter.CTkLabel(master = solutionMakerFrame,
+                                                         image = placeholderImage,
+                                                         text = "")
+        solutionMakerImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        molecularLabImageLabel = customtkinter.CTkLabel(master = molecularLabFrame,
+                                                        image = placeholderImage,
+                                                        text = "")
+        molecularLabImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        reactionLabImageLabel = customtkinter.CTkLabel(master = reactionLabFrame,
+                                                       image = placeholderImage,
+                                                       text = "")
+        reactionLabImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        combustionSimulationImageLabel = customtkinter.CTkLabel(master = combustionSimulationFrame,
+                                                                image = placeholderImage,
+                                                                text = "")
+        combustionSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        smokeSimulationImageLabel = customtkinter.CTkLabel(master = smokeSimulationFrame,
+                                                           image = placeholderImage,
+                                                           text = "")
+        smokeSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor= tkinter.N)
+
+        atomCollisionSimulationImageLabel = customtkinter.CTkLabel(master = atomCollisionSimulationFrame,
+                                                                   image = placeholderImage,
+                                                                   text = "")
+        atomCollisionSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+
+        #The title and description labels for the simulations are here
+        bohrAtomSimulationTitleLabel = customtkinter.CTkLabel(master = bohrAtomSimulationFrame,
+                                                              justify = LEFT,
+                                                              text = "Bohr Representation",
+                                                              font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        bohrAtomSimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+        
+        bohrAtomSimulationDescriptionLabel = customtkinter.CTkLabel(master = bohrAtomSimulationFrame,
+                                                                    justify = LEFT,
+                                                                    text = "Simulates an atom according to\nNiels Bohr's model including\nits electron orbits and nucleons.",
+                                                                    font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        bohrAtomSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        solutionMakerTitleLabel = customtkinter.CTkLabel(master = solutionMakerFrame,
+                                                         justify = LEFT,
+                                                         text = "Solution Maker",
+                                                         font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        solutionMakerTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        solutionMakerDescriptionLabel = customtkinter.CTkLabel(master = solutionMakerFrame,
+                                                               justify = LEFT,
+                                                               text = "Simulates a bunch of solvants and\nsolutes that can be mixed to\nobtain solutions.",
+                                                               font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        solutionMakerDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        molecularLabTitleLabel = customtkinter.CTkLabel(master = molecularLabFrame,
+                                                        justify = LEFT,
+                                                        text = "Molecular Lab",
+                                                        font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        molecularLabTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        molecularLabDescriptionLabel = customtkinter.CTkLabel(master = molecularLabFrame,
+                                                              justify = LEFT,
+                                                              text = "Simulates a bunch of elements in\nthe periodic table that can be\ncombined into molecules.",
+                                                              font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        molecularLabDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        reactionLabTitleLabel = customtkinter.CTkLabel(master = reactionLabFrame,
+                                                       justify = LEFT,
+                                                       text = "Reaction Lab",
+                                                       font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        reactionLabTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        reactionLabDescriptionLabel = customtkinter.CTkLabel(master = reactionLabFrame,
+                                                             justify = LEFT,
+                                                             text = "Simulates some reactants that\ncan be put together to\ncreate chemical reactions.",
+                                                             font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        reactionLabDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        combustionSimulationTitleLabel = customtkinter.CTkLabel(master = combustionSimulationFrame,
+                                                                justify = LEFT,
+                                                                text = "Combustion Simulation",
+                                                                font = customtkinter.CTkFont(size = 16, weight = "bold"))
+        combustionSimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        combustionSimulationDescriptionLabel = customtkinter.CTkLabel(master = combustionSimulationFrame,
+                                                                      justify = LEFT,
+                                                                      text = "Simulates the combustion of some\nchemical solutes producing a\ncolorful flame.",
+                                                                      font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        combustionSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        smokeSimulationTitleLabel = customtkinter.CTkLabel(master = smokeSimulationFrame,
+                                                           justify = LEFT,
+                                                           text = "Smoke Simulation",
+                                                           font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        smokeSimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        smokeSimulationDesccriptionLabel = customtkinter.CTkLabel(master = smokeSimulationFrame,
+                                                                  justify = LEFT,
+                                                                  text = "Simulates smoke coming from the\ncombustion of different chemical\nsolutes.",
+                                                                  font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        smokeSimulationDesccriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        atomCollisionSimulationTitleLabel = customtkinter.CTkLabel(master = atomCollisionSimulationFrame,
+                                                                   justify = LEFT,
+                                                                   text = "Atom Collision",
+                                                                   font = customtkinter.CTkFont(size = 18, weight = "bold"))
+        atomCollisionSimulationTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        atomCollisionSimulationDescriptionLabel = customtkinter.CTkLabel(master = atomCollisionSimulationFrame,
+                                                                         justify = LEFT,
+                                                                         text = "Simulates different kinds of atoms\nof the periodic table colliding\ninto each other.",
+                                                                         font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        atomCollisionSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
 
 def thePlaceTab(bool):
     if bool == True:
