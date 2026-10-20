@@ -99,66 +99,161 @@ def quitLauncherButtonEvent():
     print("Launcher quit")
     app.quit()
 
+def projectileSimulationConfigButtonEvent():
+    pass
+
+def pendulumSimulationConfigButtonEvent():
+    pass
+
+def springSimulationConfigButtonEvent():
+    pass
+
+def planetOrbitsSimulationConfigButtonEvent():
+    pass
+
+def gravitySimulationConfigButtonEvent():
+    pass
+
+def refractionSimulationConfigButtonEvent():
+    pass
+
+def fluidSimulationConfigButtonEvent():
+    pass
+
+def temperatureSimulationConfigButtonEvent():
+    pass
+
 #The tab functions go here
 def physicsTab(bool):
     if bool == True:
         projectileSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                            width = 210,
-                                                           height = 210,
+                                                           height = 280,
                                                            corner_radius = 5,
                                                            border_width = 1)
-        projectileSimulationFrame.place(relx = 0.15, rely = 0.2, anchor = tkinter.CENTER)
+        projectileSimulationFrame.place(relx = 0.15, rely = 0.25, anchor = tkinter.CENTER)
 
         pendulumSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                          width = 210,
-                                                         height = 210,
+                                                         height = 280,
                                                          corner_radius = 5,
                                                          border_width = 1)
-        pendulumSimulationFrame.place(relx = 0.39, rely = 0.2, anchor = tkinter.CENTER)
+        pendulumSimulationFrame.place(relx = 0.39, rely = 0.25, anchor = tkinter.CENTER)
 
         springSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                        width = 210,
-                                                       height = 210,
+                                                       height = 280,
                                                        corner_radius = 5,
                                                        border_width = 1)
-        springSimulationFrame.place(relx = 0.63, rely = 0.2, anchor = tkinter.CENTER)
+        springSimulationFrame.place(relx = 0.63, rely = 0.25, anchor = tkinter.CENTER)
 
         planetOrbitsSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                              width = 210,
-                                                             height = 210,
+                                                             height = 280,
                                                              corner_radius = 5,
                                                              border_width = 1)
-        planetOrbitsSimulationFrame.place(relx = 0.87, rely = 0.2, anchor = tkinter.CENTER)
+        planetOrbitsSimulationFrame.place(relx = 0.87, rely = 0.25, anchor = tkinter.CENTER)
 
         gravitySimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                         width = 210,
-                                                        height = 210,
+                                                        height = 280,
                                                         corner_radius = 5,
                                                         border_width = 1)
-        gravitySimulationFrame.place(relx = 0.15, rely = 0.7, anchor = tkinter.CENTER)
+        gravitySimulationFrame.place(relx = 0.15, rely = 0.75, anchor = tkinter.CENTER)
 
         refractionSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                            width = 210,
-                                                           height = 210,
+                                                           height = 280,
                                                            corner_radius = 5,
                                                            border_width = 1)
-        refractionSimulationFrame.place(relx = 0.39, rely = 0.7, anchor = tkinter.CENTER)
+        refractionSimulationFrame.place(relx = 0.39, rely = 0.75, anchor = tkinter.CENTER)
 
         fluidSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                       width = 210,
-                                                      height = 210,
+                                                      height = 280,
                                                       corner_radius = 5,
                                                       border_width = 1)
-        fluidSimulationFrame.place(relx = 0.63, rely = 0.7, anchor = tkinter.CENTER)
+        fluidSimulationFrame.place(relx = 0.63, rely = 0.75, anchor = tkinter.CENTER)
 
         temperatureSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
                                                             width = 210,
-                                                            height = 210,
+                                                            height = 280,
                                                             corner_radius = 5,
                                                             border_width = 1)
-        temperatureSimulationFrame.place(relx = 0.87, rely = 0.7, anchor = tkinter.CENTER)
+        temperatureSimulationFrame.place(relx = 0.87, rely = 0.75, anchor = tkinter.CENTER)
 
-        
+        #buttons here
+        projectileSimulationConfigButton = customtkinter.CTkButton(master = projectileSimulationFrame,
+                                                                   text = "Configure",
+                                                                   width = 200,
+                                                                   height = 50,
+                                                                   corner_radius = 5,
+                                                                   border_width = 1,
+                                                                   command = projectileSimulationConfigButtonEvent)
+        projectileSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        pendulumSimulationConfigButton = customtkinter.CTkButton(master = pendulumSimulationFrame,
+                                                                 text = "Configure",
+                                                                 width = 200,
+                                                                 height = 50,
+                                                                 corner_radius = 5,
+                                                                 border_width = 1,
+                                                                 command = pendulumSimulationConfigButtonEvent)
+        pendulumSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        springSimulationConfigButton = customtkinter.CTkButton(master = springSimulationFrame,
+                                                               text = "Configure",
+                                                               width = 200,
+                                                               height = 50,
+                                                               corner_radius = 5,
+                                                               border_width = 1,
+                                                               command = springSimulationConfigButtonEvent)
+        springSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        planetOrbitsSimulationConfigButton = customtkinter.CTkButton(master = planetOrbitsSimulationFrame,
+                                                                     text = "Configure",
+                                                                     width = 200,
+                                                                     height = 50,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1,
+                                                                     command = planetOrbitsSimulationConfigButtonEvent)
+        planetOrbitsSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        gravitySimulationConfigButton = customtkinter.CTkButton(master = gravitySimulationFrame,
+                                                                text = "Configure",
+                                                                width = 200,
+                                                                height = 50,
+                                                                corner_radius = 5,
+                                                                border_width = 1,
+                                                                command = gravitySimulationConfigButtonEvent)
+        gravitySimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        refractionSimulationConfigButton = customtkinter.CTkButton(master = refractionSimulationFrame,
+                                                                   text = "Configure",
+                                                                   width = 200,
+                                                                   height = 50,
+                                                                   corner_radius = 5,
+                                                                   border_width = 1,
+                                                                   command = refractionSimulationConfigButtonEvent)
+        refractionSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        fluidSimulationConfigButton = customtkinter.CTkButton(master = fluidSimulationFrame,
+                                                              text = "Configure",
+                                                              width = 200,
+                                                              height = 50,
+                                                              corner_radius = 5,
+                                                              border_width = 1,
+                                                              command = fluidSimulationConfigButtonEvent)
+        fluidSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
+
+        temperatureSimulationConfigButton = customtkinter.CTkButton(master = temperatureSimulationFrame,
+                                                                    text = "Configure",
+                                                                    width = 200,
+                                                                    height = 50,
+                                                                    corner_radius = 5,
+                                                                    border_width = 1,
+                                                                    command = temperatureSimulationConfigButtonEvent)
+        temperatureSimulationConfigButton.place(relx = 0.5, rely = 0.98, anchor = tkinter.S)
 
 def chemistryTab(bool):
     if bool == True:
