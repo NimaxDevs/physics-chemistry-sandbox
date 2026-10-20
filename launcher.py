@@ -1,6 +1,7 @@
 #Do I even have to describe these two lines
 import customtkinter, tkinter
 from tkinter import * 
+from PIL import Image
 
 #The CTk appearance settings go here
 customtkinter.set_appearance_mode("dark")
