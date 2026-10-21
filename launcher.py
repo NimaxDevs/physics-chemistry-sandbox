@@ -46,7 +46,13 @@ atomCollisionSimulationTabSelected = False
 
 #The config variables are here
 ##The physics variables go here
+###The variables of the Projectile Simulation go here
 projectileSimulationConfigTabInitAirResistCheckboxVar = tkinter.StringVar(value = "off")
+
+###The variables of the Planet Orbits go here
+planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar = tkinter.StringVar(value = "off")
+planetOrbitsSimulationConfigTabShowPlanetNameSwitchVar = tkinter.StringVar(value = "off")
+planetNumber = 0
 
 #The button events (functions) go here
 def physicsSelectorButtonEvent():
@@ -572,6 +578,9 @@ def pendulumSimulationConfigTabLaunchButtonEvent():
 def springSimulationConfigTabLaunchButtonEvent():
     print("spring simulation launched")
 
+def planetOrbitsSimulationConfigTabLaunchButtonEvent():
+    print("planet orbits simulation launched")
+
 ##The buttons of the chemistry simulations go here
 
 
@@ -629,6 +638,14 @@ def springSimulationConfigTabInitStiffSliderEvent(value):
     pass
 
 def springSimulationConfigTabInitDampingCoefSliderEvent(value):
+    pass
+
+###The configurator events of the Planet Orbits simulation go here
+
+def planetOrbitsSimulationConfigTabShowOrbitTrailSwitchEvent():
+    pass
+
+def planetOrbitsSimulationConfigTabShowPlanetNameSwitchEvent():
     pass
 
 ##The configurator events of the chemistry simulations go here
@@ -1655,6 +1672,253 @@ def springSimulationConfigTab(bool):
         
 def planetOrbitsSimulationConfigTab(bool):
     if bool == True:
+        #Function to add & save the infos of the planets
+        def planetOrbitsSimulationConfigTabAddPlanetButtonEvent():
+            global planetNumber
+            if (planetOrbitsSimulationConfigTabPlanetNameEntry.get() != "") and (planetOrbitsSimulationConfigTabPlanetColorEntry.get() != "") and (planetOrbitsSimulationConfigTabPlanetMassEntry.get() != "") and (planetOrbitsSimulationConfigTabPlanetRadiusEntry.get() != ""):
+                planetNumber += 1
+                print(f"Planet {planetNumber}:\nName: {planetOrbitsSimulationConfigTabPlanetNameEntry.get()}\nColor: {planetOrbitsSimulationConfigTabPlanetColorEntry.get()}\nMass: {planetOrbitsSimulationConfigTabPlanetMassEntry.get()}\nRadius: {planetOrbitsSimulationConfigTabPlanetRadiusEntry.get()}\nInitial Vx: {int(planetOrbitsSimulationConfigTabPlanetInitialVxSlider.get())}\nInitial Vy: {int(planetOrbitsSimulationConfigTabPlanetInitialVySlider.get())}\nInitial ax: {int(planetOrbitsSimulationConfigTabPlanetInitialAxSlider.get())}\nInitial ay: {int(planetOrbitsSimulationConfigTabPlanetInitialAySlider.get())}\nShow Orbit Trail: {planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.get()}\nShow Planet Name: {planetOrbitsSimulationConfigTabShowPlanetNameSwitch.get()}")
+                planetOrbitsSimulationConfigTabPlanetNameEntry.set("")
+                planetOrbitsSimulationConfigTabPlanetColorEntry.set("")
+                planetOrbitsSimulationConfigTabPlanetMassEntry.set("")
+                planetOrbitsSimulationConfigTabPlanetRadiusEntry.set("")
+                planetOrbitsSimulationConfigTabPlanetInitialVxSlider.set(0)
+                planetOrbitsSimulationConfigTabPlanetInitialVySlider.set(0)
+                planetOrbitsSimulationConfigTabPlanetInitialAxSlider.set(0)
+                planetOrbitsSimulationConfigTabPlanetInitialAySlider.set(0)
+                planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.set("off")
+                planetOrbitsSimulationConfigTabShowPlanetNameSwitch.set("off")
+            else:
+                print("error: no core values entered (name, color, mass, radius)")
+        
+        #The frames for each element of the tab go here
+        planetOrbitsSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                           width = 550,
+                                                                           height = 300,
+                                                                           corner_radius = 5,
+                                                                           border_width = 1)
+        planetOrbitsSimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+        
+        planetOrbitsSimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                           width = 335,
+                                                                           height = 100,
+                                                                           corner_radius = 5,
+                                                                           border_width = 1)
+        planetOrbitsSimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+
+        planetOrbitsSimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                                 width = 335,
+                                                                                 height = 200,
+                                                                                 corner_radius = 5,
+                                                                                 border_width = 1)
+        planetOrbitsSimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+
+        planetOrbitsSimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                           width = 550,
+                                                                           height = 265,
+                                                                           corner_radius = 5,
+                                                                           border_width = 1)
+        planetOrbitsSimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                                  width = 335,
+                                                                                  height = 100,
+                                                                                  corner_radius = 5,
+                                                                                  border_width = 1)
+        planetOrbitsSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+        
+        #The buttons go here
+        planetOrbitsSimulationConfigTabLaunchButton = customtkinter.CTkButton(master = planetOrbitsSimulationConfigTabLaunchButtonFrame,
+                                                                              text = "Launch",
+                                                                              font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                              width = 335,
+                                                                              height = 100,
+                                                                              corner_radius = 5,
+                                                                              border_width = 1,
+                                                                              command = planetOrbitsSimulationConfigTabLaunchButtonEvent)
+        planetOrbitsSimulationConfigTabLaunchButton.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
+
+        planetOrbitsSimulationConfigTabAddPlanetButton = customtkinter.CTkButton(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                 text = "+ ADD",
+                                                                                 font = customtkinter.CTkFont(size = 18, weight = "bold"),
+                                                                                 width = 50,
+                                                                                 height = 25,
+                                                                                 corner_radius = 5,
+                                                                                 border_width = 1,
+                                                                                 command = planetOrbitsSimulationConfigTabAddPlanetButtonEvent)
+        planetOrbitsSimulationConfigTabAddPlanetButton.place(relx = 0.01, rely = 0.08, anchor = tkinter.W)
+
+        #The configurators (items) of the simulation go here
+        planetOrbitsSimulationConfigTabPlanetNameEntry = customtkinter.CTkEntry(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                 width = 150,
+                                                                                 height = 25,
+                                                                                 placeholder_text = "Planet Name",
+                                                                                 font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                                 corner_radius = 5,
+                                                                                 border_width = 1)
+        planetOrbitsSimulationConfigTabPlanetNameEntry.place(relx = 0.01, rely = 0.39, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetColorEntry = customtkinter.CTkEntry(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                 width = 150,
+                                                                                 height = 25,
+                                                                                 placeholder_text = "Color as a word",
+                                                                                 font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                                 corner_radius = 5,
+                                                                                 border_width = 1)
+        planetOrbitsSimulationConfigTabPlanetColorEntry.place(relx = 0.01, rely = 0.64, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetMassEntry = customtkinter.CTkEntry(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                width = 150,
+                                                                                height = 25,
+                                                                                placeholder_text = '"e" for the 10th power',
+                                                                                font = customtkinter.CTkFont(size = 14, weight = "normal"),
+                                                                                corner_radius = 5,
+                                                                                border_width = 1)
+        planetOrbitsSimulationConfigTabPlanetMassEntry.place(relx = 0.01, rely = 0.89, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetRadiusEntry = customtkinter.CTkEntry(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                  width = 150,
+                                                                                  height = 25,
+                                                                                  placeholder_text = "No massive radii",
+                                                                                  font = customtkinter.CTkFont(size = 14, weight = "normal"),
+                                                                                  corner_radius = 5,
+                                                                                  border_width = 1)
+        planetOrbitsSimulationConfigTabPlanetRadiusEntry.place(relx = 0.35, rely = 0.39, anchor = tkinter.W)
+        
+        planetOrbitsSimulationConfigTabPlanetInitialVxSlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                       width = 150,
+                                                                                       height = 15,
+                                                                                       from_ = 0,
+                                                                                       to = 300,
+                                                                                       corner_radius = 5,
+                                                                                       border_width = 1)
+        planetOrbitsSimulationConfigTabPlanetInitialVxSlider.place(relx = 0.35, rely = 0.64, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetInitialVySlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                      width = 150,
+                                                                                      height = 15,
+                                                                                      from_ = 0,
+                                                                                      to = 300,
+                                                                                      corner_radius = 5,
+                                                                                      border_width = 1)
+        planetOrbitsSimulationConfigTabPlanetInitialVySlider.place(relx = 0.35, rely = 0.89, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetInitialAxSlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                     width = 150,
+                                                                                     height = 15,
+                                                                                     from_ = 0,
+                                                                                     to = 50,
+                                                                                     corner_radius = 5,
+                                                                                     border_width = 1)
+        planetOrbitsSimulationConfigTabPlanetInitialAxSlider.place(relx = 0.68, rely = 0.39, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetInitialAySlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                       width = 150,
+                                                                                       height = 15,
+                                                                                       from_ = 0,
+                                                                                       to = 50,
+                                                                                       corner_radius = 5,
+                                                                                       border_width = 1)
+        planetOrbitsSimulationConfigTabPlanetInitialAySlider.place(relx = 0.68, rely = 0.6, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabShowOrbitTrailSwitch = customtkinter.CTkSwitch(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                       width = 50,
+                                                                                       height = 50,
+                                                                                       bg_color = "transparent",
+                                                                                       text = "Show Orbit Trail",
+                                                                                       variable = planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar,
+                                                                                       command = planetOrbitsSimulationConfigTabShowOrbitTrailSwitchEvent)
+        planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.place(relx = 0.68, rely = 0.74, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabShowPlanetNameSwitch = customtkinter.CTkSwitch(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                      width = 50,
+                                                                                      height = 50,
+                                                                                      bg_color = "transparent",
+                                                                                      text = "Show Planet Name",
+                                                                                      variable = planetOrbitsSimulationConfigTabShowPlanetNameSwitchVar,
+                                                                                      command = planetOrbitsSimulationConfigTabShowPlanetNameSwitchEvent)
+        planetOrbitsSimulationConfigTabShowPlanetNameSwitch.place(relx = 0.68, rely = 0.89, anchor = tkinter.W)
+
+
+        #The images of the simulation go here
+        planetOrbitsSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabImageFrame,
+                                                                           image = placeholderImage,
+                                                                           text = "")
+        planetOrbitsSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
+
+        #The labels of the config tab go here
+        planetOrbitsSimulationConfigTabTitleLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabTitleFrame,
+                                                                             justify = LEFT,
+                                                                             text = "Planet\nOrbits",
+                                                                             font = customtkinter.CTkFont(size = 35, weight = "bold"))
+        planetOrbitsSimulationConfigTabTitleLabel.place(relx = 0.01, rely = 0.5, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabDescriptionLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabDescriptionFrame,
+                                                                                 justify = LEFT,
+                                                                                 text = "Solves the N-body problem to simulate your\nfavorite planets but also your own ones by\nadding their name, color, mass, radius, initial\nvelocity and initial acceleration.",
+                                                                                 font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        planetOrbitsSimulationConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.2, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabCategoryLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabDescriptionFrame,
+                                                                              justify = LEFT,
+                                                                              text = "Field of physics: Newtonian Mechanics",
+                                                                              font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        planetOrbitsSimulationConfigTabCategoryLabel.place(relx = 0.01, rely = 0.54, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabInstructionsLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabDescriptionFrame,
+                                                                                    justify = LEFT,
+                                                                                    text = 'Edit the given values of the planets that\nyou want, press on the "+ ADD" button to add the\nplanet and click on "Launch" start the simulation.',
+                                                                                    font = customtkinter.CTkFont(size = 15, weight = "normal"))
+        planetOrbitsSimulationConfigTabInstructionsLabel.place(relx = 0.01, rely = 0.83, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetNameEntryTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                     justify = LEFT,
+                                                                                     text = "Name:",
+                                                                                     font = customtkinter.CTkFont(size = 16, weight = "bold"))
+        planetOrbitsSimulationConfigTabPlanetNameEntryTitle.place(relx = 0.011, rely = 0.27, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetColorEntryTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                      justify = LEFT,
+                                                                                      text = "Color:",
+                                                                                      font = customtkinter.CTkFont(size = 16, weight = "bold"))
+        planetOrbitsSimulationConfigTabPlanetColorEntryTitle.place(relx = 0.011, rely = 0.52, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetMassEntryTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                     justify = LEFT,
+                                                                                     text = "Mass (kg):",
+                                                                                     font = customtkinter.CTkFont(size = 16, weight = "bold"))
+        planetOrbitsSimulationConfigTabPlanetMassEntryTitle.place(relx = 0.011, rely = 0.77, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetRadiusEntryTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                       justify = LEFT,
+                                                                                       text = "Radius (m):",
+                                                                                       font = customtkinter.CTkFont(size = 16, weight = "bold"))
+        planetOrbitsSimulationConfigTabPlanetRadiusEntryTitle.place(relx = 0.35, rely = 0.27, anchor = tkinter.W)
+        
+        planetOrbitsSimulationConfigTabPlanetInitialVxSliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                          justify = LEFT,
+                                                                                          text = "Initial Vx (m/s):",
+                                                                                          font = customtkinter.CTkFont(size = 16, weight = "bold"))
+        planetOrbitsSimulationConfigTabPlanetInitialVxSliderTitle.place(relx = 0.35, rely = 0.52, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetInitialVySliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                          justify = LEFT,
+                                                                                          text = "Initial Vy (m/s):",
+                                                                                          font = customtkinter.CTkFont(size = 16, weight = "bold"))
+        planetOrbitsSimulationConfigTabPlanetInitialVySliderTitle.place(relx = 0.35, rely = 0.77, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetInitialAxSliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                          justify = LEFT,
+                                                                                          text = "Initial ax (m/s²):",
+                                                                                          font = customtkinter.CTkFont(size = 16, weight = "bold"))
+        planetOrbitsSimulationConfigTabPlanetInitialAxSliderTitle.place(relx = 0.68, rely = 0.27, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetInitialAySliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                           justify = LEFT,
+                                                                                           text = "Initial ay (m/s²):",
+                                                                                           font = customtkinter.CTkFont(size = 16, weight = "bold"))
+        planetOrbitsSimulationConfigTabPlanetInitialAySliderTitle.place(relx = 0.68, rely = 0.48, anchor = tkinter.W)
+        
         print("the planet orbits config tab works")
         pass
 
