@@ -54,6 +54,12 @@ planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar = tkinter.StringVar(value
 planetOrbitsSimulationConfigTabShowPlanetNameSwitchVar = tkinter.StringVar(value = "off")
 planetNumber = 0
 
+###The variables of the Refraction Simulation go here
+refractionSimulationConfigTabInitRefractiveIndex1OptionMenuVar = tkinter.StringVar(value = "Select Refractive Index 1")
+refractionSimulationConfigTabInitRefractiveIndex2OptionMenuVar = tkinter.StringVar(value = "Select Refractive Index 2")
+refractionSimulationConfigRayColorOptionMenuVar = tkinter.StringVar(value = "Select Ray Color")
+
+
 #The button events (functions) go here
 def physicsSelectorButtonEvent():
     physicsTabSelected = True
@@ -570,7 +576,6 @@ def atomCollisionSimulationConfigButtonEvent():
 ##The buttons of the physics simulations go here
 def projectileSimulationConfigTabLaunchButtonEvent():
     print("projectile simulation launched")
-    pass
 
 def pendulumSimulationConfigTabLaunchButtonEvent():
     print("pendulum simulation launched")
@@ -580,6 +585,12 @@ def springSimulationConfigTabLaunchButtonEvent():
 
 def planetOrbitsSimulationConfigTabLaunchButtonEvent():
     print("planet orbits simulation launched")
+
+def gravitySimulationConfigTabLaunchButtonEvent():
+    print("gravity simulation launched")    
+
+def refractionSimulationConfigTabLaunchButtonEvent():
+    print("refraction simulation launched")
 
 ##The buttons of the chemistry simulations go here
 
@@ -640,16 +651,28 @@ def springSimulationConfigTabInitStiffSliderEvent(value):
 def springSimulationConfigTabInitDampingCoefSliderEvent(value):
     pass
 
-###The configurator events of the Planet Orbits simulation go here
-
+###The configurator events of the Planet Orbits (imulation) go here
 def planetOrbitsSimulationConfigTabShowOrbitTrailSwitchEvent():
     pass
 
 def planetOrbitsSimulationConfigTabShowPlanetNameSwitchEvent():
     pass
 
-##The configurator events of the chemistry simulations go here
+###The configurator events of the Gravity Simulation go here
+def gravitySimulationConfigTabInitMassSliderEvent(value):
+    pass
 
+def gravitySimulationConfigTabInitGravAccSliderEvent(value):
+    pass
+
+def gravitySimulationConfigTabInitHeightSliderEvent(value):
+    pass
+
+###The configurator events of the Refraction Simulation go here
+def refractionSimulationConfigTabInitIncidenceAngleSliderEvent(value):
+    pass
+
+##The configurator events of the chemistry simulations go here
 
 #The tab functions go here
 def physicsTab(bool):
@@ -1196,8 +1219,8 @@ def projectileSimulationConfigTab(bool):
         #The air resistance checkbox logic goes here
         def projectileSimulationConfigTabInitAirResistCheckboxEvent():
             if projectileSimulationConfigTabInitAirResistCheckbox.get() == "on":
-                projectileSimulationConfigTabInitDragCoefTitleLabel.place(relx = 0.51, rely = 0.48, anchor = tkinter.W)
-                projectileSimulationConfigTabInitDragCoefSlider.place(relx = 0.5, rely = 0.58, anchor = tkinter.W)
+                projectileSimulationConfigTabInitDragCoefTitleLabel.place(relx = 0.51, rely = 0.8, anchor = tkinter.W)
+                projectileSimulationConfigTabInitDragCoefSlider.place(relx = 0.5, rely = 0.9, anchor = tkinter.W)
             else:
                 projectileSimulationConfigTabInitDragCoefTitleLabel.place_forget()
                 projectileSimulationConfigTabInitDragCoefSlider.place_forget()
@@ -1287,11 +1310,12 @@ def projectileSimulationConfigTab(bool):
 
         projectileSimulationConfigTabInitAirResistCheckbox = customtkinter.CTkCheckBox(master = projectileSimulationConfigTabItemsFrame,
                                                                                    text = "Air Resistance",
+                                                                                   font = customtkinter.CTkFont(size = 18, weight = "normal"),
                                                                                    variable = projectileSimulationConfigTabInitAirResistCheckboxVar,
                                                                                    onvalue = "on",
                                                                                    offvalue = "off",
                                                                                    command = projectileSimulationConfigTabInitAirResistCheckboxEvent)
-        projectileSimulationConfigTabInitAirResistCheckbox.place(relx = 0.61, rely = 0.35, anchor = tkinter.CENTER)
+        projectileSimulationConfigTabInitAirResistCheckbox.place(relx = 0.61, rely = 0.66, anchor = tkinter.CENTER)
 
         projectileSimulationConfigTabInitDragCoefSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
                                                                                   from_ = 0, 
@@ -1333,37 +1357,37 @@ def projectileSimulationConfigTab(bool):
         projectileSimulationConfigTabInitVelocityTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                      justify = LEFT,
                                                                                      text = "Initial Velocity (m/s): ",
-                                                                                     font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitVelocityTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitAngleTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                      justify = LEFT,
                                                                                      text = "Initial Angle (°): ",
-                                                                                     font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitAngleTitleLabel.place(relx = 0.05, rely = 0.3, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitGravAccTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                     justify = LEFT,
                                                                                     text = "Initial Gravitational Acceleration (m/s²): ",
-                                                                                    font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                    font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitGravAccTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitMassTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                  justify = LEFT,
                                                                                  text = "Initial Mass (kg): ",
-                                                                                 font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitMassTitleLabel.place(relx = 0.05, rely = 0.7, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitDiameterTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                      justify = LEFT,
                                                                                      text = "Initial Diameter (m): ",
-                                                                                     font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitDiameterTitleLabel.place(relx = 0.51, rely = 0.11, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitDragCoefTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                       justify = LEFT,
                                                                                       text = "Initial Drag Coefficient: ",
-                                                                                      font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
 
 def pendulumSimulationConfigTab(bool):
     if bool == True:
@@ -1491,37 +1515,37 @@ def pendulumSimulationConfigTab(bool):
         pendulumSimulationConfigTabInitAngleTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                 justify = LEFT,
                                                                                 text = "Initial Angle (°): ",
-                                                                                font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                font = customtkinter.CTkFont(size = 18, weight = "normal"))
         pendulumSimulationConfigTabInitAngleTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitAngularVelTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                      justify = LEFT,
                                                                                      text = "Initial Angular Velocity (rad/s): ",
-                                                                                     font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
         pendulumSimulationConfigTabInitAngularVelTitleLabel.place(relx = 0.05, rely = 0.3, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitLengthTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                  justify = LEFT,
                                                                                  text = "Initial Length (m): ",
-                                                                                 font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
         pendulumSimulationConfigTabInitLengthTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
         
         pendulumSimulationConfigTabInitMassTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                justify = LEFT,
                                                                                text = "Initial Mass (kg): ",
-                                                                               font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
         pendulumSimulationConfigTabInitMassTitleLabel.place(relx = 0.05, rely = 0.7, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitGravAccTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                   justify = LEFT,
                                                                                   text = "Initial Gravitational Acceleration (m/s²): ",
-                                                                                  font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                  font = customtkinter.CTkFont(size = 14, weight = "normal"))
         pendulumSimulationConfigTabInitGravAccTitleLabel.place(relx = 0.51, rely = 0.11, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitDampingCoefTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                       justify = LEFT,
                                                                                       text = "Initial Damping Coefficient: ",
-                                                                                      font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
         pendulumSimulationConfigTabInitDampingCoefTitleLabel.place(relx = 0.51, rely = 0.3, anchor = tkinter.W)
 
 def springSimulationConfigTab(bool):
@@ -1643,31 +1667,31 @@ def springSimulationConfigTab(bool):
         springSimulationConfigTabInitMassTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                               justify = LEFT,
                                                                               text = "Initial Mass (kg): ",
-                                                                              font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                              font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitMassTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
 
         springSimulationConfigTabInitGravAccTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                                 justify = LEFT,
                                                                                 text = "Initial Gravitational Acceleration (m/s²): ",
-                                                                                font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitGravAccTitleLabel.place(relx = 0.05, rely = 0.3, anchor = tkinter.W)
         
         springSimulationConfigTabInitLengthTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                                justify = LEFT,
                                                                                text = "Initial Length (m): ",
-                                                                               font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitLengthTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
                 
         springSimulationConfigTabInitStiffTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                               justify = LEFT,
                                                                               text = "Initial Stiffness: ",
-                                                                              font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                              font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitStiffTitleLabel.place(relx = 0.05, rely = 0.7, anchor = tkinter.W)
         
         springSimulationConfigTabInitDampingCoefTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                                     justify = LEFT,
                                                                                     text = "Initial Damping Coefficient: ",
-                                                                                    font = customtkinter.CTkFont(size = 12, weight = "normal"))
+                                                                                    font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitDampingCoefTitleLabel.place(relx = 0.51, rely = 0.11, anchor = tkinter.W)
         
 def planetOrbitsSimulationConfigTab(bool):
@@ -1787,7 +1811,6 @@ def planetOrbitsSimulationConfigTab(bool):
         
         planetOrbitsSimulationConfigTabPlanetInitialVxSlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                        width = 150,
-                                                                                       height = 15,
                                                                                        from_ = 0,
                                                                                        to = 300,
                                                                                        corner_radius = 5)
@@ -1795,7 +1818,6 @@ def planetOrbitsSimulationConfigTab(bool):
 
         planetOrbitsSimulationConfigTabPlanetInitialVySlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                       width = 150,
-                                                                                      height = 15,
                                                                                       from_ = 0,
                                                                                       to = 300,
                                                                                       corner_radius = 5)
@@ -1803,7 +1825,6 @@ def planetOrbitsSimulationConfigTab(bool):
 
         planetOrbitsSimulationConfigTabPlanetInitialAxSlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                      width = 150,
-                                                                                     height = 15,
                                                                                      from_ = 0,
                                                                                      to = 50,
                                                                                      corner_radius = 5)
@@ -1811,7 +1832,6 @@ def planetOrbitsSimulationConfigTab(bool):
 
         planetOrbitsSimulationConfigTabPlanetInitialAySlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                        width = 150,
-                                                                                       height = 15,
                                                                                        from_ = 0,
                                                                                        to = 50,
                                                                                        corner_radius = 5)
@@ -1822,6 +1842,8 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                        height = 50,
                                                                                        bg_color = "transparent",
                                                                                        text = "Show Orbit Trail",
+                                                                                       onvalue = "on",
+                                                                                       offvalue = "off",
                                                                                        variable = planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar,
                                                                                        command = planetOrbitsSimulationConfigTabShowOrbitTrailSwitchEvent)
         planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.place(relx = 0.68, rely = 0.74, anchor = tkinter.W)
@@ -1831,6 +1853,8 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                       height = 50,
                                                                                       bg_color = "transparent",
                                                                                       text = "Show Planet Name",
+                                                                                      onvalue = "on",
+                                                                                      offvalue = "off",
                                                                                       variable = planetOrbitsSimulationConfigTabShowPlanetNameSwitchVar,
                                                                                       command = planetOrbitsSimulationConfigTabShowPlanetNameSwitchEvent)
         planetOrbitsSimulationConfigTabShowPlanetNameSwitch.place(relx = 0.68, rely = 0.89, anchor = tkinter.W)
@@ -1957,15 +1981,91 @@ def gravitySimulationConfigTab(bool):
         gravitySimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
         
         #The buttons go here
+        gravitySimulationConfigTabLaunchButton = customtkinter.CTkButton(master = gravitySimulationConfigTabLaunchButtonFrame,
+                                                                         text = "Launch",
+                                                                         font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                         width = 335,
+                                                                         height = 100,
+                                                                         corner_radius = 5,
+                                                                         border_width = 1,
+                                                                         command = gravitySimulationConfigTabLaunchButtonEvent)
+        gravitySimulationConfigTabLaunchButton.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
 
         #The configurators (items) of the simulation go here
+        gravitySimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = gravitySimulationConfigTabItemsFrame,
+                                                                              width = 150,
+                                                                              height = 20,
+                                                                              from_ = 0.1,
+                                                                              to = 1000,
+                                                                              command = gravitySimulationConfigTabInitMassSliderEvent)
+        gravitySimulationConfigTabInitMassSlider.place(relx = 0.04, rely = 0.2, anchor = tkinter.W)
 
+        gravitySimulationConfigTabInitGravAccSlider = customtkinter.CTkSlider(master = gravitySimulationConfigTabItemsFrame,
+                                                                              width = 150,
+                                                                              height = 20,
+                                                                              from_ = 0.1,
+                                                                              to = 20,
+                                                                              command = gravitySimulationConfigTabInitGravAccSliderEvent)
+        gravitySimulationConfigTabInitGravAccSlider.place(relx = 0.04, rely = 0.4, anchor = tkinter.W)
+
+        gravitySimulationConfigTabInitHeightSlider = customtkinter.CTkSlider(master = gravitySimulationConfigTabItemsFrame,
+                                                                             width = 150,
+                                                                             height = 20,
+                                                                             from_ = 0.1,
+                                                                             to = 10,
+                                                                             command = gravitySimulationConfigTabInitHeightSliderEvent)
+        gravitySimulationConfigTabInitHeightSlider.place(relx = 0.04, rely = 0.6, anchor = tkinter.W)
 
         #The images of the simulation go here
-
+        gravitySimulationConfigTabInSimImage = customtkinter.CTkLabel(master = gravitySimulationConfigTabImageFrame,
+                                                                           image = placeholderImage,
+                                                                           text = "")
+        gravitySimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
         #The labels of the config tab go here
+        gravitySimulationConfigTabTitleLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabTitleFrame,
+                                                                      justify = LEFT,
+                                                                      text = "Gravity\nSimulation",
+                                                                      font = customtkinter.CTkFont(size = 35, weight = "bold"))
+        gravitySimulationConfigTabTitleLabel.place(relx = 0.01, rely = 0.5, anchor = tkinter.W)
+        
+        gravitySimulationConfigTabDescriptionLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabDescriptionFrame,
+                                                                            justify = LEFT,
+                                                                            text = "Simulates an object of a changeable mass\nfalling under the influence of gravity at a\nspecific height.",
+                                                                            font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        gravitySimulationConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.15, anchor = tkinter.W)
+        
+        gravitySimulationConfigTabCategoryLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabDescriptionFrame,
+                                                                         justify = LEFT,
+                                                                         text = "Field of physics: Newtonian Mechanics",
+                                                                         font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        gravitySimulationConfigTabCategoryLabel.place(relx = 0.01, rely = 0.52, anchor = tkinter.W)
+        
+        gravitySimulationConfigTabInstructionsLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabDescriptionFrame,
+                                                                             justify = LEFT,
+                                                                             text = 'Change the physical properties that you want\nto include then press on "Launch" to start the\nsimulation.',
+                                                                             font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        gravitySimulationConfigTabInstructionsLabel.place(relx = 0.01, rely = 0.83, anchor = tkinter.W)
+
+        gravitySimulationConfigTabInitMassTitleLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabItemsFrame,
+                                                                              justify = LEFT,
+                                                                              text = "Initial Mass (kg): ",
+                                                                              font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        gravitySimulationConfigTabInitMassTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
+
+        gravitySimulationConfigTabInitGravAccTitleLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabItemsFrame,
+                                                                                 justify = LEFT,
+                                                                                 text = "Initial Gravitational Acceleration (m/s²): ",
+                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        gravitySimulationConfigTabInitGravAccTitleLabel.place(relx = 0.05, rely = 0.3, anchor = tkinter.W)
+
+        gravitySimulationConfigTabInitHeightTitleLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabItemsFrame,
+                                                                                justify = LEFT,
+                                                                                text = "Initial Height (m): ",
+                                                                                font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        gravitySimulationConfigTabInitHeightTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
+
 
 
         print("the gravity config tab works")
@@ -1973,6 +2073,18 @@ def gravitySimulationConfigTab(bool):
 
 def refractionSimulationConfigTab(bool):
     if bool == True:
+        def refractionSimulationConfigInitRefractiveIndex1OptionMenuEvent(value):
+            if value == "Custom":
+                refractionSimulationConfigInitRefractiveIndex1CustomEntry.place(relx = 0.38, rely = 0.23, anchor = tkinter.W)
+            else:
+                refractionSimulationConfigInitRefractiveIndex1CustomEntry.place_forget()
+
+        def refractionSimulationConfigInitRefractiveIndex2OptionMenuEvent(value):
+            if value == "Custom":
+                refractionSimulationConfigInitRefractiveIndex2CustomEntry.place(relx = 0.38, rely = 0.5, anchor = tkinter.W)
+            else:
+                refractionSimulationConfigInitRefractiveIndex2CustomEntry.place_forget()
+
         #The frames for each element of the tab go here
         refractionSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
                                                                          width = 550,
@@ -2010,16 +2122,92 @@ def refractionSimulationConfigTab(bool):
         refractionSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
         
         #The buttons go here
-        
+        refractionSimulationConfigTabLaunchButton = customtkinter.CTkButton(master = refractionSimulationConfigTabLaunchButtonFrame,
+                                                                            text = "Launch",
+                                                                            font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                            width = 335,
+                                                                            height = 100,
+                                                                            corner_radius = 5,
+                                                                            border_width = 1,
+                                                                            command = refractionSimulationConfigTabLaunchButtonEvent)
+        refractionSimulationConfigTabLaunchButton.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
         #The configurators (items) of the simulation go here
-        
+        refractionSimulationConfigInitRefractiveIndex1OptionMenu = customtkinter.CTkOptionMenu(master = refractionSimulationConfigTabItemsFrame,
+                                                                                               width = 150,
+                                                                                               height = 25,
+                                                                                               variable = refractionSimulationConfigTabInitRefractiveIndex1OptionMenuVar,
+                                                                                               values = ["Air", "Water", "Glass", "Ethanol", "Diamond", "Plastic", "Custom"],
+                                                                                               command = refractionSimulationConfigInitRefractiveIndex1OptionMenuEvent)
+        refractionSimulationConfigInitRefractiveIndex1OptionMenu.place(relx = 0.05, rely = 0.23, anchor = tkinter.W)
 
-        #The images of the simulation go here
+        refractionSimulationConfigInitRefractiveIndex2OptionMenu = customtkinter.CTkOptionMenu(master = refractionSimulationConfigTabItemsFrame,
+                                                                                               width = 150,
+                                                                                               height = 25,
+                                                                                               variable = refractionSimulationConfigTabInitRefractiveIndex2OptionMenuVar,
+                                                                                               values = ["Air", "Water", "Glass", "Ethanol", "Diamond", "Plastic", "Custom"],
+                                                                                               command = refractionSimulationConfigInitRefractiveIndex2OptionMenuEvent)
+        refractionSimulationConfigInitRefractiveIndex2OptionMenu.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
+
+        refractionSimulationConfigTabInitIncidenceAngleSlider = customtkinter.CTkSlider(master = refractionSimulationConfigTabItemsFrame,
+                                                                                        width = 150,
+                                                                                        height = 20,
+                                                                                        from_ = 0,
+                                                                                        to = 90,
+                                                                                        command = refractionSimulationConfigTabInitIncidenceAngleSliderEvent)
+        refractionSimulationConfigTabInitIncidenceAngleSlider.place(relx = 0.04, rely = 0.8, anchor = tkinter.W)
+
+        refractionSimulationConfigTabRayColorOptionMenu = customtkinter.CTkOptionMenu(master = refractionSimulationConfigTabItemsFrame,
+                                                                                   width = 150,
+                                                                                   height = 25,
+                                                                                   variable = refractionSimulationConfigRayColorOptionMenuVar,
+                                                                                   values = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"])
+        refractionSimulationConfigTabRayColorOptionMenu.place(relx = 0.7, rely = 0.23, anchor = tkinter.W)
+
+        refractionSimulationConfigInitRefractiveIndex1CustomEntry = customtkinter.CTkEntry(master = refractionSimulationConfigTabItemsFrame,
+                                                                                           placeholder_text = "Float between 1.0 and 2",
+                                                                                           width = 150,
+                                                                                           height = 25,
+                                                                                           corner_radius = 5,
+                                                                                           border_width = 1)
+
+        refractionSimulationConfigInitRefractiveIndex2CustomEntry = customtkinter.CTkEntry(master = refractionSimulationConfigTabItemsFrame,
+                                                                                           placeholder_text = "Float between 1.0 and 2",
+                                                                                           width = 150,
+                                                                                           height = 25,
+                                                                                           corner_radius = 5,
+                                                                                           border_width = 1)
         
+        #The images of the simulation go here
+        refractionSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = refractionSimulationConfigTabImageFrame,
+                                                                         image = placeholderImage,
+                                                                         text = "")
+        refractionSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
         #The labels of the config tab go here
+        refractionSimulationConfigTabInitRefractiveIndex1TitleLabel = customtkinter.CTkLabel(master = refractionSimulationConfigTabItemsFrame,
+                                                                                             justify = LEFT,
+                                                                                             text = "Initial Refractive Index 1: ",
+                                                                                             font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        refractionSimulationConfigTabInitRefractiveIndex1TitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
+
+        refractionSimulationConfigTabInitRefractiveIndex2TitleLabel = customtkinter.CTkLabel(master = refractionSimulationConfigTabItemsFrame,
+                                                                                             justify = LEFT,
+                                                                                             text = "Initial Refractive Index 2: ",
+                                                                                             font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        refractionSimulationConfigTabInitRefractiveIndex2TitleLabel.place(relx = 0.05, rely = 0.38, anchor = tkinter.W)
         
+        refractionSimulationConfigTabInitIncidenceAngleTitleLabel = customtkinter.CTkLabel(master = refractionSimulationConfigTabItemsFrame,
+                                                                                           justify = LEFT,
+                                                                                           text = "Initial Incidence Angle (°): ",
+                                                                                           font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        refractionSimulationConfigTabInitIncidenceAngleTitleLabel.place(relx = 0.05, rely = 0.66, anchor = tkinter.W)
+
+        refractionSimulationConfigTabRayColorTitleLabel = customtkinter.CTkLabel(master = refractionSimulationConfigTabItemsFrame,
+                                                                                 justify = LEFT,
+                                                                                 text = "Ray Color: ",
+                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        refractionSimulationConfigTabRayColorTitleLabel.place(relx = 0.7, rely = 0.11, anchor = tkinter.W)
         
         print("the refraction config tab works")
         pass
