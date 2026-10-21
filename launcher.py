@@ -1,4 +1,4 @@
-#Do I even have to describe these two lines
+#Do I even have to describe these lines
 import customtkinter, tkinter
 from tkinter import * 
 from PIL import Image
@@ -569,6 +569,9 @@ def projectileSimulationConfigTabLaunchButtonEvent():
 def pendulumSimulationConfigTabLaunchButtonEvent():
     print("pendulum simulation launched")
 
+def springSimulationConfigTabLaunchButtonEvent():
+    print("spring simulation launched")
+
 ##The buttons of the chemistry simulations go here
 
 
@@ -610,6 +613,22 @@ def pendulumSimulationConfigTabInitGravAccSliderEvent(value):
     pass
 
 def pendulumSimulationConfigTabInitDampingCoefSliderEvent(value):
+    pass
+
+###The configurator events of the Spring Simulation go here
+def springSimulationConfigTabInitMassSliderEvent(value):
+    pass
+
+def springSimulationConfigTabInitGravAccSliderEvent(value):
+    pass
+
+def springSimulationConfigTabInitLengthSliderEvent(value):
+    pass
+
+def springSimulationConfigTabInitStiffSliderEvent(value):
+    pass
+
+def springSimulationConfigTabInitDampingCoefSliderEvent(value):
     pass
 
 ##The configurator events of the chemistry simulations go here
@@ -822,7 +841,7 @@ def physicsTab(bool):
 
         springSimulationDescriptionLabel = customtkinter.CTkLabel(master = springSimulationFrame,
                                                                   justify = LEFT,
-                                                                  text = "Simulates a spring suspended\nto a fixed point under the influence\nof gravity.",
+                                                                  text = "Simulates a mass attached to a\nspring suspended to a fixed point\nunder the influence of gravity.",
                                                                   font = customtkinter.CTkFont(size = 12, weight = "normal"))
         springSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
 
@@ -1166,6 +1185,7 @@ def projectileSimulationConfigTab(bool):
                 projectileSimulationConfigTabInitDragCoefTitleLabel.place_forget()
                 projectileSimulationConfigTabInitDragCoefSlider.place_forget()
         
+        #Here are the frames for each element of the config tab
         projectileSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
                                                                          width = 550,
                                                                          height = 300,
@@ -1228,21 +1248,21 @@ def projectileSimulationConfigTab(bool):
         projectileSimulationConfigTabInitAngleSlider.place(relx = 0.04, rely = 0.4, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitGravAccSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
-                                                                                 from_ = 0, 
+                                                                                 from_ = 0.1, 
                                                                                  to = 20,
                                                                                  corner_radius = 8,
                                                                                  command = projectileSimulationConfigTabInitGravAccSliderEvent)
         projectileSimulationConfigTabInitGravAccSlider.place(relx = 0.04, rely = 0.6, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
-                                                                                 from_ = 0, 
+                                                                                 from_ = 0.1, 
                                                                                  to = 5000,
                                                                                  corner_radius = 8,
                                                                                  command = projectileSimulationConfigTabInitMassSliderEvent)
         projectileSimulationConfigTabInitMassSlider.place(relx = 0.04, rely = 0.8, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitDiameterSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
-                                                                                         from_ = 0, 
+                                                                                         from_ = 0.1, 
                                                                                          to = 5000,
                                                                                          corner_radius = 8,
                                                                                          command = projectileSimulationConfigTabInitDiameterSliderEvent)
@@ -1330,6 +1350,7 @@ def projectileSimulationConfigTab(bool):
 
 def pendulumSimulationConfigTab(bool):
     if bool == True:
+        #Here are the frames for each element of the config tab
         pendulumSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
                                                                        width = 550,
                                                                        height = 300,
@@ -1385,28 +1406,28 @@ def pendulumSimulationConfigTab(bool):
         pendulumSimulationConfigTabInitAngleSlider.place(relx = 0.04, rely = 0.2, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitAngularVelSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
-                                                                                  from_ = 0, 
+                                                                                  from_ = 0.1, 
                                                                                   to = 90,
                                                                                   corner_radius = 8,
                                                                                   command = pendulumSimulationConfigTabInitAngularVelSliderEvent)
         pendulumSimulationConfigTabInitAngularVelSlider.place(relx = 0.04, rely = 0.4, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitLengthSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
-                                                                                 from_ = 0, 
+                                                                                 from_ = 0.1, 
                                                                                  to = 1,
                                                                                  corner_radius = 8,
                                                                                  command = pendulumSimulationConfigTabInitLengthSliderEvent)
         pendulumSimulationConfigTabInitLengthSlider.place(relx = 0.04, rely = 0.6, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
-                                                                            from_ = 0, 
+                                                                            from_ = 0.1, 
                                                                             to = 1.5,
                                                                             corner_radius = 8,
                                                                             command = pendulumSimulationConfigTabInitMassSliderEvent)
         pendulumSimulationConfigTabInitMassSlider.place(relx = 0.04, rely = 0.8, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitGravAccSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
-                                                                               from_ = 0, 
+                                                                               from_ = 0.1, 
                                                                                to = 20,
                                                                                corner_radius = 8,
                                                                                command = pendulumSimulationConfigTabInitGravAccSliderEvent)
@@ -1486,15 +1507,152 @@ def pendulumSimulationConfigTab(bool):
                                                                                       font = customtkinter.CTkFont(size = 12, weight = "normal"))
         pendulumSimulationConfigTabInitDampingCoefTitleLabel.place(relx = 0.51, rely = 0.3, anchor = tkinter.W)
 
-
-        
-        pass
-
 def springSimulationConfigTab(bool):
     if bool == True:
-        print("the spring config tab works")
-        pass
+        #Here are the frames for each element of the config tab
+        springSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                     width = 550,
+                                                                     height = 300,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1)
+        springSimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
 
+        springSimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                     width = 335,
+                                                                     height = 100,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1)
+        springSimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+
+        springSimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                           width = 335,
+                                                                           height = 200,
+                                                                           corner_radius = 5,
+                                                                           border_width = 1)
+        springSimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+        
+        springSimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                     width = 550,
+                                                                     height = 265,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1)
+        springSimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+
+        springSimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                            width = 335,
+                                                                            height = 100,
+                                                                            corner_radius = 5,
+                                                                            border_width = 1)
+        springSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+
+        #The buttons go here
+        springSimulationConfigTabLaunchButton = customtkinter.CTkButton(master = springSimulationConfigTabLaunchButtonFrame,
+                                                                                  text = "Launch",
+                                                                                  font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                                  width = 335,
+                                                                                  height = 100,
+                                                                                  corner_radius = 5,
+                                                                                  border_width = 1,
+                                                                                  command = springSimulationConfigTabLaunchButtonEvent)
+        springSimulationConfigTabLaunchButton.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
+
+        #The configurators (items) of the simulation go here
+        springSimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
+                                                                          from_ = 0.1, 
+                                                                          to = 1,
+                                                                          corner_radius = 8,
+                                                                          command = springSimulationConfigTabInitMassSliderEvent)
+        springSimulationConfigTabInitMassSlider.place(relx = 0.04, rely = 0.2, anchor = tkinter.W)
+
+        springSimulationConfigTabInitGravAccSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
+                                                                             from_ = 0.1, 
+                                                                             to = 20,
+                                                                             corner_radius = 8,
+                                                                             command = springSimulationConfigTabInitGravAccSliderEvent)
+        springSimulationConfigTabInitGravAccSlider.place(relx = 0.04, rely = 0.4, anchor = tkinter.W)
+
+        springSimulationConfigTabInitLengthSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
+                                                                            from_ = 0.1, 
+                                                                            to = 1,
+                                                                            corner_radius = 8,
+                                                                            command = springSimulationConfigTabInitLengthSliderEvent)
+        springSimulationConfigTabInitLengthSlider.place(relx = 0.04, rely = 0.6, anchor = tkinter.W)
+
+        springSimulationConfigTabInitStiffSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
+                                                                           from_ = 0.1, 
+                                                                           to = 5,
+                                                                           corner_radius = 8,
+                                                                           command = springSimulationConfigTabInitStiffSliderEvent)
+        springSimulationConfigTabInitStiffSlider.place(relx = 0.04, rely = 0.8, anchor = tkinter.W)
+
+        springSimulationConfigTabInitDampingCoefSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
+                                                                             from_ = 0.1, 
+                                                                             to = 20,
+                                                                             corner_radius = 8,
+                                                                             command = springSimulationConfigTabInitDampingCoefSliderEvent)
+        springSimulationConfigTabInitDampingCoefSlider.place(relx = 0.5, rely = 0.2, anchor = tkinter.W)
+
+        #The images of the simulation go here
+        springSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = springSimulationConfigTabImageFrame,
+                                                                     image = placeholderImage,
+                                                                     text = "")
+        springSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
+
+        #The labels of the config tab go here
+        springSimulationConfigTabTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabTitleFrame,
+                                                                     justify = LEFT,
+                                                                     text = "Spring\nSimulation",
+                                                                     font = customtkinter.CTkFont(size = 35, weight = "bold"))
+        springSimulationConfigTabTitleLabel.place(relx = 0.01, rely = 0.5, anchor = tkinter.W)
+
+        springSimulationConfigTabDescriptionLabel = customtkinter.CTkLabel(master = springSimulationConfigTabDescriptionFrame,
+                                                                           justify = LEFT,
+                                                                           text = "Simulates a mass (increasable or decreasable)\nattached to a spring suspended to a fixed point\nunder the influence of gravity whose length,\nstiffness and damping can be changed.",
+                                                                           font = customtkinter.CTkFont(size = 15, weight = "normal"))
+        springSimulationConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.2, anchor = tkinter.W)
+
+        springSimulationConfigTabCategoryLabel = customtkinter.CTkLabel(master = springSimulationConfigTabDescriptionFrame,
+                                                                        justify = LEFT,
+                                                                        text = "Field of physics: Newtonian Mechanics",
+                                                                        font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        springSimulationConfigTabCategoryLabel.place(relx = 0.01, rely = 0.54, anchor = tkinter.W)
+
+        springSimulationConfigTabInstructionsLabel = customtkinter.CTkLabel(master = springSimulationConfigTabDescriptionFrame,
+                                                                            justify = LEFT,
+                                                                            text = 'Change the physical properties that you want\nto include then press on "Launch" to start the\nsimulation.',
+                                                                            font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        springSimulationConfigTabInstructionsLabel.place(relx = 0.01, rely = 0.83, anchor = tkinter.W)
+
+        springSimulationConfigTabInitMassTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
+                                                                              justify = LEFT,
+                                                                              text = "Initial Mass (kg): ",
+                                                                              font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        springSimulationConfigTabInitMassTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
+
+        springSimulationConfigTabInitGravAccTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
+                                                                                justify = LEFT,
+                                                                                text = "Initial Gravitational Acceleration (m/s²): ",
+                                                                                font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        springSimulationConfigTabInitGravAccTitleLabel.place(relx = 0.05, rely = 0.3, anchor = tkinter.W)
+        
+        springSimulationConfigTabInitLengthTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
+                                                                               justify = LEFT,
+                                                                               text = "Initial Length (m): ",
+                                                                               font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        springSimulationConfigTabInitLengthTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
+                
+        springSimulationConfigTabInitStiffTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
+                                                                              justify = LEFT,
+                                                                              text = "Initial Stiffness: ",
+                                                                              font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        springSimulationConfigTabInitStiffTitleLabel.place(relx = 0.05, rely = 0.7, anchor = tkinter.W)
+        
+        springSimulationConfigTabInitDampingCoefTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
+                                                                                    justify = LEFT,
+                                                                                    text = "Initial Damping Coefficient: ",
+                                                                                    font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        springSimulationConfigTabInitDampingCoefTitleLabel.place(relx = 0.51, rely = 0.11, anchor = tkinter.W)
+        
 def planetOrbitsSimulationConfigTab(bool):
     if bool == True:
         print("the planet orbits config tab works")
