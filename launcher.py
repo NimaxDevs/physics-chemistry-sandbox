@@ -1790,8 +1790,7 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                        height = 15,
                                                                                        from_ = 0,
                                                                                        to = 300,
-                                                                                       corner_radius = 5,
-                                                                                       border_width = 1)
+                                                                                       corner_radius = 5)
         planetOrbitsSimulationConfigTabPlanetInitialVxSlider.place(relx = 0.35, rely = 0.64, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetInitialVySlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
@@ -1799,8 +1798,7 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                       height = 15,
                                                                                       from_ = 0,
                                                                                       to = 300,
-                                                                                      corner_radius = 5,
-                                                                                      border_width = 1)
+                                                                                      corner_radius = 5)
         planetOrbitsSimulationConfigTabPlanetInitialVySlider.place(relx = 0.35, rely = 0.89, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetInitialAxSlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
@@ -1808,8 +1806,7 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                      height = 15,
                                                                                      from_ = 0,
                                                                                      to = 50,
-                                                                                     corner_radius = 5,
-                                                                                     border_width = 1)
+                                                                                     corner_radius = 5)
         planetOrbitsSimulationConfigTabPlanetInitialAxSlider.place(relx = 0.68, rely = 0.39, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetInitialAySlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
@@ -1817,8 +1814,7 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                        height = 15,
                                                                                        from_ = 0,
                                                                                        to = 50,
-                                                                                       corner_radius = 5,
-                                                                                       border_width = 1)
+                                                                                       corner_radius = 5)
         planetOrbitsSimulationConfigTabPlanetInitialAySlider.place(relx = 0.68, rely = 0.6, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabShowOrbitTrailSwitch = customtkinter.CTkSwitch(master = planetOrbitsSimulationConfigTabItemsFrame,
@@ -1874,49 +1870,49 @@ def planetOrbitsSimulationConfigTab(bool):
         planetOrbitsSimulationConfigTabPlanetNameEntryTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                      justify = LEFT,
                                                                                      text = "Name:",
-                                                                                     font = customtkinter.CTkFont(size = 16, weight = "bold"))
+                                                                                     font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetNameEntryTitle.place(relx = 0.011, rely = 0.27, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetColorEntryTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                       justify = LEFT,
                                                                                       text = "Color:",
-                                                                                      font = customtkinter.CTkFont(size = 16, weight = "bold"))
+                                                                                      font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetColorEntryTitle.place(relx = 0.011, rely = 0.52, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetMassEntryTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                      justify = LEFT,
                                                                                      text = "Mass (kg):",
-                                                                                     font = customtkinter.CTkFont(size = 16, weight = "bold"))
+                                                                                     font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetMassEntryTitle.place(relx = 0.011, rely = 0.77, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetRadiusEntryTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                        justify = LEFT,
                                                                                        text = "Radius (m):",
-                                                                                       font = customtkinter.CTkFont(size = 16, weight = "bold"))
+                                                                                       font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetRadiusEntryTitle.place(relx = 0.35, rely = 0.27, anchor = tkinter.W)
         
         planetOrbitsSimulationConfigTabPlanetInitialVxSliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                           justify = LEFT,
                                                                                           text = "Initial Vx (m/s):",
-                                                                                          font = customtkinter.CTkFont(size = 16, weight = "bold"))
+                                                                                          font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetInitialVxSliderTitle.place(relx = 0.35, rely = 0.52, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetInitialVySliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                           justify = LEFT,
                                                                                           text = "Initial Vy (m/s):",
-                                                                                          font = customtkinter.CTkFont(size = 16, weight = "bold"))
+                                                                                          font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetInitialVySliderTitle.place(relx = 0.35, rely = 0.77, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetInitialAxSliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                           justify = LEFT,
                                                                                           text = "Initial ax (m/s²):",
-                                                                                          font = customtkinter.CTkFont(size = 16, weight = "bold"))
+                                                                                          font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetInitialAxSliderTitle.place(relx = 0.68, rely = 0.27, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetInitialAySliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                            justify = LEFT,
                                                                                            text = "Initial ay (m/s²):",
-                                                                                           font = customtkinter.CTkFont(size = 16, weight = "bold"))
+                                                                                           font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetInitialAySliderTitle.place(relx = 0.68, rely = 0.48, anchor = tkinter.W)
         
         print("the planet orbits config tab works")
@@ -1924,57 +1920,585 @@ def planetOrbitsSimulationConfigTab(bool):
 
 def gravitySimulationConfigTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        gravitySimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                      width = 550,
+                                                                      height = 300,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1)
+        gravitySimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                
+        gravitySimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                      width = 335,
+                                                                      height = 100,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1)
+        gravitySimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+        
+        gravitySimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                            width = 335,
+                                                                            height = 200,
+                                                                            corner_radius = 5,
+                                                                            border_width = 1)
+        gravitySimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+        
+        gravitySimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                      width = 550,
+                                                                      height = 265,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1)
+        gravitySimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+        
+        gravitySimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                             width = 335,
+                                                                             height = 100,
+                                                                             corner_radius = 5,
+                                                                             border_width = 1)
+        gravitySimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+        
+        #The buttons go here
+
+
+        #The configurators (items) of the simulation go here
+
+
+        #The images of the simulation go here
+
+
+        #The labels of the config tab go here
+
+
         print("the gravity config tab works")
         pass
 
 def refractionSimulationConfigTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        refractionSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                         width = 550,
+                                                                         height = 300,
+                                                                         corner_radius = 5,
+                                                                         border_width = 1)
+        refractionSimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                        
+        refractionSimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                         width = 335,
+                                                                         height = 100,
+                                                                         corner_radius = 5,
+                                                                         border_width = 1)
+        refractionSimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+                
+        refractionSimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                               width = 335,
+                                                                               height = 200,
+                                                                               corner_radius = 5,
+                                                                               border_width = 1)
+        refractionSimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+                
+        refractionSimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                         width = 550,
+                                                                         height = 265,
+                                                                         corner_radius = 5,
+                                                                         border_width = 1)
+        refractionSimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+                
+        refractionSimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                                width = 335,
+                                                                                height = 100,
+                                                                                corner_radius = 5,
+                                                                                border_width = 1)
+        refractionSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+        
+        #The buttons go here
+        
+
+        #The configurators (items) of the simulation go here
+        
+
+        #The images of the simulation go here
+        
+
+        #The labels of the config tab go here
+        
+        
         print("the refraction config tab works")
         pass
 
 def fluidSimulationConfigTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        fluidSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                    width = 550,
+                                                                    height = 300,
+                                                                    corner_radius = 5,
+                                                                    border_width = 1)
+        fluidSimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                                
+        fluidSimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                    width = 335,
+                                                                    height = 100,
+                                                                    corner_radius = 5,
+                                                                    border_width = 1)
+        fluidSimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+                        
+        fluidSimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                          width = 335,
+                                                                          height = 200,
+                                                                          corner_radius = 5,
+                                                                          border_width = 1)
+        fluidSimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+                        
+        fluidSimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                    width = 550,
+                                                                    height = 265,
+                                                                    corner_radius = 5,
+                                                                    border_width = 1)
+        fluidSimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+                        
+        fluidSimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                           width = 335,
+                                                                           height = 100,
+                                                                           corner_radius = 5,
+                                                                           border_width = 1)
+        fluidSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+                
+        #The buttons go here
+                
+        
+        #The configurators (items) of the simulation go here
+                
+        
+        #The images of the simulation go here
+                
+        
+        #The labels of the config tab go here
+
+
         print("the fluid config tab works")
         pass
 
 def temperatureSimulationConfigTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        temperatureSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                          width = 550,
+                                                                          height = 300,
+                                                                          corner_radius = 5,
+                                                                          border_width = 1)
+        temperatureSimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                                        
+        temperatureSimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                          width = 335,
+                                                                          height = 100,
+                                                                          corner_radius = 5,
+                                                                          border_width = 1)
+        temperatureSimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+                                
+        temperatureSimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                                width = 335,
+                                                                                height = 200,
+                                                                                corner_radius = 5,
+                                                                                border_width = 1)
+        temperatureSimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+                                
+        temperatureSimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                          width = 550,
+                                                                          height = 265,
+                                                                          corner_radius = 5,
+                                                                          border_width = 1)
+        temperatureSimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+                                
+        temperatureSimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                                 width = 335,
+                                                                                 height = 100,
+                                                                                 corner_radius = 5,
+                                                                                 border_width = 1)
+        temperatureSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+                        
+        #The buttons go here
+                        
+                
+        #The configurators (items) of the simulation go here
+                        
+                
+        #The images of the simulation go here
+                        
+                
+        #The labels of the config tab go here
+        
+
         print("the temperature config tab works")
         pass
 
 #The sub tabs of the chemistry tab (chemistry simulations) are here
 def bohrAtomSimulationConfigTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        bohrAtomSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                       width = 550,
+                                                                       height = 300,
+                                                                       corner_radius = 5,
+                                                                       border_width = 1)
+        bohrAtomSimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                                                
+        bohrAtomSimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                       width = 335,
+                                                                       height = 100,
+                                                                       corner_radius = 5,
+                                                                       border_width = 1)
+        bohrAtomSimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+                                        
+        bohrAtomSimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                             width = 335,
+                                                                             height = 200,
+                                                                             corner_radius = 5,
+                                                                             border_width = 1)
+        bohrAtomSimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+                                        
+        bohrAtomSimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                       width = 550,
+                                                                       height = 265,
+                                                                       corner_radius = 5,
+                                                                       border_width = 1)
+        bohrAtomSimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+                                        
+        bohrAtomSimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                              width = 335,
+                                                                              height = 100,
+                                                                              corner_radius = 5,
+                                                                              border_width = 1)
+        bohrAtomSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+                                
+        #The buttons go here
+                                
+                        
+        #The configurators (items) of the simulation go here
+                                
+                        
+        #The images of the simulation go here
+                                
+                        
+        #The labels of the config tab go here
+        
+        
         print("the Bohr atom config tab works")
         pass
 
 def solutionMakerConfigTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        solutionMakerConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                  width = 550,
+                                                                  height = 300,
+                                                                  corner_radius = 5,
+                                                                  border_width = 1)
+        solutionMakerConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                                                        
+        solutionMakerConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                  width = 335,
+                                                                  height = 100,
+                                                                  corner_radius = 5,
+                                                                  border_width = 1)
+        solutionMakerConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+                                                
+        solutionMakerConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                        width = 335,
+                                                                        height = 200,
+                                                                        corner_radius = 5,
+                                                                        border_width = 1)
+        solutionMakerConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+                                                
+        solutionMakerConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                  width = 550,
+                                                                  height = 265,
+                                                                  corner_radius = 5,
+                                                                  border_width = 1)
+        solutionMakerConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+                                                
+        solutionMakerConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                         width = 335,
+                                                                         height = 100,
+                                                                         corner_radius = 5,
+                                                                         border_width = 1)
+        solutionMakerConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+                                        
+        #The buttons go here
+                                        
+                                
+        #The configurators (items) of the simulation go here
+                                        
+                                
+        #The images of the simulation go here
+                                        
+                                
+        #The labels of the config tab go here
+        
+        
         print("the solution maker config tab works")
         pass
 
 def molecularLabConfigTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        molecularLabConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                 width = 550,
+                                                                 height = 300,
+                                                                 corner_radius = 5,
+                                                                 border_width = 1)
+        molecularLabConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                                                                
+        molecularLabConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                 width = 335,
+                                                                 height = 100,
+                                                                 corner_radius = 5,
+                                                                 border_width = 1)
+        molecularLabConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+                                                        
+        molecularLabConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                       width = 335,
+                                                                       height = 200,
+                                                                       corner_radius = 5,
+                                                                       border_width = 1)
+        molecularLabConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+                                                        
+        molecularLabConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                 width = 550,
+                                                                 height = 265,
+                                                                 corner_radius = 5,
+                                                                 border_width = 1)
+        molecularLabConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+                                                        
+        molecularLabConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                        width = 335,
+                                                                        height = 100,
+                                                                        corner_radius = 5,
+                                                                        border_width = 1)
+        molecularLabConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+                                                
+        #The buttons go here
+                                                
+                                        
+        #The configurators (items) of the simulation go here
+                                                
+                                        
+        #The images of the simulation go here
+                                                
+                                        
+        #The labels of the config tab go here
+        
+        
         print("the molecular lab config tab works")
         pass
 
 def reactionLabConfigTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        reactionLabConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                width = 550,
+                                                                height = 300,
+                                                                corner_radius = 5,
+                                                                border_width = 1)
+        reactionLabConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                                                                        
+        reactionLabConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                width = 335,
+                                                                height = 100,
+                                                                corner_radius = 5,
+                                                                border_width = 1)
+        reactionLabConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+                                                                
+        reactionLabConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                      width = 335,
+                                                                      height = 200,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1)
+        reactionLabConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+                                                                
+        reactionLabConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                width = 550,
+                                                                height = 265,
+                                                                corner_radius = 5,
+                                                                border_width = 1)
+        reactionLabConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+                                                                
+        reactionLabConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                       width = 335,
+                                                                       height = 100,
+                                                                       corner_radius = 5,
+                                                                       border_width = 1)
+        reactionLabConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+                                                        
+        #The buttons go here
+                                                        
+                                                
+        #The configurators (items) of the simulation go here
+                                                        
+                                                
+        #The images of the simulation go here
+                                                        
+                                                
+        #The labels of the config tab go here
+        
+        
         print("the reaction lab config tab works")
         pass
 
 def combustionSimulationConfigTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        combustionSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                         width = 550,
+                                                                         height = 300,
+                                                                         corner_radius = 5,
+                                                                         border_width = 1)
+        combustionSimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                                                                                
+        combustionSimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                         width = 335,
+                                                                         height = 100,
+                                                                         corner_radius = 5,
+                                                                         border_width = 1)
+        combustionSimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+                                                                        
+        combustionSimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                               width = 335,
+                                                                               height = 200,
+                                                                               corner_radius = 5,
+                                                                               border_width = 1)
+        combustionSimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+                                                                        
+        combustionSimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                         width = 550,
+                                                                         height = 265,
+                                                                         corner_radius = 5,
+                                                                         border_width = 1)
+        combustionSimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+                                                                        
+        combustionSimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                                width = 335,
+                                                                                height = 100,
+                                                                                corner_radius = 5,
+                                                                                border_width = 1)
+        combustionSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+                                                                
+        #The buttons go here
+                                                                
+                                                        
+        #The configurators (items) of the simulation go here
+                                                                
+                                                        
+        #The images of the simulation go here
+                                                                
+                                                        
+        #The labels of the config tab go here
+        
+        
         print("the combustion config tab works")
         pass
 
 def smokeSimulationConfigTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        smokeSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                    width = 550,
+                                                                    height = 300,
+                                                                    corner_radius = 5,
+                                                                    border_width = 1)
+        smokeSimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                                                                                        
+        smokeSimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                    width = 335,
+                                                                    height = 100,
+                                                                    corner_radius = 5,
+                                                                    border_width = 1)
+        smokeSimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+                                                                                
+        smokeSimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                          width = 335,
+                                                                          height = 200,
+                                                                          corner_radius = 5,
+                                                                          border_width = 1)
+        smokeSimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+                                                                                
+        smokeSimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                    width = 550,
+                                                                    height = 265,
+                                                                    corner_radius = 5,
+                                                                    border_width = 1)
+        smokeSimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+                                                                                
+        smokeSimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                           width = 335,
+                                                                           height = 100,
+                                                                           corner_radius = 5,
+                                                                           border_width = 1)
+        smokeSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+                                                                        
+        #The buttons go here
+                                                                        
+                                                                
+        #The configurators (items) of the simulation go here
+                                                                        
+                                                                
+        #The images of the simulation go here
+                                                                        
+                                                                
+        #The labels of the config tab go here
+        
+        
         print("the smoke config tab works")
         pass
 
 def atomCollisionSimulationTab(bool):
     if bool == True:
+        #The frames for each element of the tab go here
+        atomCollisionSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                            width = 550,
+                                                                            height = 300,
+                                                                            corner_radius = 5,
+                                                                            border_width = 1)
+        atomCollisionSimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+                                                                                                
+        atomCollisionSimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                            width = 335,
+                                                                            height = 100,
+                                                                            corner_radius = 5,
+                                                                            border_width = 1)
+        atomCollisionSimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+                                                                                        
+        atomCollisionSimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                                  width = 335,
+                                                                                  height = 200,
+                                                                                  corner_radius = 5,
+                                                                                  border_width = 1)
+        atomCollisionSimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+                                                                                        
+        atomCollisionSimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                            width = 550,
+                                                                            height = 265,
+                                                                            corner_radius = 5,
+                                                                            border_width = 1)
+        atomCollisionSimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+                                                                                        
+        atomCollisionSimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                                   width = 335,
+                                                                                   height = 100,
+                                                                                   corner_radius = 5,
+                                                                                   border_width = 1)
+        atomCollisionSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+                                                                                
+        #The buttons go here
+                                                                                
+                                                                        
+        #The configurators (items) of the simulation go here
+                                                                                
+                                                                        
+        #The images of the simulation go here
+                                                                                
+                                                                        
+        #The labels of the config tab go here
+        
+        
         print("the atom collision config tab works")
         pass
 
