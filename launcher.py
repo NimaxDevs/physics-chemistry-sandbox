@@ -562,17 +562,19 @@ def atomCollisionSimulationConfigButtonEvent():
 
 #The buttons to launch the simulations go here
 ##The buttons of the physics simulations go here
-###The button of the Projectile Simulation goes here
 def projectileSimulationConfigTabLaunchButtonEvent():
     print("projectile simulation launched")
     pass
 
+def pendulumSimulationConfigTabLaunchButtonEvent():
+    print("pendulum simulation launched")
+
 ##The buttons of the chemistry simulations go here
 
 
-#The configurators (items) of the simulations go here
-##The configurators of the physics simulations go here
-###The configurators of the Projectile Simulation goes here
+#The configurator (items) events of the simulations go here
+##The configurator events of the physics simulations go here
+###The configurator events of the Projectile Simulation go here
 def projectileSimulationConfigTabInitVelocitySliderEvent(value):
     pass
 
@@ -591,7 +593,26 @@ def projectileSimulationConfigTabInitDiameterSliderEvent(value):
 def projectileSimulationConfigTabInitDragCoefSliderEvent(value):
     pass
 
-##The configurators of the chemistry simulations go here
+###The configurator events of the Pendulum Simulation go here
+def pendulumSimulationConfigTabInitAngleSliderEvent(value):
+    pass
+
+def pendulumSimulationConfigTabInitAngularVelSliderEvent(value):
+    pass
+
+def pendulumSimulationConfigTabInitLengthSliderEvent(value):
+    pass
+
+def pendulumSimulationConfigTabInitMassSliderEvent(value):
+    pass
+
+def pendulumSimulationConfigTabInitGravAccSliderEvent(value):
+    pass
+
+def pendulumSimulationConfigTabInitDampingCoefSliderEvent(value):
+    pass
+
+##The configurator events of the chemistry simulations go here
 
 
 #The tab functions go here
@@ -1144,7 +1165,7 @@ def projectileSimulationConfigTab(bool):
             else:
                 projectileSimulationConfigTabInitDragCoefTitleLabel.place_forget()
                 projectileSimulationConfigTabInitDragCoefSlider.place_forget()
-
+        
         projectileSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
                                                                          width = 550,
                                                                          height = 300,
@@ -1309,7 +1330,164 @@ def projectileSimulationConfigTab(bool):
 
 def pendulumSimulationConfigTab(bool):
     if bool == True:
-        print("the pendulum config tab works")
+        pendulumSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                       width = 550,
+                                                                       height = 300,
+                                                                       corner_radius = 5,
+                                                                       border_width = 1)
+        pendulumSimulationConfigTabImageFrame.place(relx = 0.01, rely = 0.27, anchor = tkinter.W)
+        
+        pendulumSimulationConfigTabTitleFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                       width = 335,
+                                                                       height = 100,
+                                                                       corner_radius = 5,
+                                                                       border_width = 1)
+        pendulumSimulationConfigTabTitleFrame.place(relx = 0.811, rely = 0.01, anchor = tkinter.N)
+
+        pendulumSimulationConfigTabDescriptionFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                             width = 335,
+                                                                             height = 200,
+                                                                             corner_radius = 5,
+                                                                             border_width = 1)
+        pendulumSimulationConfigTabDescriptionFrame.place(relx = 0.811, rely = 0.185, anchor = tkinter.N)
+
+        pendulumSimulationConfigTabItemsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                       width = 550,
+                                                                       height = 265,
+                                                                       corner_radius = 5,
+                                                                       border_width = 1)
+        pendulumSimulationConfigTabItemsFrame.place(relx = 0.01, rely = 0.765, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabLaunchButtonFrame = customtkinter.CTkFrame(master = mainFrame,
+                                                                              width = 335,
+                                                                              height = 100,
+                                                                              corner_radius = 5,
+                                                                              border_width = 1)
+        pendulumSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
+
+        #The buttons go here
+        pendulumSimulationConfigTabLaunchButton = customtkinter.CTkButton(master = pendulumSimulationConfigTabLaunchButtonFrame,
+                                                                          text = "Launch",
+                                                                          font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                          width = 335,
+                                                                          height = 100,
+                                                                          corner_radius = 5,
+                                                                          border_width = 1,
+                                                                          command = pendulumSimulationConfigTabLaunchButtonEvent)
+        pendulumSimulationConfigTabLaunchButton.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
+
+        #The configurators (items) of the simulation go here
+        pendulumSimulationConfigTabInitAngleSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                from_ = -90, 
+                                                                                to = 90,
+                                                                                corner_radius = 8,
+                                                                                command = pendulumSimulationConfigTabInitAngleSliderEvent)
+        pendulumSimulationConfigTabInitAngleSlider.place(relx = 0.04, rely = 0.2, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitAngularVelSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                  from_ = 0, 
+                                                                                  to = 90,
+                                                                                  corner_radius = 8,
+                                                                                  command = pendulumSimulationConfigTabInitAngularVelSliderEvent)
+        pendulumSimulationConfigTabInitAngularVelSlider.place(relx = 0.04, rely = 0.4, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitLengthSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                 from_ = 0, 
+                                                                                 to = 1,
+                                                                                 corner_radius = 8,
+                                                                                 command = pendulumSimulationConfigTabInitLengthSliderEvent)
+        pendulumSimulationConfigTabInitLengthSlider.place(relx = 0.04, rely = 0.6, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                            from_ = 0, 
+                                                                            to = 1.5,
+                                                                            corner_radius = 8,
+                                                                            command = pendulumSimulationConfigTabInitMassSliderEvent)
+        pendulumSimulationConfigTabInitMassSlider.place(relx = 0.04, rely = 0.8, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitGravAccSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                               from_ = 0, 
+                                                                               to = 20,
+                                                                               corner_radius = 8,
+                                                                               command = pendulumSimulationConfigTabInitGravAccSliderEvent)
+        pendulumSimulationConfigTabInitGravAccSlider.place(relx = 0.5, rely = 0.2, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitDampingCoefSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                   from_ = 0, 
+                                                                                   to = 1,
+                                                                                   corner_radius = 8,
+                                                                                   command = pendulumSimulationConfigTabInitDampingCoefSliderEvent)
+        pendulumSimulationConfigTabInitDampingCoefSlider.place(relx = 0.5, rely = 0.4, anchor = tkinter.W)
+
+        #The images of the simulation go here
+        pendulumSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = pendulumSimulationConfigTabImageFrame,
+                                                                       image = placeholderImage,
+                                                                       text = "")
+        pendulumSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
+
+        #The labels of the config tab go here
+        pendulumSimulationConfigTabTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabTitleFrame,
+                                                                       justify = LEFT,
+                                                                       text = "Pendulum\nSimulation",
+                                                                       font = customtkinter.CTkFont(size = 35, weight = "bold"))
+        pendulumSimulationConfigTabTitleLabel.place(relx = 0.01, rely = 0.5, anchor = tkinter.W)
+                
+        pendulumSimulationConfigTabDescriptionLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabDescriptionFrame,
+                                                                             justify = LEFT,
+                                                                             text = "Simulates a mass suspended to a fixed point\nswinging back and forth whose initial angle,\nangular velocity, length to the fixed point,\nmass, gravitational acceleration and damping\ncoefficient can be changed.",
+                                                                             font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        pendulumSimulationConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.25, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabCategoryLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabDescriptionFrame,
+                                                                          justify = LEFT,
+                                                                          text = "Field of physics: Newtonian Mechanics",
+                                                                          font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        pendulumSimulationConfigTabCategoryLabel.place(relx = 0.01, rely = 0.59, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInstructionsLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabDescriptionFrame,
+                                                                              justify = LEFT,
+                                                                              text = 'Change the physical properties that you want\nto include then press on "Launch" to start the\nsimulation.',
+                                                                              font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        pendulumSimulationConfigTabInstructionsLabel.place(relx = 0.01, rely = 0.83, anchor = tkinter.W)
+        
+        pendulumSimulationConfigTabInitAngleTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                justify = LEFT,
+                                                                                text = "Initial Angle (°): ",
+                                                                                font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        pendulumSimulationConfigTabInitAngleTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitAngularVelTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                     justify = LEFT,
+                                                                                     text = "Initial Angular Velocity (rad/s): ",
+                                                                                     font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        pendulumSimulationConfigTabInitAngularVelTitleLabel.place(relx = 0.05, rely = 0.3, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitLengthTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                 justify = LEFT,
+                                                                                 text = "Initial Length (m): ",
+                                                                                 font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        pendulumSimulationConfigTabInitLengthTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
+        
+        pendulumSimulationConfigTabInitMassTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                               justify = LEFT,
+                                                                               text = "Initial Mass (kg): ",
+                                                                               font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        pendulumSimulationConfigTabInitMassTitleLabel.place(relx = 0.05, rely = 0.7, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitGravAccTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                  justify = LEFT,
+                                                                                  text = "Initial Gravitational Acceleration (m/s²): ",
+                                                                                  font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        pendulumSimulationConfigTabInitGravAccTitleLabel.place(relx = 0.51, rely = 0.11, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitDampingCoefTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                      justify = LEFT,
+                                                                                      text = "Initial Damping Coefficient: ",
+                                                                                      font = customtkinter.CTkFont(size = 12, weight = "normal"))
+        pendulumSimulationConfigTabInitDampingCoefTitleLabel.place(relx = 0.51, rely = 0.3, anchor = tkinter.W)
+
+
+        
         pass
 
 def springSimulationConfigTab(bool):
