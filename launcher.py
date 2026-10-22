@@ -600,6 +600,9 @@ def refractionSimulationConfigTabLaunchButtonEvent():
 def fluidSimulationConfigTabLaunchButtonEvent():
     print("fluid simulation launched")
 
+def temperatureSimulationConfigTabLaunchButtonEvent():
+    print("temperature simulation launched")
+
 ##The buttons of the chemistry simulations go here
 
 
@@ -688,6 +691,16 @@ def fluidSimulationConfigTabInitPressureSliderEvent(value):
     pass
 
 def fluidSimulationConfigTabShowLatticeSwitchEvent():
+    pass
+
+###The configurator events of the Temperature Simulation go here
+def temperatureSimulationConfigTabInitParticleNumberSliderEvent(value):
+    pass
+
+def temperatureSimulationConfigTabInitParticleDiameterSliderEvent(value):
+    pass
+
+def temperatureSimulationConfigTabInitTempSliderEvent(value):
     pass
 
 ##The configurator events of the chemistry simulations go here
@@ -1292,6 +1305,7 @@ def projectileSimulationConfigTab(bool):
         
         #The configurators (items) of the simulation go here
         projectileSimulationConfigTabInitVelocitySlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
+                                                                                  height = 20,
                                                                                   from_ = 1, 
                                                                                   to = 100,
                                                                                   corner_radius = 8,
@@ -1299,6 +1313,7 @@ def projectileSimulationConfigTab(bool):
         projectileSimulationConfigTabInitVelocitySlider.place(relx = 0.04, rely = 0.2, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitAngleSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
+                                                                               height = 20,
                                                                                from_ = 0, 
                                                                                to = 90,
                                                                                corner_radius = 8,
@@ -1306,6 +1321,7 @@ def projectileSimulationConfigTab(bool):
         projectileSimulationConfigTabInitAngleSlider.place(relx = 0.04, rely = 0.4, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitGravAccSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
+                                                                                 height = 20,
                                                                                  from_ = 0.1, 
                                                                                  to = 20,
                                                                                  corner_radius = 8,
@@ -1313,29 +1329,34 @@ def projectileSimulationConfigTab(bool):
         projectileSimulationConfigTabInitGravAccSlider.place(relx = 0.04, rely = 0.6, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
-                                                                                 from_ = 0.1, 
-                                                                                 to = 5000,
-                                                                                 corner_radius = 8,
-                                                                                 command = projectileSimulationConfigTabInitMassSliderEvent)
+                                                                              height = 20,
+                                                                              from_ = 0.1, 
+                                                                              to = 5000,
+                                                                              corner_radius = 8,
+                                                                              command = projectileSimulationConfigTabInitMassSliderEvent)
         projectileSimulationConfigTabInitMassSlider.place(relx = 0.04, rely = 0.8, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitDiameterSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
-                                                                                         from_ = 0.1, 
-                                                                                         to = 5000,
-                                                                                         corner_radius = 8,
-                                                                                         command = projectileSimulationConfigTabInitDiameterSliderEvent)
+                                                                                  width = 250,
+                                                                                  height = 20,
+                                                                                  from_ = 0.1, 
+                                                                                  to = 5000,
+                                                                                  corner_radius = 8,
+                                                                                  command = projectileSimulationConfigTabInitDiameterSliderEvent)
         projectileSimulationConfigTabInitDiameterSlider.place(relx = 0.5, rely = 0.2, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitAirResistCheckbox = customtkinter.CTkCheckBox(master = projectileSimulationConfigTabItemsFrame,
-                                                                                   text = "Air Resistance",
-                                                                                   font = customtkinter.CTkFont(size = 18, weight = "normal"),
-                                                                                   variable = projectileSimulationConfigTabInitAirResistCheckboxVar,
-                                                                                   onvalue = "on",
-                                                                                   offvalue = "off",
-                                                                                   command = projectileSimulationConfigTabInitAirResistCheckboxEvent)
+                                                                                       text = "Air Resistance",
+                                                                                       font = customtkinter.CTkFont(size = 18, weight = "normal"),
+                                                                                       variable = projectileSimulationConfigTabInitAirResistCheckboxVar,
+                                                                                       onvalue = "on",
+                                                                                       offvalue = "off",
+                                                                                       command = projectileSimulationConfigTabInitAirResistCheckboxEvent)
         projectileSimulationConfigTabInitAirResistCheckbox.place(relx = 0.61, rely = 0.66, anchor = tkinter.CENTER)
 
         projectileSimulationConfigTabInitDragCoefSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
+                                                                                  width = 250,
+                                                                                  height = 20,
                                                                                   from_ = 0, 
                                                                                   to = 1,
                                                                                   corner_radius = 8,
@@ -1458,6 +1479,7 @@ def pendulumSimulationConfigTab(bool):
 
         #The configurators (items) of the simulation go here
         pendulumSimulationConfigTabInitAngleSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                height = 20,
                                                                                 from_ = -90, 
                                                                                 to = 90,
                                                                                 corner_radius = 8,
@@ -1465,6 +1487,7 @@ def pendulumSimulationConfigTab(bool):
         pendulumSimulationConfigTabInitAngleSlider.place(relx = 0.04, rely = 0.2, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitAngularVelSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                  height = 20,
                                                                                   from_ = 0.1, 
                                                                                   to = 90,
                                                                                   corner_radius = 8,
@@ -1472,6 +1495,8 @@ def pendulumSimulationConfigTab(bool):
         pendulumSimulationConfigTabInitAngularVelSlider.place(relx = 0.04, rely = 0.4, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitLengthSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                 width = 495,
+                                                                                 height = 20,
                                                                                  from_ = 0.1, 
                                                                                  to = 1,
                                                                                  corner_radius = 8,
@@ -1479,6 +1504,8 @@ def pendulumSimulationConfigTab(bool):
         pendulumSimulationConfigTabInitLengthSlider.place(relx = 0.04, rely = 0.6, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                            width = 495,
+                                                                            height = 20,
                                                                             from_ = 0.1, 
                                                                             to = 1.5,
                                                                             corner_radius = 8,
@@ -1486,6 +1513,8 @@ def pendulumSimulationConfigTab(bool):
         pendulumSimulationConfigTabInitMassSlider.place(relx = 0.04, rely = 0.8, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitGravAccSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                               width = 250,
+                                                                               height = 20,
                                                                                from_ = 0.1, 
                                                                                to = 20,
                                                                                corner_radius = 8,
@@ -1493,6 +1522,8 @@ def pendulumSimulationConfigTab(bool):
         pendulumSimulationConfigTabInitGravAccSlider.place(relx = 0.5, rely = 0.2, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitDampingCoefSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                   width = 250,
+                                                                                   height = 20,
                                                                                    from_ = 0, 
                                                                                    to = 1,
                                                                                    corner_radius = 8,
@@ -1606,17 +1637,18 @@ def springSimulationConfigTab(bool):
 
         #The buttons go here
         springSimulationConfigTabLaunchButton = customtkinter.CTkButton(master = springSimulationConfigTabLaunchButtonFrame,
-                                                                                  text = "Launch",
-                                                                                  font = customtkinter.CTkFont(size = 20, weight = "bold"),
-                                                                                  width = 335,
-                                                                                  height = 100,
-                                                                                  corner_radius = 5,
-                                                                                  border_width = 1,
-                                                                                  command = springSimulationConfigTabLaunchButtonEvent)
+                                                                        text = "Launch",
+                                                                        font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                        width = 335,
+                                                                        height = 100,
+                                                                        corner_radius = 5,
+                                                                        border_width = 1,
+                                                                        command = springSimulationConfigTabLaunchButtonEvent)
         springSimulationConfigTabLaunchButton.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
         #The configurators (items) of the simulation go here
         springSimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
+                                                                          height = 20,
                                                                           from_ = 0.1, 
                                                                           to = 1,
                                                                           corner_radius = 8,
@@ -1624,6 +1656,8 @@ def springSimulationConfigTab(bool):
         springSimulationConfigTabInitMassSlider.place(relx = 0.04, rely = 0.2, anchor = tkinter.W)
 
         springSimulationConfigTabInitGravAccSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
+                                                                             width = 495,
+                                                                             height = 20,
                                                                              from_ = 0.1, 
                                                                              to = 20,
                                                                              corner_radius = 8,
@@ -1631,6 +1665,8 @@ def springSimulationConfigTab(bool):
         springSimulationConfigTabInitGravAccSlider.place(relx = 0.04, rely = 0.4, anchor = tkinter.W)
 
         springSimulationConfigTabInitLengthSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
+                                                                            width = 495,
+                                                                            height = 20,
                                                                             from_ = 0.1, 
                                                                             to = 1,
                                                                             corner_radius = 8,
@@ -1638,6 +1674,8 @@ def springSimulationConfigTab(bool):
         springSimulationConfigTabInitLengthSlider.place(relx = 0.04, rely = 0.6, anchor = tkinter.W)
 
         springSimulationConfigTabInitStiffSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
+                                                                           width = 495,
+                                                                           height = 20,
                                                                            from_ = 0.1, 
                                                                            to = 5,
                                                                            corner_radius = 8,
@@ -1645,6 +1683,8 @@ def springSimulationConfigTab(bool):
         springSimulationConfigTabInitStiffSlider.place(relx = 0.04, rely = 0.8, anchor = tkinter.W)
 
         springSimulationConfigTabInitDampingCoefSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
+                                                                             width = 250,
+                                                                             height = 20,
                                                                              from_ = 0.1, 
                                                                              to = 20,
                                                                              corner_radius = 8,
@@ -1829,6 +1869,7 @@ def planetOrbitsSimulationConfigTab(bool):
         
         planetOrbitsSimulationConfigTabPlanetInitialVxSlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                        width = 150,
+                                                                                       height = 20,
                                                                                        from_ = 0,
                                                                                        to = 300,
                                                                                        corner_radius = 5)
@@ -1836,6 +1877,7 @@ def planetOrbitsSimulationConfigTab(bool):
 
         planetOrbitsSimulationConfigTabPlanetInitialVySlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                       width = 150,
+                                                                                      height = 20,
                                                                                       from_ = 0,
                                                                                       to = 300,
                                                                                       corner_radius = 5)
@@ -1843,6 +1885,7 @@ def planetOrbitsSimulationConfigTab(bool):
 
         planetOrbitsSimulationConfigTabPlanetInitialAxSlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                      width = 150,
+                                                                                     height = 20,
                                                                                      from_ = 0,
                                                                                      to = 50,
                                                                                      corner_radius = 5)
@@ -1850,6 +1893,7 @@ def planetOrbitsSimulationConfigTab(bool):
 
         planetOrbitsSimulationConfigTabPlanetInitialAySlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                        width = 150,
+                                                                                       height = 20,
                                                                                        from_ = 0,
                                                                                        to = 50,
                                                                                        corner_radius = 5)
@@ -2012,28 +2056,28 @@ def gravitySimulationConfigTab(bool):
 
         #The configurators (items) of the simulation go here
         gravitySimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = gravitySimulationConfigTabItemsFrame,
-                                                                              width = 150,
+                                                                              width = 495,
                                                                               height = 20,
                                                                               from_ = 0.1,
                                                                               to = 1000,
                                                                               command = gravitySimulationConfigTabInitMassSliderEvent)
-        gravitySimulationConfigTabInitMassSlider.place(relx = 0.04, rely = 0.2, anchor = tkinter.W)
+        gravitySimulationConfigTabInitMassSlider.place(relx = 0.05, rely = 0.23, anchor = tkinter.W)
 
         gravitySimulationConfigTabInitGravAccSlider = customtkinter.CTkSlider(master = gravitySimulationConfigTabItemsFrame,
-                                                                              width = 150,
+                                                                              width = 495,
                                                                               height = 20,
                                                                               from_ = 0.1,
                                                                               to = 20,
                                                                               command = gravitySimulationConfigTabInitGravAccSliderEvent)
-        gravitySimulationConfigTabInitGravAccSlider.place(relx = 0.04, rely = 0.4, anchor = tkinter.W)
+        gravitySimulationConfigTabInitGravAccSlider.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
 
         gravitySimulationConfigTabInitHeightSlider = customtkinter.CTkSlider(master = gravitySimulationConfigTabItemsFrame,
-                                                                             width = 150,
+                                                                             width = 495,
                                                                              height = 20,
                                                                              from_ = 0.1,
                                                                              to = 10,
                                                                              command = gravitySimulationConfigTabInitHeightSliderEvent)
-        gravitySimulationConfigTabInitHeightSlider.place(relx = 0.04, rely = 0.6, anchor = tkinter.W)
+        gravitySimulationConfigTabInitHeightSlider.place(relx = 0.05, rely = 0.8, anchor = tkinter.W)
 
         #The images of the simulation go here
         gravitySimulationConfigTabInSimImage = customtkinter.CTkLabel(master = gravitySimulationConfigTabImageFrame,
@@ -2076,13 +2120,13 @@ def gravitySimulationConfigTab(bool):
                                                                                  justify = LEFT,
                                                                                  text = "Initial Gravitational Acceleration (m/s²): ",
                                                                                  font = customtkinter.CTkFont(size = 18, weight = "normal"))
-        gravitySimulationConfigTabInitGravAccTitleLabel.place(relx = 0.05, rely = 0.3, anchor = tkinter.W)
+        gravitySimulationConfigTabInitGravAccTitleLabel.place(relx = 0.05, rely = 0.38, anchor = tkinter.W)
 
         gravitySimulationConfigTabInitHeightTitleLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabItemsFrame,
                                                                                 justify = LEFT,
                                                                                 text = "Initial Height (m): ",
                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
-        gravitySimulationConfigTabInitHeightTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
+        gravitySimulationConfigTabInitHeightTitleLabel.place(relx = 0.05, rely = 0.66, anchor = tkinter.W)
 
 
 
@@ -2168,7 +2212,7 @@ def refractionSimulationConfigTab(bool):
         refractionSimulationConfigInitRefractiveIndex2OptionMenu.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
 
         refractionSimulationConfigTabInitIncidenceAngleSlider = customtkinter.CTkSlider(master = refractionSimulationConfigTabItemsFrame,
-                                                                                        width = 150,
+                                                                                        width = 495,
                                                                                         height = 20,
                                                                                         from_ = 0,
                                                                                         to = 90,
@@ -2485,16 +2529,90 @@ def temperatureSimulationConfigTab(bool):
         temperatureSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
                         
         #The buttons go here
-                        
+        temperatureSimulationConfigTabLaunchButton = customtkinter.CTkButton(master = temperatureSimulationConfigTabLaunchButtonFrame,
+                                                                             text = "Launch",
+                                                                             font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                             width = 335,
+                                                                             height = 100,
+                                                                             corner_radius = 5,
+                                                                             border_width = 1,
+                                                                             command = temperatureSimulationConfigTabLaunchButtonEvent)
+        temperatureSimulationConfigTabLaunchButton.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)                  
                 
         #The configurators (items) of the simulation go here
-                        
+        temperatureSimulationConfigTabInitParticleNumberSlider = customtkinter.CTkSlider(master = temperatureSimulationConfigTabItemsFrame,
+                                                                                         width = 495,
+                                                                                         height = 20,
+                                                                                         from_ = 1,
+                                                                                         to = 1000,
+                                                                                         command = temperatureSimulationConfigTabInitParticleNumberSliderEvent)
+        temperatureSimulationConfigTabInitParticleNumberSlider.place(relx = 0.05, rely = 0.23, anchor = tkinter.W)     
+
+        temperatureSimulationConfigTabInitParticleDiameterSlider = customtkinter.CTkSlider(master = temperatureSimulationConfigTabItemsFrame,
+                                                                                           width = 495,
+                                                                                           height = 20,
+                                                                                           from_ = 1,
+                                                                                           to = 1000,
+                                                                                           command = temperatureSimulationConfigTabInitParticleDiameterSliderEvent)
+        temperatureSimulationConfigTabInitParticleDiameterSlider.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
+
+        temperatureSimulationConfigTabInitTempSlider = customtkinter.CTkSlider(master = temperatureSimulationConfigTabItemsFrame,
+                                                                               width = 495,
+                                                                               height = 20,
+                                                                               from_ = -273.15,
+                                                                               to = 1000,
+                                                                               command = temperatureSimulationConfigTabInitTempSliderEvent)
+        temperatureSimulationConfigTabInitTempSlider.place(relx = 0.05, rely = 0.8, anchor = tkinter.W)             
                 
         #The images of the simulation go here
-                        
+        temperatureSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = temperatureSimulationConfigTabImageFrame,
+                                                                          image = placeholderImage,
+                                                                          text = "")
+        temperatureSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)        
+                                
                 
         #The labels of the config tab go here
+        temperatureSimulationConfigTabTitleLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabTitleFrame,
+                                                                          justify = LEFT,
+                                                                          text = "Temperature\nSimulation",
+                                                                          font = customtkinter.CTkFont(size = 35, weight = "bold"))
+        temperatureSimulationConfigTabTitleLabel.place(relx = 0.01, rely = 0.5, anchor = tkinter.W)
+                                
+        temperatureSimulationConfigTabDescriptionLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabDescriptionFrame,
+                                                                                justify = LEFT,
+                                                                                text = "Simulates a large number of customizable\nparticles interacting with each other under the\ninfluence of heat or cold.",
+                                                                                font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        temperatureSimulationConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.15, anchor = tkinter.W)
+                                
+        temperatureSimulationConfigTabCategoryLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabDescriptionFrame,
+                                                                             justify = LEFT,
+                                                                             text = "Field of physics: Thermodynamics",
+                                                                             font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        temperatureSimulationConfigTabCategoryLabel.place(relx = 0.01, rely = 0.5, anchor = tkinter.W)
+                
+        temperatureSimulationConfigTabInstructionsLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabDescriptionFrame,
+                                                                                 justify = LEFT,
+                                                                                 text = 'Change the physical properties that\nyou want to include then press on "Launch" to\nstart the simulation.',
+                                                                                 font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        temperatureSimulationConfigTabInstructionsLabel.place(relx = 0.01, rely = 0.83, anchor = tkinter.W)
         
+        temperatureSimulationConfigTabInitParticleNumberTitleLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabItemsFrame,
+                                                                                            justify = LEFT,
+                                                                                            text = "Initial Particle Number: ",
+                                                                                            font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        temperatureSimulationConfigTabInitParticleNumberTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
+
+        temperatureSimulationConfigTabInitParticleDiameterTitleLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabItemsFrame,
+                                                                                              justify = LEFT,
+                                                                                              text = "Initial Particle Diameter (nm): ",
+                                                                                              font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        temperatureSimulationConfigTabInitParticleDiameterTitleLabel.place(relx = 0.05, rely = 0.38, anchor = tkinter.W)
+
+        temperatureSimulationConfigTabInitTempTitleLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabItemsFrame,
+                                                                                  justify = LEFT,
+                                                                                  text = "Initial Temperature (°C): ",
+                                                                                  font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        temperatureSimulationConfigTabInitTempTitleLabel.place(relx = 0.05, rely = 0.66, anchor = tkinter.W)
 
         print("the temperature config tab works")
         pass
