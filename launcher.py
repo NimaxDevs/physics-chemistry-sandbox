@@ -73,6 +73,12 @@ bohrAtomSimulationConfigTabAtomSelected = False
 solutionMakerConfigTabInitSolventOptionMenuVar = tkinter.StringVar(value = "Select Solvent")
 solutionMakerConfigTabInitSoluteOptionMenuVar = tkinter.StringVar(value = "Select Solute")
 
+###The variables of the Molecular Lab go here
+molecularLabConfigTabInitMoleculeOptionMenuVar = tkinter.StringVar(value = "Select Molecule")
+molecularLabConfigTabInitHydrogenColorOptionMenuVar = tkinter.StringVar(value = "Select Color")
+molecularLabConfigTabInitCarbonColorOptionMenuVar = tkinter.StringVar(value = "Select Color")
+molecularLabConfigTabInitOxygenColorOptionMenuVar = tkinter.StringVar(value = "Select Color")
+
 #The button events (functions) go here
 def physicsSelectorButtonEvent():
     physicsTabSelected = True
@@ -618,6 +624,9 @@ def bohrAtomSimulationConfigTabLaunchButtonEvent():
 def solutionMakerConfigTabLaunchButtonEvent():
     print("solution maker simulation launched")
 
+def molecularLabConfigTabLaunchButtonEvent():
+    print("molecular lab simulation launched")
+
 #The configurator (items) events of the simulations go here
 ##The configurator events of the physics simulations go here
 ###The configurator events of the Projectile Simulation go here
@@ -729,6 +738,21 @@ def solutionMakerConfigTabInitSoluteOptionMenuEvent(value):
 def solutionMakerConfigTabInitSoluteMassSliderEvent(value):
     pass
 
+###The configurator events of the Molecular Lab go here:
+def molecularLabConfigTabInitMoleculeOptionMenuEvent(value):
+    pass
+
+def molecularLabConfigTabInitHydrogenColorOptionMenuEvent(value):
+    pass
+
+def molecularLabConfigTabInitCarbonColorOptionMenuEvent(value):
+    pass
+
+def molecularLabConfigTabInitOxygenColorOptionMenuEvent(value):
+    pass
+
+def molecularLabConfigTabInitSizeFactorSliderEvent(value):
+    pass
 
 #The tab functions go here
 def physicsTab(bool):
@@ -3327,7 +3351,7 @@ def solutionMakerConfigTab(bool):
                                                                                   height = 25,
                                                                                   fg_color = "green",
                                                                                   variable = solutionMakerConfigTabInitSolventOptionMenuVar,
-                                                                                  values = ["Water (H₂O)", "Ethanol (C₂H₆O)", "Cyclohexane (C₆H₁₂)", "Hexane (C₆H₁₄)", "Acetone (C₃H₆O)"],
+                                                                                  values = ["Water (H₂O)", "Ethanol (C₂H₅OH)", "Cyclohexane (C₆H₁₂)", "Hexane (C₆H₁₄)", "Acetone (C₃H₆O)"],
                                                                                   command = solutionMakerConfigTabInitSolventOptionMenuEvent)
         solutionMakerConfigTabInitSolventOptionMenu.place(relx = 0.05, rely = 0.23, anchor = tkinter.W)
 
@@ -3454,16 +3478,122 @@ def molecularLabConfigTab(bool):
         molecularLabConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
                                                 
         #The buttons go here
-                                                
+        molecularLabConfigTabLaunchButton = customtkinter.CTkButton(master = molecularLabConfigTabLaunchButtonFrame,
+                                                                    text = "Launch",
+                                                                    font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                    width = 335,
+                                                                    height = 100,
+                                                                    corner_radius = 5,
+                                                                    border_width = 1,
+                                                                    fg_color = "green",
+                                                                    command = molecularLabConfigTabLaunchButtonEvent)
+        molecularLabConfigTabLaunchButton.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)                                        
                                         
         #The configurators (items) of the simulation go here
-                                                
+        molecularLabConfigTabInitMoleculeOptionMenu = customtkinter.CTkOptionMenu(master = molecularLabConfigTabItemsFrame,
+                                                                                  width = 150,
+                                                                                  height = 25,
+                                                                                  fg_color = "green",
+                                                                                  variable = molecularLabConfigTabInitMoleculeOptionMenuVar,
+                                                                                  values = ["Carbon Dioxide (CO₂)", "Glucose (C₆H₁₂O₆)", "Ethanol (C₂H₅OH)", "Acetone (C₃H₆O)", "Methanol (CH₃OH)", "Formaldehyde (CH₂O)"],
+                                                                                  command = molecularLabConfigTabInitMoleculeOptionMenuEvent)
+        molecularLabConfigTabInitMoleculeOptionMenu.place(relx = 0.05, rely = 0.23, anchor = tkinter.W)
+        
+        molecularLabConfigTabInitHydrogenColorOptionMenu = customtkinter.CTkOptionMenu(master = molecularLabConfigTabItemsFrame,
+                                                                                       width = 150,
+                                                                                       height = 25,
+                                                                                       fg_color = "green",
+                                                                                       variable = molecularLabConfigTabInitHydrogenColorOptionMenuVar,
+                                                                                       values = ["White", "Light Blue", "Light Gray", "Green"],
+                                                                                       command = molecularLabConfigTabInitHydrogenColorOptionMenuEvent)
+        molecularLabConfigTabInitHydrogenColorOptionMenu.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
+
+        molecularLabConfigTabInitCarbonColorOptionMenu = customtkinter.CTkOptionMenu(master = molecularLabConfigTabItemsFrame,
+                                                                                     width = 150,
+                                                                                     height = 25,
+                                                                                     fg_color = "green",
+                                                                                     variable = molecularLabConfigTabInitCarbonColorOptionMenuVar,
+                                                                                     values = ["Black", "Dark Blue", "Dark Gray", "Dark Green"],
+                                                                                     command = molecularLabConfigTabInitCarbonColorOptionMenuEvent)
+        molecularLabConfigTabInitCarbonColorOptionMenu.place(relx = 0.05, rely = 0.8, anchor = tkinter.W)
+
+        molecularLabConfigTabInitOxygenColorOptionMenu = customtkinter.CTkOptionMenu(master = molecularLabConfigTabItemsFrame,
+                                                                                     width = 150,
+                                                                                     height = 25,
+                                                                                     fg_color = "green",
+                                                                                     variable = molecularLabConfigTabInitOxygenColorOptionMenuVar,
+                                                                                     values = ["Red", "Dark Red", "Dark Pink"],
+                                                                                     command = molecularLabConfigTabInitOxygenColorOptionMenuEvent)
+        molecularLabConfigTabInitOxygenColorOptionMenu.place(relx = 0.6, rely = 0.23, anchor = tkinter.W)
+
+        molecularLabConfigTabInitSizeFactorSlider = customtkinter.CTkSlider(master = molecularLabConfigTabItemsFrame,
+                                                                            width = 200,
+                                                                            height = 20,
+                                                                            from_ = 0.1,
+                                                                            to = 1,
+                                                                            command = molecularLabConfigTabInitSizeFactorSliderEvent)
+        molecularLabConfigTabInitSizeFactorSlider.place(relx = 0.6, rely = 0.5, anchor = tkinter.W)                                           
                                         
         #The images of the simulation go here
-                                                
+        molecularLabConfigTabInSimImage = customtkinter.CTkLabel(master = molecularLabConfigTabImageFrame,
+                                                                 image = placeholderImage,
+                                                                 text = "")
+        molecularLabConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)                                           
                                         
         #The labels of the config tab go here
+        molecularLabConfigTabTitleLabel = customtkinter.CTkLabel(master = molecularLabConfigTabTitleFrame,
+                                                                 justify = LEFT,
+                                                                 text = "Molecular\nLab",
+                                                                 font = customtkinter.CTkFont(size = 35, weight = "bold"))
+        molecularLabConfigTabTitleLabel.place(relx = 0.01, rely = 0.5, anchor = tkinter.W)
+                                
+        molecularLabConfigTabDescriptionLabel = customtkinter.CTkLabel(master = molecularLabConfigTabDescriptionFrame,
+                                                                       justify = LEFT,
+                                                                       text = "Simulates a bunch of molecules made from\nsome assembled elements of the periodic\ntable whose colors ans sizes can be changed.",
+                                                                       font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        molecularLabConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.15, anchor = tkinter.W)
+                                
+        molecularLabConfigTabCategoryLabel = customtkinter.CTkLabel(master = molecularLabConfigTabDescriptionFrame,
+                                                                    justify = LEFT,
+                                                                    text = "Field of chemistry: Molecular Dynamics",
+                                                                    font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        molecularLabConfigTabCategoryLabel.place(relx = 0.01, rely = 0.45, anchor = tkinter.W)
+                
+        molecularLabConfigTabInstructionsLabel = customtkinter.CTkLabel(master = molecularLabConfigTabDescriptionFrame,
+                                                                        justify = LEFT,
+                                                                        text = 'Select one of the molecules that\nyou want to include, change the colors of the\natoms to your liking then press on "Launch" to\nstart the simulation.',
+                                                                        font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        molecularLabConfigTabInstructionsLabel.place(relx = 0.01, rely = 0.8, anchor = tkinter.W)
+
+        molecularLabConfigTabInitMoleculeTitleLabel = customtkinter.CTkLabel(master = molecularLabConfigTabItemsFrame,
+                                                                                     justify = LEFT,
+                                                                                     text = "Initial Molecule: ",
+                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        molecularLabConfigTabInitMoleculeTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
+
+        molecularLabConfigTabInitHydrogenColorTitleLabel = customtkinter.CTkLabel(master = molecularLabConfigTabItemsFrame,
+                                                                                  justify = LEFT,
+                                                                                  text = "Initial Hydrogen Atom Color: ",
+                                                                                  font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        molecularLabConfigTabInitHydrogenColorTitleLabel.place(relx = 0.05, rely = 0.38, anchor = tkinter.W)
         
+        molecularLabConfigTabInitCarbonColorTitleLabel = customtkinter.CTkLabel(master = molecularLabConfigTabItemsFrame,
+                                                                                justify = LEFT,
+                                                                                text = "Initial Carbon Atom Color: ",
+                                                                                font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        molecularLabConfigTabInitCarbonColorTitleLabel.place(relx = 0.05, rely = 0.66, anchor = tkinter.W)
+
+        molecularLabConfigTabInitOxygenColorTitleLabel = customtkinter.CTkLabel(master = molecularLabConfigTabItemsFrame,
+                                                                                justify = LEFT,
+                                                                                text = "Initial Oxygen Atom Color:",
+                                                                                font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        molecularLabConfigTabInitOxygenColorTitleLabel.place(relx = 0.6, rely = 0.11, anchor = tkinter.W)
+
+        molecularLabConfigTabInitSizeFactorTitleLabel = customtkinter.CTkLabel(master = molecularLabConfigTabItemsFrame,
+                                                                               justify = LEFT,
+                                                                               text = "Initial Size Factor:",
+                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        molecularLabConfigTabInitSizeFactorTitleLabel.place(relx = 0.6, rely = 0.38, anchor = tkinter.W)
         
         print("the molecular lab config tab works")
         pass
