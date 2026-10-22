@@ -65,6 +65,14 @@ fluidSimulationConfigInitViscosityOptionMenuVar = tkinter.StringVar(value = "Sel
 fluidSimulationConfigInitColorOptionMenuVar = tkinter.StringVar(value = "Select Color")
 fluidSimulationConfigTabShowLatticeSwitchVar = tkinter.StringVar(value = "off")
 
+##The chemistry variables go here
+###The variables of the Bohr Atom Simulation go here
+bohrAtomSimulationConfigTabAtomSelected = False
+
+###The variables of the Solution Maker go here
+solutionMakerConfigTabInitSolventOptionMenuVar = tkinter.StringVar(value = "Select Solvent")
+solutionMakerConfigTabInitSoluteOptionMenuVar = tkinter.StringVar(value = "Select Solute")
+
 #The button events (functions) go here
 def physicsSelectorButtonEvent():
     physicsTabSelected = True
@@ -604,7 +612,11 @@ def temperatureSimulationConfigTabLaunchButtonEvent():
     print("temperature simulation launched")
 
 ##The buttons of the chemistry simulations go here
+def bohrAtomSimulationConfigTabLaunchButtonEvent():
+    print("Bohr atom simulation launched")
 
+def solutionMakerConfigTabLaunchButtonEvent():
+    print("solution maker simulation launched")
 
 #The configurator (items) events of the simulations go here
 ##The configurator events of the physics simulations go here
@@ -704,6 +716,19 @@ def temperatureSimulationConfigTabInitTempSliderEvent(value):
     pass
 
 ##The configurator events of the chemistry simulations go here
+###The configurator events of the Solution Maker go here
+def solutionMakerConfigTabInitSolventOptionMenuEvent(value):
+    pass
+
+def solutionMakerConfigTabInitSolventVolSliderEvent(value):
+    pass
+
+def solutionMakerConfigTabInitSoluteOptionMenuEvent(value):
+    pass
+
+def solutionMakerConfigTabInitSoluteMassSliderEvent(value):
+    pass
+
 
 #The tab functions go here
 def physicsTab(bool):
@@ -2424,8 +2449,6 @@ def fluidSimulationConfigTab(bool):
                                                                             command = fluidSimulationConfigTabShowLatticeSwitchEvent)
         fluidSimulationConfigTabShowLatticeSwitch.place(relx = 0.6, rely = 0.75, anchor = tkinter.W)
 
-
-        
         #The images of the simulation go here
         fluidSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = fluidSimulationConfigTabImageFrame,
                                                                     image = placeholderImage,
@@ -2620,6 +2643,374 @@ def temperatureSimulationConfigTab(bool):
 #The sub tabs of the chemistry tab (chemistry simulations) are here
 def bohrAtomSimulationConfigTab(bool):
     if bool == True:
+        def bohrAtomSimulationConfigTabHButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("H atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabHeButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("He atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabLiButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("Li atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabBeButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("Be atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabBButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("B atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabCButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("C atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabNButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("N atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabOButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("O atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabFButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("F atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabNeButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("Ne atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabNaButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("Na atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabMgButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("Mg atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabAlButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("Al atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabSiButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("Si atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabPButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("P atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True
+
+        def bohrAtomSimulationConfigTabSButtonEvent():
+            global bohrAtomSimulationConfigTabAtomSelected 
+            if bohrAtomSimulationConfigTabAtomSelected == True:
+                bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabLiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabBButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabCButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabOButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabFButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNeButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabNaButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabMgButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAlButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                print("S atom selected")
+            if bohrAtomSimulationConfigTabAtomSelected == False:
+                bohrAtomSimulationConfigTabAtomSelected = True    
+        
         #The frames for each element of the tab go here
         bohrAtomSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
                                                                        width = 550,
@@ -2657,16 +3048,225 @@ def bohrAtomSimulationConfigTab(bool):
         bohrAtomSimulationConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
                                 
         #The buttons go here
-                                
+        bohrAtomSimulationConfigTabLaunchButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabLaunchButtonFrame,
+                                                                          text = "Launch",
+                                                                          font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                          width = 335,
+                                                                          height = 100,
+                                                                          corner_radius = 5,
+                                                                          border_width = 1,
+                                                                          fg_color = "green",
+                                                                          command = bohrAtomSimulationConfigTabLaunchButtonEvent)
+        bohrAtomSimulationConfigTabLaunchButton.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)                            
                         
         #The configurators (items) of the simulation go here
-                                
+        bohrAtomSimulationConfigTabHButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                     text = "1       \n   H\n1       ",
+                                                                     font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                     width = 60,
+                                                                     height = 30,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1,
+                                                                     fg_color = "green",
+                                                                     command = bohrAtomSimulationConfigTabHButtonEvent)
+        bohrAtomSimulationConfigTabHButton.place(relx = 0.1, rely = 0.2, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabHeButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                      text = "4       \n   He\n2       ",
+                                                                      font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                      width = 60,
+                                                                      height = 30,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      fg_color = "green",
+                                                                      command = bohrAtomSimulationConfigTabHeButtonEvent)
+        bohrAtomSimulationConfigTabHeButton.place(relx = 0.843, rely = 0.2, anchor = tkinter.CENTER)   
+
+        bohrAtomSimulationConfigTabLiButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                      text = "7       \n   Li\n3       ",
+                                                                      font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                      width = 60,
+                                                                      height = 30,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      fg_color = "green",
+                                                                      command = bohrAtomSimulationConfigTabLiButtonEvent)
+        bohrAtomSimulationConfigTabLiButton.place(relx = 0.1, rely = 0.5, anchor = tkinter.CENTER) 
+
+        bohrAtomSimulationConfigTabBeButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                      text = "9       \n   Be\n4       ",
+                                                                      font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                      width = 60,
+                                                                      height = 30,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      fg_color = "green",
+                                                                      command = bohrAtomSimulationConfigTabBeButtonEvent)
+        bohrAtomSimulationConfigTabBeButton.place(relx = 0.223, rely = 0.5, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabBButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                     text = "11     \n  B\n5    ",
+                                                                     font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                     width = 60,
+                                                                     height = 30,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1,
+                                                                     fg_color = "green",
+                                                                     command = bohrAtomSimulationConfigTabBButtonEvent)
+        bohrAtomSimulationConfigTabBButton.place(relx = 0.347, rely = 0.5, anchor = tkinter.CENTER)           
+
+        bohrAtomSimulationConfigTabCButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                     text = "12     \n  C\n6    ",
+                                                                     font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                     width = 60,
+                                                                     height = 30,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1,
+                                                                     fg_color = "green",
+                                                                     command = bohrAtomSimulationConfigTabCButtonEvent)
+        bohrAtomSimulationConfigTabCButton.place(relx = 0.47, rely = 0.5, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabNButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                     text = "14     \n  N\n7    ",
+                                                                     font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                     width = 60,
+                                                                     height = 30,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1,
+                                                                     fg_color = "green",
+                                                                     command = bohrAtomSimulationConfigTabNButtonEvent)
+        bohrAtomSimulationConfigTabNButton.place(relx = 0.595, rely = 0.5, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabOButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                     text = "16     \n  O\n8    ",
+                                                                     font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                     width = 60,
+                                                                     height = 30,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1,
+                                                                     fg_color = "green",
+                                                                     command = bohrAtomSimulationConfigTabOButtonEvent)
+        bohrAtomSimulationConfigTabOButton.place(relx = 0.719, rely = 0.5, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabFButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                     text = "19     \n  F\n9    ",
+                                                                     font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                     width = 60,
+                                                                     height = 30,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1,
+                                                                     fg_color = "green",
+                                                                     command = bohrAtomSimulationConfigTabFButtonEvent)
+        bohrAtomSimulationConfigTabFButton.place(relx = 0.842, rely = 0.5, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabNeButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                      text = "20     \n  Ne\n10    ",
+                                                                      font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                      width = 60,
+                                                                      height = 30,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      fg_color = "green",
+                                                                      command = bohrAtomSimulationConfigTabNeButtonEvent)
+        bohrAtomSimulationConfigTabNeButton.place(relx = 0.1, rely = 0.804, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabNaButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                      text = "23     \n  Na\n11    ",
+                                                                      font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                      width = 60,
+                                                                      height = 30,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      fg_color = "green",
+                                                                      command = bohrAtomSimulationConfigTabNaButtonEvent)
+        bohrAtomSimulationConfigTabNaButton.place(relx = 0.223, rely = 0.804, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabMgButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                      text = "24     \n  Mg\n12    ",
+                                                                      font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                      width = 60,
+                                                                      height = 30,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      fg_color = "green",
+                                                                      command = bohrAtomSimulationConfigTabMgButtonEvent)
+        bohrAtomSimulationConfigTabMgButton.place(relx = 0.347, rely = 0.804, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabAlButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                      text = "27     \n  Al\n13    ",
+                                                                      font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                      width = 60,
+                                                                      height = 30,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      fg_color = "green",
+                                                                      command = bohrAtomSimulationConfigTabAlButtonEvent)
+        bohrAtomSimulationConfigTabAlButton.place(relx = 0.47, rely = 0.804, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabSiButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                      text = "28     \n  Si\n14    ",
+                                                                      font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                      width = 60,
+                                                                      height = 30,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      fg_color = "green",
+                                                                      command = bohrAtomSimulationConfigTabSiButtonEvent)
+        bohrAtomSimulationConfigTabSiButton.place(relx = 0.595, rely = 0.804, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabPButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                     text = "31     \n  P\n15    ",
+                                                                     font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                     width = 60,
+                                                                     height = 30,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1,
+                                                                     fg_color = "green",
+                                                                     command = bohrAtomSimulationConfigTabPButtonEvent)
+        bohrAtomSimulationConfigTabPButton.place(relx = 0.719, rely = 0.804, anchor = tkinter.CENTER)
+
+        bohrAtomSimulationConfigTabSButton = customtkinter.CTkButton(master = bohrAtomSimulationConfigTabItemsFrame,
+                                                                     text = "32     \n  S\n16    ",
+                                                                     font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                     width = 60,
+                                                                     height = 30,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1,
+                                                                     fg_color = "green",
+                                                                     command = bohrAtomSimulationConfigTabSButtonEvent)
+        bohrAtomSimulationConfigTabSButton.place(relx = 0.842, rely = 0.804, anchor = tkinter.CENTER)
+
                         
         #The images of the simulation go here
-                                
+        bohrAtomSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = bohrAtomSimulationConfigTabImageFrame,
+                                                                       image = placeholderImage,
+                                                                       text = "")
+        bohrAtomSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)                         
                         
         #The labels of the config tab go here
-        
+        bohrAtomSimulationConfigTabTitleLabel = customtkinter.CTkLabel(master = bohrAtomSimulationConfigTabTitleFrame,
+                                                                      justify = LEFT,
+                                                                      text = "Bohr\nRepresentation",
+                                                                      font = customtkinter.CTkFont(size = 35, weight = "bold"))
+        bohrAtomSimulationConfigTabTitleLabel.place(relx = 0.01, rely = 0.5, anchor = tkinter.W)
+                                        
+        bohrAtomSimulationConfigTabDescriptionLabel = customtkinter.CTkLabel(master = bohrAtomSimulationConfigTabDescriptionFrame,
+                                                                                     justify = LEFT,
+                                                                                     text = "Simulates some of the atoms of the periodic\ntable according to Niels Bohr's representation\nof it by showing its electron shells and\nnucleons.",
+                                                                                     font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        bohrAtomSimulationConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.2, anchor = tkinter.W)
+                                        
+        bohrAtomSimulationConfigTabCategoryLabel = customtkinter.CTkLabel(master = bohrAtomSimulationConfigTabDescriptionFrame,
+                                                                                  justify = LEFT,
+                                                                                  text = "Field of chemistry: Matter Study",
+                                                                                  font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        bohrAtomSimulationConfigTabCategoryLabel.place(relx = 0.01, rely = 0.55, anchor = tkinter.W)
+                        
+        bohrAtomSimulationConfigTabInstructionsLabel = customtkinter.CTkLabel(master = bohrAtomSimulationConfigTabDescriptionFrame,
+                                                                                      justify = LEFT,
+                                                                                      text = 'Select the element of the periodic table\nthat you want to include then press on\n"Launch" to start the simulation.',
+                                                                                      font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        bohrAtomSimulationConfigTabInstructionsLabel.place(relx = 0.01, rely = 0.83, anchor = tkinter.W)
         
         print("the Bohr atom config tab works")
         pass
@@ -2710,17 +3310,108 @@ def solutionMakerConfigTab(bool):
         solutionMakerConfigTabLaunchButtonFrame.place(relx = 0.811, rely = 0.991, anchor = tkinter.S)
                                         
         #The buttons go here
-                                        
+        solutionMakerConfigTabLaunchButton = customtkinter.CTkButton(master = solutionMakerConfigTabLaunchButtonFrame,
+                                                                     text = "Launch",
+                                                                     font = customtkinter.CTkFont(size = 20, weight = "bold"),
+                                                                     width = 335,
+                                                                     height = 100,
+                                                                     corner_radius = 5,
+                                                                     border_width = 1,
+                                                                     fg_color = "green",
+                                                                     command = solutionMakerConfigTabLaunchButtonEvent)
+        solutionMakerConfigTabLaunchButton.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)                                   
                                 
         #The configurators (items) of the simulation go here
-                                        
-                                
+        solutionMakerConfigTabInitSolventOptionMenu = customtkinter.CTkOptionMenu(master = solutionMakerConfigTabItemsFrame,
+                                                                                  width = 150,
+                                                                                  height = 25,
+                                                                                  fg_color = "green",
+                                                                                  variable = solutionMakerConfigTabInitSolventOptionMenuVar,
+                                                                                  values = ["Water (H₂O)", "Ethanol (C₂H₆O)", "Cyclohexane (C₆H₁₂)", "Hexane (C₆H₁₄)", "Acetone (C₃H₆O)"],
+                                                                                  command = solutionMakerConfigTabInitSolventOptionMenuEvent)
+        solutionMakerConfigTabInitSolventOptionMenu.place(relx = 0.05, rely = 0.23, anchor = tkinter.W)
+
+        solutionMakerConfigTabInitSolventVolSlider = customtkinter.CTkSlider(master = solutionMakerConfigTabItemsFrame,
+                                                                             width = 495,
+                                                                             height = 20,
+                                                                             from_ = 100,
+                                                                             to = 1000,
+                                                                             number_of_steps = 5,
+                                                                             command = solutionMakerConfigTabInitSolventVolSliderEvent)
+        solutionMakerConfigTabInitSolventVolSlider.place(relx = 0.05, rely = 0.45, anchor = tkinter.W)
+
+        solutionMakerConfigTabInitSoluteOptionMenu = customtkinter.CTkOptionMenu(master = solutionMakerConfigTabItemsFrame,
+                                                                                 width = 150,
+                                                                                 height = 25,
+                                                                                 fg_color = "green",
+                                                                                 variable = solutionMakerConfigTabInitSoluteOptionMenuVar,
+                                                                                 values = ["Sodium Chloride (NaCl)", "Glucose (C₆H₁₂O₆)","Potassium Permanganate (KMnO₄)", "Copper Sulfate (CuSO₄)", "Sodium Hydroxide (NaOH)"],
+                                                                                 command = solutionMakerConfigTabInitSoluteOptionMenuEvent)
+        solutionMakerConfigTabInitSoluteOptionMenu.place(relx = 0.05, rely = 0.67, anchor = tkinter.W)
+
+        solutionMakerConfigTabInitSoluteMassSlider = customtkinter.CTkSlider(master = solutionMakerConfigTabItemsFrame,
+                                                                             width = 495,
+                                                                             height = 20,
+                                                                             from_ = 100,
+                                                                             to = 1000,
+                                                                             command = solutionMakerConfigTabInitSoluteMassSliderEvent)
+        solutionMakerConfigTabInitSoluteMassSlider.place(relx = 0.05, rely = 0.9, anchor = tkinter.W)
+
         #The images of the simulation go here
-                                        
+        solutionMakerConfigTabInSimImage = customtkinter.CTkLabel(master = solutionMakerConfigTabImageFrame,
+                                                                  image = placeholderImage,
+                                                                  text = "")
+        solutionMakerConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)                                
                                 
         #The labels of the config tab go here
+        solutionMakerConfigTabTitleLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabTitleFrame,
+                                                                  justify = LEFT,
+                                                                  text = "Solution\nMaker",
+                                                                  font = customtkinter.CTkFont(size = 35, weight = "bold"))
+        solutionMakerConfigTabTitleLabel.place(relx = 0.01, rely = 0.5, anchor = tkinter.W)
+                        
+        solutionMakerConfigTabDescriptionLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabDescriptionFrame,
+                                                                                justify = LEFT,
+                                                                                text = "Simulates a solution of a choosable volume\nwhose solvent, solute and solute mass can be\nchanged.",
+                                                                                font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        solutionMakerConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.15, anchor = tkinter.W)
+                        
+        solutionMakerConfigTabCategoryLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabDescriptionFrame,
+                                                                             justify = LEFT,
+                                                                             text = "Field of chemistry: Molecular Dynamics",
+                                                                             font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        solutionMakerConfigTabCategoryLabel.place(relx = 0.01, rely = 0.5, anchor = tkinter.W)
         
+        solutionMakerConfigTabInstructionsLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabDescriptionFrame,
+                                                                                 justify = LEFT,
+                                                                                 text = 'Select or change the chemical properties that\nyou want to include then press on "Launch" to\nstart the simulation.',
+                                                                                 font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        solutionMakerConfigTabInstructionsLabel.place(relx = 0.01, rely = 0.83, anchor = tkinter.W)
+
+        solutionMakerConfigTabInitSolventTitleLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabItemsFrame,
+                                                                             justify = LEFT,
+                                                                             text = "Initial Solvent: ",
+                                                                             font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        solutionMakerConfigTabInitSolventTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
         
+        solutionMakerConfigTabInitSolventVolTitleLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabItemsFrame,
+                                                                                justify = LEFT,
+                                                                                text = "Initial Solvent Volume (mL): ",
+                                                                                font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        solutionMakerConfigTabInitSolventVolTitleLabel.place(relx = 0.05, rely = 0.35, anchor = tkinter.W)
+
+        solutionMakerConfigTabInitSoluteTitleLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabItemsFrame,
+                                                                            justify = LEFT,
+                                                                            text = "Initial Solute (solid): ",
+                                                                            font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        solutionMakerConfigTabInitSoluteTitleLabel.place(relx = 0.05, rely = 0.55, anchor = tkinter.W)
+
+        solutionMakerConfigTabInitSoluteMassTitleLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabItemsFrame,
+                                                                                justify = LEFT,
+                                                                                text = "Initial Solute Mass (g): ",
+                                                                                font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        solutionMakerConfigTabInitSoluteMassTitleLabel.place(relx = 0.05, rely = 0.8, anchor = tkinter.W)
+
         print("the solution maker config tab works")
         pass
 
