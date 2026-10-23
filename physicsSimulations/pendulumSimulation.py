@@ -18,12 +18,16 @@ pendulumMassColor = (134, 141, 145)
 
 pendulumOrigin = (windowWidth // 2, 100)
 pendulumLength = 400 
-pendulumInitAngle = 45
+pendulumInitAngle = math.radians(45)
+pendulumMass = 1
 g = 9.8
 
-pendulumAngularVelocity = 0
+pendulumAngularVelocity = 0.1
 pendulumAngularAcceleration = 0
 pendulumDamping = 0.995
+
+t = 0
+dt = 0.1
 
 
 while True:
@@ -33,15 +37,16 @@ while True:
             pygame.quit()
             exit()
 
-    pendulumAngularAcceleration = -(g / pendulumLength) * math.sin(pendulumInitAngle)
-    pendulumAngularVelocity += pendulumAngularAcceleration
-    pendulumAngularVelocity *= pendulumDamping
-    pendulumInitAngle += pendulumAngularVelocity
+    t += dt
+    
+    pendulumAngularVelocity += (g / pendulumLength) * math.cos(pendulumInitAngle) * dt + pendulumDamping / (pendulumMass * pendulumLength**2) * (-pendulumAngularVelocity) * dt
+    pendulumInitAngle += pendulumAngularVelocity * dt
 
-    x = pendulumOrigin[0] + (pendulumLength * math.sin(pendulumInitAngle))
-    y = pendulumOrigin[1] + (pendulumLength * math.cos(pendulumInitAngle))
+    x = pendulumOrigin[0] + (pendulumLength * math.cos(pendulumInitAngle))
+    y = pendulumOrigin[1] + -(pendulumLength * -math.sin(pendulumInitAngle))
 
     pygame.draw.line(screen, pendulumLineColor, pendulumOrigin, (int(x), int(y)), 2)
+    pygame.draw.circle(screen, pendulumMassColor, (windowWidth / 2, 100), 5)
     pygame.draw.circle(screen, pendulumMassColor, (int(x), int(y)), 20)
 
     pygame.display.update()
