@@ -3276,7 +3276,7 @@ def bohrAtomSimulationConfigTab(bool):
                                         
         bohrAtomSimulationConfigTabDescriptionLabel = customtkinter.CTkLabel(master = bohrAtomSimulationConfigTabDescriptionFrame,
                                                                                      justify = LEFT,
-                                                                                     text = "Simulates some of the atoms of the periodic\ntable according to Niels Bohr's representation\nof it by showing its electron shells and\nnucleons.",
+                                                                                     text = "Simulates some of the atoms of the periodic\ntable according to Niels Bohr's representation\nmodel by showing their electron shells and\nnucleons.",
                                                                                      font = customtkinter.CTkFont(size = 16, weight = "normal"))
         bohrAtomSimulationConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.2, anchor = tkinter.W)
                                         
@@ -3549,7 +3549,7 @@ def molecularLabConfigTab(bool):
                                 
         molecularLabConfigTabDescriptionLabel = customtkinter.CTkLabel(master = molecularLabConfigTabDescriptionFrame,
                                                                        justify = LEFT,
-                                                                       text = "Simulates a bunch of molecules made from\nsome assembled elements of the periodic\ntable whose colors ans sizes can be changed.",
+                                                                       text = "Simulates a bunch of molecules made from\nassembled elements of the periodic table\nwhose colors and sizes can be changed.",
                                                                        font = customtkinter.CTkFont(size = 16, weight = "normal"))
         molecularLabConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.15, anchor = tkinter.W)
                                 
