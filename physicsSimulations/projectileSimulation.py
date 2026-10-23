@@ -17,13 +17,14 @@ pygame.font.init()
 
 #The "art" variables go here
 font = pygame.font.Font(None, 24)
+backgroundColor = (43, 45, 47)
+projectileColor = (74, 93, 107)
+groundLineColor = (99, 113, 123)
+projectileTrailColor = (134, 141, 145)
 grayColor = (128, 128, 128)
-lightGrayColor = (200, 200, 200)
-darkGrayColor = (80, 80, 80)
-yellowColor = (255, 255, 0)
 whiteColor = (255, 255, 255)
 redColor = (255, 0, 0)
-blackColor = (0, 0, 0)
+
 
 #The physical variables go here
 sizeScale = 4 #1 meter corresponds to 4 pixels
@@ -33,10 +34,10 @@ start_y = 530
 initVelocity = 50 #The values from the launcher will be here
 initAngle = 45 #The values from the launcher will be here
 initMass = 1000 #The values from the launcher will be here
-initDiameter = 5 #The values from the launcher will be here
+initDiameter = 1 #The values from the launcher will be here
 dragCoef = 0 #The values from the launcher will be here
 initialSurfaceArea = math.pi * (initDiameter/2)**2
-airRho = 1.225
+airRho = 1.225 #Air density in kg/m³
 
 #This variable stores the points plotted by the projectile trajectory
 trajectoryPoints = []
@@ -48,7 +49,7 @@ dt = 0.1
 #This functions creates an explosion when the projectile hits the ground
 def drawExplosion(x, y):
     for i in range(10):
-        pygame.draw.circle(screen, yellowColor, (x + random.randint(-10, 10), y + random.randint(-10, 10)), 5)
+        pygame.draw.circle(screen, projectileTrailColor, (x + random.randint(-10, 10), y + random.randint(-10, 10)), 5)
 
 #These lines of code initialize the variables needed to make the physics calculations
 initAngleRad = math.radians(initAngle) #converting degrees to radians
@@ -59,7 +60,7 @@ y = start_y
 
 #The main loop is here
 while True:
-    screen.fill(whiteColor) #Fills the screen with a white background
+    screen.fill(backgroundColor) #Fills the screen with a white background
     
     #Checks if the "X" button of the windows is pressed and if so: the window closes
     for event in pygame.event.get():
@@ -113,23 +114,23 @@ while True:
     if time > 0:
         trajectoryPoints.append((int(x), int(y)))
     for point in trajectoryPoints:
-        pygame.draw.circle(screen, lightGrayColor, point, 2)
-
-    #Well, this line draws the projectile
-    pygame.draw.circle(screen, redColor, (int(x), int(y)), initDiameter * 4)
+        pygame.draw.circle(screen, projectileTrailColor, point, 2)
 
     #And this one draws the floor (a line)
-    pygame.draw.line(screen, blackColor, (0, windowHeight - 50), (windowWidth, windowHeight - 50), 2)
+    pygame.draw.line(screen, groundLineColor, (0, windowHeight - 50), (windowWidth, windowHeight - 50), 2)
+
+    #Well, this line draws the projectile
+    pygame.draw.circle(screen, projectileColor, (int(x), int(y)), initDiameter * 4)
 
     #These lines create the labels representing the values of the physical properties of the simulation
-    upperLabel = font.render("Simulating Projectile", True, blackColor)
-    gLabel = font.render(f"Gravitational Acceleration: {init_g:.1f} m/s²", True, blackColor)
-    velocityLabel = font.render(f"Velocity: {initVelocity:.1f} m/s", True, blackColor)
-    angleLabel = font.render(f"Angle: {initAngle:.1f}°", True, blackColor)
-    massLabel = font.render(f"Mass: {initMass} kg", True, blackColor)
-    diameterLabel = font.render(f"Diameter: {initDiameter} m", True, blackColor)
-    distanceTraveledLabel = font.render(f"Distance Traveled (m): {x/5:.1f} m", True, blackColor)
-    currentHeightLabel = font.render(f"Current Height (m): {-(y - (windowHeight - 50))/5:.1f} m", True, blackColor)
+    upperLabel = font.render("Simulating Projectile", True, whiteColor)
+    gLabel = font.render(f"Gravitational Acceleration: {init_g:.1f} m/s²", True, whiteColor)
+    velocityLabel = font.render(f"Velocity: {initVelocity:.1f} m/s", True, whiteColor)
+    angleLabel = font.render(f"Angle: {initAngle:.1f}°", True, whiteColor)
+    massLabel = font.render(f"Mass: {initMass} kg", True, whiteColor)
+    diameterLabel = font.render(f"Diameter: {initDiameter} m", True, whiteColor)
+    distanceTraveledLabel = font.render(f"Distance Traveled (m): {x/5:.1f} m", True, whiteColor)
+    currentHeightLabel = font.render(f"Current Height (m): {-(y - (windowHeight - 50))/5:.1f} m", True, whiteColor)
 
     #And these lines add them to the main window (screen)
     screen.blit(upperLabel, (50, 20))

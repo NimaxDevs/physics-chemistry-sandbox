@@ -1389,7 +1389,7 @@ def projectileSimulationConfigTab(bool):
                                                                                   width = 250,
                                                                                   height = 20,
                                                                                   from_ = 0.1, 
-                                                                                  to = 5000,
+                                                                                  to = 5,
                                                                                   corner_radius = 8,
                                                                                   command = projectileSimulationConfigTabInitDiameterSliderEvent)
         projectileSimulationConfigTabInitDiameterSlider.place(relx = 0.5, rely = 0.2, anchor = tkinter.W)
