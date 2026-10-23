@@ -16,7 +16,8 @@ clock = pygame.time.Clock()
 pygame.font.init()
 
 #The "art" variables go here
-font = pygame.font.Font(None, 24)
+titleFont = pygame.font.Font(None, 30)
+regularFont = pygame.font.Font(None, 20)
 backgroundColor = (43, 45, 47)
 projectileColor = (74, 93, 107)
 groundLineColor = (99, 113, 123)
@@ -79,7 +80,7 @@ while True:
     #These lines protect the simulation from breaking (launching a hot air balloon at Mach 1 for example) by checking the value of the x-component of the velocity
     if abs((dragForce_x / initMass) * dt) > abs(initVelocity_x):
         initVelocity_x = 0
-        warningLabel = font.render("bro, the values are so unrealistic that the simulation would actually break", True, redColor)
+        warningLabel = titleFont.render("bro, the values are so unrealistic that the simulation would actually break", True, redColor)
         warningLabelRect = warningLabel.get_rect(center = (windowWidth // 2, windowHeight // 2))
         screen.blit(warningLabel, warningLabelRect)
     else:
@@ -88,7 +89,7 @@ while True:
     #These lines also protect the simulation from breaking by checking the value of the -component of the velocity
     if abs((dragForce_y / initMass) * dt) > abs (initVelocity_y):
         initVelocity_y = 0
-        warningLabel = font.render("bro, the values are so unrealistic that the simulation would actually break", True, redColor)
+        warningLabel = titleFont.render("bro, the values are so unrealistic that the simulation would actually break", True, redColor)
         warningLabelRect = warningLabel.get_rect(center = (windowWidth // 2, windowHeight // 2))
         screen.blit(warningLabel, warningLabelRect)
     else:
@@ -123,24 +124,24 @@ while True:
     pygame.draw.circle(screen, projectileColor, (int(x), int(y)), initDiameter * 4)
 
     #These lines create the labels representing the values of the physical properties of the simulation
-    upperLabel = font.render("Simulating Projectile", True, whiteColor)
-    gLabel = font.render(f"Gravitational Acceleration: {init_g:.1f} m/s²", True, whiteColor)
-    velocityLabel = font.render(f"Velocity: {initVelocity:.1f} m/s", True, whiteColor)
-    angleLabel = font.render(f"Angle: {initAngle:.1f}°", True, whiteColor)
-    massLabel = font.render(f"Mass: {initMass} kg", True, whiteColor)
-    diameterLabel = font.render(f"Diameter: {initDiameter} m", True, whiteColor)
-    distanceTraveledLabel = font.render(f"Distance Traveled (m): {x/5:.1f} m", True, whiteColor)
-    currentHeightLabel = font.render(f"Current Height (m): {-(y - (windowHeight - 50))/5:.1f} m", True, whiteColor)
+    upperLabel = titleFont.render("Simulating Projectile", True, whiteColor)
+    gLabel = regularFont.render(f"Gravitational Acceleration: {init_g:.1f} m/s²", True, whiteColor)
+    velocityLabel = regularFont.render(f"Velocity: {initVelocity:.1f} m/s", True, whiteColor)
+    angleLabel = regularFont.render(f"Angle: {initAngle:.1f}°", True, whiteColor)
+    massLabel = regularFont.render(f"Mass: {initMass} kg", True, whiteColor)
+    diameterLabel = regularFont.render(f"Diameter: {initDiameter} m", True, whiteColor)
+    distanceTraveledLabel = regularFont.render(f"Distance Traveled (m): {x/5:.1f} m", True, whiteColor)
+    currentHeightLabel = regularFont.render(f"Current Height (m): {-(y - (windowHeight - 50))/5:.1f} m", True, whiteColor)
 
     #And these lines add them to the main window (screen)
-    screen.blit(upperLabel, (50, 20))
-    screen.blit(gLabel, (50, 50))
-    screen.blit(velocityLabel, (50, 75))
-    screen.blit(angleLabel, (50, 100))
-    screen.blit(massLabel, (50, 125))
-    screen.blit(diameterLabel, (50, 150))
-    screen.blit(distanceTraveledLabel, (50, 175))
-    screen.blit(currentHeightLabel, (50, 200))
+    screen.blit(upperLabel, (20, 20))
+    screen.blit(gLabel, (20, 50))
+    screen.blit(velocityLabel, (20, 75))
+    screen.blit(angleLabel, (20, 100))
+    screen.blit(massLabel, (20, 125))
+    screen.blit(diameterLabel, (20, 150))
+    screen.blit(distanceTraveledLabel, (20, 175))
+    screen.blit(currentHeightLabel, (20, 200))
 
     #These lines update the whole window
     pygame.display.update()
