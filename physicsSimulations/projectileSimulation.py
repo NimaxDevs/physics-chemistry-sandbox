@@ -33,10 +33,10 @@ init_g = 9.8 #The values from the launcher will be here
 start_x = 100
 start_y = 530
 initVelocity = 50 #The values from the launcher will be here
-initAngle = 45 #The values from the launcher will be here
-initMass = 1000 #The values from the launcher will be here
-initDiameter = 1 #The values from the launcher will be here
-dragCoef = 0 #The values from the launcher will be here
+initAngle = 60 #The values from the launcher will be here
+initMass = 1 #The values from the launcher will be here
+initDiameter = 5 #The values from the launcher will be here
+dragCoef = 1 #The values from the launcher will be here
 initialSurfaceArea = math.pi * (initDiameter/2)**2
 airRho = 1.225 #Air density in kg/m³
 

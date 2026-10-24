@@ -1735,7 +1735,7 @@ def springSimulationConfigTab(bool):
                                                                              width = 250,
                                                                              height = 20,
                                                                              from_ = 0.1, 
-                                                                             to = 20,
+                                                                             to = 1,
                                                                              corner_radius = 8,
                                                                              command = springSimulationConfigTabInitDampingCoefSliderEvent)
         springSimulationConfigTabInitDampingCoefSlider.place(relx = 0.5, rely = 0.2, anchor = tkinter.W)
