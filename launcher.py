@@ -1716,8 +1716,8 @@ def springSimulationConfigTab(bool):
         springSimulationConfigTabInitLengthSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
                                                                             width = 495,
                                                                             height = 20,
-                                                                            from_ = 0.1, 
-                                                                            to = 1,
+                                                                            from_ = 1, 
+                                                                            to = 10,
                                                                             corner_radius = 8,
                                                                             command = springSimulationConfigTabInitLengthSliderEvent)
         springSimulationConfigTabInitLengthSlider.place(relx = 0.04, rely = 0.6, anchor = tkinter.W)
@@ -1725,8 +1725,8 @@ def springSimulationConfigTab(bool):
         springSimulationConfigTabInitStiffSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
                                                                            width = 495,
                                                                            height = 20,
-                                                                           from_ = 0.1, 
-                                                                           to = 5,
+                                                                           from_ = 4, 
+                                                                           to = 10,
                                                                            corner_radius = 8,
                                                                            command = springSimulationConfigTabInitStiffSliderEvent)
         springSimulationConfigTabInitStiffSlider.place(relx = 0.04, rely = 0.8, anchor = tkinter.W)
@@ -1785,7 +1785,7 @@ def springSimulationConfigTab(bool):
         
         springSimulationConfigTabInitLengthTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                                justify = LEFT,
-                                                                               text = "Initial Length (m): ",
+                                                                               text = "Initial Length (cm): ",
                                                                                font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitLengthTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
                 
