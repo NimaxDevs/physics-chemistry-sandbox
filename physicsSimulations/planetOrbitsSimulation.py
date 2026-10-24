@@ -31,11 +31,11 @@ selectedPlanet = None #However, this line defines a state variable that checks i
 scaleFactor = 500e6 #500 000 000 meters correspond to 1 pixel
 G = 6.674e-11
 t = 0
-dt = 3600*1500
+dt = 3600*200
 
 #This functions calculates the radius of the added planets shown on the screen with a basic logarithmic function to represent their size differences correctly
 def screenRadius (physicalRadius):
-    radiusLog = math.log((physicalRadius / 10) + 1) * 4
+    radiusLog = math.log((physicalRadius / 10)) * 4
     return int(max(5, min(radiusLog, 30)))
 
 #"Why didn't you use OOP-" no OOP for this project; this function creates the planets based on a dictionary whose key values are the configurator values of the launcher
@@ -115,13 +115,24 @@ def drawPlanets(planet):
         screen.blit(planetName, planetNameRect)
 
 #These lines create the planets by using the "planetCreation" function
-earth = planetCreation("Earth", "Blue", 5.972e24, 637100, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
-mars = planetCreation("Mars", "Orange", 6.41693e23, 338950, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
-mercury = planetCreation("Mercury", "Gray", 3.301e23, 243970, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
+mercury = planetCreation("Mercury", (141, 143, 144), 3.301e23, 2439700, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
+venus = planetCreation("Venus", (227, 220, 203), 4867e21, 6051800, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
+earth = planetCreation("Earth", (41, 95, 151), 5.972e24, 6371000, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
+mars = planetCreation("Mars", (220, 114, 76), 6.41693e23, 3389500, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
+jupiter = planetCreation("Jupiter", (186, 154, 126), 1898130e21, 69911000, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
+saturn = planetCreation("Saturn", (226, 204, 161), 568319e21, 58232000, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
+uranus = planetCreation("Uranus", (184, 221, 226), 86810e21, 25362000, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
+neptune = planetCreation("Neptune", (75, 112, 179), 102410e21, 24622000, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
+
 #And these ones add them to the "planets" list
+planets.append(mercury)
+planets.append(venus)
 planets.append(earth)
 planets.append(mars)
-planets.append(mercury)
+planets.append(jupiter)
+planets.append(saturn)
+planets.append(uranus)
+planets.append(neptune)
 
 #The main loop runs here
 while True:

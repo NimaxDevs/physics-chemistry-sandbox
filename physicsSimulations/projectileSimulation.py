@@ -33,10 +33,10 @@ init_g = 9.8 #The values from the launcher will be here
 start_x = 100
 start_y = 530
 initVelocity = 50 #The values from the launcher will be here
-initAngle = 60 #The values from the launcher will be here
-initMass = 1 #The values from the launcher will be here
-initDiameter = 5 #The values from the launcher will be here
-dragCoef = 1 #The values from the launcher will be here
+initAngle = 45 #The values from the launcher will be here
+initMass = 1000 #The values from the launcher will be here
+initDiameter = 1 #The values from the launcher will be here
+dragCoef = 0 #The values from the launcher will be here
 initialSurfaceArea = math.pi * (initDiameter/2)**2
 airRho = 1.225 #Air density in kg/m³
 
@@ -106,8 +106,8 @@ while True:
     time += dt
 
     #Sticks the projectile to the ground and creates an explosion by checking if it reaches the y position of the ground line (sort of collision checking)    
-    if y > windowHeight - 50:
-        y = windowHeight - 50
+    if y > (windowHeight - 50) - initDiameter * 4:
+        y = (windowHeight - 50) - initDiameter * 4
         drawExplosion (x, y)
         trajectoryPoints.clear()
 
