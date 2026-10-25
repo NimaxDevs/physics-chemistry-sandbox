@@ -183,7 +183,6 @@ def launcherSettingsButtonEvent():
 
 def gitHubButtonEvent():
     #opens the URL of my GitHub
-    print("The GitHub page will NOT open right now")
     webbrowser.open("https://github.com/NimaxDevs/physics-chemistry-sandbox")
     pass
 
