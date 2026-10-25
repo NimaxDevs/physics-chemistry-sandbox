@@ -2651,7 +2651,7 @@ def temperatureSimulationConfigTab(bool):
 
         temperatureSimulationConfigTabInitParticleDiameterTitleLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabItemsFrame,
                                                                                               justify = LEFT,
-                                                                                              text = "Initial Particle Diameter (nm): ",
+                                                                                              text = "Initial Particle Diameter (µm): ",
                                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
         temperatureSimulationConfigTabInitParticleDiameterTitleLabel.place(relx = 0.05, rely = 0.38, anchor = tkinter.W)
 
