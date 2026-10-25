@@ -4,7 +4,7 @@ from tkinter import *
 from PIL import Image
 
 #The CTk appearance settings go here
-customtkinter.set_appearance_mode("light")
+customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("themes/rime.json")
 
 #The CTk settings go here

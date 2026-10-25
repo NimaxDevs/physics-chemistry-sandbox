@@ -28,17 +28,17 @@ redColor = (255, 0, 0)
 
 
 #The physical variables go here
-sizeScale = 4 #1 meter corresponds to 4 pixels
+scaleFactor = 4 #1 meter corresponds to 4 pixels
 init_g = 9.8 #The values from the launcher will be here
-start_x = 100
-start_y = 530
 initVelocity = 50 #The values from the launcher will be here
-initAngle = 45 #The values from the launcher will be here
-initMass = 1000 #The values from the launcher will be here
-initDiameter = 5 #The values from the launcher will be here (current height has to be fixed)
-dragCoef = 0 #The values from the launcher will be here
+initAngle = 65 #The values from the launcher will be here
+initMass = 10 #The values from the launcher will be here
+initDiameter = 1 #The values from the launcher will be here (current height has to be fixed)
+dragCoef = 0.1 #The values from the launcher will be here
 initialSurfaceArea = math.pi * (initDiameter/2)**2
 airRho = 1.225 #Air density in kg/m³
+start_x = 100
+start_y = (windowHeight - 50) - initDiameter * 4
 
 #This variable stores the points plotted by the projectile trajectory
 trajectoryPoints = []
@@ -47,15 +47,10 @@ trajectoryPoints = []
 time = 0
 dt = 0.1
 
-#This functions creates an explosion when the projectile hits the ground
-def drawExplosion(x, y):
-    for i in range(10):
-        pygame.draw.circle(screen, projectileTrailColor, (x + random.randint(-10, 10), y + random.randint(-10, 10)), 5)
-
 #These lines of code initialize the variables needed to make the physics calculations
 initAngleRad = math.radians(initAngle) #converting degrees to radians
-initVelocity_x = initVelocity * math.cos(initAngleRad) #creates the x-component of the velocity
-initVelocity_y = -initVelocity * math.sin(initAngleRad) #creates the y-component of the velocity
+vx = initVelocity * math.cos(initAngleRad) #creates the x-component of the velocity
+vy = -initVelocity * math.sin(initAngleRad) #creates the y-component of the velocity
 x = start_x
 y = start_y
 
@@ -63,53 +58,55 @@ y = start_y
 while True:
     screen.fill(backgroundColor) #Fills the screen with a white background
     
-    #Checks if the "X" button of the windows is pressed and if so: the window closes
+    #Checks if the "X" button of the window is pressed and if so: the window closes
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
 
     #Calculates the total velocity of the projectile (I know that I should have used vectors instead of this, I might change the logic later)
-    totalVelocity = math.sqrt(initVelocity_x**2 + initVelocity_y**2)
+    totalVelocity = math.sqrt(vx**2 + vy**2)
 
     #Calculates the total drag force using the air density, drag coefficient, surface area of the projectile and the total velocity squared   
-    totalDragForce = 0.5 * airRho * dragCoef * initialSurfaceArea * (totalVelocity**2)
-    dragForce_x = totalDragForce * (initVelocity_x / totalVelocity) #creates the x-component of the drag force
-    dragForce_y = totalDragForce * (initVelocity_y / totalVelocity) #creates the y-component of the drag force
+    if totalVelocity > 0:
+        totalDragForce = 0.5 * airRho * dragCoef * initialSurfaceArea * (totalVelocity**2)
+        dragForce_x = totalDragForce * (vx / totalVelocity) #creates the x-component of the drag force
+        dragForce_y = totalDragForce * (vy / totalVelocity) #creates the y-component of the drag force
+    else:
+        dragForce_x = 0
+        dragForce_y = 0
 
     #These lines protect the simulation from breaking (launching a hot air balloon at Mach 1 for example) by checking the value of the x-component of the velocity
-    if abs((dragForce_x / initMass) * dt) > abs(initVelocity_x):
-        initVelocity_x = 0
+    if abs((dragForce_x / initMass) * dt) > abs(vx):
+        vx = 0
         warningLabel = titleFont.render("bro, the values are so unrealistic that the simulation would actually break", True, redColor)
         warningLabelRect = warningLabel.get_rect(center = (windowWidth // 2, windowHeight // 2))
         screen.blit(warningLabel, warningLabelRect)
     else:
-        initVelocity_x -= (dragForce_x / initMass) * dt
+        vx -= (dragForce_x / initMass) * dt
 
-    #These lines also protect the simulation from breaking by checking the value of the -component of the velocity
-    if abs((dragForce_y / initMass) * dt) > abs (initVelocity_y):
-        initVelocity_y = 0
+    #These lines also protect the simulation from breaking by checking the value of the y-component of the velocity
+    if abs((dragForce_y / initMass) * dt) > abs (vy):
+        vy = 0
         warningLabel = titleFont.render("bro, the values are so unrealistic that the simulation would actually break", True, redColor)
         warningLabelRect = warningLabel.get_rect(center = (windowWidth // 2, windowHeight // 2))
         screen.blit(warningLabel, warningLabelRect)
     else:
-        initVelocity_y -= (dragForce_y / initMass) * dt
+        vy -= (dragForce_y / initMass) * dt
 
     #Applies the gravitational acceleration to the y-component of the velocity (the x-component isn't affected by gravity; therefore, this isn't done for the x-component)
-    initVelocity_y += init_g * dt
+    vy += init_g * dt
 
     #Updates the position of the projectile by using the Euler's method (by integrating them numerically)
-    x += (initVelocity_x  * dt) #Updates the x position
-    y += (initVelocity_y * dt) #Updates the y position
+    x += vx * scaleFactor * dt #Updates the x position
+    y += vy * scaleFactor * dt #Updates the y position
 
     #Adds the predefined time step to the simulation time variable
     time += dt
 
-    #Sticks the projectile to the ground and creates an explosion by checking if it reaches the y position of the ground line (sort of collision checking)    
-    if y > (windowHeight - 50) - initDiameter * 4:
+    #Sticks the projectile to the ground by checking if it reaches the y position of the ground line (sort of collision checking)    
+    if y > (windowHeight - 50) - initDiameter * 4 and vy > 0:
         y = (windowHeight - 50) - initDiameter * 4
-        drawExplosion (x, y)
-        trajectoryPoints.clear()
 
     #Draws the points plotted by the projectile trajectory if the simulation time variable is greater than 0
     if time > 0:
@@ -130,8 +127,8 @@ while True:
     angleLabel = regularFont.render(f"Angle: {initAngle:.1f}°", True, whiteColor)
     massLabel = regularFont.render(f"Mass: {initMass} kg", True, whiteColor)
     diameterLabel = regularFont.render(f"Diameter: {initDiameter} m", True, whiteColor)
-    distanceTraveledLabel = regularFont.render(f"Distance Traveled (m): {x/5:.1f} m", True, whiteColor)
-    currentHeightLabel = regularFont.render(f"Current Height (m): {-(y - (windowHeight - 50))/5:.1f} m", True, whiteColor)
+    distanceTraveledLabel = regularFont.render(f"Distance Traveled (m): {(x - start_x) / scaleFactor:.1f} m", True, whiteColor)
+    currentHeightLabel = regularFont.render(f"Current Height (m): {(start_y - y) / scaleFactor:.1f} m", True, whiteColor)
 
     #And these lines add them to the main window (screen)
     screen.blit(upperLabel, (20, 20))

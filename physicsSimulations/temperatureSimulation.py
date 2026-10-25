@@ -25,7 +25,7 @@ particlesList_x = []
 particlesList_y = []
 
 sizeFactor = 3e11
-initParticleNumber = 1000
+initParticleNumber = 50
 initParticleDiameter = 5
 initTemperature = 30
 diffusionCoef = 0.0
@@ -108,7 +108,6 @@ while True:
 
     if initTemperatureUpdate == True:
         updateDiffusionCoef()
-        print(f"Temperature: {initTemperature}°C\nDiffusion Coefficient: {diffusionCoef}")
 
     brownianMovement()
     
