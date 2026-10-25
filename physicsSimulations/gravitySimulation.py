@@ -21,13 +21,13 @@ whiteColor = (255, 255, 255)
 
 scaleFactor = 200
 g = 9.8
-initMass = 10
+initMass = 100
 initHeight = 10
 initRadius = 1
 initVelocity = 0
 initSurfaceArea = math.pi * initRadius**2
 airRho = 1.225
-dragCoef = 1
+dragCoef = 0.5
 position_y = 1
 restitutionCoef = 0.75 #A basket ball
 

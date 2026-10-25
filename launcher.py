@@ -4,7 +4,7 @@ from tkinter import *
 from PIL import Image
 
 #The CTk appearance settings go here
-customtkinter.set_appearance_mode("dark")
+customtkinter.set_appearance_mode("light")
 customtkinter.set_default_color_theme("themes/rime.json")
 
 #The CTk settings go here
@@ -2248,7 +2248,7 @@ def refractionSimulationConfigTab(bool):
                                                                                                width = 150,
                                                                                                height = 25,
                                                                                                variable = refractionSimulationConfigTabInitRefractiveIndex1OptionMenuVar,
-                                                                                               values = ["Air", "Water", "Glass", "Ethanol", "Diamond", "Plastic", "Custom"],
+                                                                                               values = ["Air (1.0)", "Water (1.33)", "Glass (1.52)", "Ethanol (1.36)", "Diamond (2.417)", "Plastic (1.59)", "Custom"],
                                                                                                command = refractionSimulationConfigInitRefractiveIndex1OptionMenuEvent)
         refractionSimulationConfigInitRefractiveIndex1OptionMenu.place(relx = 0.05, rely = 0.23, anchor = tkinter.W)
 
@@ -2256,7 +2256,7 @@ def refractionSimulationConfigTab(bool):
                                                                                                width = 150,
                                                                                                height = 25,
                                                                                                variable = refractionSimulationConfigTabInitRefractiveIndex2OptionMenuVar,
-                                                                                               values = ["Air", "Water", "Glass", "Ethanol", "Diamond", "Plastic", "Custom"],
+                                                                                               values = ["Air (1.0)", "Water (1.33)", "Glass (1.52)", "Ethanol (1.36)", "Diamond (2.417)", "Plastic (1.59)", "Custom"],
                                                                                                command = refractionSimulationConfigInitRefractiveIndex2OptionMenuEvent)
         refractionSimulationConfigInitRefractiveIndex2OptionMenu.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
 
