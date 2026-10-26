@@ -21,19 +21,41 @@ neutronColor = (171, 171, 171)
 protonOutlineColor = (150, 0, 0)
 neutronOutlineColor = (120, 120, 120)
 backgroundColor = (43, 45, 47)
-electronShellsColor = (255, 255, 255)
+whiteColor = (255, 255, 255)
+
+atoms = [("Hydrogen", 1, 1), 
+         ("Helium", 4, 2), 
+         ("Lithium", 7, 3), 
+         ("Beryllium", 9, 4), 
+         ("Boron", 11, 5), 
+         ("Carbon", 12, 6),
+         ("Nitrogen", 14, 7),
+         ("Oxygen", 16, 8),
+         ("Fluorine", 19, 9),
+         ("Neon", 20, 10),
+         ("Sodium", 23, 11),
+         ("Magnesium", 24, 12),
+         ("Aluminium", 27, 13),
+         ("Silicium", 28, 14),
+         ("Phosphorus", 31, 15),
+         ("Sulfur", 32, 16)]
 
 unitRadius = 80
 nucleonRadius = 8
 electronRadius = 6
-massNumber = 12
-protonNumber = 6
+massNumber = atoms[5][1]
+protonNumber = atoms[5][2]
 neutronNumber = massNumber - protonNumber
 angle = 0
 electrons = []
 electronShells = []
 protons = []
 neutrons = []
+
+for atomName, massN, protonsN in atoms:
+    if protonNumber == protonsN and massNumber == massN:
+        simulatedAtom = atomName
+        break
 
 def createProtons():
     center_x = windowWidth // 2
@@ -93,15 +115,15 @@ def checkAtomElectronShells(protonNumber):
 def drawElectronShells(electronShells):
     for electronShell in electronShells:
         if electronShell[0] == "1s":
-            pygame.draw.circle(screen, electronShellsColor, (int(windowWidth / 2), int(windowHeight / 2)), unitRadius, 1)
+            pygame.draw.circle(screen, whiteColor, (int(windowWidth / 2), int(windowHeight / 2)), unitRadius, 1)
         if electronShell[0] == "2s":
-            pygame.draw.circle(screen, electronShellsColor, (int(windowWidth / 2), int(windowHeight / 2)), unitRadius + 30, 1)
+            pygame.draw.circle(screen, whiteColor, (int(windowWidth / 2), int(windowHeight / 2)), unitRadius + 30, 1)
         if electronShell[0] == "2p":
-            pygame.draw.circle(screen, electronShellsColor, (int(windowWidth / 2), int(windowHeight / 2)), unitRadius + 60, 1)
+            pygame.draw.circle(screen, whiteColor, (int(windowWidth / 2), int(windowHeight / 2)), unitRadius + 60, 1)
         if electronShell[0] == "3s":
-            pygame.draw.circle(screen, electronShellsColor, (int(windowWidth / 2), int(windowHeight / 2)), unitRadius + 90, 1)
+            pygame.draw.circle(screen, whiteColor, (int(windowWidth / 2), int(windowHeight / 2)), unitRadius + 90, 1)
         if electronShell[0] == "3p":
-            pygame.draw.circle(screen, electronShellsColor, (int(windowWidth / 2), int(windowHeight / 2)), unitRadius + 120, 1)
+            pygame.draw.circle(screen, whiteColor, (int(windowWidth / 2), int(windowHeight / 2)), unitRadius + 120, 1)
 
 def addProtons(protonNumber):
     for i in range(protonNumber):
@@ -175,6 +197,20 @@ while True:
     drawElectronShells(electronShells)
     updateElectronPos(electrons)
     drawElectrons(electrons)
+
+    upperLabel = titleFont.render("Simulating Bohr's Atomic Representation", True, whiteColor)
+    atomLabel = regularFont.render(f"Atom: {simulatedAtom}", True, whiteColor)
+    massNumberLabel = regularFont.render(f"Mass Number: {massNumber}", True, whiteColor)
+    protonNumberLabel = regularFont.render(f"Proton Number: {protonNumber}", True, whiteColor)
+    neutronNumberLabel = regularFont.render(f"Neutron Number: {neutronNumber}", True, whiteColor)
+    electronNumberLabel = regularFont.render(f"Electron Number: {protonNumber}", True, whiteColor)
+
+    screen.blit(upperLabel, (20, 20))
+    screen.blit(atomLabel, (20, 45))
+    screen.blit(massNumberLabel, (20, 70))
+    screen.blit(protonNumberLabel, (20, 95))
+    screen.blit(neutronNumberLabel, (20, 120))
+    screen.blit(electronNumberLabel, (20, 145))
     
     pygame.display.update()
     clock.tick(frameRate)
