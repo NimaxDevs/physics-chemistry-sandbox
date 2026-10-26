@@ -25,9 +25,9 @@ particlesList_x = []
 particlesList_y = []
 
 sizeFactor = 3e11
-initParticleNumber = 50
+initParticleNumber = 1000
 initParticleDiameter = 5
-initTemperature = 30
+initTemperature = 20
 diffusionCoef = 0.0
 boltzmannConstant = 1.380649e-23
 initDynamicViscosity = 1e1

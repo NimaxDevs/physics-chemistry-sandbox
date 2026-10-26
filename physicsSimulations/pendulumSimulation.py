@@ -26,9 +26,9 @@ whiteColor = (255, 255, 255)
 scaleFactor = 400 #1 meter corresponds to 400 px
 pendulumOrigin = (windowWidth // 2, 100)
 pendulumLength = 1 * scaleFactor 
-pendulumInitAngle = math.radians(0)
-pendulumMass = 1
-g = 5
+pendulumInitAngle = math.radians(45)
+pendulumMass = 10
+g = 9.8
 pendulumAngularVelocity = 0
 pendulumDamping = 0.5
 

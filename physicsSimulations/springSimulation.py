@@ -28,9 +28,9 @@ springOrigin_x = windowWidth // 2
 springOrigin_y = 100
 springInitMass = 0.5 #The values from the launcher will be here
 g = pygame.Vector2(0, 9.8) #The values from the launcher will be here
-springLength = 1.5e-2 #The values from the launcher will be here
-springInitStiffness = 4 #The values from the launcher will be here
-springDampingCoef = 0.9 #The values from the launcher will be here
+springLength = 1e-2 #The values from the launcher will be here
+springInitStiffness = 5 #The values from the launcher will be here
+springDampingCoef = 0.5 #The values from the launcher will be here
 springMassMomentum = springInitMass * pygame.Vector2(0, 0)
 springMassPosition_y = springLength 
 

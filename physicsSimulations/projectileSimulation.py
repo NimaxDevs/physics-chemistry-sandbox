@@ -30,11 +30,11 @@ redColor = (255, 0, 0)
 #The physical variables go here
 scaleFactor = 4 #1 meter corresponds to 4 pixels
 init_g = 9.8 #The values from the launcher will be here
-initVelocity = 50 #The values from the launcher will be here
+initVelocity = 60 #The values from the launcher will be here
 initAngle = 65 #The values from the launcher will be here
-initMass = 10 #The values from the launcher will be here
-initDiameter = 1 #The values from the launcher will be here (current height has to be fixed)
-dragCoef = 0.1 #The values from the launcher will be here
+initMass = 1 #The values from the launcher will be here
+initDiameter = 5 #The values from the launcher will be here (current height has to be fixed)
+dragCoef = 1 #The values from the launcher will be here
 initialSurfaceArea = math.pi * (initDiameter/2)**2
 airRho = 1.225 #Air density in kg/m³
 start_x = 100
