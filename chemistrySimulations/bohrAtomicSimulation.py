@@ -36,15 +36,15 @@ atoms = [("Hydrogen", 1, 1),
          ("Sodium", 23, 11),
          ("Magnesium", 24, 12),
          ("Aluminium", 27, 13),
-         ("Silicium", 28, 14),
+         ("Silicon", 28, 14),
          ("Phosphorus", 31, 15),
          ("Sulfur", 32, 16)]
 
 unitRadius = 80
 nucleonRadius = 8
 electronRadius = 6
-massNumber = atoms[5][1]
-protonNumber = atoms[5][2]
+massNumber = atoms[1][1]
+protonNumber = atoms[1][2]
 neutronNumber = massNumber - protonNumber
 angle = 0
 electrons = []
