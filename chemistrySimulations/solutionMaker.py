@@ -183,6 +183,8 @@ while True:
     screen.blit(solutionMassConcentrationLabel, (20, 150))
     screen.blit(solutionMolarConcentrationLabel, (20, 175))
     screen.blit(solubilityLabel, (20, 200))
+
+    t += dt
     
     pygame.display.update()
     clock.tick(frameRate)
