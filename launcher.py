@@ -752,9 +752,6 @@ def molecularLabConfigTabInitCarbonColorOptionMenuEvent(value):
 def molecularLabConfigTabInitOxygenColorOptionMenuEvent(value):
     pass
 
-def molecularLabConfigTabInitSizeFactorSliderEvent(value):
-    pass
-
 #The tab functions go here
 def physicsTab(bool):
     if bool == True:
@@ -3525,15 +3522,7 @@ def molecularLabConfigTab(bool):
                                                                                      variable = molecularLabConfigTabInitOxygenColorOptionMenuVar,
                                                                                      values = ["Red", "Dark Red", "Dark Pink"],
                                                                                      command = molecularLabConfigTabInitOxygenColorOptionMenuEvent)
-        molecularLabConfigTabInitOxygenColorOptionMenu.place(relx = 0.6, rely = 0.23, anchor = tkinter.W)
-
-        molecularLabConfigTabInitSizeFactorSlider = customtkinter.CTkSlider(master = molecularLabConfigTabItemsFrame,
-                                                                            width = 200,
-                                                                            height = 20,
-                                                                            from_ = 0.1,
-                                                                            to = 1,
-                                                                            command = molecularLabConfigTabInitSizeFactorSliderEvent)
-        molecularLabConfigTabInitSizeFactorSlider.place(relx = 0.6, rely = 0.5, anchor = tkinter.W)                                           
+        molecularLabConfigTabInitOxygenColorOptionMenu.place(relx = 0.6, rely = 0.23, anchor = tkinter.W)                                          
                                         
         #The images of the simulation go here
         molecularLabConfigTabInSimImage = customtkinter.CTkLabel(master = molecularLabConfigTabImageFrame,
@@ -3590,12 +3579,6 @@ def molecularLabConfigTab(bool):
                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
         molecularLabConfigTabInitOxygenColorTitleLabel.place(relx = 0.6, rely = 0.11, anchor = tkinter.W)
 
-        molecularLabConfigTabInitSizeFactorTitleLabel = customtkinter.CTkLabel(master = molecularLabConfigTabItemsFrame,
-                                                                               justify = LEFT,
-                                                                               text = "Initial Size Factor:",
-                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
-        molecularLabConfigTabInitSizeFactorTitleLabel.place(relx = 0.6, rely = 0.38, anchor = tkinter.W)
-        
         print("the molecular lab config tab works")
         pass
 
