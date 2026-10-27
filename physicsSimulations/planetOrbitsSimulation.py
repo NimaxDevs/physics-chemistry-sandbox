@@ -173,13 +173,13 @@ while True:
         planetAxLabel = regularFont.render(f"ax: {selectedPlanet['ax']:.10f} m/s²", True, whiteColor)
         planetAyLabel = regularFont.render(f"ay: {selectedPlanet['ay']:.10f} m/s²", True, whiteColor)
         #These lines add the text labels to the screen
-        screen.blit(planetNameLabel, (20, 70))
-        screen.blit(planetMassLabel, (20, 95))
-        screen.blit(planetRadiusLabel, (20, 120))
-        screen.blit(planetVxLabel, (20, 145))
-        screen.blit(planetVyLabel, (20, 170))
-        screen.blit(planetAxLabel, (20, 195))
-        screen.blit(planetAyLabel, (20, 220))
+        screen.blit(planetNameLabel, (20, 75))
+        screen.blit(planetMassLabel, (20, 100))
+        screen.blit(planetRadiusLabel, (20, 125))
+        screen.blit(planetVxLabel, (20, 150))
+        screen.blit(planetVyLabel, (20, 175))
+        screen.blit(planetAxLabel, (20, 200))
+        screen.blit(planetAyLabel, (20, 225))
 
     #These lines add the text labels of the simulation title as well as the instructions on how to use the simulator to the screen
     upperLabel = titleFont.render("Simulating Planet Orbits", True, whiteColor)

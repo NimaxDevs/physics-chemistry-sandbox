@@ -69,11 +69,11 @@ while True:
 
     #And these lines add the labels mentioned above to the screen (window)
     screen.blit(upperLabel, (20, 20))
-    screen.blit(pendulumLengthLabel, (20, 45))
-    screen.blit(pendulumAngleLabel, (20, 70))
-    screen.blit(pendulumAngularVelocityLabel, (20, 95))
-    screen.blit(pendulumMassLabel, (20, 120))
-    screen.blit(gLabel, (20, 145))
+    screen.blit(pendulumLengthLabel, (20, 50))
+    screen.blit(pendulumAngleLabel, (20, 75))
+    screen.blit(pendulumAngularVelocityLabel, (20, 100))
+    screen.blit(pendulumMassLabel, (20, 125))
+    screen.blit(gLabel, (20, 150))
 
     #Lastly, these lines update the whole screen (or window)
     pygame.display.update()

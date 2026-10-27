@@ -69,11 +69,11 @@ while True:
 
     #And these lines add the labels to the screen (or window)
     screen.blit(upperLabel, (20, 20))
-    screen.blit(springMassLabel, (20, 45))
-    screen.blit(springLengthLabel, (20, 70))
-    screen.blit(springInitStiffnessLabel, (20, 95))
-    screen.blit(springDampingCoefLabel, (20, 120))
-    screen.blit(gLabel, (20, 145))
+    screen.blit(springMassLabel, (20, 50))
+    screen.blit(springLengthLabel, (20, 75))
+    screen.blit(springInitStiffnessLabel, (20, 100))
+    screen.blit(springDampingCoefLabel, (20, 125))
+    screen.blit(gLabel, (20, 150))
 
     #Updates the time by a small step that is going to be used to integrate the values for the spring mass momentum and position by using Euler's Method
     t += dt

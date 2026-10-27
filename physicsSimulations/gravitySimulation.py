@@ -67,14 +67,14 @@ while True:
     restitutionCoefLabel = regularFont.render(f"Restitution Coefficient: {restitutionCoef}", True, whiteColor)
 
     screen.blit(upperLabel, (20, 20))
-    screen.blit(objectMassLabel, (20, 45))
-    screen.blit(objectHeightLabel, (20, 70))
-    screen.blit(objectRadiusLabel, (20, 95))
-    screen.blit(objectVelocityLabel, (20, 120))
-    screen.blit(objectSurfaceAreaLabel, (20, 145))
-    screen.blit(objectAirDensityLabel, (20, 170))
-    screen.blit(dragCoefLabel, (20, 195))
-    screen.blit(restitutionCoefLabel, (20, 220))
+    screen.blit(objectMassLabel, (20, 50))
+    screen.blit(objectHeightLabel, (20, 75))
+    screen.blit(objectRadiusLabel, (20, 100))
+    screen.blit(objectVelocityLabel, (20, 125))
+    screen.blit(objectSurfaceAreaLabel, (20, 150))
+    screen.blit(objectAirDensityLabel, (20, 175))
+    screen.blit(dragCoefLabel, (20, 200))
+    screen.blit(restitutionCoefLabel, (20, 225))
     
     t += dt
 

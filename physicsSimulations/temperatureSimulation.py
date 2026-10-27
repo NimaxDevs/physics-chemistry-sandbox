@@ -120,10 +120,10 @@ while True:
 
     screen.blit(upperLabel, (20, 20))
     screen.blit(instructionsLabel, (20, 45))
-    screen.blit(particleNumberLabel, (20, 70))
-    screen.blit(particleDiameterLabel, (20, 95))
-    screen.blit(initTemperatureLabel, (20, 120))
-    screen.blit(initTemperatureKelvinsLabel, (20, 145))
+    screen.blit(particleNumberLabel, (20, 75))
+    screen.blit(particleDiameterLabel, (20, 100))
+    screen.blit(initTemperatureLabel, (20, 125))
+    screen.blit(initTemperatureKelvinsLabel, (20, 150))
     
     t += dt
 

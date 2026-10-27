@@ -21,11 +21,11 @@ redColor = (255, 0, 0)
 rayColorsList = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"]
 refractiveIndexesList = [1.0, 1.33, 1.52, 1.36, 2.417, 1.59] #Air, Water, Glass, Ethanol, Diamond and Plastic (PS)
 refractiveIndexesColorList = [(0, 0, 0, 100), (41, 94, 207, 100), (200, 200, 200, 30), (200, 200, 200, 10), (171, 215, 245, 70), (200, 200, 200, 150)] #Air, Water, Glass, Ethanol, Diamond and Plastic (PS)
-rayColor = rayColorsList[6]
+rayColor = rayColorsList[3]
 rayThickness = 2
 initIncidenceAngle = 45
-refractiveIndex1 = refractiveIndexesList[0]
-refractiveIndex2 = refractiveIndexesList[0]
+refractiveIndex1 = refractiveIndexesList[2]
+refractiveIndex2 = refractiveIndexesList[1]
 pointALightRayCoords = [45, 50]
 pointBLightRayCoords = [windowWidth / 2, 400]
 pointCRefractedLightRayCoords = [windowWidth - 50, windowHeight - 50]
@@ -82,8 +82,8 @@ def RefractingLight():
     pointCRefractedLightRayCoords[1] = pointBLightRayCoords[1] + math.cos(math.radians(betaAngle)) * lightRayLength
     initIncidenceAngleLabel = regularFont.render(f"Incidence Angle: {alphaAngle:.1f}°", True, whiteColor)
     refractedAngleLabel = regularFont.render(f"Refracted Angle: {betaAngle:.1f}°", True, whiteColor)
-    screen.blit(initIncidenceAngleLabel, (20, 70))
-    screen.blit(refractedAngleLabel, (20, 95))
+    screen.blit(initIncidenceAngleLabel, (20, 75))
+    screen.blit(refractedAngleLabel, (20, 100))
 
 while True:
     screen.fill(backgroundColor)
@@ -112,8 +112,8 @@ while True:
     refractiveIndex2Label = regularFont.render(f"Refractive Index 2: {refractiveIndex2}", True, whiteColor)
     screen.blit(upperLabel, (20, 20))
     screen.blit(instructionsLabel, (20, 45))
-    screen.blit(refractiveIndex1Label, (20, 120))
-    screen.blit(refractiveIndex2Label, (20, 145))
+    screen.blit(refractiveIndex1Label, (20, 125))
+    screen.blit(refractiveIndex2Label, (20, 150))
 
     pygame.display.update()
     clock.tick(frameRate)

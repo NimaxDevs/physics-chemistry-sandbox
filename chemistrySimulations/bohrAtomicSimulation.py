@@ -43,8 +43,8 @@ atoms = [("Hydrogen", 1, 1),
 unitRadius = 80
 nucleonRadius = 8
 electronRadius = 6
-massNumber = atoms[1][1]
-protonNumber = atoms[1][2]
+massNumber = atoms[15][1]
+protonNumber = atoms[15][2]
 neutronNumber = massNumber - protonNumber
 angle = 0
 electrons = []
@@ -206,11 +206,11 @@ while True:
     electronNumberLabel = regularFont.render(f"Electron Number: {protonNumber}", True, whiteColor)
 
     screen.blit(upperLabel, (20, 20))
-    screen.blit(atomLabel, (20, 45))
-    screen.blit(massNumberLabel, (20, 70))
-    screen.blit(protonNumberLabel, (20, 95))
-    screen.blit(neutronNumberLabel, (20, 120))
-    screen.blit(electronNumberLabel, (20, 145))
+    screen.blit(atomLabel, (20, 50))
+    screen.blit(massNumberLabel, (20, 75))
+    screen.blit(protonNumberLabel, (20, 100))
+    screen.blit(neutronNumberLabel, (20, 125))
+    screen.blit(electronNumberLabel, (20, 150))
     
     pygame.display.update()
     clock.tick(frameRate)
