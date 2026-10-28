@@ -1,1 +1,1 @@
-{"initVelocity": 61, "initAngle": 62, "initGravAcc": 14.5, "initMass": 2475, "initDiameter": 2, "dragCoef": 0.4}
+{"initAngle": -90, "initAngularVel": -0.5, "initLength": 0.1, "initMass": 0.1, "initGravAcc": 9.3, "dampingCoef": 0.6}

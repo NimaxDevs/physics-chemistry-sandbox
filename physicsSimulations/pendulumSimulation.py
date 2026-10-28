@@ -1,6 +1,8 @@
 import pygame
 import math
 from sys import exit
+import json
+import os
 
 #These lines define the window variables
 windowWidth = 1100
@@ -31,6 +33,24 @@ pendulumMass = 10
 g = 9.8
 pendulumAngularVelocity = 0
 pendulumDamping = 0.5
+
+simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
+if os.path.exists(simulationConfigValuesPath):
+    with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
+        values = json.load(f)
+        pendulumInitAngle = math.radians(values.get("initAngle", 45))
+        pendulumAngularVelocity = values.get("initAngularVel", 0)
+        pendulumLength = (values.get("initLength", 1)) * scaleFactor
+        pendulumMass = values.get("initMass", 10)
+        g = values.get("initGravAcc", 9.8)
+        pendulumDamping = values.get("dampingCoef", 0.1)      
+else:
+    pendulumInitAngle = math.radians(45)
+    pendulumAngularVelocity = 0
+    init_g = 9.8
+    initMass = 10
+    initDiameter = 1
+    dragCoef = 0.1    
 
 #Defines some simulation control variables
 t = 0

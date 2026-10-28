@@ -659,8 +659,23 @@ def projectileSimulationConfigTabLaunchButtonEvent():
 
 def pendulumSimulationConfigTabLaunchButtonEvent():
     configValues = {
-        "initAngle":
+        "initAngle": int(pendulumSimulationConfigTabInitAngleSlider.get()),
+        "initAngularVel": round(pendulumSimulationConfigTabInitAngularVelSlider.get(), 1),
+        "initLength": round(pendulumSimulationConfigTabInitLengthSlider.get(), 1),
+        "initMass": round(pendulumSimulationConfigTabInitMassSlider.get(), 1),
+        "initGravAcc": round(pendulumSimulationConfigTabInitGravAccSlider.get(), 1),
+        "dampingCoef": round(pendulumSimulationConfigTabInitDampingCoefSlider.get(), 1)
     }
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+        json.dump(configValues, f)
+    pendulumSimulationConfigTabLaunchButton.configure(state = "disabled")
+    pendulumSimulationConfigTabLaunchButton.configure(text = "Running...")
+        
+    simulationPath = os.path.join("physicsSimulations", "pendulumSimulation.py")
+    subprocess.run(["python", simulationPath])
+    pendulumSimulationConfigTabLaunchButton.configure(state = "normal")
+    pendulumSimulationConfigTabLaunchButton.configure(text = "Launch")
+    print("projectile simulation launched")
     print("pendulum simulation launched")
 
 def springSimulationConfigTabLaunchButtonEvent():
@@ -1589,6 +1604,7 @@ def projectileSimulationConfigTab(bool):
                                                                                                    font = customtkinter.CTkFont(size = 18, weight = "normal"))
                 
 def pendulumSimulationConfigTab(bool):
+    global pendulumSimulationConfigTabLaunchButton, pendulumSimulationConfigTabInitAngleSlider, pendulumSimulationConfigTabInitAngularVelSlider, pendulumSimulationConfigTabInitLengthSlider, pendulumSimulationConfigTabInitMassSlider, pendulumSimulationConfigTabInitGravAccSlider, pendulumSimulationConfigTabInitDampingCoefSlider
     if bool == True:
         #Here are the frames for each element of the config tab
         pendulumSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
