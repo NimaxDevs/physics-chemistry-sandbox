@@ -72,6 +72,10 @@ springSimulationConfigTabInitStiffSliderValueVar = tkinter.StringVar(value = "")
 springSimulationConfigTabInitDampingCoefSliderValueVar = tkinter.StringVar(value = "")
 
 ###The variables of the Planet Orbits go here
+planetOrbitsSimulationConfigTabPlanetInitialVxSliderValueVar = tkinter.StringVar(value = "")
+planetOrbitsSimulationConfigTabPlanetInitialVySliderValueVar = tkinter.StringVar(value = "")
+planetOrbitsSimulationConfigTabPlanetInitialAxSliderValueVar = tkinter.StringVar(value = "")
+planetOrbitsSimulationConfigTabPlanetInitialAySliderValueVar = tkinter.StringVar(value = "")
 planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar = tkinter.StringVar(value = "off")
 planetOrbitsSimulationConfigTabShowPlanetNameSwitchVar = tkinter.StringVar(value = "off")
 planetNumber = 0
@@ -711,6 +715,18 @@ def planetOrbitsSimulationConfigTabShowOrbitTrailSwitchEvent():
 
 def planetOrbitsSimulationConfigTabShowPlanetNameSwitchEvent():
     pass
+
+def planetOrbitsSimulationConfigTabPlanetInitialVxSliderEvent(value):
+    planetOrbitsSimulationConfigTabPlanetInitialVxSliderValueVar.set(round(value, 3))
+
+def planetOrbitsSimulationConfigTabPlanetInitialVySliderEvent(value):
+    planetOrbitsSimulationConfigTabPlanetInitialVySliderValueVar.set(round(value, 3))
+
+def planetOrbitsSimulationConfigTabPlanetInitialAxSliderEvent(value):
+    planetOrbitsSimulationConfigTabPlanetInitialAxSliderValueVar.set(round(value, 3))
+
+def planetOrbitsSimulationConfigTabPlanetInitialAySliderEvent(value):
+    planetOrbitsSimulationConfigTabPlanetInitialAySliderValueVar.set(round(value, 3))
 
 ###The configurator events of the Gravity Simulation go here
 def gravitySimulationConfigTabInitMassSliderEvent(value):
@@ -1930,7 +1946,7 @@ def planetOrbitsSimulationConfigTab(bool):
             global planetNumber
             if (planetOrbitsSimulationConfigTabPlanetNameEntry.get() != "") and (planetOrbitsSimulationConfigTabPlanetColorEntry.get() != "") and (planetOrbitsSimulationConfigTabPlanetMassEntry.get() != "") and (planetOrbitsSimulationConfigTabPlanetRadiusEntry.get() != ""):
                 planetNumber += 1
-                print(f"Planet {planetNumber}:\nName: {planetOrbitsSimulationConfigTabPlanetNameEntry.get()}\nColor: {planetOrbitsSimulationConfigTabPlanetColorEntry.get()}\nMass: {planetOrbitsSimulationConfigTabPlanetMassEntry.get()}\nRadius: {planetOrbitsSimulationConfigTabPlanetRadiusEntry.get()}\nInitial Vx: {int(planetOrbitsSimulationConfigTabPlanetInitialVxSlider.get())}\nInitial Vy: {int(planetOrbitsSimulationConfigTabPlanetInitialVySlider.get())}\nInitial ax: {int(planetOrbitsSimulationConfigTabPlanetInitialAxSlider.get())}\nInitial ay: {int(planetOrbitsSimulationConfigTabPlanetInitialAySlider.get())}\nShow Orbit Trail: {planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.get()}\nShow Planet Name: {planetOrbitsSimulationConfigTabShowPlanetNameSwitch.get()}")
+                print(f"Planet {planetNumber}:\nName: {planetOrbitsSimulationConfigTabPlanetNameEntry.get()}\nColor: {planetOrbitsSimulationConfigTabPlanetColorEntry.get()}\nMass: {planetOrbitsSimulationConfigTabPlanetMassEntry.get()}\nRadius: {planetOrbitsSimulationConfigTabPlanetRadiusEntry.get()}\nInitial Vx: {round(planetOrbitsSimulationConfigTabPlanetInitialVxSlider.get(), 3)}\nInitial Vy: {round(planetOrbitsSimulationConfigTabPlanetInitialVySlider.get(), 3)}\nInitial ax: {round(planetOrbitsSimulationConfigTabPlanetInitialAxSlider.get(), 3)}\nInitial ay: {round(planetOrbitsSimulationConfigTabPlanetInitialAySlider.get(), 3)}\nShow Orbit Trail: {planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.get()}\nShow Planet Name: {planetOrbitsSimulationConfigTabShowPlanetNameSwitch.get()}")
                 planetOrbitsSimulationConfigTabPlanetNameEntry.set("")
                 planetOrbitsSimulationConfigTabPlanetColorEntry.set("")
                 planetOrbitsSimulationConfigTabPlanetMassEntry.set("")
@@ -2014,7 +2030,7 @@ def planetOrbitsSimulationConfigTab(bool):
         planetOrbitsSimulationConfigTabPlanetColorEntry = customtkinter.CTkEntry(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                  width = 150,
                                                                                  height = 25,
-                                                                                 placeholder_text = "Color as a word",
+                                                                                 placeholder_text = "This form: R, G, B",
                                                                                  font = customtkinter.CTkFont(size = 15, weight = "normal"),
                                                                                  corner_radius = 5,
                                                                                  border_width = 1)
@@ -2041,33 +2057,37 @@ def planetOrbitsSimulationConfigTab(bool):
         planetOrbitsSimulationConfigTabPlanetInitialVxSlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                        width = 150,
                                                                                        height = 20,
-                                                                                       from_ = 0,
-                                                                                       to = 300,
-                                                                                       corner_radius = 5)
+                                                                                       from_ = -0.005,
+                                                                                       to = 0.005,
+                                                                                       corner_radius = 5,
+                                                                                       command = planetOrbitsSimulationConfigTabPlanetInitialVxSliderEvent)
         planetOrbitsSimulationConfigTabPlanetInitialVxSlider.place(relx = 0.35, rely = 0.64, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetInitialVySlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                       width = 150,
                                                                                       height = 20,
-                                                                                      from_ = 0,
-                                                                                      to = 300,
-                                                                                      corner_radius = 5)
+                                                                                      from_ = -0.005,
+                                                                                      to = 0.005,
+                                                                                      corner_radius = 5,
+                                                                                      command = planetOrbitsSimulationConfigTabPlanetInitialVySliderEvent)
         planetOrbitsSimulationConfigTabPlanetInitialVySlider.place(relx = 0.35, rely = 0.89, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetInitialAxSlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
-                                                                                     width = 150,
-                                                                                     height = 20,
-                                                                                     from_ = 0,
-                                                                                     to = 50,
-                                                                                     corner_radius = 5)
+                                                                                       width = 150,
+                                                                                       height = 20,
+                                                                                       from_ = -0.005,
+                                                                                       to = 0.005,
+                                                                                       corner_radius = 5,
+                                                                                       command = planetOrbitsSimulationConfigTabPlanetInitialAxSliderEvent)
         planetOrbitsSimulationConfigTabPlanetInitialAxSlider.place(relx = 0.68, rely = 0.39, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetInitialAySlider = customtkinter.CTkSlider(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                        width = 150,
                                                                                        height = 20,
-                                                                                       from_ = 0,
-                                                                                       to = 50,
-                                                                                       corner_radius = 5)
+                                                                                       from_ = -0.005,
+                                                                                       to = 0.005,
+                                                                                       corner_radius = 5,
+                                                                                       command = planetOrbitsSimulationConfigTabPlanetInitialAySliderEvent)
         planetOrbitsSimulationConfigTabPlanetInitialAySlider.place(relx = 0.68, rely = 0.6, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabShowOrbitTrailSwitch = customtkinter.CTkSwitch(master = planetOrbitsSimulationConfigTabItemsFrame,
@@ -2154,11 +2174,23 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                           font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetInitialVxSliderTitle.place(relx = 0.35, rely = 0.52, anchor = tkinter.W)
 
+        planetOrbitsSimulationConfigTabPlanetInitialVxSliderValueLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                                justify = LEFT,
+                                                                                                textvariable = planetOrbitsSimulationConfigTabPlanetInitialVxSliderValueVar,
+                                                                                                font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        planetOrbitsSimulationConfigTabPlanetInitialVxSliderValueLabel.place(relx = 0.56, rely = 0.52, anchor = tkinter.W)
+
         planetOrbitsSimulationConfigTabPlanetInitialVySliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
-                                                                                          justify = LEFT,
-                                                                                          text = "Initial Vy (m/s):",
-                                                                                          font = customtkinter.CTkFont(size = 16, weight = "normal"))
+                                                                                           justify = LEFT,
+                                                                                           text = "Initial Vy (m/s):",
+                                                                                           font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetInitialVySliderTitle.place(relx = 0.35, rely = 0.77, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetInitialVySliderValueLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                                justify = LEFT,
+                                                                                                textvariable = planetOrbitsSimulationConfigTabPlanetInitialVySliderValueVar,
+                                                                                                font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        planetOrbitsSimulationConfigTabPlanetInitialVySliderValueLabel.place(relx = 0.56, rely = 0.77, anchor = tkinter.W)
 
         planetOrbitsSimulationConfigTabPlanetInitialAxSliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                           justify = LEFT,
@@ -2166,11 +2198,23 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                           font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetInitialAxSliderTitle.place(relx = 0.68, rely = 0.27, anchor = tkinter.W)
 
+        planetOrbitsSimulationConfigTabPlanetInitialAxSliderValueLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                                justify = LEFT,
+                                                                                                textvariable = planetOrbitsSimulationConfigTabPlanetInitialAxSliderValueVar,
+                                                                                                font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        planetOrbitsSimulationConfigTabPlanetInitialAxSliderValueLabel.place(relx = 0.9, rely = 0.27, anchor = tkinter.W)
+
         planetOrbitsSimulationConfigTabPlanetInitialAySliderTitle = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                            justify = LEFT,
                                                                                            text = "Initial ay (m/s²):",
                                                                                            font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetInitialAySliderTitle.place(relx = 0.68, rely = 0.48, anchor = tkinter.W)
+
+        planetOrbitsSimulationConfigTabPlanetInitialAySliderValueLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                                justify = LEFT,
+                                                                                                textvariable = planetOrbitsSimulationConfigTabPlanetInitialAySliderValueVar,
+                                                                                                font = customtkinter.CTkFont(size = 16, weight = "normal"))
+        planetOrbitsSimulationConfigTabPlanetInitialAySliderValueLabel.place(relx = 0.9, rely = 0.48, anchor = tkinter.W)
         
         print("the planet orbits config tab works")
         pass
