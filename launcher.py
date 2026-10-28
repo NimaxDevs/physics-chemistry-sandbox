@@ -92,8 +92,10 @@ refractionSimulationConfigTabInitIncidenceAngleSliderValueVar = tkinter.StringVa
 refractionSimulationConfigRayColorOptionMenuVar = tkinter.StringVar(value = "Select Ray Color")
 
 ###The variables of the Fluid Simulation go here
+fluidSimulationConfigTabInitVolumeSliderValueVar = tkinter.StringVar(value = "")
 fluidSimulationConfigInitDensityOptionMenuVar = tkinter.StringVar(value = "Select Density")
 fluidSimulationConfigInitViscosityOptionMenuVar = tkinter.StringVar(value = "Select Viscosity")
+fluidSimulationConfigTabInitPressureSliderValueVar = tkinter.StringVar(value = "")
 fluidSimulationConfigInitColorOptionMenuVar = tkinter.StringVar(value = "Select Color")
 fluidSimulationConfigTabShowLatticeSwitchVar = tkinter.StringVar(value = "off")
 
@@ -750,10 +752,10 @@ def refractionSimulationConfigTabInitIncidenceAngleSliderEvent(value):
 
 ###The configurator events of the Fluid Simulation go here
 def fluidSimulationConfigTabInitVolumeSliderEvent(value):
-    pass
+    fluidSimulationConfigTabInitVolumeSliderValueVar.set(round(value, 1))
 
 def fluidSimulationConfigTabInitPressureSliderEvent(value):
-    pass
+    fluidSimulationConfigTabInitPressureSliderValueVar.set(int(value))
 
 def fluidSimulationConfigTabShowLatticeSwitchEvent():
     pass
@@ -2704,6 +2706,12 @@ def fluidSimulationConfigTab(bool):
                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
         fluidSimulationConfigTabInitVolumeTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
 
+        fluidSimulationConfigTabInitVolumeSliderValueLabel = customtkinter.CTkLabel(master = fluidSimulationConfigTabItemsFrame,
+                                                                                    justify = LEFT,
+                                                                                    textvariable = fluidSimulationConfigTabInitVolumeSliderValueVar,
+                                                                                    font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        fluidSimulationConfigTabInitVolumeSliderValueLabel.place(relx = 0.31, rely = 0.11, anchor = tkinter.W)
+
         fluidSimulationConfigTabInitDensityTitleLabel = customtkinter.CTkLabel(master = fluidSimulationConfigTabItemsFrame,
                                                                                justify = LEFT,
                                                                                text = "Initial Density (kg/m³): ",
@@ -2721,6 +2729,12 @@ def fluidSimulationConfigTab(bool):
                                                                                 text = "Initial Pressure (Pa): ",
                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
         fluidSimulationConfigTabInitPressureTitleLabel.place(relx = 0.6, rely = 0.11, anchor = tkinter.W)
+
+        fluidSimulationConfigTabInitPressureSliderValueLabel = customtkinter.CTkLabel(master = fluidSimulationConfigTabItemsFrame,
+                                                                                      justify = LEFT,
+                                                                                      textvariable = fluidSimulationConfigTabInitPressureSliderValueVar,
+                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        fluidSimulationConfigTabInitPressureSliderValueLabel.place(relx = 0.9, rely = 0.11, anchor = tkinter.W)
 
         fluidSimulationConfigTabInitColorTitleLabel = customtkinter.CTkLabel(master = fluidSimulationConfigTabItemsFrame,
                                                                              justify = LEFT,
