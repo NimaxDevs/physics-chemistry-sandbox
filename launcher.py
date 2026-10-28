@@ -110,7 +110,9 @@ bohrAtomSimulationConfigTabAtomSelected = False
 
 ###The variables of the Solution Maker go here
 solutionMakerConfigTabInitSolventOptionMenuVar = tkinter.StringVar(value = "Select Solvent")
+solutionMakerConfigTabInitSolventVolSliderValueVar = tkinter.StringVar(value = "")
 solutionMakerConfigTabInitSoluteOptionMenuVar = tkinter.StringVar(value = "Select Solute")
+solutionMakerConfigTabInitSoluteMassSliderValueVar = tkinter.StringVar(value = "")
 
 ###The variables of the Molecular Lab go here
 molecularLabConfigTabInitMoleculeOptionMenuVar = tkinter.StringVar(value = "Select Molecule")
@@ -781,13 +783,13 @@ def solutionMakerConfigTabInitSolventOptionMenuEvent(value):
     pass
 
 def solutionMakerConfigTabInitSolventVolSliderEvent(value):
-    pass
+    solutionMakerConfigTabInitSolventVolSliderValueVar.set(int(value))
 
 def solutionMakerConfigTabInitSoluteOptionMenuEvent(value):
     pass
 
 def solutionMakerConfigTabInitSoluteMassSliderEvent(value):
-    pass
+    solutionMakerConfigTabInitSoluteMassSliderValueVar.set(int(value))
 
 ###The configurator events of the Molecular Lab go here:
 def molecularLabConfigTabInitMoleculeOptionMenuEvent(value):
@@ -1622,7 +1624,7 @@ def pendulumSimulationConfigTab(bool):
 
         pendulumSimulationConfigTabInitAngularVelSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
                                                                                   height = 20,
-                                                                                  from_ = 0.1, 
+                                                                                  from_ = -0.5, 
                                                                                   to = 0.5,
                                                                                   corner_radius = 8,
                                                                                   command = pendulumSimulationConfigTabInitAngularVelSliderEvent)
@@ -1930,7 +1932,7 @@ def springSimulationConfigTab(bool):
                 
         springSimulationConfigTabInitStiffTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                               justify = LEFT,
-                                                                              text = "Initial Stiffness: ",
+                                                                              text = "Initial Stiffness (N/m): ",
                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitStiffTitleLabel.place(relx = 0.05, rely = 0.7, anchor = tkinter.W)
 
@@ -1938,7 +1940,7 @@ def springSimulationConfigTab(bool):
                                                                                     justify = LEFT,
                                                                                     textvariable = springSimulationConfigTabInitStiffSliderValueVar,
                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
-        springSimulationConfigTabInitStiffSliderValueLabel.place(relx = 0.28, rely = 0.7, anchor = tkinter.W)
+        springSimulationConfigTabInitStiffSliderValueLabel.place(relx = 0.38, rely = 0.7, anchor = tkinter.W)
         
         springSimulationConfigTabInitDampingCoefTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                                     justify = LEFT,
@@ -2830,7 +2832,6 @@ def temperatureSimulationConfigTab(bool):
                                                                           text = "")
         temperatureSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)        
                                 
-                
         #The labels of the config tab go here
         temperatureSimulationConfigTabTitleLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabTitleFrame,
                                                                           justify = LEFT,
@@ -3591,7 +3592,6 @@ def solutionMakerConfigTab(bool):
                                                                              height = 20,
                                                                              from_ = 100,
                                                                              to = 1000,
-                                                                             number_of_steps = 5,
                                                                              command = solutionMakerConfigTabInitSolventVolSliderEvent)
         solutionMakerConfigTabInitSolventVolSlider.place(relx = 0.05, rely = 0.45, anchor = tkinter.W)
 
@@ -3655,6 +3655,12 @@ def solutionMakerConfigTab(bool):
                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
         solutionMakerConfigTabInitSolventVolTitleLabel.place(relx = 0.05, rely = 0.35, anchor = tkinter.W)
 
+        solutionMakerConfigTabInitSolventVolSliderValueLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabItemsFrame,
+                                                                                      justify = LEFT,
+                                                                                      textvariable = solutionMakerConfigTabInitSolventVolSliderValueVar,
+                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        solutionMakerConfigTabInitSolventVolSliderValueLabel.place(relx = 0.46, rely = 0.35, anchor = tkinter.W)
+
         solutionMakerConfigTabInitSoluteTitleLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabItemsFrame,
                                                                             justify = LEFT,
                                                                             text = "Initial Solute (solid): ",
@@ -3666,6 +3672,13 @@ def solutionMakerConfigTab(bool):
                                                                                 text = "Initial Solute Mass (g): ",
                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
         solutionMakerConfigTabInitSoluteMassTitleLabel.place(relx = 0.05, rely = 0.8, anchor = tkinter.W)
+
+
+        solutionMakerConfigTabInitSoluteMassSliderValueLabel = customtkinter.CTkLabel(master = solutionMakerConfigTabItemsFrame,
+                                                                                      justify = LEFT,
+                                                                                      textvariable = solutionMakerConfigTabInitSoluteMassSliderValueVar,
+                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        solutionMakerConfigTabInitSoluteMassSliderValueLabel.place(relx = 0.38, rely = 0.8, anchor = tkinter.W)
 
         print("the solution maker config tab works")
         pass
