@@ -272,7 +272,44 @@ def lewisAcetoneMolecule():
     hydrogen20LabelRect = hydrogen20Label.get_rect(center = (1050, windowHeight // 2))
     screen.blit(hydrogen20Label, hydrogen20LabelRect)
 
+def lewisMethanolMolecule():
+    pygame.draw.line(screen, lewisLineColor, (50, windowHeight // 2), (350, windowHeight // 2), lewisSingleConnexionLineThickness)
+    pygame.draw.line(screen, lewisLineColor, (350, windowHeight // 2), (350, (windowHeight // 2) - 200), lewisSingleConnexionLineThickness)
+    pygame.draw.line(screen, lewisLineColor, (350, windowHeight // 2), (350, (windowHeight // 2) + 200), lewisSingleConnexionLineThickness)
+    pygame.draw.line(screen, lewisLineColor, (350, windowHeight // 2), (750, windowHeight // 2), lewisSingleConnexionLineThickness)
+    pygame.draw.line(screen, lewisLineColor, (750, windowHeight // 2), (1050, windowHeight // 2), lewisSingleConnexionLineThickness)
+    pygame.draw.line(screen, lewisLineColor, (720, (windowHeight // 2) - 50), (780, (windowHeight // 2) - 50), lewisSingleConnexionLineThickness)
+    pygame.draw.line(screen, lewisLineColor, (720, (windowHeight // 2) + 50), (780, (windowHeight // 2) + 50), lewisSingleConnexionLineThickness)
     
+    pygame.draw.circle(screen, hydrogenAtomColor, (50, windowHeight // 2), hydrogenAtomRadius)
+    hydrogen21Label = regularFont.render("H", True, whiteColor)
+    hydrogen21LabelRect = hydrogen21Label.get_rect(center = (50, windowHeight // 2))
+    screen.blit(hydrogen21Label, hydrogen21LabelRect)
+        
+    pygame.draw.circle(screen, carbonAtomColor, (350, windowHeight // 2), carbonAtomRadius)
+    carbon3Label = regularFont.render("C", True, whiteColor)
+    carbon3LabelRect = carbon3Label.get_rect(center = (350, windowHeight // 2))
+    screen.blit(carbon3Label, carbon3LabelRect)        
+
+    pygame.draw.circle(screen, oxygenAtomColor, (750, windowHeight // 2), oxygenAtomRadius)
+    oxygen7Label = regularFont.render("O", True, whiteColor)
+    oxygen7LabelRect = oxygen7Label.get_rect(center = (750, windowHeight // 2))
+    screen.blit(oxygen7Label, oxygen7LabelRect)
+
+    pygame.draw.circle(screen, hydrogenAtomColor, (1050, windowHeight // 2), hydrogenAtomRadius)
+    hydrogen22Label = regularFont.render("H", True, whiteColor)
+    hydrogen22LabelRect = hydrogen22Label.get_rect(center = (1050, windowHeight // 2))
+    screen.blit(hydrogen22Label, hydrogen22LabelRect)
+
+    pygame.draw.circle(screen, hydrogenAtomColor, (350, (windowHeight // 2) - 200), hydrogenAtomRadius)
+    hydrogen23Label = regularFont.render("H", True, whiteColor)
+    hydrogen23LabelRect = hydrogen23Label.get_rect(center = (350, (windowHeight // 2) - 200))
+    screen.blit(hydrogen23Label, hydrogen23LabelRect)
+
+    pygame.draw.circle(screen, hydrogenAtomColor, (350, (windowHeight // 2) + 200), hydrogenAtomRadius)
+    hydrogen24Label = regularFont.render("H", True, whiteColor)
+    hydrogen24LabelRect = hydrogen24Label.get_rect(center = (350, (windowHeight // 2) + 200))
+    screen.blit(hydrogen24Label, hydrogen24LabelRect)
 
         
 
@@ -287,7 +324,8 @@ while True:
     #lewisCarbonDioxideMolecule()
     #lewisGlucoseMolecule()
     #lewisEthanolMolecule()
-    lewisAcetoneMolecule()
+    #lewisAcetoneMolecule()
+    lewisMethanolMolecule()
 
     pygame.display.update()
     clock.tick(frameRate)
