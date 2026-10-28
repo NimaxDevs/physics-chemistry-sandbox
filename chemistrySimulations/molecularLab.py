@@ -311,6 +311,31 @@ def lewisMethanolMolecule():
     hydrogen24LabelRect = hydrogen24Label.get_rect(center = (350, (windowHeight // 2) + 200))
     screen.blit(hydrogen24Label, hydrogen24LabelRect)
 
+def lewisFormaldehydeMolecule():
+    pygame.draw.line(screen, lewisLineColor, (350, windowHeight // 2), (550, windowHeight // 2), lewisSingleConnexionLineThickness)
+    pygame.draw.line(screen, lewisLineColor, (550, windowHeight // 2), (750, windowHeight // 2), lewisSingleConnexionLineThickness)
+    pygame.draw.line(screen, lewisLineColor, (550, windowHeight // 2), (550, (windowHeight // 2) - 200), lewisDoubleConnexionLineThickness)
+    pygame.draw.line(screen, lewisLineColor, (505, (windowHeight // 2) - 230), (505, (windowHeight // 2) - 170), lewisSingleConnexionLineThickness)
+    pygame.draw.line(screen, lewisLineColor, (595, (windowHeight // 2) - 230), (595, (windowHeight // 2) - 170), lewisSingleConnexionLineThickness)
+
+    
+    for i in range(2):
+        pygame.draw.circle(screen, hydrogenAtomColor, (350 + (i * 400), windowHeight // 2), hydrogenAtomRadius)
+        hydrogen25Label = regularFont.render("H", True, whiteColor)
+        hydrogen25LabelRect = hydrogen25Label.get_rect(center = (350 + (i * 400), windowHeight // 2))
+        screen.blit(hydrogen25Label, hydrogen25LabelRect)
+
+    pygame.draw.circle(screen, carbonAtomColor, (550, windowHeight // 2), carbonAtomRadius)
+    carbon4Label = regularFont.render("C", True, whiteColor)
+    carbon4LabelRect = carbon4Label.get_rect(center = (550, windowHeight // 2))
+    screen.blit(carbon4Label, carbon4LabelRect)   
+
+    pygame.draw.circle(screen, oxygenAtomColor, (550, (windowHeight // 2) - 200), oxygenAtomRadius)
+    oxygen8Label = regularFont.render("O", True, whiteColor)
+    oxygen8LabelRect = oxygen8Label.get_rect(center = (550, (windowHeight // 2) - 200))
+    screen.blit(oxygen8Label, oxygen8LabelRect)
+
+
         
 
 while True:
@@ -325,7 +350,8 @@ while True:
     #lewisGlucoseMolecule()
     #lewisEthanolMolecule()
     #lewisAcetoneMolecule()
-    lewisMethanolMolecule()
+    #lewisMethanolMolecule()
+    lewisFormaldehydeMolecule()
 
     pygame.display.update()
     clock.tick(frameRate)
