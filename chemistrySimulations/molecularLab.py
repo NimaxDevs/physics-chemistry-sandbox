@@ -19,25 +19,30 @@ lewisLineColor = (99, 113, 123)
 lightBlueColor = (3, 165, 252)
 lightGrayColor = (148, 148, 148)
 greenColor = (0, 204, 24)
+
 blackColor = (0, 0, 0)
 darkBlue = (0, 27, 204)
 darkGrayColor = (77, 77, 77)
 darkGreenColor = (0, 94, 19)
+
 redColor = (255, 0, 0)
 darkRedColor = (150, 0, 0)
 pinkColor = (255, 194, 194)
+
 whiteColor = (255, 255, 255)
 
 carbonAtomRadius = 40
 hydrogenAtomRadius = 30
 oxygenAtomRadius = 35
-hydrogenAtomColor = lightBlueColor
-carbonAtomColor = blackColor
-oxygenAtomColor = redColor
+hydrogenAtomColor = greenColor
+carbonAtomColor = darkGreenColor
+oxygenAtomColor = darkRedColor
 
 carbonAtomPos_x = 200
 lewisSingleConnexionLineThickness = 5
 lewisDoubleConnexionLineThickness = 15
+
+selectedMolecule = "Methanol"
 
 def sphericalCarbonDioxideMolecule():
     pygame.draw.circle(screen, oxygenAtomColor, (carbonAtomPos_x - 60, 300), oxygenAtomRadius)
@@ -335,9 +340,6 @@ def lewisFormaldehydeMolecule():
     oxygen8LabelRect = oxygen8Label.get_rect(center = (550, (windowHeight // 2) - 200))
     screen.blit(oxygen8Label, oxygen8LabelRect)
 
-
-        
-
 while True:
     screen.fill(backgroundColor)
     for event in pygame.event.get():
@@ -345,13 +347,38 @@ while True:
             pygame.quit()
             exit()
 
-    #sphericalCarbonDioxideMolecule()
-    #lewisCarbonDioxideMolecule()
-    #lewisGlucoseMolecule()
-    #lewisEthanolMolecule()
-    #lewisAcetoneMolecule()
-    #lewisMethanolMolecule()
-    lewisFormaldehydeMolecule()
+    if selectedMolecule == "Carbon Dioxide":
+        sphericalCarbonDioxideMolecule()
+        lewisCarbonDioxideMolecule()
+        sphericalRepresentationLabel = titleFont.render(f"Spherical Representation", True, whiteColor)
+        lewisRepresentationLabel = titleFont.render(f"Lewis Representation", True, whiteColor)
+        screen.blit(sphericalRepresentationLabel, (80, 370))
+        screen.blit(lewisRepresentationLabel, (690, 370))
+    elif selectedMolecule == "Glucose":
+        lewisGlucoseMolecule()
+        lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
+        screen.blit(lewisRepresentationLabel, (20, 75))
+    elif selectedMolecule == "Ethanol":
+        lewisEthanolMolecule()
+        lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
+        screen.blit(lewisRepresentationLabel, (20, 75))
+    elif selectedMolecule == "Acetone":
+        lewisAcetoneMolecule()
+        lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
+        screen.blit(lewisRepresentationLabel, (20, 75))
+    elif selectedMolecule == "Methanol":
+        lewisMethanolMolecule()
+        lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
+        screen.blit(lewisRepresentationLabel, (20, 75))
+    else:
+        lewisFormaldehydeMolecule()
+        lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
+        screen.blit(lewisRepresentationLabel, (20, 75))
 
+    upperLabel = titleFont.render("Molecular Lab", True, whiteColor)
+    simulatedLabel = regularFont.render(f"Molecule: {selectedMolecule}", True, whiteColor)
+    screen.blit(upperLabel, (20, 20))
+    screen.blit(simulatedLabel, (20, 50))
+    
     pygame.display.update()
     clock.tick(frameRate)
