@@ -99,6 +99,11 @@ fluidSimulationConfigTabInitPressureSliderValueVar = tkinter.StringVar(value = "
 fluidSimulationConfigInitColorOptionMenuVar = tkinter.StringVar(value = "Select Color")
 fluidSimulationConfigTabShowLatticeSwitchVar = tkinter.StringVar(value = "off")
 
+###The variables of the Temperature Simulation go here
+temperatureSimulationConfigTabInitParticleNumberSliderValueVar = tkinter.StringVar(value = "")
+temperatureSimulationConfigTabInitParticleDiameterSliderValueVar = tkinter.StringVar(value = "")
+temperatureSimulationConfigTabInitTempSliderValueVar = tkinter.StringVar(value = "")
+
 ##The chemistry variables go here
 ###The variables of the Bohr Atom Simulation go here
 bohrAtomSimulationConfigTabAtomSelected = False
@@ -762,13 +767,13 @@ def fluidSimulationConfigTabShowLatticeSwitchEvent():
 
 ###The configurator events of the Temperature Simulation go here
 def temperatureSimulationConfigTabInitParticleNumberSliderEvent(value):
-    pass
+    temperatureSimulationConfigTabInitParticleNumberSliderValueVar.set(int(value))
 
 def temperatureSimulationConfigTabInitParticleDiameterSliderEvent(value):
-    pass
+    temperatureSimulationConfigTabInitParticleDiameterSliderValueVar.set(int(value))
 
 def temperatureSimulationConfigTabInitTempSliderEvent(value):
-    pass
+    temperatureSimulationConfigTabInitTempSliderValueVar.set(round(value, 1))
 
 ##The configurator events of the chemistry simulations go here
 ###The configurator events of the Solution Maker go here
@@ -2807,7 +2812,7 @@ def temperatureSimulationConfigTab(bool):
                                                                                            width = 495,
                                                                                            height = 20,
                                                                                            from_ = 1,
-                                                                                           to = 1000,
+                                                                                           to = 5,
                                                                                            command = temperatureSimulationConfigTabInitParticleDiameterSliderEvent)
         temperatureSimulationConfigTabInitParticleDiameterSlider.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
 
@@ -2815,7 +2820,7 @@ def temperatureSimulationConfigTab(bool):
                                                                                width = 495,
                                                                                height = 20,
                                                                                from_ = -273.15,
-                                                                               to = 1000,
+                                                                               to = 1500,
                                                                                command = temperatureSimulationConfigTabInitTempSliderEvent)
         temperatureSimulationConfigTabInitTempSlider.place(relx = 0.05, rely = 0.8, anchor = tkinter.W)             
                 
@@ -2857,17 +2862,35 @@ def temperatureSimulationConfigTab(bool):
                                                                                             font = customtkinter.CTkFont(size = 18, weight = "normal"))
         temperatureSimulationConfigTabInitParticleNumberTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
 
+        temperatureSimulationConfigTabInitParticleNumberSliderValueLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabItemsFrame,
+                                                                                                  justify = LEFT,
+                                                                                                  textvariable = temperatureSimulationConfigTabInitParticleNumberSliderValueVar,
+                                                                                                  font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        temperatureSimulationConfigTabInitParticleNumberSliderValueLabel.place(relx = 0.39, rely = 0.11, anchor = tkinter.W)
+
         temperatureSimulationConfigTabInitParticleDiameterTitleLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabItemsFrame,
                                                                                               justify = LEFT,
                                                                                               text = "Initial Particle Diameter (µm): ",
                                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
         temperatureSimulationConfigTabInitParticleDiameterTitleLabel.place(relx = 0.05, rely = 0.38, anchor = tkinter.W)
 
+        temperatureSimulationConfigTabInitParticleDiameterSliderValueLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabItemsFrame,
+                                                                                                    justify = LEFT,
+                                                                                                    textvariable = temperatureSimulationConfigTabInitParticleDiameterSliderValueVar,
+                                                                                                    font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        temperatureSimulationConfigTabInitParticleDiameterSliderValueLabel.place(relx = 0.48, rely = 0.38, anchor = tkinter.W)
+
         temperatureSimulationConfigTabInitTempTitleLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabItemsFrame,
                                                                                   justify = LEFT,
                                                                                   text = "Initial Temperature (°C): ",
                                                                                   font = customtkinter.CTkFont(size = 18, weight = "normal"))
         temperatureSimulationConfigTabInitTempTitleLabel.place(relx = 0.05, rely = 0.66, anchor = tkinter.W)
+
+        temperatureSimulationConfigTabInitTempSliderValueLabel = customtkinter.CTkLabel(master = temperatureSimulationConfigTabItemsFrame,
+                                                                                        justify = LEFT,
+                                                                                        textvariable = temperatureSimulationConfigTabInitTempSliderValueVar,
+                                                                                        font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        temperatureSimulationConfigTabInitTempSliderValueLabel.place(relx = 0.41, rely = 0.66, anchor = tkinter.W)
 
         print("the temperature config tab works")
         pass
