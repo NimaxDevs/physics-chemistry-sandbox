@@ -2,6 +2,8 @@ import pygame
 import math
 from sys import exit
 import random
+import json
+import os
 
 #The window variables go here
 frameRate = 60
@@ -26,19 +28,37 @@ grayColor = (128, 128, 128)
 whiteColor = (255, 255, 255)
 redColor = (255, 0, 0)
 
-
 #The physical variables go here
 scaleFactor = 4 #1 meter corresponds to 4 pixels
-init_g = 9.8 #The values from the launcher will be here
-initVelocity = 60 #The values from the launcher will be here
-initAngle = 65 #The values from the launcher will be here
-initMass = 10 #The values from the launcher will be here
-initDiameter = 1 #The values from the launcher will be here (current height has to be fixed)
-dragCoef = 0.1 #The values from the launcher will be here
+init_g = 9.8 
+initVelocity = 60 
+initAngle = 65 
+initMass = 10 
+initDiameter = 1 
+dragCoef = 0.1 
 initialSurfaceArea = math.pi * (initDiameter/2)**2
 airRho = 1.225 #Air density in kg/m³
 start_x = 100
 start_y = (windowHeight - 50) - initDiameter * 4
+
+#These lines extract the values from the launcher
+simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
+if os.path.exists(simulationConfigValuesPath):
+    with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
+        values = json.load(f)
+        initVelocity = values.get("initVelocity", 60)
+        initAngle = values.get("initAngle", 45)
+        init_g = values.get("initGravAcc", 9.8)
+        initMass = values.get("initMass", 10)
+        initDiameter = values.get("initDiameter", 1)
+        dragCoef = values.get("dragCoef", 0.1)      
+else:
+    initVelocity = 60
+    initAngle = 65
+    init_g = 9.8
+    initMass = 10
+    initDiameter = 1
+    dragCoef = 0.1    
 
 #This variable stores the points plotted by the projectile trajectory
 trajectoryPoints = []

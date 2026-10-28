@@ -3,6 +3,9 @@ import customtkinter, tkinter
 from tkinter import * 
 from PIL import Image
 import webbrowser
+import json
+import os
+import subprocess
 
 #The CTk appearance settings go here
 customtkinter.set_appearance_mode("dark")
@@ -635,9 +638,29 @@ def atomCollisionSimulationConfigButtonEvent():
 #The buttons to launch the simulations go here
 ##The buttons of the physics simulations go here
 def projectileSimulationConfigTabLaunchButtonEvent():
+    configValues = {
+        "initVelocity": int(projectileSimulationConfigTabInitVelocitySlider.get()),
+        "initAngle": int(projectileSimulationConfigTabInitAngleSlider.get()),
+        "initGravAcc": round(projectileSimulationConfigTabInitGravAccSlider.get(), 1),
+        "initMass": int(projectileSimulationConfigTabInitMassSlider.get()),
+        "initDiameter": int(projectileSimulationConfigTabInitDiameterSlider.get()),
+        "dragCoef": round(projectileSimulationConfigTabInitDragCoefSlider.get(), 1)
+    }
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+        json.dump(configValues, f)
+    projectileSimulationConfigTabLaunchButton.configure(state = "disabled")
+    projectileSimulationConfigTabLaunchButton.configure(text = "Running...")
+    
+    simulationPath = os.path.join("physicsSimulations", "projectileSimulation.py")
+    subprocess.run(["python", simulationPath])
+    projectileSimulationConfigTabLaunchButton.configure(state = "normal")
+    projectileSimulationConfigTabLaunchButton.configure(text = "Launch")
     print("projectile simulation launched")
 
 def pendulumSimulationConfigTabLaunchButtonEvent():
+    configValues = {
+        "initAngle":
+    }
     print("pendulum simulation launched")
 
 def springSimulationConfigTabLaunchButtonEvent():
@@ -1345,6 +1368,7 @@ def creditsTab(bool):
 
 #The sub tabs of the physics tab (physics simulations) are here
 def projectileSimulationConfigTab(bool):
+    global projectileSimulationConfigTabLaunchButton, projectileSimulationConfigTabInitVelocitySlider, projectileSimulationConfigTabInitAngleSlider, projectileSimulationConfigTabInitGravAccSlider, projectileSimulationConfigTabInitMassSlider, projectileSimulationConfigTabInitDiameterSlider, projectileSimulationConfigTabInitDragCoefSlider
     if bool == True:
         #The air resistance checkbox logic goes here
         def projectileSimulationConfigTabInitAirResistCheckboxEvent():
