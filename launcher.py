@@ -64,6 +64,13 @@ pendulumSimulationConfigTabInitMassSliderValueVar = tkinter.StringVar(value = ""
 pendulumSimulationConfigTabInitGravAccSliderValueVar = tkinter.StringVar(value = "")
 pendulumSimulationConfigTabInitDampingCoefSliderValueVar = tkinter.StringVar(value = "")
 
+###The variables of the Spring Simulation go here
+springSimulationConfigTabInitMassSliderValueVar = tkinter.StringVar(value = "")
+springSimulationConfigTabInitGravAccSliderValueVar = tkinter.StringVar(value = "")
+springSimulationConfigTabInitLengthSliderValueVar = tkinter.StringVar(value = "")
+springSimulationConfigTabInitStiffSliderValueVar = tkinter.StringVar(value = "")
+springSimulationConfigTabInitDampingCoefSliderValueVar = tkinter.StringVar(value = "")
+
 ###The variables of the Planet Orbits go here
 planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar = tkinter.StringVar(value = "off")
 planetOrbitsSimulationConfigTabShowPlanetNameSwitchVar = tkinter.StringVar(value = "off")
@@ -684,19 +691,19 @@ def pendulumSimulationConfigTabInitDampingCoefSliderEvent(value):
 
 ###The configurator events of the Spring Simulation go here
 def springSimulationConfigTabInitMassSliderEvent(value):
-    pass
+    springSimulationConfigTabInitMassSliderValueVar.set(round(value, 1))
 
 def springSimulationConfigTabInitGravAccSliderEvent(value):
-    pass
+    springSimulationConfigTabInitGravAccSliderValueVar.set(round(value, 1))
 
 def springSimulationConfigTabInitLengthSliderEvent(value):
-    pass
+    springSimulationConfigTabInitLengthSliderValueVar.set(int(value))
 
 def springSimulationConfigTabInitStiffSliderEvent(value):
-    pass
+    springSimulationConfigTabInitStiffSliderValueVar.set(round(value, 1))
 
 def springSimulationConfigTabInitDampingCoefSliderEvent(value):
-    pass
+    springSimulationConfigTabInitDampingCoefSliderValueVar.set(round(value, 1))
 
 ###The configurator events of the Planet Orbits (imulation) go here
 def planetOrbitsSimulationConfigTabShowOrbitTrailSwitchEvent():
@@ -1819,7 +1826,7 @@ def springSimulationConfigTab(bool):
         springSimulationConfigTabInitDampingCoefSlider = customtkinter.CTkSlider(master = springSimulationConfigTabItemsFrame,
                                                                              width = 250,
                                                                              height = 20,
-                                                                             from_ = 0.1, 
+                                                                             from_ = 0, 
                                                                              to = 1,
                                                                              corner_radius = 8,
                                                                              command = springSimulationConfigTabInitDampingCoefSliderEvent)
@@ -1862,29 +1869,59 @@ def springSimulationConfigTab(bool):
                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitMassTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
 
+        springSimulationConfigTabInitMassSliderValueLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
+                                                                                   justify = LEFT,
+                                                                                   textvariable = springSimulationConfigTabInitMassSliderValueVar,
+                                                                                   font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        springSimulationConfigTabInitMassSliderValueLabel.place(relx = 0.3, rely = 0.11, anchor = tkinter.W)
+
         springSimulationConfigTabInitGravAccTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                                 justify = LEFT,
                                                                                 text = "Initial Gravitational Acceleration (m/s²): ",
                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitGravAccTitleLabel.place(relx = 0.05, rely = 0.3, anchor = tkinter.W)
+
+        springSimulationConfigTabInitGravAccSliderValueLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
+                                                                                      justify = LEFT,
+                                                                                      textvariable = springSimulationConfigTabInitGravAccSliderValueVar,
+                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        springSimulationConfigTabInitGravAccSliderValueLabel.place(relx = 0.63, rely = 0.3, anchor = tkinter.W)
         
         springSimulationConfigTabInitLengthTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                                justify = LEFT,
                                                                                text = "Initial Length (cm): ",
                                                                                font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitLengthTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
+
+        springSimulationConfigTabInitLengthSliderValueLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
+                                                                                     justify = LEFT,
+                                                                                     textvariable = springSimulationConfigTabInitLengthSliderValueVar,
+                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        springSimulationConfigTabInitLengthSliderValueLabel.place(relx = 0.33, rely = 0.5, anchor = tkinter.W)
                 
         springSimulationConfigTabInitStiffTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                               justify = LEFT,
                                                                               text = "Initial Stiffness: ",
                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitStiffTitleLabel.place(relx = 0.05, rely = 0.7, anchor = tkinter.W)
+
+        springSimulationConfigTabInitStiffSliderValueLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
+                                                                                    justify = LEFT,
+                                                                                    textvariable = springSimulationConfigTabInitStiffSliderValueVar,
+                                                                                    font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        springSimulationConfigTabInitStiffSliderValueLabel.place(relx = 0.28, rely = 0.7, anchor = tkinter.W)
         
         springSimulationConfigTabInitDampingCoefTitleLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
                                                                                     justify = LEFT,
                                                                                     text = "Initial Damping Coefficient: ",
                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitDampingCoefTitleLabel.place(relx = 0.51, rely = 0.11, anchor = tkinter.W)
+
+        springSimulationConfigTabInitDampingCoefSliderValueLabel = customtkinter.CTkLabel(master = springSimulationConfigTabItemsFrame,
+                                                                                          justify = LEFT,
+                                                                                          textvariable = springSimulationConfigTabInitDampingCoefSliderValueVar,
+                                                                                          font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        springSimulationConfigTabInitDampingCoefSliderValueLabel.place(relx = 0.91, rely = 0.11, anchor = tkinter.W)
         
 def planetOrbitsSimulationConfigTab(bool):
     if bool == True:
