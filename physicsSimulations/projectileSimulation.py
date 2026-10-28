@@ -46,12 +46,13 @@ simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulation
 if os.path.exists(simulationConfigValuesPath):
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
         values = json.load(f)
-        initVelocity = values.get("initVelocity", 60)
-        initAngle = values.get("initAngle", 45)
-        init_g = values.get("initGravAcc", 9.8)
-        initMass = values.get("initMass", 10)
-        initDiameter = values.get("initDiameter", 1)
-        dragCoef = values.get("dragCoef", 0.1)      
+        if values.get("simulationID") == "projectileSimulation":
+            initVelocity = values.get("initVelocity", 60)
+            initAngle = values.get("initAngle", 45)
+            init_g = values.get("initGravAcc", 9.8)
+            initMass = values.get("initMass", 10)
+            initDiameter = values.get("initDiameter", 1)
+            dragCoef = values.get("dragCoef", 0.1)
 else:
     initVelocity = 60
     initAngle = 65

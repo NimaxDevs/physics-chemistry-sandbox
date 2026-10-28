@@ -40,11 +40,12 @@ simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulation
 if os.path.exists(simulationConfigValuesPath):
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
         values = json.load(f)
-        springInitMass = values.get("initMass", 0.5)
-        g = pygame.Vector2(0, values.get("initGravAcc", 9.8))
-        springLength = (values.get("initLength", 1)) * 10e-2
-        springInitStiffness = values.get("initStiffness", 5) 
-        springDampingCoef = values.get("dampingCoef", 0.5)
+        if values.get("simulationID") == "springSimulation":
+            springInitMass = values.get("initMass", 0.5)
+            g = pygame.Vector2(0, values.get("initGravAcc", 9.8))
+            springLength = (values.get("initLength", 1)) * 10e-2
+            springInitStiffness = values.get("initStiffness", 5) 
+            springDampingCoef = values.get("dampingCoef", 0.5)
 else:
     springInitMass = 0.5
     g = pygame.Vector2(0, 9.8)

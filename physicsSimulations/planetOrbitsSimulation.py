@@ -2,6 +2,8 @@ import pygame
 import math
 from random import randint
 from sys import exit
+import json
+import os
 
 #These lines define the window variables
 windowWidth = 1100
@@ -23,20 +25,20 @@ whiteColor = (255, 255, 255)
 blackColor = (0, 0, 0)
 
 #And these lines define some lists concerning the planets (planets themselves and the points plotted by their orbit)
+planetGlobalRadius = 50
 planets = []
 orbitTrailPoints = []
 selectedPlanet = None #However, this line defines a state variable that checks if a planet has been selected with the mouse to show its properties
+planetMass = 0
+planetRadius = 0
 
 #These lines define the values of some physical properties (universal gravitational constant) as well as a scale factor for the planet distances
 scaleFactor = 500e6 #500 000 000 meters correspond to 1 pixel
 G = 6.674e-11
+
+#These lines define some simulation control variables
 t = 0
 dt = 3600*200
-
-#This functions calculates the radius of the added planets shown on the screen with a basic logarithmic function to represent their size differences correctly
-def screenRadius (physicalRadius):
-    radiusLog = math.log((physicalRadius / 10)) * 4
-    return int(max(5, min(radiusLog, 30)))
 
 #"Why didn't you use OOP-" no OOP for this project; this function creates the planets based on a dictionary whose key values are the configurator values of the launcher
 def planetCreation(name, color, mass, radius, x, y, vx, vy, ax, ay, showOrbitTrail, showPlanetName):
@@ -53,10 +55,66 @@ def planetCreation(name, color, mass, radius, x, y, vx, vy, ax, ay, showOrbitTra
         "ay": ay,
         "showOrbitTrail": showOrbitTrail,
         "showPlanetName": showPlanetName,
-        "screenRadius": screenRadius(radius) #This line defines the radius of the planet shown on the screen (hence screen radius) by using the value returned by the "screenRadius" function
+        "screenRadius": planetGlobalRadius #This line defines the radius of the planet shown on the screen (hence screen radius) by using the value returned by the "screenRadius" function
     }
     
     return planet
+
+#These lines extract the values from the configuration tab of this simulation in the launcher while applying data checks, conversions and planning cases
+simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
+if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConfigValuesPath) > 0:
+    with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
+        configValues = json.load(f)
+        if configValues.get("simulationID") == "planetOrbitsSimulation":
+            planetConfigValues = configValues.get("planets", [])
+            for planet in planetConfigValues:
+                rawColor = planet.get("planetColor", ("255, 255, 255"))
+                rawColorParts = rawColor.replace(" ", "").split(",")
+                if len(rawColorParts) == 3 and rawColorParts[0].isdigit() and rawColorParts[1].isdigit() and rawColorParts[2].isdigit():
+                    if 0 <= int(rawColorParts[0]) <= 255 and 0 <= int(rawColorParts[1]) <= 255 and 0 <= int(rawColorParts[2]) <= 255:
+                        cleanColor = (int(rawColorParts[0]), int(rawColorParts[1]), int(rawColorParts[2]))
+                else:
+                    cleanColor = (255, 255, 255)
+
+                rawMassStr = planet.get("planetMass", "10000000000000000000000000")
+                if rawMassStr.replace(".", "", 1).isdigit() != True:
+                        planetMass = 1e25
+                else:
+                    planetMass = float(rawMassStr)
+                    if planetMass > 1e30:
+                        planetMass = 1e30
+                
+                rawRadiusStr = planet.get("planetRadius", "5000000")
+                if rawRadiusStr.replace(".", "", 1).isdigit() != True or len(rawRadiusStr.strip()) == 0:
+                    planetRadius = 5e6
+                else:
+                    planetRadius = float(rawRadiusStr)
+                    if planetRadius > 70e6: 
+                        planetRadius = 70e6
+
+                currentPlanetName = planet.get("planetName", "Unknown")
+                if len(currentPlanetName.strip()) == 0:
+                    currentPlanetName = "Unknown"
+                
+                createdPlanet = planetCreation(
+                    currentPlanetName,
+                    cleanColor,
+                    float(planetMass),
+                    float(planetRadius),
+                    randint(10, 1090) * scaleFactor,
+                    randint(10, 570) * scaleFactor,
+                    float(planet.get("initVx", 0)),
+                    float(planet.get("initVy", 0)),
+                    float(planet.get("initAx", 0)),
+                    float(planet.get("initAy", 0)),
+                    planet.get("showOrbitTrail"),
+                    planet.get("showPlanetName")
+                )
+                planets.append(createdPlanet)
+        else:
+            planets = []
+else:
+    planets = []
 
 #This function solves the N-body problem to simulate more than two bodies interacting upon each other
 def NBodyProblemSolver(planets):
@@ -73,6 +131,8 @@ def NBodyProblemSolver(planets):
             dx = planets[j]["x"]-planets[i]["x"] #Calculates delta x (x distance between the planets of each loop)
             dy = planets[j]["y"]-planets[i]["y"] #Calculates delta y (y distance between the planets of each loop)
             r = math.sqrt(dx**2+dy**2) #Calculates the distance between the planets of each loop
+            if r == 0:
+                r = 0.1
             ux = dx / r #Calculates the x unit vector of the planets of each loop
             uy = dy / r#Calculates the y unit vector of the planets of each loop
             planets[i]["F"] = (G*planets[i]["Mass"]*planets[j]["Mass"]/r**2) #Calculates the magnitude of the force vector using Newton's Law of Universal Gravitation
@@ -113,26 +173,6 @@ def drawPlanets(planet):
         planetName = planetNameFont.render(planet["Name"], True, whiteColor)
         planetNameRect = planetName.get_rect(center = (planet["x"] / scaleFactor, (planet["y"] / scaleFactor) - planet["screenRadius"] - 10)) #Creates a rectangle to position the text easily
         screen.blit(planetName, planetNameRect)
-
-#These lines create the planets by using the "planetCreation" function
-mercury = planetCreation("Mercury", (141, 143, 144), 3.301e23, 2439700, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
-venus = planetCreation("Venus", (227, 220, 203), 4867e21, 6051800, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
-earth = planetCreation("Earth", (41, 95, 151), 5.972e24, 6371000, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
-mars = planetCreation("Mars", (220, 114, 76), 6.41693e23, 3389500, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
-jupiter = planetCreation("Jupiter", (186, 154, 126), 1898130e21, 69911000, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
-saturn = planetCreation("Saturn", (226, 204, 161), 568319e21, 58232000, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
-uranus = planetCreation("Uranus", (184, 221, 226), 86810e21, 25362000, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
-neptune = planetCreation("Neptune", (75, 112, 179), 102410e21, 24622000, randint(10, 1090) * scaleFactor, randint(10, 570) * scaleFactor, 0, 0, 0, 0, True, True)
-
-#And these ones add them to the "planets" list
-planets.append(mercury)
-planets.append(venus)
-planets.append(earth)
-planets.append(mars)
-planets.append(jupiter)
-planets.append(saturn)
-planets.append(uranus)
-planets.append(neptune)
 
 #The main loop runs here
 while True:
@@ -180,15 +220,15 @@ while True:
         screen.blit(planetVyLabel, (20, 175))
         screen.blit(planetAxLabel, (20, 200))
         screen.blit(planetAyLabel, (20, 225))
+    
+    #Updates the simulation time by using a predefined time step for the Euler Method
+    t += dt
 
     #These lines add the text labels of the simulation title as well as the instructions on how to use the simulator to the screen
     upperLabel = titleFont.render("Simulating Planet Orbits", True, whiteColor)
     instructionsLabel = regularFont.render("Click on one of the planets to see their physical values", True, whiteColor)
     screen.blit(upperLabel, (20, 20))
     screen.blit(instructionsLabel, (20, 45))
-    
-    #Updates the simulation time by using a predefined time step for the Euler Method
-    t += dt
 
     #And finally, these lines update the screen
     pygame.display.update()

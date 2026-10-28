@@ -1,1 +1,1 @@
-{"initMass": 0.4, "initGravAcc": 10.4, "initLength": 5, "initStiffness": 8.3, "dampingCoef": 0.0}
+{"simulationID": "planetOrbitsSimulation", "planets": [{"planetName": "Jupiter", "planetColor": "255,0,10", "planetMass": "56417894", "planetRadius": "984944856", "initVx": 0, "initVy": 0, "initAx": 0, "initAy": 0, "showOrbitTrail": true, "showPlanetName": true}, {"planetName": "Jupiter 2", "planetColor": "0, 255, 180", "planetMass": "8938638", "planetRadius": "38989/3859", "initVx": 0, "initVy": 0, "initAx": 0, "initAy": 0, "showOrbitTrail": true, "showPlanetName": true}]}

@@ -75,12 +75,13 @@ springSimulationConfigTabInitStiffSliderValueVar = tkinter.StringVar(value = "")
 springSimulationConfigTabInitDampingCoefSliderValueVar = tkinter.StringVar(value = "")
 
 ###The variables of the Planet Orbits go here
+planetConfigValuesList = []
 planetOrbitsSimulationConfigTabPlanetInitialVxSliderValueVar = tkinter.StringVar(value = "")
 planetOrbitsSimulationConfigTabPlanetInitialVySliderValueVar = tkinter.StringVar(value = "")
 planetOrbitsSimulationConfigTabPlanetInitialAxSliderValueVar = tkinter.StringVar(value = "")
 planetOrbitsSimulationConfigTabPlanetInitialAySliderValueVar = tkinter.StringVar(value = "")
-planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar = tkinter.StringVar(value = "off")
-planetOrbitsSimulationConfigTabShowPlanetNameSwitchVar = tkinter.StringVar(value = "off")
+planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar = tkinter.StringVar(value = False)
+planetOrbitsSimulationConfigTabShowPlanetNameSwitchVar = tkinter.StringVar(value = False)
 planetNumber = 0
 
 ###The variables of the Gravity Simulation go here
@@ -457,8 +458,6 @@ def temperatureSimulationConfigButtonEvent():
         child.destroy()
     temperatureSimulationConfigTab(temperatureSimulationConfigTabSelected)
 
-
-
 #The buttons to configure the chemistry simulations are here
 def bohrAtomSimulationConfigButtonEvent():
     bohrAtomSimulationConfigTabSelected = True
@@ -639,6 +638,7 @@ def atomCollisionSimulationConfigButtonEvent():
 ##The buttons of the physics simulations go here
 def projectileSimulationConfigTabLaunchButtonEvent():
     configValues = {
+        "simulationID": "projectileSimulation",
         "initVelocity": int(projectileSimulationConfigTabInitVelocitySlider.get()),
         "initAngle": int(projectileSimulationConfigTabInitAngleSlider.get()),
         "initGravAcc": round(projectileSimulationConfigTabInitGravAccSlider.get(), 1),
@@ -659,6 +659,7 @@ def projectileSimulationConfigTabLaunchButtonEvent():
 
 def pendulumSimulationConfigTabLaunchButtonEvent():
     configValues = {
+        "simulationID": "pendulumSimulation",
         "initAngle": int(pendulumSimulationConfigTabInitAngleSlider.get()),
         "initAngularVel": round(pendulumSimulationConfigTabInitAngularVelSlider.get(), 1),
         "initLength": round(pendulumSimulationConfigTabInitLengthSlider.get(), 1),
@@ -679,6 +680,7 @@ def pendulumSimulationConfigTabLaunchButtonEvent():
 
 def springSimulationConfigTabLaunchButtonEvent():
     configValues = {
+        "simulationID": "springSimulation",
         "initMass": round(springSimulationConfigTabInitMassSlider.get(), 1),
         "initGravAcc": round(springSimulationConfigTabInitGravAccSlider.get(), 1),
         "initLength": int(springSimulationConfigTabInitLengthSlider.get()),
@@ -697,6 +699,20 @@ def springSimulationConfigTabLaunchButtonEvent():
     print("spring simulation launched")
 
 def planetOrbitsSimulationConfigTabLaunchButtonEvent():
+    global planetsConfigValuesList
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+        planetsConfigValues = {
+            "simulationID": "planetOrbitsSimulation",
+            "planets": planetConfigValuesList
+        }
+        json.dump(planetsConfigValues, f)
+    planetOrbitsSimulationConfigTabLaunchButton.configure(state = "disabled")
+    planetOrbitsSimulationConfigTabLaunchButton.configure(text = "Running...")
+    
+    simulationPath = os.path.join("physicsSimulations", "planetOrbitsSimulation.py")
+    subprocess.run(["python", simulationPath])
+    planetOrbitsSimulationConfigTabLaunchButton.configure(state = "normal")
+    planetOrbitsSimulationConfigTabLaunchButton.configure(text = "Launch")
     print("planet orbits simulation launched")
 
 def gravitySimulationConfigTabLaunchButtonEvent():
@@ -777,7 +793,11 @@ def springSimulationConfigTabInitStiffSliderEvent(value):
 def springSimulationConfigTabInitDampingCoefSliderEvent(value):
     springSimulationConfigTabInitDampingCoefSliderValueVar.set(round(value, 1))
 
-###The configurator events of the Planet Orbits (imulation) go here
+###The configurator events of the Planet Orbits (simulation) go here
+def planetOrbitsSimulationConfigTabResetPlanetListButtonEvent():
+    global planetConfigValuesList
+    planetConfigValuesList = []
+
 def planetOrbitsSimulationConfigTabShowOrbitTrailSwitchEvent():
     pass
 
@@ -2011,25 +2031,34 @@ def springSimulationConfigTab(bool):
         springSimulationConfigTabInitDampingCoefSliderValueLabel.place(relx = 0.91, rely = 0.11, anchor = tkinter.W)
         
 def planetOrbitsSimulationConfigTab(bool):
+    global planetConfigValuesList, planetOrbitsSimulationConfigTabLaunchButton, planetOrbitsSimulationConfigTabPlanetNameEntry, planetOrbitsSimulationConfigTabPlanetColorEntry, planetOrbitsSimulationConfigTabPlanetMassEntry, planetOrbitsSimulationConfigTabPlanetRadiusEntry, planetOrbitsSimulationConfigTabPlanetInitialVxSlider, planetOrbitsSimulationConfigTabPlanetInitialVySlider, planetOrbitsSimulationConfigTabPlanetInitialAxSlider, planetOrbitsSimulationConfigTabPlanetInitialAySlider, planetOrbitsSimulationConfigTabShowOrbitTrailSwitch, planetOrbitsSimulationConfigTabShowPlanetNameSwitch
     if bool == True:
         #Function to add & save the infos of the planets
         def planetOrbitsSimulationConfigTabAddPlanetButtonEvent():
-            global planetNumber
-            if (planetOrbitsSimulationConfigTabPlanetNameEntry.get() != "") and (planetOrbitsSimulationConfigTabPlanetColorEntry.get() != "") and (planetOrbitsSimulationConfigTabPlanetMassEntry.get() != "") and (planetOrbitsSimulationConfigTabPlanetRadiusEntry.get() != ""):
-                planetNumber += 1
-                print(f"Planet {planetNumber}:\nName: {planetOrbitsSimulationConfigTabPlanetNameEntry.get()}\nColor: {planetOrbitsSimulationConfigTabPlanetColorEntry.get()}\nMass: {planetOrbitsSimulationConfigTabPlanetMassEntry.get()}\nRadius: {planetOrbitsSimulationConfigTabPlanetRadiusEntry.get()}\nInitial Vx: {round(planetOrbitsSimulationConfigTabPlanetInitialVxSlider.get(), 3)}\nInitial Vy: {round(planetOrbitsSimulationConfigTabPlanetInitialVySlider.get(), 3)}\nInitial ax: {round(planetOrbitsSimulationConfigTabPlanetInitialAxSlider.get(), 3)}\nInitial ay: {round(planetOrbitsSimulationConfigTabPlanetInitialAySlider.get(), 3)}\nShow Orbit Trail: {planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.get()}\nShow Planet Name: {planetOrbitsSimulationConfigTabShowPlanetNameSwitch.get()}")
-                planetOrbitsSimulationConfigTabPlanetNameEntry.set("")
-                planetOrbitsSimulationConfigTabPlanetColorEntry.set("")
-                planetOrbitsSimulationConfigTabPlanetMassEntry.set("")
-                planetOrbitsSimulationConfigTabPlanetRadiusEntry.set("")
-                planetOrbitsSimulationConfigTabPlanetInitialVxSlider.set(0)
-                planetOrbitsSimulationConfigTabPlanetInitialVySlider.set(0)
-                planetOrbitsSimulationConfigTabPlanetInitialAxSlider.set(0)
-                planetOrbitsSimulationConfigTabPlanetInitialAySlider.set(0)
-                planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.set("off")
-                planetOrbitsSimulationConfigTabShowPlanetNameSwitch.set("off")
-            else:
-                print("error: no core values entered (name, color, mass, radius)")
+            configValues = {
+                "planetName": planetOrbitsSimulationConfigTabPlanetNameEntry.get(),
+                "planetColor": planetOrbitsSimulationConfigTabPlanetColorEntry.get(),
+                "planetMass": planetOrbitsSimulationConfigTabPlanetMassEntry.get(),
+                "planetRadius": planetOrbitsSimulationConfigTabPlanetRadiusEntry.get(),
+                "initVx": round(planetOrbitsSimulationConfigTabPlanetInitialVxSlider.get(), 3),
+                "initVy": round(planetOrbitsSimulationConfigTabPlanetInitialVySlider.get(), 3),
+                "initAx": round(planetOrbitsSimulationConfigTabPlanetInitialAxSlider.get(), 3),
+                "initAy": round(planetOrbitsSimulationConfigTabPlanetInitialAySlider.get(), 3),
+                "showOrbitTrail": planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.get(),
+                "showPlanetName": planetOrbitsSimulationConfigTabShowPlanetNameSwitch.get()
+            }
+            planetConfigValuesList.append(configValues)
+            planetOrbitsSimulationConfigTabPlanetNameEntry.set("")
+            planetOrbitsSimulationConfigTabPlanetColorEntry.set("")
+            planetOrbitsSimulationConfigTabPlanetMassEntry.set("")
+            planetOrbitsSimulationConfigTabPlanetRadiusEntry.set("")
+            planetOrbitsSimulationConfigTabPlanetInitialVxSlider.set(0)
+            planetOrbitsSimulationConfigTabPlanetInitialVySlider.set(0)
+            planetOrbitsSimulationConfigTabPlanetInitialAxSlider.set(0)
+            planetOrbitsSimulationConfigTabPlanetInitialAySlider.set(0)
+            planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.set("False")
+            planetOrbitsSimulationConfigTabShowPlanetNameSwitch.set("False")
+            print(planetConfigValuesList)
         
         #The frames for each element of the tab go here
         planetOrbitsSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
@@ -2088,6 +2117,16 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                  command = planetOrbitsSimulationConfigTabAddPlanetButtonEvent)
         planetOrbitsSimulationConfigTabAddPlanetButton.place(relx = 0.01, rely = 0.08, anchor = tkinter.W)
 
+        planetOrbitsSimulationConfigTabResetPlanetListButton = customtkinter.CTkButton(master = planetOrbitsSimulationConfigTabItemsFrame,
+                                                                                       text = "RESET PLANET LIST",
+                                                                                       font = customtkinter.CTkFont(size = 18, weight = "bold"),
+                                                                                       width = 50,
+                                                                                       height = 25,
+                                                                                       corner_radius = 5,
+                                                                                       border_width = 1,
+                                                                                       command = planetOrbitsSimulationConfigTabResetPlanetListButtonEvent)
+        planetOrbitsSimulationConfigTabResetPlanetListButton.place(relx = 0.64, rely = 0.08, anchor = tkinter.W)
+
         #The configurators (items) of the simulation go here
         planetOrbitsSimulationConfigTabPlanetNameEntry = customtkinter.CTkEntry(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                  width = 150,
@@ -2110,7 +2149,7 @@ def planetOrbitsSimulationConfigTab(bool):
         planetOrbitsSimulationConfigTabPlanetMassEntry = customtkinter.CTkEntry(master = planetOrbitsSimulationConfigTabItemsFrame,
                                                                                 width = 150,
                                                                                 height = 25,
-                                                                                placeholder_text = '"e" for the 10th power',
+                                                                                placeholder_text = 'Enter the whole number',
                                                                                 font = customtkinter.CTkFont(size = 14, weight = "normal"),
                                                                                 corner_radius = 5,
                                                                                 border_width = 1)
@@ -2166,8 +2205,8 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                        height = 50,
                                                                                        bg_color = "transparent",
                                                                                        text = "Show Orbit Trail",
-                                                                                       onvalue = "on",
-                                                                                       offvalue = "off",
+                                                                                       onvalue = True,
+                                                                                       offvalue = False,
                                                                                        variable = planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar,
                                                                                        command = planetOrbitsSimulationConfigTabShowOrbitTrailSwitchEvent)
         planetOrbitsSimulationConfigTabShowOrbitTrailSwitch.place(relx = 0.68, rely = 0.74, anchor = tkinter.W)
@@ -2177,8 +2216,8 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                       height = 50,
                                                                                       bg_color = "transparent",
                                                                                       text = "Show Planet Name",
-                                                                                      onvalue = "on",
-                                                                                      offvalue = "off",
+                                                                                      onvalue = True,
+                                                                                      offvalue = False,
                                                                                       variable = planetOrbitsSimulationConfigTabShowPlanetNameSwitchVar,
                                                                                       command = planetOrbitsSimulationConfigTabShowPlanetNameSwitchEvent)
         planetOrbitsSimulationConfigTabShowPlanetNameSwitch.place(relx = 0.68, rely = 0.89, anchor = tkinter.W)
