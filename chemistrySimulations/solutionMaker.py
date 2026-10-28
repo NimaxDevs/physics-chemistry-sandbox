@@ -27,9 +27,9 @@ solutes = [("Sodium Chloride", (255, 255, 255), 58.5),
              ("Copper Sulfate", (0, 149, 255), 159.6),
              ("Sodium Hydroxide", (255, 255, 255), 40.0)]
 
-soluteMass = 50
+soluteMass = 1000
 soluteRadius = 2
-simulatedSoluteIndex = 3
+simulatedSoluteIndex = 2 #
 simulatedSolute = solutes[simulatedSoluteIndex][0]
 simulatedSoluteColor = None
 simulatedSoluteParticles = soluteMass * 0.5
@@ -40,8 +40,8 @@ solvents = [("Water", (255, 255, 255, 10), 0.82, 1.8, 1.2),
             ("Cyclohexane", (255, 255, 255, 10), 0.75, 2.5, 2.0),
             ("Hexane", (255, 255, 255, 10), 0.70, 3.0, 2.5),
             ("Acetone", (255, 255, 255, 10), 0.80, 2.2, 1.5)]
-solventVolume = 100
-simulatedSolventIndex = 0
+solventVolume = 1000
+simulatedSolventIndex = 2 #
 simulatedSolvent = solvents[simulatedSolventIndex][0]
 simulatedSolventColor = None
 simulatedSolventColorIntensity = 0.0
