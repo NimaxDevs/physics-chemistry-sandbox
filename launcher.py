@@ -88,6 +88,7 @@ gravitySimulationConfigTabInitHeightSliderValueVar = tkinter.StringVar(value = "
 ###The variables of the Refraction Simulation go here
 refractionSimulationConfigTabInitRefractiveIndex1OptionMenuVar = tkinter.StringVar(value = "Select Refractive Index 1")
 refractionSimulationConfigTabInitRefractiveIndex2OptionMenuVar = tkinter.StringVar(value = "Select Refractive Index 2")
+refractionSimulationConfigTabInitIncidenceAngleSliderValueVar = tkinter.StringVar(value = "")
 refractionSimulationConfigRayColorOptionMenuVar = tkinter.StringVar(value = "Select Ray Color")
 
 ###The variables of the Fluid Simulation go here
@@ -745,7 +746,7 @@ def gravitySimulationConfigTabInitHeightSliderEvent(value):
 
 ###The configurator events of the Refraction Simulation go here
 def refractionSimulationConfigTabInitIncidenceAngleSliderEvent(value):
-    pass
+    refractionSimulationConfigTabInitIncidenceAngleSliderValueVar.set(round(value, 1))
 
 ###The configurator events of the Fluid Simulation go here
 def fluidSimulationConfigTabInitVolumeSliderEvent(value):
@@ -2524,6 +2525,12 @@ def refractionSimulationConfigTab(bool):
                                                                                            text = "Initial Incidence Angle (°): ",
                                                                                            font = customtkinter.CTkFont(size = 18, weight = "normal"))
         refractionSimulationConfigTabInitIncidenceAngleTitleLabel.place(relx = 0.05, rely = 0.66, anchor = tkinter.W)
+
+        refractionSimulationConfigTabInitIncidenceAngleSliderValueLabel = customtkinter.CTkLabel(master = refractionSimulationConfigTabItemsFrame,
+                                                                                                 justify = LEFT,
+                                                                                                 textvariable = refractionSimulationConfigTabInitIncidenceAngleSliderValueVar,
+                                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        refractionSimulationConfigTabInitIncidenceAngleSliderValueLabel.place(relx = 0.43, rely = 0.66, anchor = tkinter.W)
 
         refractionSimulationConfigTabRayColorTitleLabel = customtkinter.CTkLabel(master = refractionSimulationConfigTabItemsFrame,
                                                                                  justify = LEFT,
