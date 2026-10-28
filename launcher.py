@@ -49,6 +49,12 @@ atomCollisionSimulationTabSelected = False
 ##The physics variables go here
 ###The variables of the Projectile Simulation go here
 projectileSimulationConfigTabInitAirResistCheckboxVar = tkinter.StringVar(value = "off")
+projectileSimulationConfigTabInitVelocitySliderValue = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitAngleSliderValue = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitGravAccSliderValue = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitMassSliderValue = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitDiameterSliderValue = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitDragCoefSliderValue = tkinter.StringVar(value = "")
 
 ###The variables of the Planet Orbits go here
 planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar = tkinter.StringVar(value = "off")
@@ -632,22 +638,22 @@ def molecularLabConfigTabLaunchButtonEvent():
 ##The configurator events of the physics simulations go here
 ###The configurator events of the Projectile Simulation go here
 def projectileSimulationConfigTabInitVelocitySliderEvent(value):
-    pass
+    projectileSimulationConfigTabInitVelocitySliderValue.set(int(value))
 
 def projectileSimulationConfigTabInitAngleSliderEvent(value):
-    pass
+    projectileSimulationConfigTabInitAngleSliderValue.set(int(value))
 
 def projectileSimulationConfigTabInitGravAccSliderEvent(value):
-    pass
+    projectileSimulationConfigTabInitGravAccSliderValue.set(round(value, 1))
 
 def projectileSimulationConfigTabInitMassSliderEvent(value):
-    pass
+    projectileSimulationConfigTabInitMassSliderValue.set(int(value))
 
 def projectileSimulationConfigTabInitDiameterSliderEvent(value):
-    pass
+    projectileSimulationConfigTabInitDiameterSliderValue.set(int(value))
 
 def projectileSimulationConfigTabInitDragCoefSliderEvent(value):
-    pass
+    projectileSimulationConfigTabInitDragCoefSliderValue.set(round(value, 1))
 
 ###The configurator events of the Pendulum Simulation go here
 def pendulumSimulationConfigTabInitAngleSliderEvent(value):
@@ -1298,9 +1304,11 @@ def projectileSimulationConfigTab(bool):
         def projectileSimulationConfigTabInitAirResistCheckboxEvent():
             if projectileSimulationConfigTabInitAirResistCheckbox.get() == "on":
                 projectileSimulationConfigTabInitDragCoefTitleLabel.place(relx = 0.51, rely = 0.8, anchor = tkinter.W)
+                projectileSimulationConfigTabInitDragCoefSliderValueLabel.place(relx = 0.85, rely = 0.8, anchor = tkinter.W)
                 projectileSimulationConfigTabInitDragCoefSlider.place(relx = 0.5, rely = 0.9, anchor = tkinter.W)
             else:
                 projectileSimulationConfigTabInitDragCoefTitleLabel.place_forget()
+                projectileSimulationConfigTabInitDragCoefSliderValueLabel.place_forget()
                 projectileSimulationConfigTabInitDragCoefSlider.place_forget()
         
         #Here are the frames for each element of the config tab
@@ -1377,7 +1385,7 @@ def projectileSimulationConfigTab(bool):
 
         projectileSimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
                                                                               height = 20,
-                                                                              from_ = 0.1, 
+                                                                              from_ = 1, 
                                                                               to = 5000,
                                                                               corner_radius = 8,
                                                                               command = projectileSimulationConfigTabInitMassSliderEvent)
@@ -1386,7 +1394,7 @@ def projectileSimulationConfigTab(bool):
         projectileSimulationConfigTabInitDiameterSlider = customtkinter.CTkSlider(master = projectileSimulationConfigTabItemsFrame,
                                                                                   width = 250,
                                                                                   height = 20,
-                                                                                  from_ = 0.1, 
+                                                                                  from_ = 1, 
                                                                                   to = 5,
                                                                                   corner_radius = 8,
                                                                                   command = projectileSimulationConfigTabInitDiameterSliderEvent)
@@ -1446,11 +1454,23 @@ def projectileSimulationConfigTab(bool):
                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitVelocityTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
 
+        projectileSimulationConfigTabInitVelocitySliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
+                                                                                           justify = LEFT,
+                                                                                           textvariable = projectileSimulationConfigTabInitVelocitySliderValue,
+                                                                                           font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        projectileSimulationConfigTabInitVelocitySliderValueLabel.place(relx = 0.355, rely = 0.11, anchor = tkinter.W)
+
         projectileSimulationConfigTabInitAngleTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                      justify = LEFT,
                                                                                      text = "Initial Angle (°): ",
                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitAngleTitleLabel.place(relx = 0.05, rely = 0.3, anchor = tkinter.W)
+
+        projectileSimulationConfigTabInitAngleSliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
+                                                                                                   justify = LEFT,
+                                                                                                   textvariable = projectileSimulationConfigTabInitAngleSliderValue,
+                                                                                                   font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        projectileSimulationConfigTabInitAngleSliderValueLabel.place(relx = 0.28, rely = 0.3, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitGravAccTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                     justify = LEFT,
@@ -1458,11 +1478,23 @@ def projectileSimulationConfigTab(bool):
                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitGravAccTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
 
+        projectileSimulationConfigTabInitGravAccSliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
+                                                                                                           justify = LEFT,
+                                                                                                           textvariable = projectileSimulationConfigTabInitGravAccSliderValue,
+                                                                                                           font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        projectileSimulationConfigTabInitGravAccSliderValueLabel.place(relx = 0.63, rely = 0.5, anchor = tkinter.W)
+
         projectileSimulationConfigTabInitMassTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                  justify = LEFT,
                                                                                  text = "Initial Mass (kg): ",
                                                                                  font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitMassTitleLabel.place(relx = 0.05, rely = 0.7, anchor = tkinter.W)
+
+        projectileSimulationConfigTabInitMassSliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
+                                                                                       justify = LEFT,
+                                                                                       textvariable = projectileSimulationConfigTabInitMassSliderValue,
+                                                                                       font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        projectileSimulationConfigTabInitMassSliderValueLabel.place(relx = 0.3, rely = 0.7, anchor = tkinter.W)
 
         projectileSimulationConfigTabInitDiameterTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                      justify = LEFT,
@@ -1470,10 +1502,22 @@ def projectileSimulationConfigTab(bool):
                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitDiameterTitleLabel.place(relx = 0.51, rely = 0.11, anchor = tkinter.W)
 
+        projectileSimulationConfigTabInitDiameterSliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
+                                                                                           justify = LEFT,
+                                                                                           textvariable = projectileSimulationConfigTabInitDiameterSliderValue,
+                                                                                           font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        projectileSimulationConfigTabInitDiameterSliderValueLabel.place(relx = 0.81, rely = 0.11, anchor = tkinter.W)
+
         projectileSimulationConfigTabInitDragCoefTitleLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                       justify = LEFT,
                                                                                       text = "Initial Drag Coefficient: ",
                                                                                       font = customtkinter.CTkFont(size = 18, weight = "normal"))
+
+        projectileSimulationConfigTabInitDragCoefSliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
+                                                                                                   justify = LEFT,
+                                                                                                   textvariable = projectileSimulationConfigTabInitDragCoefSliderValue,
+                                                                                                   font = customtkinter.CTkFont(size = 18, weight = "normal"))
+                
 
 def pendulumSimulationConfigTab(bool):
     if bool == True:
