@@ -1,1 +1,1 @@
-{"initAngle": -90, "initAngularVel": -0.5, "initLength": 0.1, "initMass": 0.1, "initGravAcc": 9.3, "dampingCoef": 0.6}
+{"initMass": 0.4, "initGravAcc": 10.4, "initLength": 5, "initStiffness": 8.3, "dampingCoef": 0.0}

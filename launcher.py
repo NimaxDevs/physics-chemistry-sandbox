@@ -675,10 +675,25 @@ def pendulumSimulationConfigTabLaunchButtonEvent():
     subprocess.run(["python", simulationPath])
     pendulumSimulationConfigTabLaunchButton.configure(state = "normal")
     pendulumSimulationConfigTabLaunchButton.configure(text = "Launch")
-    print("projectile simulation launched")
     print("pendulum simulation launched")
 
 def springSimulationConfigTabLaunchButtonEvent():
+    configValues = {
+        "initMass": round(springSimulationConfigTabInitMassSlider.get(), 1),
+        "initGravAcc": round(springSimulationConfigTabInitGravAccSlider.get(), 1),
+        "initLength": int(springSimulationConfigTabInitLengthSlider.get()),
+        "initStiffness": round(springSimulationConfigTabInitStiffSlider.get(), 1),
+        "dampingCoef": round(springSimulationConfigTabInitDampingCoefSlider.get(), 1)
+    }
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+            json.dump(configValues, f)
+    springSimulationConfigTabLaunchButton.configure(state = "disabled")
+    springSimulationConfigTabLaunchButton.configure(text = "Running...")
+
+    simulationPath = os.path.join("physicsSimulations", "springSimulation.py")
+    subprocess.run(["python", simulationPath])
+    springSimulationConfigTabLaunchButton.configure(state = "normal")
+    springSimulationConfigTabLaunchButton.configure(text = "Launch")
     print("spring simulation launched")
 
 def planetOrbitsSimulationConfigTabLaunchButtonEvent():
@@ -1810,6 +1825,7 @@ def pendulumSimulationConfigTab(bool):
         pendulumSimulationConfigTabInitDampingCoefSliderValueLabel.place(relx = 0.89, rely = 0.3, anchor = tkinter.W)
 
 def springSimulationConfigTab(bool):
+    global springSimulationConfigTabLaunchButton, springSimulationConfigTabInitMassSlider, springSimulationConfigTabInitGravAccSlider, springSimulationConfigTabInitLengthSlider, springSimulationConfigTabInitStiffSlider, springSimulationConfigTabInitDampingCoefSlider
     if bool == True:
         #Here are the frames for each element of the config tab
         springSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,

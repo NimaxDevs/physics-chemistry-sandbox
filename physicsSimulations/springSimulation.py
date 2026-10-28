@@ -1,6 +1,8 @@
 import pygame
 import math
 from sys import exit
+import json
+import os
 
 #These lines define the window variables
 windowWidth = 1100
@@ -33,6 +35,22 @@ springInitStiffness = 5 #The values from the launcher will be here
 springDampingCoef = 0.5 #The values from the launcher will be here
 springMassMomentum = springInitMass * pygame.Vector2(0, 0)
 springMassPosition_y = springLength 
+
+simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
+if os.path.exists(simulationConfigValuesPath):
+    with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
+        values = json.load(f)
+        springInitMass = values.get("initMass", 0.5)
+        g = pygame.Vector2(0, values.get("initGravAcc", 9.8))
+        springLength = (values.get("initLength", 1)) * 10e-2
+        springInitStiffness = values.get("initStiffness", 5) 
+        springDampingCoef = values.get("dampingCoef", 0.5)
+else:
+    springInitMass = 0.5
+    g = pygame.Vector2(0, 9.8)
+    springLength = 1e-2
+    springInitStiffness = 5
+    springDampingCoef = 0.5
 
 #Defines some simulation control variables
 t = 0
