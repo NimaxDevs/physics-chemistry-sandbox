@@ -49,12 +49,20 @@ atomCollisionSimulationTabSelected = False
 ##The physics variables go here
 ###The variables of the Projectile Simulation go here
 projectileSimulationConfigTabInitAirResistCheckboxVar = tkinter.StringVar(value = "off")
-projectileSimulationConfigTabInitVelocitySliderValue = tkinter.StringVar(value = "")
-projectileSimulationConfigTabInitAngleSliderValue = tkinter.StringVar(value = "")
-projectileSimulationConfigTabInitGravAccSliderValue = tkinter.StringVar(value = "")
-projectileSimulationConfigTabInitMassSliderValue = tkinter.StringVar(value = "")
-projectileSimulationConfigTabInitDiameterSliderValue = tkinter.StringVar(value = "")
-projectileSimulationConfigTabInitDragCoefSliderValue = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitVelocitySliderValueVar = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitAngleSliderValueVar = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitGravAccSliderValueVar = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitMassSliderValueVar = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitDiameterSliderValueVar = tkinter.StringVar(value = "")
+projectileSimulationConfigTabInitDragCoefSliderValueVar = tkinter.StringVar(value = "")
+
+###The variables of the Pendulum Simulation go here
+pendulumSimulationConfigTabInitAngleSliderValueVar = tkinter.StringVar(value = "")
+pendulumSimulationConfigTabInitAngularVelSliderValueVar = tkinter.StringVar(value = "")
+pendulumSimulationConfigTabInitLengthSliderValueVar = tkinter.StringVar(value = "")
+pendulumSimulationConfigTabInitMassSliderValueVar = tkinter.StringVar(value = "")
+pendulumSimulationConfigTabInitGravAccSliderValueVar = tkinter.StringVar(value = "")
+pendulumSimulationConfigTabInitDampingCoefSliderValueVar = tkinter.StringVar(value = "")
 
 ###The variables of the Planet Orbits go here
 planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar = tkinter.StringVar(value = "off")
@@ -638,41 +646,41 @@ def molecularLabConfigTabLaunchButtonEvent():
 ##The configurator events of the physics simulations go here
 ###The configurator events of the Projectile Simulation go here
 def projectileSimulationConfigTabInitVelocitySliderEvent(value):
-    projectileSimulationConfigTabInitVelocitySliderValue.set(int(value))
+    projectileSimulationConfigTabInitVelocitySliderValueVar.set(int(value))
 
 def projectileSimulationConfigTabInitAngleSliderEvent(value):
-    projectileSimulationConfigTabInitAngleSliderValue.set(int(value))
+    projectileSimulationConfigTabInitAngleSliderValueVar.set(int(value))
 
 def projectileSimulationConfigTabInitGravAccSliderEvent(value):
-    projectileSimulationConfigTabInitGravAccSliderValue.set(round(value, 1))
+    projectileSimulationConfigTabInitGravAccSliderValueVar.set(round(value, 1))
 
 def projectileSimulationConfigTabInitMassSliderEvent(value):
-    projectileSimulationConfigTabInitMassSliderValue.set(int(value))
+    projectileSimulationConfigTabInitMassSliderValueVar.set(int(value))
 
 def projectileSimulationConfigTabInitDiameterSliderEvent(value):
-    projectileSimulationConfigTabInitDiameterSliderValue.set(int(value))
+    projectileSimulationConfigTabInitDiameterSliderValueVar.set(int(value))
 
 def projectileSimulationConfigTabInitDragCoefSliderEvent(value):
-    projectileSimulationConfigTabInitDragCoefSliderValue.set(round(value, 1))
+    projectileSimulationConfigTabInitDragCoefSliderValueVar.set(round(value, 1))
 
 ###The configurator events of the Pendulum Simulation go here
 def pendulumSimulationConfigTabInitAngleSliderEvent(value):
-    pass
+    pendulumSimulationConfigTabInitAngleSliderValueVar.set(int(value))
 
 def pendulumSimulationConfigTabInitAngularVelSliderEvent(value):
-    pass
+    pendulumSimulationConfigTabInitAngularVelSliderValueVar.set(round(value, 1))
 
 def pendulumSimulationConfigTabInitLengthSliderEvent(value):
-    pass
+    pendulumSimulationConfigTabInitLengthSliderValueVar.set(round(value, 1))
 
 def pendulumSimulationConfigTabInitMassSliderEvent(value):
-    pass
+    pendulumSimulationConfigTabInitMassSliderValueVar.set(round(value, 1))
 
 def pendulumSimulationConfigTabInitGravAccSliderEvent(value):
-    pass
+    pendulumSimulationConfigTabInitGravAccSliderValueVar.set(round(value, 1))
 
 def pendulumSimulationConfigTabInitDampingCoefSliderEvent(value):
-    pass
+    pendulumSimulationConfigTabInitDampingCoefSliderValueVar.set(round(value, 1))
 
 ###The configurator events of the Spring Simulation go here
 def springSimulationConfigTabInitMassSliderEvent(value):
@@ -1456,7 +1464,7 @@ def projectileSimulationConfigTab(bool):
 
         projectileSimulationConfigTabInitVelocitySliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                            justify = LEFT,
-                                                                                           textvariable = projectileSimulationConfigTabInitVelocitySliderValue,
+                                                                                           textvariable = projectileSimulationConfigTabInitVelocitySliderValueVar,
                                                                                            font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitVelocitySliderValueLabel.place(relx = 0.355, rely = 0.11, anchor = tkinter.W)
 
@@ -1468,7 +1476,7 @@ def projectileSimulationConfigTab(bool):
 
         projectileSimulationConfigTabInitAngleSliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                                    justify = LEFT,
-                                                                                                   textvariable = projectileSimulationConfigTabInitAngleSliderValue,
+                                                                                                   textvariable = projectileSimulationConfigTabInitAngleSliderValueVar,
                                                                                                    font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitAngleSliderValueLabel.place(relx = 0.28, rely = 0.3, anchor = tkinter.W)
 
@@ -1480,7 +1488,7 @@ def projectileSimulationConfigTab(bool):
 
         projectileSimulationConfigTabInitGravAccSliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                                            justify = LEFT,
-                                                                                                           textvariable = projectileSimulationConfigTabInitGravAccSliderValue,
+                                                                                                           textvariable = projectileSimulationConfigTabInitGravAccSliderValueVar,
                                                                                                            font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitGravAccSliderValueLabel.place(relx = 0.63, rely = 0.5, anchor = tkinter.W)
 
@@ -1492,7 +1500,7 @@ def projectileSimulationConfigTab(bool):
 
         projectileSimulationConfigTabInitMassSliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                        justify = LEFT,
-                                                                                       textvariable = projectileSimulationConfigTabInitMassSliderValue,
+                                                                                       textvariable = projectileSimulationConfigTabInitMassSliderValueVar,
                                                                                        font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitMassSliderValueLabel.place(relx = 0.3, rely = 0.7, anchor = tkinter.W)
 
@@ -1504,7 +1512,7 @@ def projectileSimulationConfigTab(bool):
 
         projectileSimulationConfigTabInitDiameterSliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                            justify = LEFT,
-                                                                                           textvariable = projectileSimulationConfigTabInitDiameterSliderValue,
+                                                                                           textvariable = projectileSimulationConfigTabInitDiameterSliderValueVar,
                                                                                            font = customtkinter.CTkFont(size = 18, weight = "normal"))
         projectileSimulationConfigTabInitDiameterSliderValueLabel.place(relx = 0.81, rely = 0.11, anchor = tkinter.W)
 
@@ -1515,10 +1523,9 @@ def projectileSimulationConfigTab(bool):
 
         projectileSimulationConfigTabInitDragCoefSliderValueLabel = customtkinter.CTkLabel(master = projectileSimulationConfigTabItemsFrame,
                                                                                                    justify = LEFT,
-                                                                                                   textvariable = projectileSimulationConfigTabInitDragCoefSliderValue,
+                                                                                                   textvariable = projectileSimulationConfigTabInitDragCoefSliderValueVar,
                                                                                                    font = customtkinter.CTkFont(size = 18, weight = "normal"))
                 
-
 def pendulumSimulationConfigTab(bool):
     if bool == True:
         #Here are the frames for each element of the config tab
@@ -1580,7 +1587,7 @@ def pendulumSimulationConfigTab(bool):
         pendulumSimulationConfigTabInitAngularVelSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
                                                                                   height = 20,
                                                                                   from_ = 0.1, 
-                                                                                  to = 90,
+                                                                                  to = 0.5,
                                                                                   corner_radius = 8,
                                                                                   command = pendulumSimulationConfigTabInitAngularVelSliderEvent)
         pendulumSimulationConfigTabInitAngularVelSlider.place(relx = 0.04, rely = 0.4, anchor = tkinter.W)
@@ -1610,7 +1617,7 @@ def pendulumSimulationConfigTab(bool):
                                                                                to = 20,
                                                                                corner_radius = 8,
                                                                                command = pendulumSimulationConfigTabInitGravAccSliderEvent)
-        pendulumSimulationConfigTabInitGravAccSlider.place(relx = 0.5, rely = 0.2, anchor = tkinter.W)
+        pendulumSimulationConfigTabInitGravAccSlider.place(relx = 0.48, rely = 0.2, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitDampingCoefSlider = customtkinter.CTkSlider(master = pendulumSimulationConfigTabItemsFrame,
                                                                                    width = 250,
@@ -1619,7 +1626,7 @@ def pendulumSimulationConfigTab(bool):
                                                                                    to = 1,
                                                                                    corner_radius = 8,
                                                                                    command = pendulumSimulationConfigTabInitDampingCoefSliderEvent)
-        pendulumSimulationConfigTabInitDampingCoefSlider.place(relx = 0.5, rely = 0.4, anchor = tkinter.W)
+        pendulumSimulationConfigTabInitDampingCoefSlider.place(relx = 0.48, rely = 0.4, anchor = tkinter.W)
 
         #The images of the simulation go here
         pendulumSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = pendulumSimulationConfigTabImageFrame,
@@ -1658,17 +1665,35 @@ def pendulumSimulationConfigTab(bool):
                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
         pendulumSimulationConfigTabInitAngleTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
 
+        pendulumSimulationConfigTabInitAngleSliderValueLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                      justify = LEFT,
+                                                                                      textvariable = pendulumSimulationConfigTabInitAngleSliderValueVar,
+                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        pendulumSimulationConfigTabInitAngleSliderValueLabel.place(relx = 0.28, rely = 0.11, anchor = tkinter.W)
+
         pendulumSimulationConfigTabInitAngularVelTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                      justify = LEFT,
                                                                                      text = "Initial Angular Velocity (rad/s): ",
-                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
+                                                                                     font = customtkinter.CTkFont(size = 15, weight = "normal"))
         pendulumSimulationConfigTabInitAngularVelTitleLabel.place(relx = 0.05, rely = 0.3, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitAngularVelSliderValueLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                           justify = LEFT,
+                                                                                           textvariable = pendulumSimulationConfigTabInitAngularVelSliderValueVar,
+                                                                                           font = customtkinter.CTkFont(size = 15, weight = "normal"))
+        pendulumSimulationConfigTabInitAngularVelSliderValueLabel.place(relx = 0.43, rely = 0.3, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitLengthTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                  justify = LEFT,
                                                                                  text = "Initial Length (m): ",
                                                                                  font = customtkinter.CTkFont(size = 18, weight = "normal"))
         pendulumSimulationConfigTabInitLengthTitleLabel.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitLengthSliderValueLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                       justify = LEFT,
+                                                                                       textvariable = pendulumSimulationConfigTabInitLengthSliderValueVar,
+                                                                                       font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        pendulumSimulationConfigTabInitLengthSliderValueLabel.place(relx = 0.31, rely = 0.5, anchor = tkinter.W)
         
         pendulumSimulationConfigTabInitMassTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                justify = LEFT,
@@ -1676,17 +1701,35 @@ def pendulumSimulationConfigTab(bool):
                                                                                font = customtkinter.CTkFont(size = 18, weight = "normal"))
         pendulumSimulationConfigTabInitMassTitleLabel.place(relx = 0.05, rely = 0.7, anchor = tkinter.W)
 
+        pendulumSimulationConfigTabInitMassSliderValueLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                     justify = LEFT,
+                                                                                     textvariable = pendulumSimulationConfigTabInitMassSliderValueVar,
+                                                                                     font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        pendulumSimulationConfigTabInitMassSliderValueLabel.place(relx = 0.3, rely = 0.7, anchor = tkinter.W)
+
         pendulumSimulationConfigTabInitGravAccTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                   justify = LEFT,
                                                                                   text = "Initial Gravitational Acceleration (m/s²): ",
                                                                                   font = customtkinter.CTkFont(size = 14, weight = "normal"))
-        pendulumSimulationConfigTabInitGravAccTitleLabel.place(relx = 0.51, rely = 0.11, anchor = tkinter.W)
+        pendulumSimulationConfigTabInitGravAccTitleLabel.place(relx = 0.49, rely = 0.11, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitGravAccSliderValueLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                        justify = LEFT,
+                                                                                        textvariable = pendulumSimulationConfigTabInitGravAccSliderValueVar,
+                                                                                        font = customtkinter.CTkFont(size = 14, weight = "normal"))
+        pendulumSimulationConfigTabInitGravAccSliderValueLabel.place(relx = 0.94, rely = 0.11, anchor = tkinter.W)
 
         pendulumSimulationConfigTabInitDampingCoefTitleLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
                                                                                       justify = LEFT,
                                                                                       text = "Initial Damping Coefficient: ",
                                                                                       font = customtkinter.CTkFont(size = 18, weight = "normal"))
-        pendulumSimulationConfigTabInitDampingCoefTitleLabel.place(relx = 0.51, rely = 0.3, anchor = tkinter.W)
+        pendulumSimulationConfigTabInitDampingCoefTitleLabel.place(relx = 0.49, rely = 0.3, anchor = tkinter.W)
+
+        pendulumSimulationConfigTabInitDampingCoefSliderValueLabel = customtkinter.CTkLabel(master = pendulumSimulationConfigTabItemsFrame,
+                                                                                            justify = LEFT,
+                                                                                            textvariable = pendulumSimulationConfigTabInitDampingCoefSliderValueVar,
+                                                                                            font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        pendulumSimulationConfigTabInitDampingCoefSliderValueLabel.place(relx = 0.89, rely = 0.3, anchor = tkinter.W)
 
 def springSimulationConfigTab(bool):
     if bool == True:
