@@ -80,6 +80,11 @@ planetOrbitsSimulationConfigTabShowOrbitTrailSwitchVar = tkinter.StringVar(value
 planetOrbitsSimulationConfigTabShowPlanetNameSwitchVar = tkinter.StringVar(value = "off")
 planetNumber = 0
 
+###The variables of the Gravity Simulation go here
+gravitySimulationConfigTabInitMassSliderValueVar = tkinter.StringVar(value = "")
+gravitySimulationConfigTabInitGravAccSliderValueVar = tkinter.StringVar(value = "")
+gravitySimulationConfigTabInitHeightSliderValueVar = tkinter.StringVar(value = "")
+
 ###The variables of the Refraction Simulation go here
 refractionSimulationConfigTabInitRefractiveIndex1OptionMenuVar = tkinter.StringVar(value = "Select Refractive Index 1")
 refractionSimulationConfigTabInitRefractiveIndex2OptionMenuVar = tkinter.StringVar(value = "Select Refractive Index 2")
@@ -730,13 +735,13 @@ def planetOrbitsSimulationConfigTabPlanetInitialAySliderEvent(value):
 
 ###The configurator events of the Gravity Simulation go here
 def gravitySimulationConfigTabInitMassSliderEvent(value):
-    pass
+    gravitySimulationConfigTabInitMassSliderValueVar.set(int(value))
 
 def gravitySimulationConfigTabInitGravAccSliderEvent(value):
-    pass
+    gravitySimulationConfigTabInitGravAccSliderValueVar.set(round(value, 1))
 
 def gravitySimulationConfigTabInitHeightSliderEvent(value):
-    pass
+    gravitySimulationConfigTabInitHeightSliderValueVar.set(int(value))
 
 ###The configurator events of the Refraction Simulation go here
 def refractionSimulationConfigTabInitIncidenceAngleSliderEvent(value):
@@ -2273,7 +2278,7 @@ def gravitySimulationConfigTab(bool):
         gravitySimulationConfigTabInitMassSlider = customtkinter.CTkSlider(master = gravitySimulationConfigTabItemsFrame,
                                                                               width = 495,
                                                                               height = 20,
-                                                                              from_ = 0.1,
+                                                                              from_ = 1,
                                                                               to = 1000,
                                                                               command = gravitySimulationConfigTabInitMassSliderEvent)
         gravitySimulationConfigTabInitMassSlider.place(relx = 0.05, rely = 0.23, anchor = tkinter.W)
@@ -2331,11 +2336,23 @@ def gravitySimulationConfigTab(bool):
                                                                               font = customtkinter.CTkFont(size = 18, weight = "normal"))
         gravitySimulationConfigTabInitMassTitleLabel.place(relx = 0.05, rely = 0.11, anchor = tkinter.W)
 
+        gravitySimulationConfigTabInitMassSliderValueLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabItemsFrame,
+                                                                                    justify = LEFT,
+                                                                                    textvariable = gravitySimulationConfigTabInitMassSliderValueVar,
+                                                                                    font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        gravitySimulationConfigTabInitMassSliderValueLabel.place(relx = 0.3, rely = 0.11, anchor = tkinter.W)
+
         gravitySimulationConfigTabInitGravAccTitleLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabItemsFrame,
                                                                                  justify = LEFT,
                                                                                  text = "Initial Gravitational Acceleration (m/s²): ",
                                                                                  font = customtkinter.CTkFont(size = 18, weight = "normal"))
         gravitySimulationConfigTabInitGravAccTitleLabel.place(relx = 0.05, rely = 0.38, anchor = tkinter.W)
+
+        gravitySimulationConfigTabInitGravAccSliderValueLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabItemsFrame,
+                                                                                       justify = LEFT,
+                                                                                       textvariable = gravitySimulationConfigTabInitGravAccSliderValueVar,
+                                                                                       font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        gravitySimulationConfigTabInitGravAccSliderValueLabel.place(relx = 0.63, rely = 0.38, anchor = tkinter.W)
 
         gravitySimulationConfigTabInitHeightTitleLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabItemsFrame,
                                                                                 justify = LEFT,
@@ -2343,7 +2360,11 @@ def gravitySimulationConfigTab(bool):
                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
         gravitySimulationConfigTabInitHeightTitleLabel.place(relx = 0.05, rely = 0.66, anchor = tkinter.W)
 
-
+        gravitySimulationConfigTabInitHeightSliderValueLabel = customtkinter.CTkLabel(master = gravitySimulationConfigTabItemsFrame,
+                                                                                      justify = LEFT,
+                                                                                      textvariable = gravitySimulationConfigTabInitHeightSliderValueVar,
+                                                                                      font = customtkinter.CTkFont(size = 18, weight = "normal"))
+        gravitySimulationConfigTabInitHeightSliderValueLabel.place(relx = 0.31, rely = 0.66, anchor = tkinter.W)
 
         print("the gravity config tab works")
         pass
@@ -3707,7 +3728,7 @@ def molecularLabConfigTab(bool):
                                 
         molecularLabConfigTabDescriptionLabel = customtkinter.CTkLabel(master = molecularLabConfigTabDescriptionFrame,
                                                                        justify = LEFT,
-                                                                       text = "Simulates a bunch of molecules made from\nassembled elements of the periodic table\nwhose colors and sizes can be changed.",
+                                                                       text = "Simulates a bunch of molecules made from\nassembled elements of the periodic table\nwhose colors can be changed.",
                                                                        font = customtkinter.CTkFont(size = 16, weight = "normal"))
         molecularLabConfigTabDescriptionLabel.place(relx = 0.01, rely = 0.15, anchor = tkinter.W)
                                 
