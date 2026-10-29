@@ -2,6 +2,8 @@ import pygame
 import math
 from random import randint
 from sys import exit
+import json
+import os
 
 windowWidth = 1100
 windowHeight = 580
@@ -23,6 +25,7 @@ neutronOutlineColor = (120, 120, 120)
 backgroundColor = (43, 45, 47)
 whiteColor = (255, 255, 255)
 
+atomSelectionIndex = 0
 atoms = [("Hydrogen", 1, 1), 
          ("Helium", 4, 2), 
          ("Lithium", 7, 3), 
@@ -43,14 +46,29 @@ atoms = [("Hydrogen", 1, 1),
 unitRadius = 80
 nucleonRadius = 8
 electronRadius = 6
-massNumber = atoms[15][1]
-protonNumber = atoms[15][2]
+massNumber = atoms[atomSelectionIndex][1]
+protonNumber = atoms[atomSelectionIndex][2]
 neutronNumber = massNumber - protonNumber
 angle = 0
 electrons = []
 electronShells = []
 protons = []
 neutrons = []
+
+simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
+if os.path.exists(simulationConfigValuesPath):
+    with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
+        values = json.load(f)
+        if values.get("simulationID") == "bohrAtomSimulation":
+            atomSelectionIndex = values.get("atomSelectionIndex")
+            massNumber = atoms[atomSelectionIndex][1]
+            protonNumber = atoms[atomSelectionIndex][2]
+            neutronNumber = massNumber - protonNumber
+else:
+    atomSelectionIndex = 0
+    massNumber = atoms[atomSelectionIndex][1]
+    protonNumber = atoms[atomSelectionIndex][2]
+    neutronNumber = massNumber - protonNumber
 
 for atomName, massN, protonsN in atoms:
     if protonNumber == protonsN and massNumber == massN:

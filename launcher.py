@@ -110,6 +110,7 @@ temperatureSimulationConfigTabInitTempSliderValueVar = tkinter.StringVar(value =
 
 ##The chemistry variables go here
 ###The variables of the Bohr Atom Simulation go here
+bohrAtomSimulationConfigTabAtomSelectionIndex = 0
 bohrAtomSimulationConfigTabAtomSelected = False
 
 ###The variables of the Solution Maker go here
@@ -779,9 +780,45 @@ def temperatureSimulationConfigTabLaunchButtonEvent():
 
 ##The buttons of the chemistry simulations go here
 def bohrAtomSimulationConfigTabLaunchButtonEvent():
-    print("Bohr atom simulation launched")
+    global bohrAtomSimulationConfigTabAtomSelectionIndex
+    configValues = {
+                "simulationID": "bohrAtomSimulation",
+                "atomSelectionIndex": bohrAtomSimulationConfigTabAtomSelectionIndex
+            }
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+        json.dump(configValues, f)
+            
+    bohrAtomSimulationConfigTabLaunchButton.configure(state = "disabled")
+    bohrAtomSimulationConfigTabLaunchButton.configure(text = "Running...")
+        
+    simulationPath = os.path.join("chemistrySimulations", "bohrAtomicSimulation.py")
+    subprocess.run(["python", simulationPath])
+    bohrAtomSimulationConfigTabLaunchButton.configure(state = "normal")
+    bohrAtomSimulationConfigTabLaunchButton.configure(text = "Launch")
+    bohrAtomSimulationConfigTabAtomSelectionIndex = 0
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+        json.dump(configValues, f)
+    print("bohr atom simulation launched")
 
 def solutionMakerConfigTabLaunchButtonEvent():
+    configValues = {
+                    "simulationID": "solutionMaker",
+                    "initSolvent": "Water (H₂O)" if solutionMakerConfigTabInitSolventOptionMenu.get() == "Select Solvent" else solutionMakerConfigTabInitSolventOptionMenu.get(),
+                    "initSolventVolume": int(solutionMakerConfigTabInitSolventVolSlider.get()),
+                    "initSolute": "Sodium Chloride (NaCl)" if solutionMakerConfigTabInitSoluteOptionMenu.get() == "Select Solute" else solutionMakerConfigTabInitSoluteOptionMenu.get(),
+                    "initSoluteMass": int(solutionMakerConfigTabInitSoluteMassSlider.get())
+                }
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+        json.dump(configValues, f)
+                
+    solutionMakerConfigTabLaunchButton.configure(state = "disabled")
+    solutionMakerConfigTabLaunchButton.configure(text = "Running...")
+            
+    simulationPath = os.path.join("chemistrySimulations", "solutionMaker.py")
+    subprocess.run(["python", simulationPath])
+    solutionMakerConfigTabLaunchButton.configure(state = "normal")
+    solutionMakerConfigTabLaunchButton.configure(text = "Launch")
+    
     print("solution maker simulation launched")
 
 def molecularLabConfigTabLaunchButtonEvent():
@@ -3046,9 +3083,10 @@ def temperatureSimulationConfigTab(bool):
 
 #The sub tabs of the chemistry tab (chemistry simulations) are here
 def bohrAtomSimulationConfigTab(bool):
+    global bohrAtomSimulationConfigTabLaunchButton
     if bool == True:
         def bohrAtomSimulationConfigTabHButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3066,12 +3104,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 0
                 print("H atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabHeButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3089,12 +3128,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 1
                 print("He atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabLiButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3112,12 +3152,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 2
                 print("Li atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabBeButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3135,12 +3176,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 3
                 print("Be atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabBButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3158,12 +3200,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 4
                 print("B atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabCButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3181,12 +3224,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 5
                 print("C atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabNButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3204,12 +3248,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 6
                 print("N atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabOButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3227,12 +3272,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 7
                 print("O atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabFButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3250,12 +3296,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 8
                 print("F atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabNeButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3273,12 +3320,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 9
                 print("Ne atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabNaButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3296,12 +3344,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 10
                 print("Na atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabMgButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3319,12 +3368,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 11
                 print("Mg atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabAlButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3342,12 +3392,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 12
                 print("Al atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabSiButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3365,12 +3416,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 13
                 print("Si atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabPButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3388,12 +3440,13 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 14
                 print("P atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabSButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3411,6 +3464,7 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabSiButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
+                bohrAtomSimulationConfigTabAtomSelectionIndex = 15
                 print("S atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True    
@@ -3676,6 +3730,7 @@ def bohrAtomSimulationConfigTab(bool):
         pass
 
 def solutionMakerConfigTab(bool):
+    global solutionMakerConfigTabLaunchButton, solutionMakerConfigTabInitSolventOptionMenu, solutionMakerConfigTabInitSolventVolSlider, solutionMakerConfigTabInitSoluteOptionMenu, solutionMakerConfigTabInitSoluteMassSlider
     if bool == True:
         #The frames for each element of the tab go here
         solutionMakerConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,

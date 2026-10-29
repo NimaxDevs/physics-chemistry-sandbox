@@ -2,6 +2,8 @@ import pygame
 import math
 from random import randint, uniform
 from sys import exit
+import json
+import os
 
 windowWidth = 1100
 windowHeight = 580
@@ -46,9 +48,61 @@ simulatedSolvent = solvents[simulatedSolventIndex][0]
 simulatedSolventColor = None
 simulatedSolventColorIntensity = 0.0
 massConcentration = soluteMass / solventVolume
-molarConcentration = (soluteMass / solutes[simulatedSoluteIndex][2]) / (solventVolume * 10e-3)
+molarConcentration = (soluteMass / solutes[simulatedSoluteIndex][2]) / (solventVolume * 1e-3)
 simulatedSolventColorFactor = massConcentration * 0.01
 
+simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
+if os.path.exists(simulationConfigValuesPath):
+    with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
+        values = json.load(f)
+        if values.get("simulationID") == "solutionMaker":
+            simulatedSolvent = values.get("initSolvent", "Water (H₂O)")
+            if simulatedSolvent == "Water (H₂0)":
+                simulatedSolvent = solvents[0][0]
+            elif simulatedSolvent == "Ethanol (C₂H₅OH)":
+                simulatedSolvent = solvents[1][0]
+            elif simulatedSolvent == "Cyclohexane (C₆H₁₂)":
+                simulatedSolvent = solvents[2][0]
+            elif simulatedSolvent == "Hexane (C₆H₁₄)":
+                simulatedSolvent = solvents[3][0]
+            elif simulatedSolvent == "Acetone (C₃H₆O)":
+                simulatedSolvent = solvents[4][0]
+            else:
+                simulatedSolvent = solvents[0][0]
+            solventVolume = values.get("initSolventVolume", 550)
+            simulatedSolute = values.get("initSolute", "Sodium Chloride (NaCl)")
+            if simulatedSolute == "Sodium Chloride (NaCl)":
+                simulatedSolute = solutes[0][0]
+                molarMass = solutes[0][2]
+            elif simulatedSolute == "Glucose (C₆H₁₂O₆)":
+                simulatedSolute = solutes[1][0]
+                molarMass = solutes[1][2]
+            elif simulatedSolute == "Potassium Permanganate (KMnO₄)":
+                simulatedSolute = solutes[2][0]
+                molarMass = solutes[2][2]
+            elif simulatedSolute == "Copper Sulfate (CuSO₄)":
+                simulatedSolute = solutes[3][0]
+                molarMass = solutes[3][2]
+            elif simulatedSolute == "Sodium Hydroxide (NaOH)":
+                simulatedSolute = solutes[4][0]
+                molarMass = solutes[4][2]
+            else:
+                simulatedSolute = solutes[0][0]
+                molarMass = solutes[0][2]
+            
+            soluteMass = values.get("initSoluteMass", 550)
+else:
+    simulatedSolvent = solvents[simulatedSolventIndex][0]
+    solventVolume = 1000
+    simulatedSolute = solutes[simulatedSoluteIndex][0]
+    soluteMass = 1000
+    molarMass = solutes[0][2]
+
+massConcentration = soluteMass / solventVolume
+molarConcentration = (soluteMass / molarMass) / (solventVolume * 1e-3)
+simulatedSolventColorFactor = massConcentration * 0.01
+simulatedSoluteParticles = soluteMass * 0.5
+    
 soluteParticles = []
 solubilityMatrix = {
     "Sodium Chloride":        {"Water": True, "Ethanol": False, "Cyclohexane": False, "Hexane": False, "Acetone": False},
