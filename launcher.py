@@ -1,7 +1,7 @@
 #Do I even have to describe these lines
 import customtkinter, tkinter
 from tkinter import * 
-from PIL import Image
+from PIL import Image, ImageDraw
 import webbrowser
 import json
 import os
@@ -17,9 +17,122 @@ app.geometry("1100x580")
 app.resizable(False, False)
 app.title("Physics & Chemistry Sandbox Launcher")
 
+def add_corners(im, rad):
+    circle = Image.new('L', (rad * 2, rad * 2), 0)
+    draw = ImageDraw.Draw(circle)
+    draw.ellipse((0, 0, rad * 2 - 1, rad * 2 - 1), fill=255)
+    alpha = Image.new('L', im.size, 255)
+    w, h = im.size
+    alpha.paste(circle.crop((0, 0, rad, rad)), (0, 0))
+    alpha.paste(circle.crop((0, rad, rad, rad * 2)), (0, h - rad))
+    alpha.paste(circle.crop((rad, 0, rad * 2, rad)), (w - rad, 0))
+    alpha.paste(circle.crop((rad, rad, rad * 2, rad * 2)), (w - rad, h - rad))
+    im.putalpha(alpha)
+    return im
+
 placeholderImage = customtkinter.CTkImage(light_image = Image.open("images/placeholders/atom_image.png"),
                                           dark_image = Image.open("images/placeholders/atom_image.png"),
                                           size = (150, 100))
+projectileSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_projectileSimulation.jpg"), 50),
+                                          dark_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_projectileSimulation.jpg"), 50),
+                                          size = (190, 125))
+pendulumSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_pendulumSimulation.jpg"), 150),
+                                          dark_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_pendulumSimulation.jpg"), 150),
+                                          size = (190, 125))
+
+springSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_springSimulation.jpg"), 50),
+                                          dark_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_springSimulation.jpg"), 50),
+                                          size = (190, 125))
+
+planetOrbitsSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_planetOrbitsSimulation.png"), 30),
+                                          dark_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_planetOrbitsSimulation.png"), 30),
+                                          size = (190, 125))
+
+gravitySimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_gravitySimulation.png"), 50),
+                                          dark_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_gravitySimulation.png"), 50),
+                                          size = (190, 125))
+
+refractionSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_refractionSimulation.png"), 30),
+                                          dark_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_refractionSimulation.png"), 30),
+                                          size = (190, 125))
+
+fluidSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_fluidSimulation.jpg"), 30),
+                                          dark_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_fluidSimulation.jpg"), 30),
+                                          size = (190, 125))
+
+temperatureSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_temperatureSimulation.jpg"), 150),
+                                          dark_image = add_corners(Image.open("images/thumbnails/physicsSimulations/thumbnail_temperatureSimulation.jpg"), 150),
+                                          size = (190, 125))
+
+
+projectileSimulationPreviewImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/previews/physicsSimulations/preview_projectileSimulation.png"), 15),
+                                          dark_image = add_corners(Image.open("images/previews/physicsSimulations/preview_projectileSimulation.png"), 15),
+                                          size = (530, 280))
+
+pendulumSimulationPreviewImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/previews/physicsSimulations/preview_pendulumSimulation.png"), 15),
+                                          dark_image = add_corners(Image.open("images/previews/physicsSimulations/preview_pendulumSimulation.png"), 15),
+                                          size = (530, 280))
+
+springSimulationPreviewImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/previews/physicsSimulations/preview_springSimulation.png"), 15),
+                                          dark_image = add_corners(Image.open("images/previews/physicsSimulations/preview_springSimulation.png"), 15),
+                                          size = (530, 280))
+
+planetOrbitsSimulationPreviewImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/previews/physicsSimulations/preview_planetOrbitsSimulation.png"), 15),
+                                          dark_image = add_corners(Image.open("images/previews/physicsSimulations/preview_planetOrbitsSimulation.png"), 15),
+                                          size = (530, 280))
+
+gravitySimulationPreviewImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/previews/physicsSimulations/preview_gravitySimulation.png"), 15),
+                                          dark_image = add_corners(Image.open("images/previews/physicsSimulations/preview_gravitySimulation.png"), 15),
+                                          size = (530, 280))
+
+refractionSimulationPreviewImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/previews/physicsSimulations/preview_refractionSimulation.png"), 15),
+                                          dark_image = add_corners(Image.open("images/previews/physicsSimulations/preview_refractionSimulation.png"), 15),
+                                          size = (530, 280))
+
+temperatureSimulationPreviewImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/previews/physicsSimulations/preview_temperatureSimulation.png"), 15),
+                                          dark_image = add_corners(Image.open("images/previews/physicsSimulations/preview_temperatureSimulation.png"), 15),
+                                          size = (530, 280))
+
+
+bohrAtomSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_bohrAtomSimulation.jpg"), 50),
+                                          dark_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_bohrAtomSimulation.jpg"), 50),
+                                          size = (190, 125))
+
+solutionMakerThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_solutionMaker.jpg"), 50),
+                                          dark_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_solutionMaker.jpg"), 50),
+                                          size = (190, 125))
+
+molecularLabThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_molecularLab.png"), 30),
+                                          dark_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_molecularLab.png"), 30),
+                                          size = (190, 125))
+
+reactionLabThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_reactionLab.png"), 30),
+                                          dark_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_reactionLab.png"), 30),
+                                          size = (190, 125))
+
+combustionSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_combustionSimulation.png"), 30),
+                                          dark_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_combustionSimulation.png"), 30),
+                                          size = (190, 125))
+
+smokeSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_smokeSimulation.jpg"), 150),
+                                          dark_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_smokeSimulation.jpg"), 150),
+                                          size = (190, 125))
+
+atomCollisionSimulationThumbnailImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_atomCollisionSimulation.png"), 30),
+                                          dark_image = add_corners(Image.open("images/thumbnails/chemistrySimulations/thumbnail_atomCollisionSimulation.png"), 30),
+                                          size = (190, 125))
+
+bohrAtomSimulationPreviewImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/previews/chemistrySimulations/preview_bohrAtomSimulation.png"), 15),
+                                          dark_image = add_corners(Image.open("images/previews/chemistrySimulations/preview_bohrAtomSimulation.png"), 15),
+                                          size = (530, 280))
+
+solutionMakerPreviewImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/previews/chemistrySimulations/preview_solutionMaker.png"), 15),
+                                          dark_image = add_corners(Image.open("images/previews/chemistrySimulations/preview_solutionMaker.png"), 15),
+                                          size = (530, 280))
+
+molecularPreviewImage = customtkinter.CTkImage(light_image = add_corners(Image.open("images/previews/chemistrySimulations/preview_molecularLab.png"), 15),
+                                          dark_image = add_corners(Image.open("images/previews/chemistrySimulations/preview_molecularLab.png"), 15),
+                                          size = (530, 280))
 
 #The main menu variables go here
 physicsTabSelected = False
@@ -1117,44 +1230,44 @@ def physicsTab(bool):
 
         #The image labels for the simulations are here
         projectileSimulationImageLabel = customtkinter.CTkLabel(master = projectileSimulationFrame,
-                                                                image = placeholderImage,
+                                                                image = projectileSimulationThumbnailImage,
                                                                 text = "")
-        projectileSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        projectileSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         pendulumSimulationImageLabel = customtkinter.CTkLabel(master = pendulumSimulationFrame,
-                                                              image = placeholderImage,
+                                                              image = pendulumSimulationThumbnailImage,
                                                               text = "")
-        pendulumSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        pendulumSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         springSimulationImageLabel = customtkinter.CTkLabel(master = springSimulationFrame,
-                                                            image = placeholderImage,
+                                                            image = springSimulationThumbnailImage,
                                                             text = "")
-        springSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        springSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         planetOrbitsSimulationImageLabel = customtkinter.CTkLabel(master = planetOrbitsSimulationFrame,
-                                                                  image = placeholderImage,
+                                                                  image = planetOrbitsSimulationThumbnailImage,
                                                                   text = "")
-        planetOrbitsSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        planetOrbitsSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         gravitySimulationImageLabel = customtkinter.CTkLabel(master = gravitySimulationFrame,
-                                                             image = placeholderImage,
+                                                             image = gravitySimulationThumbnailImage,
                                                              text = "")
-        gravitySimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        gravitySimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         refractionSimulationImageLabel = customtkinter.CTkLabel(master = refractionSimulationFrame,
-                                                                image = placeholderImage,
+                                                                image = refractionSimulationThumbnailImage,
                                                                 text = "")
-        refractionSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        refractionSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         fluidSimulationImageLabel = customtkinter.CTkLabel(master = fluidSimulationFrame,
-                                                           image = placeholderImage,
+                                                           image = fluidSimulationThumbnailImage,
                                                            text = "")
-        fluidSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        fluidSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         temperatureSimulationImageLabel = customtkinter.CTkLabel(master = temperatureSimulationFrame,
-                                                                 image = placeholderImage,
+                                                                 image = temperatureSimulationThumbnailImage,
                                                                  text = "")
-        temperatureSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        temperatureSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         #The title and description labels for the simulations are here
         projectileSimulationTitleLabel = customtkinter.CTkLabel(master = projectileSimulationFrame,
@@ -1371,39 +1484,39 @@ def chemistryTab(bool):
 
         #The image labels for the simulations are here
         bohrAtomSimulationImageLabel = customtkinter.CTkLabel(master = bohrAtomSimulationFrame,
-                                                              image = placeholderImage,
+                                                              image = bohrAtomSimulationThumbnailImage,
                                                               text = "")
-        bohrAtomSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        bohrAtomSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         solutionMakerImageLabel = customtkinter.CTkLabel(master = solutionMakerFrame,
-                                                         image = placeholderImage,
+                                                         image = solutionMakerThumbnailImage,
                                                          text = "")
-        solutionMakerImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        solutionMakerImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         molecularLabImageLabel = customtkinter.CTkLabel(master = molecularLabFrame,
-                                                        image = placeholderImage,
+                                                        image = molecularLabThumbnailImage,
                                                         text = "")
-        molecularLabImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        molecularLabImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         reactionLabImageLabel = customtkinter.CTkLabel(master = reactionLabFrame,
-                                                       image = placeholderImage,
+                                                       image = reactionLabThumbnailImage,
                                                        text = "")
-        reactionLabImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        reactionLabImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         combustionSimulationImageLabel = customtkinter.CTkLabel(master = combustionSimulationFrame,
-                                                                image = placeholderImage,
+                                                                image = combustionSimulationThumbnailImage,
                                                                 text = "")
-        combustionSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        combustionSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         smokeSimulationImageLabel = customtkinter.CTkLabel(master = smokeSimulationFrame,
-                                                           image = placeholderImage,
+                                                           image = smokeSimulationThumbnailImage,
                                                            text = "")
-        smokeSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor= tkinter.N)
+        smokeSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor= tkinter.N)
 
         atomCollisionSimulationImageLabel = customtkinter.CTkLabel(master = atomCollisionSimulationFrame,
-                                                                   image = placeholderImage,
+                                                                   image = atomCollisionSimulationThumbnailImage,
                                                                    text = "")
-        atomCollisionSimulationImageLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.N)
+        atomCollisionSimulationImageLabel.place(relx = 0.5, rely = 0.03, anchor = tkinter.N)
 
         #The title and description labels for the simulations are here
         bohrAtomSimulationTitleLabel = customtkinter.CTkLabel(master = bohrAtomSimulationFrame,
@@ -1644,7 +1757,7 @@ def projectileSimulationConfigTab(bool):
 
         #The images of the config tab go here
         projectileSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = projectileSimulationConfigTabImageFrame,
-                                                                         image = placeholderImage,
+                                                                         image = projectileSimulationPreviewImage,
                                                                          text = "")
         projectileSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
         
@@ -1848,7 +1961,7 @@ def pendulumSimulationConfigTab(bool):
 
         #The images of the simulation go here
         pendulumSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = pendulumSimulationConfigTabImageFrame,
-                                                                       image = placeholderImage,
+                                                                       image = pendulumSimulationPreviewImage,
                                                                        text = "")
         pendulumSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
@@ -2046,7 +2159,7 @@ def springSimulationConfigTab(bool):
 
         #The images of the simulation go here
         springSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = springSimulationConfigTabImageFrame,
-                                                                     image = placeholderImage,
+                                                                     image = springSimulationPreviewImage,
                                                                      text = "")
         springSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
@@ -2330,7 +2443,7 @@ def planetOrbitsSimulationConfigTab(bool):
 
         #The images of the simulation go here
         planetOrbitsSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = planetOrbitsSimulationConfigTabImageFrame,
-                                                                           image = placeholderImage,
+                                                                           image = planetOrbitsSimulationPreviewImage,
                                                                            text = "")
         planetOrbitsSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
@@ -2512,7 +2625,7 @@ def gravitySimulationConfigTab(bool):
 
         #The images of the simulation go here
         gravitySimulationConfigTabInSimImage = customtkinter.CTkLabel(master = gravitySimulationConfigTabImageFrame,
-                                                                           image = placeholderImage,
+                                                                           image = gravitySimulationPreviewImage,
                                                                            text = "")
         gravitySimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
@@ -2690,7 +2803,7 @@ def refractionSimulationConfigTab(bool):
         
         #The images of the simulation go here
         refractionSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = refractionSimulationConfigTabImageFrame,
-                                                                         image = placeholderImage,
+                                                                         image = refractionSimulationPreviewImage,
                                                                          text = "")
         refractionSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
@@ -3031,7 +3144,7 @@ def temperatureSimulationConfigTab(bool):
                 
         #The images of the simulation go here
         temperatureSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = temperatureSimulationConfigTabImageFrame,
-                                                                          image = placeholderImage,
+                                                                          image = temperatureSimulationPreviewImage,
                                                                           text = "")
         temperatureSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)        
                                 
@@ -3715,7 +3828,7 @@ def bohrAtomSimulationConfigTab(bool):
                         
         #The images of the simulation go here
         bohrAtomSimulationConfigTabInSimImage = customtkinter.CTkLabel(master = bohrAtomSimulationConfigTabImageFrame,
-                                                                       image = placeholderImage,
+                                                                       image = bohrAtomSimulationPreviewImage,
                                                                        text = "")
         bohrAtomSimulationConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)                         
                         
@@ -3835,7 +3948,7 @@ def solutionMakerConfigTab(bool):
 
         #The images of the simulation go here
         solutionMakerConfigTabInSimImage = customtkinter.CTkLabel(master = solutionMakerConfigTabImageFrame,
-                                                                  image = placeholderImage,
+                                                                  image = solutionMakerPreviewImage,
                                                                   text = "")
         solutionMakerConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)                                
                                 
@@ -3994,7 +4107,7 @@ def molecularLabConfigTab(bool):
                                         
         #The images of the simulation go here
         molecularLabConfigTabInSimImage = customtkinter.CTkLabel(master = molecularLabConfigTabImageFrame,
-                                                                 image = placeholderImage,
+                                                                 image = molecularPreviewImage,
                                                                  text = "")
         molecularLabConfigTabInSimImage.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)                                           
                                         
