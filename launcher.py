@@ -759,6 +759,22 @@ def fluidSimulationConfigTabLaunchButtonEvent():
     print("fluid simulation launched")
 
 def temperatureSimulationConfigTabLaunchButtonEvent():
+    configValues = {
+            "simulationID": "temperatureSimulation",
+            "initParticleNumber": int(temperatureSimulationConfigTabInitParticleNumberSlider.get()),
+            "initParticleDiameter": int(temperatureSimulationConfigTabInitParticleDiameterSlider.get()),
+            "initTemperature": round(temperatureSimulationConfigTabInitTempSlider.get(), 1),
+        }
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+        json.dump(configValues, f)
+        
+    temperatureSimulationConfigTabLaunchButton.configure(state = "disabled")
+    temperatureSimulationConfigTabLaunchButton.configure(text = "Running...")
+    
+    simulationPath = os.path.join("physicsSimulations", "temperatureSimulation.py")
+    subprocess.run(["python", simulationPath])
+    temperatureSimulationConfigTabLaunchButton.configure(state = "normal")
+    temperatureSimulationConfigTabLaunchButton.configure(text = "Launch")
     print("temperature simulation launched")
 
 ##The buttons of the chemistry simulations go here
@@ -2884,6 +2900,7 @@ def fluidSimulationConfigTab(bool):
         pass
 
 def temperatureSimulationConfigTab(bool):
+    global temperatureSimulationConfigTabLaunchButton, temperatureSimulationConfigTabInitParticleNumberSlider, temperatureSimulationConfigTabInitParticleDiameterSlider, temperatureSimulationConfigTabInitTempSlider
     if bool == True:
         #The frames for each element of the tab go here
         temperatureSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,

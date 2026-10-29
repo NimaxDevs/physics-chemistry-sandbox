@@ -1,1 +1,1 @@
-{"simulationID": "refractionSimulation", "initRefractiveIndex1": "Air (1.0)", "initRefractiveIndex2": "Ethanol (1.36)", "initIncidenceAngle": 45.8, "rayColor": "Indigo"}
+{"simulationID": "temperatureSimulation", "initParticleNumber": 500, "initParticleDiameter": 3, "initTemperature": 613.4}

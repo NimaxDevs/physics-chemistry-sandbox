@@ -2,6 +2,8 @@ import pygame
 import math
 from random import randint, gauss
 from sys import exit
+import json
+import os
 
 windowWidth = 1100
 windowHeight = 580
@@ -25,13 +27,26 @@ particlesList_x = []
 particlesList_y = []
 
 sizeFactor = 3e11
-initParticleNumber = 1000
+initParticleNumber = 50
 initParticleDiameter = 5
-initTemperature = 20
+initTemperature = 30.0
 diffusionCoef = 0.0
 boltzmannConstant = 1.380649e-23
 initDynamicViscosity = 1e1
 particleColor = coldColor
+
+simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
+if os.path.exists(simulationConfigValuesPath):
+    with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
+        values = json.load(f)
+        if values.get("simulationID") == "temperatureSimulation":
+            initParticleNumber = int(values.get("initParticleNumber", 50))
+            initParticleDiameter = int(values.get("initParticleDiameter", 5))
+            initTemperature = float(values.get("initTemperature", 30.0))
+else:
+    initParticleNumber = 1000
+    initParticleDiameter = 5
+    initTemperature = 30.0
 
 t = 0
 dt = 0.1
