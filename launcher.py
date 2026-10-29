@@ -736,6 +736,23 @@ def gravitySimulationConfigTabLaunchButtonEvent():
     print("gravity simulation launched")    
 
 def refractionSimulationConfigTabLaunchButtonEvent():
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+            configValues = {
+                "simulationID": "refractionSimulation",
+                "initRefractiveIndex1": "1.0" if refractionSimulationConfigInitRefractiveIndex1OptionMenu.get() == "Select Refractive Index 1" or (refractionSimulationConfigInitRefractiveIndex1OptionMenu.get() == "Custom" and refractionSimulationConfigInitRefractiveIndex1CustomEntry.get() == "") else refractionSimulationConfigInitRefractiveIndex1OptionMenu.get() if refractionSimulationConfigInitRefractiveIndex1OptionMenu.get() != "Custom" else refractionSimulationConfigInitRefractiveIndex1CustomEntry.get(),
+                "initRefractiveIndex2": "1.0" if refractionSimulationConfigInitRefractiveIndex2OptionMenu.get() == "Select Refractive Index 2" or (refractionSimulationConfigInitRefractiveIndex2OptionMenu.get() == "Custom" and refractionSimulationConfigInitRefractiveIndex2CustomEntry.get() == "") else refractionSimulationConfigInitRefractiveIndex2OptionMenu.get() if refractionSimulationConfigInitRefractiveIndex2OptionMenu.get() != "Custom" else refractionSimulationConfigInitRefractiveIndex2CustomEntry.get(),
+                "initIncidenceAngle": round(refractionSimulationConfigTabInitIncidenceAngleSlider.get(), 1),
+                "rayColor": "White" if refractionSimulationConfigTabRayColorOptionMenu.get() == "Select Ray Color" else refractionSimulationConfigTabRayColorOptionMenu.get()
+            }
+            json.dump(configValues, f)
+    refractionSimulationConfigTabLaunchButton.configure(state = "disabled")
+    refractionSimulationConfigTabLaunchButton.configure(text = "Running...")
+            
+    simulationPath = os.path.join("physicsSimulations", "refractionSimulation.py")
+    subprocess.run(["python", simulationPath])
+    refractionSimulationConfigTabLaunchButton.configure(state = "normal")
+    refractionSimulationConfigTabLaunchButton.configure(text = "Launch")
+    
     print("refraction simulation launched")
 
 def fluidSimulationConfigTabLaunchButtonEvent():
@@ -2493,6 +2510,7 @@ def gravitySimulationConfigTab(bool):
         pass
 
 def refractionSimulationConfigTab(bool):
+    global refractionSimulationConfigTabLaunchButton, refractionSimulationConfigInitRefractiveIndex1OptionMenu, refractionSimulationConfigInitRefractiveIndex2OptionMenu, refractionSimulationConfigTabInitIncidenceAngleSlider, refractionSimulationConfigTabRayColorOptionMenu, refractionSimulationConfigInitRefractiveIndex1CustomEntry, refractionSimulationConfigInitRefractiveIndex2CustomEntry
     if bool == True:
         def refractionSimulationConfigInitRefractiveIndex1OptionMenuEvent(value):
             if value == "Custom":

@@ -34,7 +34,7 @@ position_y = 1
 restitutionCoef = 0.75 #A basket ball
 
 simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
-if os.path.exists(simulationConfigValuesPath):
+if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConfigValuesPath) > 0:
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
         values = json.load(f)
         if values.get("simulationID") == "gravitySimulation":

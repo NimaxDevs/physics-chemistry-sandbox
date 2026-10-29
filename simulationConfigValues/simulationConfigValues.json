@@ -1,1 +1,1 @@
-{"simulationID": "gravitySimulation", "initMass": 334, "initGravAcc": 14.2, "initHeight": 6}
+{"simulationID": "refractionSimulation", "initRefractiveIndex1": "Air (1.0)", "initRefractiveIndex2": "Ethanol (1.36)", "initIncidenceAngle": 45.8, "rayColor": "Indigo"}
