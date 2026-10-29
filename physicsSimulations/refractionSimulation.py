@@ -123,7 +123,7 @@ elif refractiveIndex2 == 2.417:
 elif refractiveIndex2 == 1.59:
     mediumColor2 = (200, 200, 200, 150)
 else:
-    mediumColor1 = (0, 0, 0, 100)
+    mediumColor2 = (0, 0, 0, 100)
 
 mediumRect1 = pygame.Surface((windowWidth, 400), pygame.SRCALPHA)
 mediumRect1.fill(mediumColor1)
