@@ -1,6 +1,8 @@
 import pygame
 import math
 from sys import exit
+import json
+import os
 
 windowWidth = 1100
 windowHeight = 580
@@ -21,7 +23,7 @@ lightGrayColor = (148, 148, 148)
 greenColor = (0, 204, 24)
 
 blackColor = (0, 0, 0)
-darkBlue = (0, 27, 204)
+darkBlueColor = (0, 27, 204)
 darkGrayColor = (77, 77, 77)
 darkGreenColor = (0, 94, 19)
 
@@ -42,7 +44,63 @@ carbonAtomPos_x = 200
 lewisSingleConnexionLineThickness = 5
 lewisDoubleConnexionLineThickness = 15
 
-selectedMolecule = "Methanol"
+selectedMolecule = "Glucose (C₆H₁₂O₆)"
+
+simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
+if os.path.exists(simulationConfigValuesPath):
+    with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
+        values = json.load(f)
+        if values.get("simulationID") == "molecularLab":
+            selectedMolecule = values.get("initMolecule", "Glucose (C₆H₁₂O₆)")
+            hydrogenAtomColor = values.get("initHydrogenColor", "Light Blue")
+            if hydrogenAtomColor == "Light Blue Color":
+                hydrogenAtomColor = lightBlueColor
+            elif hydrogenAtomColor == "Light Gray":
+                hydrogenAtomColor = lightGrayColor
+            elif hydrogenAtomColor == "Green":
+                hydrogenAtomColor = greenColor
+            else:
+                hydrogenAtomColor = lightBlueColor
+            carbonAtomColor = values.get("initCarbonColor", "Black")
+            if carbonAtomColor == "Black":
+                carbonAtomColor = blackColor
+            elif carbonAtomColor == "Dark Blue":
+                carbonAtomColor = darkBlueColor
+            elif carbonAtomColor == "Dark Gray":
+                carbonAtomColor = darkGrayColor
+            elif carbonAtomColor == "Dark Green":
+                carbonAtomColor = darkGreenColor
+            else:
+                carbonAtomColor = blackColor
+            oxygenAtomColor = values.get("initOxygenColor", "Red") 
+            if oxygenAtomColor == "Red":
+                oxygenAtomColor = redColor
+            elif oxygenAtomColor == "Dark Red":
+                oxygenAtomColor = darkRedColor
+            elif oxygenAtomColor == "Pink":
+                oxygenAtomColor = pinkColor
+            else:
+                oxygenAtomColor = redColor
+else:
+    selectedMolecule = "Glucose (C₆H₁₂O₆)"
+    hydrogenAtomColor = lightBlueColor
+    carbonAtomColor = blackColor
+    oxygenAtomColor = redColor
+
+if selectedMolecule == "Carbon Dioxide (CO₂)":
+    moleculeScreenName = "Carbon Dioxide"
+elif selectedMolecule == "Glucose (C₆H₁₂O₆)":
+    moleculeScreenName = "Glucose"
+elif selectedMolecule == "Ethanol (C₂H₅OH)":
+    moleculeScreenName = "Ethanol"
+elif selectedMolecule == "Acetone (C₃H₆O)":
+    moleculeScreenName = "Acetone"
+elif selectedMolecule == "Methanol (CH₃OH)":
+    moleculeScreenName = "Methanol"
+elif selectedMolecule == "Formaldehyde (CH₂O)":
+    moleculeScreenName = "Formaldehyde"
+else:
+    moleculeScreenName = "Unknown"
 
 def sphericalCarbonDioxideMolecule():
     pygame.draw.circle(screen, oxygenAtomColor, (carbonAtomPos_x - 60, 300), oxygenAtomRadius)
@@ -347,36 +405,40 @@ while True:
             pygame.quit()
             exit()
 
-    if selectedMolecule == "Carbon Dioxide":
+    if selectedMolecule == "Carbon Dioxide (CO₂)":
         sphericalCarbonDioxideMolecule()
         lewisCarbonDioxideMolecule()
         sphericalRepresentationLabel = titleFont.render(f"Spherical Representation", True, whiteColor)
         lewisRepresentationLabel = titleFont.render(f"Lewis Representation", True, whiteColor)
         screen.blit(sphericalRepresentationLabel, (80, 370))
         screen.blit(lewisRepresentationLabel, (690, 370))
-    elif selectedMolecule == "Glucose":
+    elif selectedMolecule == "Glucose (C₆H₁₂O₆)":
         lewisGlucoseMolecule()
         lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
         screen.blit(lewisRepresentationLabel, (20, 75))
-    elif selectedMolecule == "Ethanol":
+    elif selectedMolecule == "Ethanol (C₂H₅OH)":
         lewisEthanolMolecule()
         lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
         screen.blit(lewisRepresentationLabel, (20, 75))
-    elif selectedMolecule == "Acetone":
+    elif selectedMolecule == "Acetone (C₃H₆O)":
         lewisAcetoneMolecule()
         lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
         screen.blit(lewisRepresentationLabel, (20, 75))
-    elif selectedMolecule == "Methanol":
+    elif selectedMolecule == "Methanol (CH₃OH)":
         lewisMethanolMolecule()
         lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
         screen.blit(lewisRepresentationLabel, (20, 75))
-    else:
+    elif selectedMolecule == "Formaldehyde (CH₂O)":
         lewisFormaldehydeMolecule()
+        lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
+        screen.blit(lewisRepresentationLabel, (20, 75))
+    else:
+        lewisGlucoseMolecule()
         lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
         screen.blit(lewisRepresentationLabel, (20, 75))
 
     upperLabel = titleFont.render("Molecular Lab", True, whiteColor)
-    simulatedLabel = regularFont.render(f"Molecule: {selectedMolecule}", True, whiteColor)
+    simulatedLabel = regularFont.render(f"Molecule: {moleculeScreenName}", True, whiteColor)
     screen.blit(upperLabel, (20, 20))
     screen.blit(simulatedLabel, (20, 50))
     

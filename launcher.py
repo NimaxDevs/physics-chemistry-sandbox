@@ -822,7 +822,25 @@ def solutionMakerConfigTabLaunchButtonEvent():
     print("solution maker simulation launched")
 
 def molecularLabConfigTabLaunchButtonEvent():
-    print("molecular lab simulation launched")
+    configValues = {
+                        "simulationID": "molecularLab",
+                        "initMolecule": "Glucose (C₆H₁₂O₆)" if molecularLabConfigTabInitMoleculeOptionMenu.get() == "Select Molecule" else molecularLabConfigTabInitMoleculeOptionMenu.get(),
+                        "initHydrogenColor": "Light Blue" if molecularLabConfigTabInitHydrogenColorOptionMenu.get() == "Select Color" else molecularLabConfigTabInitHydrogenColorOptionMenu.get(),
+                        "initCarbonColor": "Black" if molecularLabConfigTabInitCarbonColorOptionMenu.get() == "Select Color" else molecularLabConfigTabInitCarbonColorOptionMenu.get(),
+                        "initOxygenColor": "Red" if molecularLabConfigTabInitOxygenColorOptionMenu.get() == "Select Color" else molecularLabConfigTabInitOxygenColorOptionMenu.get()
+                    }
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+        json.dump(configValues, f)
+                    
+    molecularLabConfigTabLaunchButton.configure(state = "disabled")
+    molecularLabConfigTabLaunchButton.configure(text = "Running...")
+                
+    simulationPath = os.path.join("chemistrySimulations", "molecularLab.py")
+    subprocess.run(["python", simulationPath])
+    molecularLabConfigTabLaunchButton.configure(state = "normal")
+    molecularLabConfigTabLaunchButton.configure(text = "Launch")
+        
+    print("molecular lab launched")
 
 #The configurator (items) events of the simulations go here
 ##The configurator events of the physics simulations go here
@@ -3887,6 +3905,7 @@ def solutionMakerConfigTab(bool):
         pass
 
 def molecularLabConfigTab(bool):
+    global molecularLabConfigTabLaunchButton, molecularLabConfigTabInitMoleculeOptionMenu, molecularLabConfigTabInitHydrogenColorOptionMenu, molecularLabConfigTabInitCarbonColorOptionMenu, molecularLabConfigTabInitOxygenColorOptionMenu
     if bool == True:
         #The frames for each element of the tab go here
         molecularLabConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
@@ -3951,7 +3970,7 @@ def molecularLabConfigTab(bool):
                                                                                        height = 25,
                                                                                        fg_color = "green",
                                                                                        variable = molecularLabConfigTabInitHydrogenColorOptionMenuVar,
-                                                                                       values = ["White", "Light Blue", "Light Gray", "Green"],
+                                                                                       values = ["Light Blue", "Light Gray", "Green"],
                                                                                        command = molecularLabConfigTabInitHydrogenColorOptionMenuEvent)
         molecularLabConfigTabInitHydrogenColorOptionMenu.place(relx = 0.05, rely = 0.5, anchor = tkinter.W)
 
@@ -3969,7 +3988,7 @@ def molecularLabConfigTab(bool):
                                                                                      height = 25,
                                                                                      fg_color = "green",
                                                                                      variable = molecularLabConfigTabInitOxygenColorOptionMenuVar,
-                                                                                     values = ["Red", "Dark Red", "Dark Pink"],
+                                                                                     values = ["Red", "Dark Red", "Pink"],
                                                                                      command = molecularLabConfigTabInitOxygenColorOptionMenuEvent)
         molecularLabConfigTabInitOxygenColorOptionMenu.place(relx = 0.6, rely = 0.23, anchor = tkinter.W)                                          
                                         

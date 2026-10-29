@@ -1,1 +1,1 @@
-{"simulationID": "solutionMaker", "initSolvent": "Hexane (C\u2086H\u2081\u2084)", "initSolventVolume": 796, "initSolute": "Potassium Permanganate (KMnO\u2084)", "initSoluteMass": 1000}
+{"simulationID": "molecularLab", "initMolecule": "Formaldehyde (CH\u2082O)", "initHydrogenColor": "Light Gray", "initCarbonColor": "Black", "initOxygenColor": "Dark Red"}
