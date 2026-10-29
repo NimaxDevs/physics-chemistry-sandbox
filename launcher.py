@@ -716,6 +716,23 @@ def planetOrbitsSimulationConfigTabLaunchButtonEvent():
     print("planet orbits simulation launched")
 
 def gravitySimulationConfigTabLaunchButtonEvent():
+    with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
+        configValues = {
+            "simulationID": "gravitySimulation",
+            "initMass": int(gravitySimulationConfigTabInitMassSlider.get()),
+            "initGravAcc": round(gravitySimulationConfigTabInitGravAccSlider.get(), 1),
+            "initHeight": int(gravitySimulationConfigTabInitHeightSlider.get())
+        }
+        json.dump(configValues, f)
+    gravitySimulationConfigTabLaunchButton.configure(state = "disabled")
+    gravitySimulationConfigTabLaunchButton.configure(text = "Running...")
+        
+    simulationPath = os.path.join("physicsSimulations", "gravitySimulation.py")
+    subprocess.run(["python", simulationPath])
+    gravitySimulationConfigTabLaunchButton.configure(state = "normal")
+    gravitySimulationConfigTabLaunchButton.configure(text = "Launch")
+
+    
     print("gravity simulation launched")    
 
 def refractionSimulationConfigTabLaunchButtonEvent():
@@ -2330,6 +2347,7 @@ def planetOrbitsSimulationConfigTab(bool):
         pass
 
 def gravitySimulationConfigTab(bool):
+    global gravitySimulationConfigTabLaunchButton, gravitySimulationConfigTabInitMassSlider, gravitySimulationConfigTabInitGravAccSlider, gravitySimulationConfigTabInitHeightSlider
     if bool == True:
         #The frames for each element of the tab go here
         gravitySimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,

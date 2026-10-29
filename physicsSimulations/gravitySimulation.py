@@ -1,6 +1,8 @@
 import pygame
 import math
 from sys import exit
+import json
+import os
 
 windowWidth = 1100
 windowHeight = 580
@@ -30,6 +32,19 @@ airRho = 1.225
 dragCoef = 0.5
 position_y = 1
 restitutionCoef = 0.75 #A basket ball
+
+simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
+if os.path.exists(simulationConfigValuesPath):
+    with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
+        values = json.load(f)
+        if values.get("simulationID") == "gravitySimulation":
+            initMass = values.get("initMass", 0.5)
+            g = values.get("initGravAcc", 9.8)
+            initHeight = (values.get("initHeight", 1))
+else:
+    initMass = 100
+    g = 9.8
+    initHeight = 1
 
 t = 0
 dt = 0.01
@@ -65,6 +80,7 @@ while True:
     objectAirDensityLabel = regularFont.render(f"Air Density: {airRho} kg/m³", True, whiteColor)
     dragCoefLabel = regularFont.render(f"Drag Coefficient: {dragCoef}", True, whiteColor)
     restitutionCoefLabel = regularFont.render(f"Restitution Coefficient: {restitutionCoef}", True, whiteColor)
+    gLabel = regularFont.render(f"Gravitational Acceleration: {g} m/s²", True, whiteColor)
 
     screen.blit(upperLabel, (20, 20))
     screen.blit(objectMassLabel, (20, 50))
@@ -75,6 +91,7 @@ while True:
     screen.blit(objectAirDensityLabel, (20, 175))
     screen.blit(dragCoefLabel, (20, 200))
     screen.blit(restitutionCoefLabel, (20, 225))
+    screen.blit(gLabel, (20, 250))
     
     t += dt
 
