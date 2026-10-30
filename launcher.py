@@ -7,6 +7,7 @@ import json
 import os
 import subprocess
 from pygame import mixer
+import time
 
 #The CTk appearance settings go here
 customtkinter.set_appearance_mode("dark")
@@ -21,6 +22,8 @@ mixer.init()
 
 buttonClick = 0
 buttonHover = 0
+lastHoverTime = 0
+hoverCooldown = 0.3
 
 def add_corners(im, rad):
     circle = Image.new('L', (rad * 2, rad * 2), 0)
@@ -63,6 +66,43 @@ def buttonClickSound(variable):
         mixer.Channel(0).play(buttonClickSound5)
         buttonClick = 0
 
+def buttonHoverSound(variable):
+    global buttonHover
+    if variable == 1:
+        buttonHoverSound1 = mixer.Sound("sounds/ui/buttonHovers/buttonHover1.mp3")
+        mixer.Channel(1).play(buttonHoverSound1)
+    if variable == 2:
+        buttonHoverSound2 = mixer.Sound("sounds/ui/buttonHovers/buttonHover2.mp3")
+        mixer.Channel(1).play(buttonHoverSound2)
+    if variable == 3:
+        buttonHoverSound1 = mixer.Sound("sounds/ui/buttonHovers/buttonHover1.mp3")
+        mixer.Channel(1).play(buttonHoverSound1)
+    if variable == 4:
+        buttonHoverSound2 = mixer.Sound("sounds/ui/buttonHovers/buttonHover2.mp3")
+        mixer.Channel(1).play(buttonHoverSound2)
+    if variable == 5:
+        buttonHoverSound3 = mixer.Sound("sounds/ui/buttonHovers/buttonHover3.mp3")
+        mixer.Channel(1).play(buttonHoverSound3)
+    if variable == 6:
+        buttonHoverSound4 = mixer.Sound("sounds/ui/buttonHovers/buttonHover4.mp3")
+        mixer.Channel(1).play(buttonHoverSound4)
+    if variable == 7:
+        buttonHoverSound5 = mixer.Sound("sounds/ui/buttonHovers/buttonHover5.mp3")
+        mixer.Channel(1).play(buttonHoverSound5)
+    if variable == 8:
+        buttonHoverSound6 = mixer.Sound("sounds/ui/buttonHovers/buttonHover6.mp3")
+        mixer.Channel(1).play(buttonHoverSound6)
+        buttonHover = 0
+
+def onButtonHover(value):
+    global buttonHover, lastHoverTime
+    currentTime = time.time()
+    if currentTime - lastHoverTime < hoverCooldown:
+        return
+
+    lastHoverTime = currentTime
+    buttonHover += 1
+    buttonHoverSound(buttonHover)
 
 placeholderImage = customtkinter.CTkImage(light_image = Image.open("images/placeholders/atom_image.png"),
                                           dark_image = Image.open("images/placeholders/atom_image.png"),
@@ -426,8 +466,9 @@ def creditsButtonEvent():
     creditsTab(creditsTabSelected)
 
 def quitLauncherButtonEvent():
-    print("Launcher quit")
-    app.quit()
+    launcherQuit = mixer.Sound("sounds/ui/buttonClicks/launcherQuit.mp3")
+    mixer.Channel(2).play(launcherQuit)
+    quitLauncherButton.after(900, app.quit())
 
 #The buttons to configure the physics simulations are here
 def projectileSimulationConfigButtonEvent():
@@ -738,116 +779,20 @@ def molecularLabConfigButtonEvent():
     molecularLabConfigTab(molecularLabConfigTabSelected)
 
 def reactionLabConfigButtonEvent():
-    global buttonClick
-    buttonClick += 1
-    buttonClickSound(buttonClick)
-    reactionLabConfigTabSelected = True
-    projectileSimulationConfigTabSelected = False
-    pendulumSimulationConfigTabSelected = False
-    springSimulationConfigTabSelected = False
-    planetOrbitsSimulationConfigTabSelected = False
-    gravitySimulationConfigTabSelected = False
-    refractionSimulationConfigTabSelected = False
-    fluidSimulationConfigTabSelected = False
-    temperatureSimulationConfigTabSelected = False
-    bohrAtomSimulationConfigTabSelected = False
-    solutionMakerConfigTabSelected = False
-    molecularLabConfigTabSelected = False
-    combustionSimulationConfigTabSelected = False
-    smokeSimulationConfigTabSelected = False
-    atomCollisionSimulationTabSelected = False
-    physicsTabSelected = False
-    chemistryTabSelected = False
-    thePlaceTabSelected = False
-    launcherSettingsSelected = False
-    creditsTabSelected = False
-    for child in mainFrame.winfo_children():
-        child.destroy()
-    reactionLabConfigTab(reactionLabConfigTabSelected)
+    errorSound = mixer.Sound("sounds/ui/buttonClicks/launcherQuit.mp3")
+    mixer.Channel(2).play(errorSound)
 
 def combustionSimulationConfigButtonEvent():
-    global buttonClick
-    buttonClick += 1
-    buttonClickSound(buttonClick)
-    combustionSimulationConfigTabSelected = True
-    projectileSimulationConfigTabSelected = False
-    pendulumSimulationConfigTabSelected = False
-    springSimulationConfigTabSelected = False
-    planetOrbitsSimulationConfigTabSelected = False
-    gravitySimulationConfigTabSelected = False
-    refractionSimulationConfigTabSelected = False
-    fluidSimulationConfigTabSelected = False
-    temperatureSimulationConfigTabSelected = False
-    bohrAtomSimulationConfigTabSelected = False
-    solutionMakerConfigTabSelected = False
-    molecularLabConfigTabSelected = False
-    reactionLabConfigTabSelected = False
-    smokeSimulationConfigTabSelected = False
-    atomCollisionSimulationTabSelected = False
-    physicsTabSelected = False
-    chemistryTabSelected = False
-    thePlaceTabSelected = False
-    launcherSettingsSelected = False
-    creditsTabSelected = False
-    for child in mainFrame.winfo_children():
-        child.destroy()
-    combustionSimulationConfigTab(combustionSimulationConfigTabSelected)
+    errorSound = mixer.Sound("sounds/ui/buttonClicks/launcherQuit.mp3")
+    mixer.Channel(2).play(errorSound)
 
 def smokeSimulationConfigButtonEvent():
-    global buttonClick
-    buttonClick += 1
-    buttonClickSound(buttonClick)
-    smokeSimulationConfigTabSelected = True
-    projectileSimulationConfigTabSelected = False
-    pendulumSimulationConfigTabSelected = False
-    springSimulationConfigTabSelected = False
-    planetOrbitsSimulationConfigTabSelected = False
-    gravitySimulationConfigTabSelected = False
-    refractionSimulationConfigTabSelected = False
-    fluidSimulationConfigTabSelected = False
-    temperatureSimulationConfigTabSelected = False
-    bohrAtomSimulationConfigTabSelected = False
-    solutionMakerConfigTabSelected = False
-    molecularLabConfigTabSelected = False
-    reactionLabConfigTabSelected = False
-    combustionSimulationConfigTabSelected = False
-    atomCollisionSimulationTabSelected = False
-    physicsTabSelected = False
-    chemistryTabSelected = False
-    thePlaceTabSelected = False
-    launcherSettingsSelected = False
-    creditsTabSelected = False
-    for child in mainFrame.winfo_children():
-        child.destroy()   
-    smokeSimulationConfigTab(smokeSimulationConfigTabSelected)
+    errorSound = mixer.Sound("sounds/ui/buttonClicks/launcherQuit.mp3")
+    mixer.Channel(2).play(errorSound)
 
 def atomCollisionSimulationConfigButtonEvent():
-    global buttonClick
-    buttonClick += 1
-    buttonClickSound(buttonClick)
-    atomCollisionSimulationTabSelected = True
-    projectileSimulationConfigTabSelected = False
-    pendulumSimulationConfigTabSelected = False
-    springSimulationConfigTabSelected = False
-    planetOrbitsSimulationConfigTabSelected = False
-    gravitySimulationConfigTabSelected = False
-    refractionSimulationConfigTabSelected = False
-    fluidSimulationConfigTabSelected = False
-    temperatureSimulationConfigTabSelected = False
-    bohrAtomSimulationConfigTabSelected = False
-    solutionMakerConfigTabSelected = False
-    molecularLabConfigTabSelected = False
-    reactionLabConfigTabSelected = False
-    combustionSimulationConfigTabSelected = False
-    smokeSimulationConfigTabSelected = False
-    physicsTabSelected = False
-    chemistryTabSelected = False
-    thePlaceTabSelected = False
-    launcherSettingsSelected = False
-    creditsTabSelected = False
-    for child in mainFrame.winfo_children():
-        child.destroy()
-    atomCollisionSimulationTab(atomCollisionSimulationTabSelected)   
+    errorSound = mixer.Sound("sounds/ui/buttonClicks/launcherQuit.mp3")
+    mixer.Channel(2).play(errorSound)
 
 #The buttons to launch the simulations go here
 ##The buttons of the physics simulations go here
@@ -989,7 +934,8 @@ def refractionSimulationConfigTabLaunchButtonEvent():
     print("refraction simulation launched")
 
 def fluidSimulationConfigTabLaunchButtonEvent():
-    print("fluid simulation launched")
+    errorSound = mixer.Sound("sounds/ui/buttonClicks/launcherQuit.mp3")
+    mixer.Channel(2).play(errorSound)
 
 def temperatureSimulationConfigTabLaunchButtonEvent():
     global buttonClick
@@ -1368,6 +1314,7 @@ def launcherSettingsApplyButtonEvent():
 
 #The tab functions go here
 def physicsTab(bool):
+    global projectileSimulationConfigButton, pendulumSimulationConfigButton, springSimulationConfigButton, planetOrbitsSimulationConfigButton, gravitySimulationConfigButton, refractionSimulationConfigButton, fluidSimulationConfigButton, temperatureSimulationConfigButton
     if bool == True:
         #The frames for the simulations are here
         projectileSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
@@ -1636,8 +1583,18 @@ def physicsTab(bool):
                                                                        text = "Simulates the increase\nor decrease of entropy when\napplying heat or cold.",
                                                                        font = customtkinter.CTkFont(size = 12, weight = "normal"))
         temperatureSimulationDescriptionLabel.place(relx = 0.05, rely = 0.68, anchor = tkinter.W)
+
+        projectileSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        pendulumSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        springSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        planetOrbitsSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        gravitySimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        refractionSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        fluidSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        temperatureSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
         
 def chemistryTab(bool):
+    global bohrAtomSimulationConfigButton, solutionMakerConfigButton, molecularLabConfigButton, reactionLabConfigButton, combustionSimulationConfigButton, smokeSimulationConfigButton, atomCollisionSimulationConfigButton
     if bool == True:
         #The frames for the simulations are here
         bohrAtomSimulationFrame = customtkinter.CTkFrame(master = mainFrame,
@@ -1873,6 +1830,14 @@ def chemistryTab(bool):
                                                                          text = "Simulates different kinds of atoms\nof the periodic table colliding\ninto each other.",
                                                                          font = customtkinter.CTkFont(size = 12, weight = "normal"))
         atomCollisionSimulationDescriptionLabel.place(relx = 0.06, rely = 0.68, anchor = tkinter.W)
+
+        bohrAtomSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        solutionMakerConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        molecularLabConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        reactionLabConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        combustionSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        smokeSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
+        atomCollisionSimulationConfigButton.bind("<Enter>", onButtonHover, add = "+")
 
 def thePlaceTab(bool):
     if bool == True:
@@ -2292,6 +2257,26 @@ def creditsTab(bool):
                                                       font = customtkinter.CTkFont(size = 20, weight = "normal"))
         thanksLabel.pack(padx = 25, pady = (0, 50))
 
+    ctkThemesGithubRepoButton.bind("<Enter>", onButtonHover, add = "+")
+    projectileSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    pendulumSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    springSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    planetOrbitsSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    gravitySimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    refractionSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    fluidSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    temperatureSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    bohrAtomSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")  
+    solutionMakerThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    molecularLabThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    reactionLabThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    combustionSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    smokeSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    atomsCollisionSimulationThumbnailButton.bind("<Enter>", onButtonHover, add = "+")
+    ctkPageButton.bind("<Enter>", onButtonHover, add = "+")
+    tkinterPageButton.bind("<Enter>", onButtonHover, add = "+")
+    pillowPageButton.bind("<Enter>", onButtonHover, add = "+")
+    pygamePageButton.bind("<Enter>", onButtonHover, add = "+")  
 
 #The sub tabs of the physics tab (physics simulations) are here
 def projectileSimulationConfigTab(bool):
@@ -2514,7 +2499,9 @@ def projectileSimulationConfigTab(bool):
                                                                                                    justify = LEFT,
                                                                                                    textvariable = projectileSimulationConfigTabInitDragCoefSliderValueVar,
                                                                                                    font = customtkinter.CTkFont(size = 18, weight = "normal"))
-                
+
+    projectileSimulationConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")
+
 def pendulumSimulationConfigTab(bool):
     global pendulumSimulationConfigTabLaunchButton, pendulumSimulationConfigTabInitAngleSlider, pendulumSimulationConfigTabInitAngularVelSlider, pendulumSimulationConfigTabInitLengthSlider, pendulumSimulationConfigTabInitMassSlider, pendulumSimulationConfigTabInitGravAccSlider, pendulumSimulationConfigTabInitDampingCoefSlider
     if bool == True:
@@ -2721,6 +2708,8 @@ def pendulumSimulationConfigTab(bool):
                                                                                             font = customtkinter.CTkFont(size = 18, weight = "normal"))
         pendulumSimulationConfigTabInitDampingCoefSliderValueLabel.place(relx = 0.89, rely = 0.3, anchor = tkinter.W)
 
+    pendulumSimulationConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")
+
 def springSimulationConfigTab(bool):
     global springSimulationConfigTabLaunchButton, springSimulationConfigTabInitMassSlider, springSimulationConfigTabInitGravAccSlider, springSimulationConfigTabInitLengthSlider, springSimulationConfigTabInitStiffSlider, springSimulationConfigTabInitDampingCoefSlider
     if bool == True:
@@ -2906,6 +2895,8 @@ def springSimulationConfigTab(bool):
                                                                                           textvariable = springSimulationConfigTabInitDampingCoefSliderValueVar,
                                                                                           font = customtkinter.CTkFont(size = 18, weight = "normal"))
         springSimulationConfigTabInitDampingCoefSliderValueLabel.place(relx = 0.91, rely = 0.11, anchor = tkinter.W)
+
+    springSimulationConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")
         
 def planetOrbitsSimulationConfigTab(bool):
     global planetConfigValuesList, planetOrbitsSimulationConfigTabLaunchButton, planetOrbitsSimulationConfigTabPlanetNameEntry, planetOrbitsSimulationConfigTabPlanetColorEntry, planetOrbitsSimulationConfigTabPlanetMassEntry, planetOrbitsSimulationConfigTabPlanetRadiusEntry, planetOrbitsSimulationConfigTabPlanetInitialVxSlider, planetOrbitsSimulationConfigTabPlanetInitialVySlider, planetOrbitsSimulationConfigTabPlanetInitialAxSlider, planetOrbitsSimulationConfigTabPlanetInitialAySlider, planetOrbitsSimulationConfigTabShowOrbitTrailSwitch, planetOrbitsSimulationConfigTabShowPlanetNameSwitch
@@ -3206,8 +3197,9 @@ def planetOrbitsSimulationConfigTab(bool):
                                                                                                 font = customtkinter.CTkFont(size = 16, weight = "normal"))
         planetOrbitsSimulationConfigTabPlanetInitialAySliderValueLabel.place(relx = 0.9, rely = 0.48, anchor = tkinter.W)
         
-        print("the planet orbits config tab works")
-        pass
+    planetOrbitsSimulationConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")
+    planetOrbitsSimulationConfigTabAddPlanetButton.bind("<Enter>", onButtonHover, add = "+")
+    planetOrbitsSimulationConfigTabResetPlanetListButton.bind("<Enter>", onButtonHover, add = "+")
 
 def gravitySimulationConfigTab(bool):
     global gravitySimulationConfigTabLaunchButton, gravitySimulationConfigTabInitMassSlider, gravitySimulationConfigTabInitGravAccSlider, gravitySimulationConfigTabInitHeightSlider
@@ -3352,9 +3344,8 @@ def gravitySimulationConfigTab(bool):
                                                                                       font = customtkinter.CTkFont(size = 18, weight = "normal"))
         gravitySimulationConfigTabInitHeightSliderValueLabel.place(relx = 0.31, rely = 0.66, anchor = tkinter.W)
 
-        print("the gravity config tab works")
-        pass
-
+    gravitySimulationConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")
+        
 def refractionSimulationConfigTab(bool):
     global refractionSimulationConfigTabLaunchButton, refractionSimulationConfigInitRefractiveIndex1OptionMenu, refractionSimulationConfigInitRefractiveIndex2OptionMenu, refractionSimulationConfigTabInitIncidenceAngleSlider, refractionSimulationConfigTabRayColorOptionMenu, refractionSimulationConfigInitRefractiveIndex1CustomEntry, refractionSimulationConfigInitRefractiveIndex2CustomEntry
     if bool == True:
@@ -3524,9 +3515,8 @@ def refractionSimulationConfigTab(bool):
                                                                                  font = customtkinter.CTkFont(size = 18, weight = "normal"))
         refractionSimulationConfigTabRayColorTitleLabel.place(relx = 0.7, rely = 0.11, anchor = tkinter.W)
         
-        print("the refraction config tab works")
-        pass
-
+    refractionSimulationConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")
+        
 def fluidSimulationConfigTab(bool):
     if bool == True:
         def fluidSimulationConfigInitDensityOptionMenuEvent(value):
@@ -3726,9 +3716,8 @@ def fluidSimulationConfigTab(bool):
                                                                              font = customtkinter.CTkFont(size = 18, weight = "normal"))
         fluidSimulationConfigTabInitColorTitleLabel.place(relx = 0.6, rely = 0.38, anchor = tkinter.W)
 
-        print("the fluid config tab works")
-        pass
-
+    fluidSimulationConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")
+        
 def temperatureSimulationConfigTab(bool):
     global temperatureSimulationConfigTabLaunchButton, temperatureSimulationConfigTabInitParticleNumberSlider, temperatureSimulationConfigTabInitParticleDiameterSlider, temperatureSimulationConfigTabInitTempSlider
     if bool == True:
@@ -3871,8 +3860,7 @@ def temperatureSimulationConfigTab(bool):
                                                                                         font = customtkinter.CTkFont(size = 18, weight = "normal"))
         temperatureSimulationConfigTabInitTempSliderValueLabel.place(relx = 0.41, rely = 0.66, anchor = tkinter.W)
 
-        print("the temperature config tab works")
-        pass
+    temperatureSimulationConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")
 
 #The sub tabs of the chemistry tab (chemistry simulations) are here
 def bohrAtomSimulationConfigTab(bool):
@@ -4082,7 +4070,7 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabAtomSelectionIndex = 7
-                print("O atom selected")
+                print("O atom selected")  
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
@@ -4108,7 +4096,7 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabPButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabSButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabAtomSelectionIndex = 8
-                print("F atom selected")
+                print("F atom selected") 
             if bohrAtomSimulationConfigTabAtomSelected == False:
                 bohrAtomSimulationConfigTabAtomSelected = True
 
@@ -4292,7 +4280,7 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelectionIndex = 15
                 print("S atom selected")
             if bohrAtomSimulationConfigTabAtomSelected == False:
-                bohrAtomSimulationConfigTabAtomSelected = True    
+                bohrAtomSimulationConfigTabAtomSelected = True  
         
         #The frames for each element of the tab go here
         bohrAtomSimulationConfigTabImageFrame = customtkinter.CTkFrame(master = mainFrame,
@@ -4550,9 +4538,8 @@ def bohrAtomSimulationConfigTab(bool):
                                                                                       text = 'Select the element of the periodic table\nthat you want to include then press on\n"Launch" to start the simulation.',
                                                                                       font = customtkinter.CTkFont(size = 16, weight = "normal"))
         bohrAtomSimulationConfigTabInstructionsLabel.place(relx = 0.01, rely = 0.83, anchor = tkinter.W)
-        
-        print("the Bohr atom config tab works")
-        pass
+
+    bohrAtomSimulationConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")  
 
 def solutionMakerConfigTab(bool):
     global solutionMakerConfigTabLaunchButton, solutionMakerConfigTabInitSolventOptionMenu, solutionMakerConfigTabInitSolventVolSlider, solutionMakerConfigTabInitSoluteOptionMenu, solutionMakerConfigTabInitSoluteMassSlider
@@ -4708,8 +4695,7 @@ def solutionMakerConfigTab(bool):
                                                                                       font = customtkinter.CTkFont(size = 18, weight = "normal"))
         solutionMakerConfigTabInitSoluteMassSliderValueLabel.place(relx = 0.38, rely = 0.8, anchor = tkinter.W)
 
-        print("the solution maker config tab works")
-        pass
+    solutionMakerConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")    
 
 def molecularLabConfigTab(bool):
     global molecularLabConfigTabLaunchButton, molecularLabConfigTabInitMoleculeOptionMenu, molecularLabConfigTabInitHydrogenColorOptionMenu, molecularLabConfigTabInitCarbonColorOptionMenu, molecularLabConfigTabInitOxygenColorOptionMenu
@@ -4854,8 +4840,7 @@ def molecularLabConfigTab(bool):
                                                                                 font = customtkinter.CTkFont(size = 18, weight = "normal"))
         molecularLabConfigTabInitOxygenColorTitleLabel.place(relx = 0.6, rely = 0.11, anchor = tkinter.W)
 
-        print("the molecular lab config tab works")
-        pass
+    molecularLabConfigTabLaunchButton.bind("<Enter>", onButtonHover, add = "+")   
 
 def reactionLabConfigTab(bool):
     if bool == True:
@@ -4905,7 +4890,6 @@ def reactionLabConfigTab(bool):
                                                         
                                                 
         #The labels of the config tab go here
-        
         
         print("the reaction lab config tab works")
         pass
@@ -5166,6 +5150,14 @@ quitLauncherButton = customtkinter.CTkButton(master = optionsFrame,
                                              border_width = 1,
                                              command = quitLauncherButtonEvent)
 quitLauncherButton.place(relx = 0.5, rely = 0.9, anchor = tkinter.CENTER)
+
+physicsSelectorButton.bind("<Enter>", onButtonHover, add = "+")
+chemistrySelectorButton.bind("<Enter>", onButtonHover, add = "+")
+thePlaceSelectorButton.bind("<Enter>", onButtonHover, add = "+")
+launcherSettingsButton.bind("<Enter>", onButtonHover, add = "+")
+gitHubButton.bind("<Enter>", onButtonHover, add = "+")
+creditsButton.bind("<Enter>", onButtonHover, add = "+")
+quitLauncherButton.bind("<Enter>", onButtonHover, add = "+")
 
 #The main loop is ran here
 app.mainloop()

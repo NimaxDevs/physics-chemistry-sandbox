@@ -1,1 +1,1 @@
-{"simulationID": "molecularLab", "initMolecule": "Acetone (C\u2083H\u2086O)", "initHydrogenColor": "Green", "initCarbonColor": "Dark Blue", "initOxygenColor": "Pink"}
+{"simulationID": "projectileSimulation", "initVelocity": 50, "initAngle": 45, "initGravAcc": 10.0, "initMass": 2500, "initDiameter": 3, "dragCoef": 0.5}
