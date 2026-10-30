@@ -10,7 +10,7 @@ from pygame import mixer
 import time
 
 #The CTk appearance settings go here
-customtkinter.set_appearance_mode("dark")
+customtkinter.set_appearance_mode("light")
 customtkinter.set_default_color_theme("themes/rime.json")
 
 #The CTk settings go here
@@ -5069,27 +5069,28 @@ mainFrame.place(relx = 0.59, rely = 0.5, anchor = tkinter.CENTER)
 #The labels go here
 titleLabel = customtkinter.CTkLabel(master = optionsFrame,
                                     text = "Physics & Chemistry\nSandbox Launcher",
-                                    font = customtkinter.CTkFont(size = 18, weight = "bold"))
+                                    font = customtkinter.CTkFont(family = "Segoe UI", size = 18, weight = "bold"))
 titleLabel.place(relx = 0.5, rely = 0.1, anchor = tkinter.CENTER)
 
 welcomeLabel = customtkinter.CTkLabel(master = mainFrame,
                                       text = "Welcome to the Physics & Chemistry\nSandbox Launcher!",
-                                      font = customtkinter.CTkFont(size = 20, weight = "bold"))
+                                      font = customtkinter.CTkFont(family = "Segoe UI", size = 20, weight = "bold"))
 welcomeLabel.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
 welcomeSubLabel = customtkinter.CTkLabel(master = mainFrame,
                                          text = "Select one of the tabs on the left to start.",
-                                         font = customtkinter.CTkFont(size = 15, weight = "normal"))
+                                         font = customtkinter.CTkFont(family = "Segoe UI", size = 15, weight = "normal"))
 welcomeSubLabel.place(relx = 0.5, rely = 0.59, anchor = tkinter.CENTER)
 
 postDataLabel = customtkinter.CTkLabel(master = mainFrame,
                                        text = "The name of the app is just a placeholder. I'll find a good one.",
-                                       font = customtkinter.CTkFont(size = 10, weight = "normal"))
+                                       font = customtkinter.CTkFont(family = "Segoe UI", size = 10, weight = "normal"))
 postDataLabel.place(relx = 0.5, rely = 0.95, anchor = tkinter.CENTER)
 
 #The buttons go here
 physicsSelectorButton = customtkinter.CTkButton(master = optionsFrame,
                                                 text = "Physics Tab",
+                                                font = customtkinter.CTkFont(family = "Segoe UI"), 
                                                 width = 130,
                                                 height = 25,
                                                 corner_radius = 5,
