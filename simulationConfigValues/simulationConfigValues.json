@@ -1,1 +1,1 @@
-{"simulationID": "molecularLab", "initMolecule": "Glucose (C\u2086H\u2081\u2082O\u2086)", "initHydrogenColor": "Green", "initCarbonColor": "Dark Green", "initOxygenColor": "Red"}
+{"simulationID": "gravitySimulation", "initMass": 500, "initGravAcc": 10.0, "initHeight": 5}

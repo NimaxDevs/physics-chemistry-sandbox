@@ -4,12 +4,24 @@ from sys import exit
 import json
 import os
 
+frameRate = 60
+vsyncActivated = 0
+flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
-frameRate = 60
+
+launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
+if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
+    with open("launcherSettings/launcherSettings.json", "r") as f:
+        launcherSettings = json.load(f)
+        frameRate = launcherSettings.get("fpsCap")
+        vsyncActivated = launcherSettings.get("vsyncActivated")
+else:
+    frameRate = 60
+    vsyncActivated = 0
 
 pygame.init()
-screen = pygame.display.set_mode((windowWidth, windowHeight))
+screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Molecular Lab")
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -47,7 +59,7 @@ lewisDoubleConnexionLineThickness = 15
 selectedMolecule = "Glucose (C₆H₁₂O₆)"
 
 simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
-if os.path.exists(simulationConfigValuesPath):
+if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConfigValuesPath) > 0:
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
         values = json.load(f)
         if values.get("simulationID") == "molecularLab":
@@ -81,6 +93,11 @@ if os.path.exists(simulationConfigValuesPath):
                 oxygenAtomColor = pinkColor
             else:
                 oxygenAtomColor = redColor
+        else:
+            selectedMolecule = "Glucose (C₆H₁₂O₆)"
+            hydrogenAtomColor = lightBlueColor
+            carbonAtomColor = blackColor
+            oxygenAtomColor = redColor
 else:
     selectedMolecule = "Glucose (C₆H₁₂O₆)"
     hydrogenAtomColor = lightBlueColor
@@ -439,8 +456,11 @@ while True:
 
     upperLabel = titleFont.render("Molecular Lab", True, whiteColor)
     simulatedLabel = regularFont.render(f"Molecule: {moleculeScreenName}", True, whiteColor)
+    fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
+
     screen.blit(upperLabel, (20, 20))
     screen.blit(simulatedLabel, (20, 50))
+    screen.blit(fpsLabel, (1040, 20))
     
     pygame.display.update()
     clock.tick(frameRate)

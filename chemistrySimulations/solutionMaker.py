@@ -5,12 +5,24 @@ from sys import exit
 import json
 import os
 
+frameRate = 60
+vsyncActivated = 0
+flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
-frameRate = 60
+
+launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
+if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
+    with open("launcherSettings/launcherSettings.json", "r") as f:
+        launcherSettings = json.load(f)
+        frameRate = launcherSettings.get("fpsCap")
+        vsyncActivated = launcherSettings.get("vsyncActivated")
+else:
+    frameRate = 60
+    vsyncActivated = 0
 
 pygame.init()
-screen = pygame.display.set_mode((windowWidth, windowHeight))
+screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Solution Maker")
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -52,7 +64,7 @@ molarConcentration = (soluteMass / solutes[simulatedSoluteIndex][2]) / (solventV
 simulatedSolventColorFactor = massConcentration * 0.01
 
 simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
-if os.path.exists(simulationConfigValuesPath):
+if os.path.exists(simulationConfigValuesPath) and os.path.getsize(launcherSettingsPath) > 0:
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
         values = json.load(f)
         if values.get("simulationID") == "solutionMaker":
@@ -91,10 +103,16 @@ if os.path.exists(simulationConfigValuesPath):
                 molarMass = solutes[0][2]
             
             soluteMass = values.get("initSoluteMass", 550)
+        else:
+            simulatedSolvent = solvents[0][0]
+            solventVolume = 1000
+            simulatedSolute = solutes[0][0]
+            soluteMass = 1000
+            molarMass = solutes[0][2]
 else:
-    simulatedSolvent = solvents[simulatedSolventIndex][0]
+    simulatedSolvent = solvents[0][0]
     solventVolume = 1000
-    simulatedSolute = solutes[simulatedSoluteIndex][0]
+    simulatedSolute = solutes[0][0]
     soluteMass = 1000
     molarMass = solutes[0][2]
 
@@ -228,6 +246,7 @@ while True:
     solutionMassConcentrationLabel = regularFont.render(f"Solution Mass Concentration: {massConcentration:.1f} g/mL", True, whiteColor)
     solutionMolarConcentrationLabel = regularFont.render(f"Solution Molar Concentration: {molarConcentration:.1f} mol/L", True, whiteColor)
     solubilityLabel = regularFont.render(f"Soluble: {isSoluble}", True, whiteColor)
+    fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
 
     screen.blit(upperLabel, (20, 20))
     screen.blit(soluteLabel, (20, 50))
@@ -237,6 +256,7 @@ while True:
     screen.blit(solutionMassConcentrationLabel, (20, 150))
     screen.blit(solutionMolarConcentrationLabel, (20, 175))
     screen.blit(solubilityLabel, (20, 200))
+    screen.blit(fpsLabel, (1040, 20))
 
     t += dt
     

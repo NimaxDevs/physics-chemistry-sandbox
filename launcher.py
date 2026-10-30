@@ -238,6 +238,10 @@ molecularLabConfigTabInitHydrogenColorOptionMenuVar = tkinter.StringVar(value = 
 molecularLabConfigTabInitCarbonColorOptionMenuVar = tkinter.StringVar(value = "Select Color")
 molecularLabConfigTabInitOxygenColorOptionMenuVar = tkinter.StringVar(value = "Select Color")
 
+###The variables of the Launcher Settings tab go here
+launcherSettingsFPSCapOptionMenuVar = tkinter.StringVar(value = "60")
+launcherSettingsVSyncSwitchEventVar = tkinter.StringVar(value = "0")
+
 #The button events (functions) go here
 def physicsSelectorButtonEvent():
     physicsTabSelected = True
@@ -1095,6 +1099,21 @@ def molecularLabConfigTabInitCarbonColorOptionMenuEvent(value):
 def molecularLabConfigTabInitOxygenColorOptionMenuEvent(value):
     pass
 
+
+def launcherSettingsFPSCapOptionMenuEvent(value):
+    pass
+
+def launcherSettingsVSyncSwitchEvent():
+    pass
+
+def launcherSettingsApplyButtonEvent():
+    launcherSettings = {
+            "fpsCap": int(launcherSettingsFPSCapOptionMenu.get()),
+            "vsyncActivated": int(launcherSettingsVSyncSwitch.get()),
+        }
+    with open("launcherSettings/launcherSettings.json", "w") as f:
+        json.dump(launcherSettings, f)
+
 #The tab functions go here
 def physicsTab(bool):
     if bool == True:
@@ -1618,11 +1637,58 @@ def thePlaceTab(bool):
         thePlacePlaceholderLabel.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
 
 def launcherSettingsTab(bool):
+    global launcherSettingsFPSCapOptionMenu, launcherSettingsVSyncSwitch
     print("The launcher settings are in this tab")
-    launcherSettingsPlaceholderLabel = customtkinter.CTkLabel(master = mainFrame,
-                                          text = "Launcher Settings\n(the settings are OBVIOUSLY here but you just can't see them...)",
-                                          font = customtkinter.CTkFont(size = 20, weight = "bold"))
-    launcherSettingsPlaceholderLabel.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
+    launcherSettingsPerformanceSettingsLabel = customtkinter.CTkLabel(master = mainFrame,
+                                          text = "Performance Settings",
+                                          justify = LEFT,
+                                          font = customtkinter.CTkFont(size = 30, weight = "bold"))
+    launcherSettingsPerformanceSettingsLabel.place(relx = 0.02, rely = 0.05, anchor = tkinter.W)
+
+    launcherSettingsFPSCapLabel = customtkinter.CTkLabel(master = mainFrame,
+                                              text = "Maximum FPS",
+                                              justify = LEFT,
+                                              font = customtkinter.CTkFont(size = 20, weight = "normal"))
+    launcherSettingsFPSCapLabel.place(relx = 0.02, rely = 0.15, anchor = tkinter.W)
+
+    launcherSettingsFPSCapDescriptionLabel = customtkinter.CTkLabel(master = mainFrame,
+                                                  text = "Limits the maximum frame rate of the simulations.",
+                                                  justify = LEFT,
+                                                  font = customtkinter.CTkFont(size = 12, weight = "normal"))
+    launcherSettingsFPSCapDescriptionLabel.place(relx = 0.02, rely = 0.19, anchor = tkinter.W)
+
+    launcherSettingsVSyncDescriptionLabel = customtkinter.CTkLabel(master = mainFrame,
+                                                      text = "Activates or deactivates vertical sync (screen tearing).\nRecommended for powerful PCs using low refresh rate screens.",
+                                                      justify = LEFT,
+                                                      font = customtkinter.CTkFont(size = 12, weight = "normal"))
+    launcherSettingsVSyncDescriptionLabel.place(relx = 0.02, rely = 0.37, anchor = tkinter.W)
+
+    launcherSettingsFPSCapOptionMenu = customtkinter.CTkOptionMenu(master = mainFrame,
+                                                                   width = 150,
+                                                                   height = 25,
+                                                                   variable = launcherSettingsFPSCapOptionMenuVar,
+                                                                   values = ["30", "60", "120", "144", "180", "200", "240", "300"],
+                                                                   command = launcherSettingsFPSCapOptionMenuEvent)
+    launcherSettingsFPSCapOptionMenu.place(relx = 0.02, rely = 0.23, anchor = tkinter.W)
+
+    launcherSettingsVSyncSwitch = customtkinter.CTkSwitch(master = mainFrame,
+                                                          text = "V-Sync Activation",
+                                                          font = customtkinter.CTkFont(size = 18, weight = "normal"),
+                                                          variable = launcherSettingsVSyncSwitchEventVar,
+                                                          onvalue = "1",
+                                                          offvalue = "0",
+                                                          command = launcherSettingsVSyncSwitchEvent)
+    launcherSettingsVSyncSwitch.place(relx = 0.02, rely = 0.32, anchor = tkinter.W)
+
+    launcherSettingsApplyButton = customtkinter.CTkButton(master = mainFrame,
+                                                          text = "Apply Settings",
+                                                          width = 885,
+                                                          height = 50,
+                                                          border_width = 1,
+                                                          corner_radius = 5,
+                                                          command = launcherSettingsApplyButtonEvent)
+    launcherSettingsApplyButton.place(relx = 0.01, rely = 0.94, anchor = tkinter.W)
+
     pass
 
 def creditsTab(bool):

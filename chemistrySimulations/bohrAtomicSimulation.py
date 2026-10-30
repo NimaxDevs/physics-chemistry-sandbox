@@ -5,12 +5,24 @@ from sys import exit
 import json
 import os
 
+frameRate = 60
+vsyncActivated = 0
+flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
-frameRate = 60
+
+launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
+if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
+    with open("launcherSettings/launcherSettings.json", "r") as f:
+        launcherSettings = json.load(f)
+        frameRate = launcherSettings.get("fpsCap")
+        vsyncActivated = launcherSettings.get("vsyncActivated")
+else:
+    frameRate = 60
+    vsyncActivated = 0
 
 pygame.init()
-screen = pygame.display.set_mode((windowWidth, windowHeight))
+screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Bohr Atomic Representation")
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -61,6 +73,11 @@ if os.path.exists(simulationConfigValuesPath):
         values = json.load(f)
         if values.get("simulationID") == "bohrAtomSimulation":
             atomSelectionIndex = values.get("atomSelectionIndex")
+            massNumber = atoms[atomSelectionIndex][1]
+            protonNumber = atoms[atomSelectionIndex][2]
+            neutronNumber = massNumber - protonNumber
+        else:
+            atomSelectionIndex = 0
             massNumber = atoms[atomSelectionIndex][1]
             protonNumber = atoms[atomSelectionIndex][2]
             neutronNumber = massNumber - protonNumber
@@ -222,6 +239,7 @@ while True:
     protonNumberLabel = regularFont.render(f"Proton Number: {protonNumber}", True, whiteColor)
     neutronNumberLabel = regularFont.render(f"Neutron Number: {neutronNumber}", True, whiteColor)
     electronNumberLabel = regularFont.render(f"Electron Number: {protonNumber}", True, whiteColor)
+    fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
 
     screen.blit(upperLabel, (20, 20))
     screen.blit(atomLabel, (20, 50))
@@ -229,6 +247,7 @@ while True:
     screen.blit(protonNumberLabel, (20, 100))
     screen.blit(neutronNumberLabel, (20, 125))
     screen.blit(electronNumberLabel, (20, 150))
+    screen.blit(fpsLabel, (1040, 20))
     
     pygame.display.update()
     clock.tick(frameRate)

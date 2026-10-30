@@ -4,12 +4,24 @@ from sys import exit
 import json
 import os
 
+frameRate = 60
+vsyncActivated = 0
+flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
-frameRate = 60
+
+launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
+if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
+    with open("launcherSettings/launcherSettings.json", "r") as f:
+        launcherSettings = json.load(f)
+        frameRate = launcherSettings.get("fpsCap")
+        vsyncActivated = launcherSettings.get("vsyncActivated")
+else:
+    frameRate = 60
+    vsyncActivated = 0
 
 pygame.init()
-screen = pygame.display.set_mode((windowWidth, windowHeight))
+screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Refraction Simulation (Snell-Descartes Law)")
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -37,7 +49,6 @@ if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConf
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
         values = json.load(f)
         if values.get("simulationID") == "refractionSimulation":
-            
             rawinitRefractiveIndex1Str = values.get("initRefractiveIndex1")
             rawinitRefractiveIndex2Str = values.get("initRefractiveIndex2")
             if rawinitRefractiveIndex1Str.replace(".", "", 1).isdigit() == True:
@@ -86,9 +97,13 @@ if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConf
                 else:
                     refractiveIndex2 = 1.0
 
-                
             initIncidenceAngle = values.get("initIncidenceAngle", 45)    
             rayColor = values.get("rayColor", "White")
+        else:
+            refractiveIndex1 = 1.0
+            refractiveIndex2 = 1.0
+            initIncidenceAngle = 45
+            rayColor = "White"
 else:
     refractiveIndex1 = 1.0
     refractiveIndex2 = 1.0
@@ -174,10 +189,13 @@ while True:
     instructionsLabel = regularFont.render("Click on [UP ARROW] to increase the incidence angle or [DOWN ARROW] to decrease it", True, whiteColor)
     refractiveIndex1Label = regularFont.render(f"Refractive Index 1: {refractiveIndex1}", True, whiteColor)
     refractiveIndex2Label = regularFont.render(f"Refractive Index 2: {refractiveIndex2}", True, whiteColor)
+    fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
+    
     screen.blit(upperLabel, (20, 20))
     screen.blit(instructionsLabel, (20, 45))
     screen.blit(refractiveIndex1Label, (20, 125))
     screen.blit(refractiveIndex2Label, (20, 150))
+    screen.blit(fpsLabel, (1040, 20))
 
     pygame.display.update()
     clock.tick(frameRate)

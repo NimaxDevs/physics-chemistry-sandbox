@@ -7,12 +7,24 @@ import os
 
 #The window variables go here
 frameRate = 60
+vsyncActivated = 0
+flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
 
+launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
+if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
+    with open("launcherSettings/launcherSettings.json", "r") as f:
+        launcherSettings = json.load(f)
+        frameRate = launcherSettings.get("fpsCap")
+        vsyncActivated = launcherSettings.get("vsyncActivated")
+else:
+    frameRate = 60
+    vsyncActivated = 0
+
 #These lines initialize the Pygame window as well as the clock and the font
 pygame.init()
-screen = pygame.display.set_mode((windowWidth, windowHeight))
+screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Projectile Simualtion")
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -43,7 +55,7 @@ start_y = (windowHeight - 50) - initDiameter * 4
 
 #These lines extract the values from the launcher
 simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
-if os.path.exists(simulationConfigValuesPath):
+if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConfigValuesPath) > 0:
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
         values = json.load(f)
         if values.get("simulationID") == "projectileSimulation":
@@ -53,6 +65,13 @@ if os.path.exists(simulationConfigValuesPath):
             initMass = values.get("initMass", 10)
             initDiameter = values.get("initDiameter", 1)
             dragCoef = values.get("dragCoef", 0.1)
+        else:
+            initVelocity = 60
+            initAngle = 65
+            init_g = 9.8
+            initMass = 10
+            initDiameter = 1
+            dragCoef = 0.1  
 else:
     initVelocity = 60
     initAngle = 65
@@ -150,6 +169,7 @@ while True:
     diameterLabel = regularFont.render(f"Diameter: {initDiameter} m", True, whiteColor)
     distanceTraveledLabel = regularFont.render(f"Distance Traveled (m): {(x - start_x) / scaleFactor:.1f} m", True, whiteColor)
     currentHeightLabel = regularFont.render(f"Current Height (m): {(start_y - y) / scaleFactor:.1f} m", True, whiteColor)
+    fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
 
     #And these lines add them to the main window (screen)
     screen.blit(upperLabel, (20, 20))
@@ -160,6 +180,7 @@ while True:
     screen.blit(diameterLabel, (20, 150))
     screen.blit(distanceTraveledLabel, (20, 175))
     screen.blit(currentHeightLabel, (20, 200))
+    screen.blit(fpsLabel, (1040, 20))
 
     #These lines update the whole window
     pygame.display.update()

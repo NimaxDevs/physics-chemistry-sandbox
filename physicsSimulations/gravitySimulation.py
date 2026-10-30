@@ -4,12 +4,24 @@ from sys import exit
 import json
 import os
 
+frameRate = 60
+vsyncActivated = 0
+flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
-frameRate = 60
+
+launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
+if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
+    with open("launcherSettings/launcherSettings.json", "r") as f:
+        launcherSettings = json.load(f)
+        frameRate = launcherSettings.get("fpsCap")
+        vsyncActivated = launcherSettings.get("vsyncActivated")
+else:
+    frameRate = 60
+    vsyncActivated = 0
 
 pygame.init()
-screen = pygame.display.set_mode((windowWidth, windowHeight))
+screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Gravity Simulation")
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -41,6 +53,10 @@ if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConf
             initMass = values.get("initMass", 0.5)
             g = values.get("initGravAcc", 9.8)
             initHeight = (values.get("initHeight", 1))
+        else:
+            initMass = 100
+            g = 9.8
+            initHeight = 1 
 else:
     initMass = 100
     g = 9.8
@@ -81,6 +97,7 @@ while True:
     dragCoefLabel = regularFont.render(f"Drag Coefficient: {dragCoef}", True, whiteColor)
     restitutionCoefLabel = regularFont.render(f"Restitution Coefficient: {restitutionCoef}", True, whiteColor)
     gLabel = regularFont.render(f"Gravitational Acceleration: {g} m/s²", True, whiteColor)
+    fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
 
     screen.blit(upperLabel, (20, 20))
     screen.blit(objectMassLabel, (20, 50))
@@ -92,6 +109,7 @@ while True:
     screen.blit(dragCoefLabel, (20, 200))
     screen.blit(restitutionCoefLabel, (20, 225))
     screen.blit(gLabel, (20, 250))
+    screen.blit(fpsLabel, (1040, 20))
     
     t += dt
 

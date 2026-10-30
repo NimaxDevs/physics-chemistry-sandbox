@@ -5,13 +5,25 @@ import json
 import os
 
 #These lines define the window variables
+frameRate = 60
+vsyncActivated = 0
+flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
-frameRate = 60
+
+launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
+if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
+    with open("launcherSettings/launcherSettings.json", "r") as f:
+        launcherSettings = json.load(f)
+        frameRate = launcherSettings.get("fpsCap")
+        vsyncActivated = launcherSettings.get("vsyncActivated")
+else:
+    frameRate = 60
+    vsyncActivated = 0
 
 #While these lines initialize the Pygame window (screen) and change some of its properties (title) as well as the clock
 pygame.init()
-screen = pygame.display.set_mode((windowWidth, windowHeight))
+screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Spring Simulation")
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -46,6 +58,12 @@ if os.path.exists(simulationConfigValuesPath):
             springLength = (values.get("initLength", 1)) * 10e-2
             springInitStiffness = values.get("initStiffness", 5) 
             springDampingCoef = values.get("dampingCoef", 0.5)
+        else:
+            springInitMass = 0.5
+            g = pygame.Vector2(0, 9.8)
+            springLength = 1e-2
+            springInitStiffness = 5
+            springDampingCoef = 0.5
 else:
     springInitMass = 0.5
     g = pygame.Vector2(0, 9.8)
@@ -85,6 +103,7 @@ while True:
     springInitStiffnessLabel = regularFont.render(f"Spring Stiffness: {springInitStiffness:.1f} N/m", True, whiteColor)
     springDampingCoefLabel = regularFont.render(f"Spring Damping Coefficient: {springDampingCoef:.1f}", True, whiteColor)
     gLabel = regularFont.render(f"Gravitational Acceleration: {pygame.Vector2.magnitude(g):.1f} m/s²", True, whiteColor)
+    fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
 
     #And these lines add the labels to the screen (or window)
     screen.blit(upperLabel, (20, 20))
@@ -93,6 +112,7 @@ while True:
     screen.blit(springInitStiffnessLabel, (20, 100))
     screen.blit(springDampingCoefLabel, (20, 125))
     screen.blit(gLabel, (20, 150))
+    screen.blit(fpsLabel, (1040, 20))
 
     #Updates the time by a small step that is going to be used to integrate the values for the spring mass momentum and position by using Euler's Method
     t += dt

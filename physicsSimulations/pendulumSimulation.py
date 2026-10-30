@@ -5,13 +5,25 @@ import json
 import os
 
 #These lines define the window variables
+frameRate = 60
+vsyncActivated = 0
+flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
-frameRate = 60
+
+launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
+if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
+    with open("launcherSettings/launcherSettings.json", "r") as f:
+        launcherSettings = json.load(f)
+        frameRate = launcherSettings.get("fpsCap")
+        vsyncActivated = launcherSettings.get("vsyncActivated")
+else:
+    frameRate = 60
+    vsyncActivated = 0
 
 #While these lines initialize the Pygame window (screen) and change some of its properties (title) as well as the clock
 pygame.init()
-screen = pygame.display.set_mode((windowWidth, windowHeight))
+screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Pendulum Simulation")
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -35,15 +47,23 @@ pendulumAngularVelocity = 0
 pendulumDamping = 0.5
 
 simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
-if os.path.exists(simulationConfigValuesPath):
+if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConfigValuesPath) > 0:
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
         values = json.load(f)
-        pendulumInitAngle = math.radians(values.get("initAngle", 45))
-        pendulumAngularVelocity = values.get("initAngularVel", 0)
-        pendulumLength = (values.get("initLength", 1)) * scaleFactor
-        pendulumMass = values.get("initMass", 10)
-        g = values.get("initGravAcc", 9.8)
-        pendulumDamping = values.get("dampingCoef", 0.1)      
+        if values.get("simulationID") == "pendulumSimulation":
+            pendulumInitAngle = math.radians(values.get("initAngle", 45))
+            pendulumAngularVelocity = values.get("initAngularVel", 0)
+            pendulumLength = (values.get("initLength", 1)) * scaleFactor
+            pendulumMass = values.get("initMass", 10)
+            g = values.get("initGravAcc", 9.8)
+            pendulumDamping = values.get("dampingCoef", 0.1)   
+        else:
+            pendulumInitAngle = math.radians(45)
+            pendulumAngularVelocity = 0
+            init_g = 9.8
+            initMass = 10
+            initDiameter = 1
+            dragCoef = 0.1           
 else:
     pendulumInitAngle = math.radians(45)
     pendulumAngularVelocity = 0
@@ -86,6 +106,7 @@ while True:
     pendulumAngularVelocityLabel = regularFont.render(f"Pendulum Angular Velocity: {pendulumAngularVelocity:.1f} rad/s", True, whiteColor)
     pendulumMassLabel = regularFont.render(f"Pendulum Mass: {pendulumMass:.1f} kg", True, whiteColor)
     gLabel = regularFont.render(f"Gravitational Acceleration: {g:.1f} m/s²", True, whiteColor)
+    fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
 
     #And these lines add the labels mentioned above to the screen (window)
     screen.blit(upperLabel, (20, 20))
@@ -94,6 +115,7 @@ while True:
     screen.blit(pendulumAngularVelocityLabel, (20, 100))
     screen.blit(pendulumMassLabel, (20, 125))
     screen.blit(gLabel, (20, 150))
+    screen.blit(fpsLabel, (1040, 20))
 
     #Lastly, these lines update the whole screen (or window)
     pygame.display.update()

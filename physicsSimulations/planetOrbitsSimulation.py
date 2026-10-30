@@ -6,13 +6,25 @@ import json
 import os
 
 #These lines define the window variables
+frameRate = 60
+vsyncActivated = 0
+flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
-frameRate = 60
+
+launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
+if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
+    with open("launcherSettings/launcherSettings.json", "r") as f:
+        launcherSettings = json.load(f)
+        frameRate = launcherSettings.get("fpsCap")
+        vsyncActivated = launcherSettings.get("vsyncActivated")
+else:
+    frameRate = 60
+    vsyncActivated = 0
 
 #While these lines initialize the Pygame window (screen) and change some of its properties (title) as well as the clock
 pygame.init()
-screen = pygame.display.set_mode((windowWidth, windowHeight))
+screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Planet Orbits Simulation (N-body problem solver)")
 clock = pygame.time.Clock()
 pygame.font.init()
@@ -227,8 +239,10 @@ while True:
     #These lines add the text labels of the simulation title as well as the instructions on how to use the simulator to the screen
     upperLabel = titleFont.render("Simulating Planet Orbits", True, whiteColor)
     instructionsLabel = regularFont.render("Click on one of the planets to see their physical values", True, whiteColor)
+    fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
     screen.blit(upperLabel, (20, 20))
     screen.blit(instructionsLabel, (20, 45))
+    screen.blit(fpsLabel, (1040, 20))
 
     #And finally, these lines update the screen
     pygame.display.update()
