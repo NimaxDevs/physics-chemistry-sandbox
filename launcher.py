@@ -6,6 +6,7 @@ import webbrowser
 import json
 import os
 import subprocess
+from pygame import mixer
 
 #The CTk appearance settings go here
 customtkinter.set_appearance_mode("dark")
@@ -16,6 +17,10 @@ app = customtkinter.CTk()
 app.geometry("1100x580")
 app.resizable(False, False)
 app.title("Physics & Chemistry Sandbox Launcher")
+mixer.init()
+
+buttonClick = 0
+buttonHover = 0
 
 def add_corners(im, rad):
     circle = Image.new('L', (rad * 2, rad * 2), 0)
@@ -29,6 +34,35 @@ def add_corners(im, rad):
     alpha.paste(circle.crop((rad, rad, rad * 2, rad * 2)), (w - rad, h - rad))
     im.putalpha(alpha)
     return im
+
+def buttonClickSound(variable):
+    global buttonClick
+    if variable == 1:
+        buttonClickSound1 = mixer.Sound("sounds/ui/buttonClicks/buttonClick1.mp3")
+        mixer.Channel(0).play(buttonClickSound1)
+    if variable == 2:
+        buttonClickSound2 = mixer.Sound("sounds/ui/buttonClicks/buttonClick2.mp3")
+        mixer.Channel(0).play(buttonClickSound2)
+    if variable == 3:
+        buttonClickSound3 = mixer.Sound("sounds/ui/buttonClicks/buttonClick3.mp3")
+        mixer.Channel(0).play(buttonClickSound3)
+    if variable == 4:
+        buttonClickSound4 = mixer.Sound("sounds/ui/buttonClicks/buttonClick4.mp3")
+        mixer.Channel(0).play(buttonClickSound4)
+    if variable == 5:
+        buttonClickSound1 = mixer.Sound("sounds/ui/buttonClicks/buttonClick1.mp3")
+        mixer.Channel(0).play(buttonClickSound1)
+    if variable == 6:
+        buttonClickSound2 = mixer.Sound("sounds/ui/buttonClicks/buttonClick2.mp3")
+        mixer.Channel(0).play(buttonClickSound2)
+    if variable == 7:
+        buttonClickSound3 = mixer.Sound("sounds/ui/buttonClicks/buttonClick3.mp3")
+        mixer.Channel(0).play(buttonClickSound3)
+    if variable == 8:
+        buttonClickSound5 = mixer.Sound("sounds/ui/buttonClicks/buttonClick5.mp3")
+        mixer.Channel(0).play(buttonClickSound5)
+        buttonClick = 0
+
 
 placeholderImage = customtkinter.CTkImage(light_image = Image.open("images/placeholders/atom_image.png"),
                                           dark_image = Image.open("images/placeholders/atom_image.png"),
@@ -244,6 +278,7 @@ launcherSettingsVSyncSwitchEventVar = tkinter.StringVar(value = "0")
 
 #The button events (functions) go here
 def physicsSelectorButtonEvent():
+    global buttonClick
     physicsTabSelected = True
     chemistryTabSelected = False
     thePlaceTabSelected = False
@@ -267,8 +302,11 @@ def physicsSelectorButtonEvent():
     for child in mainFrame.winfo_children():
         child.destroy()
     physicsTab(physicsTabSelected)
+    buttonClick += 1
+    buttonClickSound(buttonClick)
 
 def chemistrySelectorButtonEvent():
+    global buttonClick
     chemistryTabSelected = True
     physicsTabSelected = False
     thePlaceTabSelected = False
@@ -292,8 +330,13 @@ def chemistrySelectorButtonEvent():
     for child in mainFrame.winfo_children():
         child.destroy()
     chemistryTab(chemistryTabSelected)
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     
 def thePlaceSelectorButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     thePlaceTabSelected = True
     physicsTabSelected = False
     chemistryTabSelected = False
@@ -319,6 +362,9 @@ def thePlaceSelectorButtonEvent():
     thePlaceTab(thePlaceTabSelected)
 
 def launcherSettingsButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     launcherSettingsSelected = True
     physicsTabSelected = False
     chemistryTabSelected = False
@@ -344,11 +390,17 @@ def launcherSettingsButtonEvent():
     launcherSettingsTab(launcherSettingsSelected)
 
 def gitHubButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     #opens the URL of my GitHub
     webbrowser.open("https://github.com/NimaxDevs/physics-chemistry-sandbox")
     pass
 
 def creditsButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     creditsTabSelected = True
     physicsTabSelected = False
     chemistryTabSelected = False
@@ -379,6 +431,9 @@ def quitLauncherButtonEvent():
 
 #The buttons to configure the physics simulations are here
 def projectileSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     projectileSimulationConfigTabSelected = True
     pendulumSimulationConfigTabSelected = False
     springSimulationConfigTabSelected = False
@@ -404,6 +459,9 @@ def projectileSimulationConfigButtonEvent():
     projectileSimulationConfigTab(projectileSimulationConfigTabSelected)
 
 def pendulumSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     pendulumSimulationConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     springSimulationConfigTabSelected = False
@@ -429,6 +487,9 @@ def pendulumSimulationConfigButtonEvent():
     pendulumSimulationConfigTab(pendulumSimulationConfigTabSelected)
 
 def springSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     springSimulationConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -454,6 +515,9 @@ def springSimulationConfigButtonEvent():
     springSimulationConfigTab(springSimulationConfigTabSelected)
 
 def planetOrbitsSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     planetOrbitsSimulationConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -479,6 +543,9 @@ def planetOrbitsSimulationConfigButtonEvent():
     planetOrbitsSimulationConfigTab(planetOrbitsSimulationConfigTabSelected)
 
 def gravitySimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     gravitySimulationConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -504,6 +571,9 @@ def gravitySimulationConfigButtonEvent():
     gravitySimulationConfigTab(gravitySimulationConfigTabSelected)    
 
 def refractionSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     refractionSimulationConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -529,6 +599,9 @@ def refractionSimulationConfigButtonEvent():
     refractionSimulationConfigTab(refractionSimulationConfigTabSelected)
 
 def fluidSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     fluidSimulationConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -553,6 +626,9 @@ def fluidSimulationConfigButtonEvent():
     fluidSimulationConfigTab(fluidSimulationConfigTabSelected)
 
 def temperatureSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     temperatureSimulationConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -578,6 +654,9 @@ def temperatureSimulationConfigButtonEvent():
 
 #The buttons to configure the chemistry simulations are here
 def bohrAtomSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     bohrAtomSimulationConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -603,6 +682,9 @@ def bohrAtomSimulationConfigButtonEvent():
     bohrAtomSimulationConfigTab(bohrAtomSimulationConfigTabSelected)    
 
 def solutionMakerConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     solutionMakerConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -628,6 +710,9 @@ def solutionMakerConfigButtonEvent():
     solutionMakerConfigTab(solutionMakerConfigTabSelected)
 
 def molecularLabConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     molecularLabConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -653,6 +738,9 @@ def molecularLabConfigButtonEvent():
     molecularLabConfigTab(molecularLabConfigTabSelected)
 
 def reactionLabConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     reactionLabConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -678,6 +766,9 @@ def reactionLabConfigButtonEvent():
     reactionLabConfigTab(reactionLabConfigTabSelected)
 
 def combustionSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     combustionSimulationConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -703,6 +794,9 @@ def combustionSimulationConfigButtonEvent():
     combustionSimulationConfigTab(combustionSimulationConfigTabSelected)
 
 def smokeSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     smokeSimulationConfigTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -728,6 +822,9 @@ def smokeSimulationConfigButtonEvent():
     smokeSimulationConfigTab(smokeSimulationConfigTabSelected)
 
 def atomCollisionSimulationConfigButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     atomCollisionSimulationTabSelected = True
     projectileSimulationConfigTabSelected = False
     pendulumSimulationConfigTabSelected = False
@@ -755,6 +852,9 @@ def atomCollisionSimulationConfigButtonEvent():
 #The buttons to launch the simulations go here
 ##The buttons of the physics simulations go here
 def projectileSimulationConfigTabLaunchButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     configValues = {
         "simulationID": "projectileSimulation",
         "initVelocity": int(projectileSimulationConfigTabInitVelocitySlider.get()),
@@ -776,6 +876,9 @@ def projectileSimulationConfigTabLaunchButtonEvent():
     print("projectile simulation launched")
 
 def pendulumSimulationConfigTabLaunchButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     configValues = {
         "simulationID": "pendulumSimulation",
         "initAngle": int(pendulumSimulationConfigTabInitAngleSlider.get()),
@@ -797,6 +900,9 @@ def pendulumSimulationConfigTabLaunchButtonEvent():
     print("pendulum simulation launched")
 
 def springSimulationConfigTabLaunchButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     configValues = {
         "simulationID": "springSimulation",
         "initMass": round(springSimulationConfigTabInitMassSlider.get(), 1),
@@ -817,6 +923,9 @@ def springSimulationConfigTabLaunchButtonEvent():
     print("spring simulation launched")
 
 def planetOrbitsSimulationConfigTabLaunchButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     global planetsConfigValuesList
     with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
         planetsConfigValues = {
@@ -834,6 +943,9 @@ def planetOrbitsSimulationConfigTabLaunchButtonEvent():
     print("planet orbits simulation launched")
 
 def gravitySimulationConfigTabLaunchButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
         configValues = {
             "simulationID": "gravitySimulation",
@@ -854,6 +966,9 @@ def gravitySimulationConfigTabLaunchButtonEvent():
     print("gravity simulation launched")    
 
 def refractionSimulationConfigTabLaunchButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     with open("simulationConfigValues/simulationConfigValues.json", "w") as f:
             configValues = {
                 "simulationID": "refractionSimulation",
@@ -877,6 +992,9 @@ def fluidSimulationConfigTabLaunchButtonEvent():
     print("fluid simulation launched")
 
 def temperatureSimulationConfigTabLaunchButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     configValues = {
             "simulationID": "temperatureSimulation",
             "initParticleNumber": int(temperatureSimulationConfigTabInitParticleNumberSlider.get()),
@@ -897,7 +1015,9 @@ def temperatureSimulationConfigTabLaunchButtonEvent():
 
 ##The buttons of the chemistry simulations go here
 def bohrAtomSimulationConfigTabLaunchButtonEvent():
-    global bohrAtomSimulationConfigTabAtomSelectionIndex
+    global bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     configValues = {
                 "simulationID": "bohrAtomSimulation",
                 "atomSelectionIndex": bohrAtomSimulationConfigTabAtomSelectionIndex
@@ -918,6 +1038,9 @@ def bohrAtomSimulationConfigTabLaunchButtonEvent():
     print("bohr atom simulation launched")
 
 def solutionMakerConfigTabLaunchButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     configValues = {
                     "simulationID": "solutionMaker",
                     "initSolvent": "Water (H₂O)" if solutionMakerConfigTabInitSolventOptionMenu.get() == "Select Solvent" else solutionMakerConfigTabInitSolventOptionMenu.get(),
@@ -939,6 +1062,9 @@ def solutionMakerConfigTabLaunchButtonEvent():
     print("solution maker simulation launched")
 
 def molecularLabConfigTabLaunchButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     configValues = {
                         "simulationID": "molecularLab",
                         "initMolecule": "Glucose (C₆H₁₂O₆)" if molecularLabConfigTabInitMoleculeOptionMenu.get() == "Select Molecule" else molecularLabConfigTabInitMoleculeOptionMenu.get(),
@@ -1017,7 +1143,9 @@ def springSimulationConfigTabInitDampingCoefSliderEvent(value):
 
 ###The configurator events of the Planet Orbits (simulation) go here
 def planetOrbitsSimulationConfigTabResetPlanetListButtonEvent():
-    global planetConfigValuesList
+    global planetConfigValuesList, buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     planetConfigValuesList = []
 
 def planetOrbitsSimulationConfigTabShowOrbitTrailSwitchEvent():
@@ -1100,6 +1228,127 @@ def molecularLabConfigTabInitOxygenColorOptionMenuEvent(value):
     pass
 
 
+def ctkThemesGithubRepoButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://github.com/a13xe/CTkThemesPack")
+
+def projectileSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://www.pexels.com/@bohdan-hyrovych-796614725/")
+
+def pendulumSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://www.pexels.com/@pixabay/")
+
+def springSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://pixabay.com/users/kalhh-86169/")
+
+def planetOrbitsSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://pixabay.com/users/luis_humanoide-12661853/")
+
+def gravitySimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://commons.wikimedia.org/w/index.php?curid=2880974")
+
+def refractionSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://flickr.com/people/19607761@N00")
+
+def fluidSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://pixabay.com/users/kidsnewshu-5999490/")
+
+def temperatureSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://www.pexels.com/@marek-piwnicki-3907296/")
+
+def bohrAtomSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://pixabay.com/users/geralt-9301/")
+
+def solutionMakerThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://pixabay.com/users/publicdomainpictures-14/")
+
+def molecularLabThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://news.mit.edu/2017/computer-system-predicts-products-chemical-reactions-0627")
+
+def reactionLabThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://www.flickr.com/photos/electro_n1k/")
+
+def combustionSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://commons.wikimedia.org/wiki/File:Coloured_flames_of_methanol_solutions_of_metal_salts_and_compounds.jpg")
+
+def smokeSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://www.pexels.com/@thales13/")
+
+def atomsCollisionSimulationThumbnailButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://commons.wikimedia.org/w/index.php?curid=516106")
+
+def ctkPageButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://customtkinter.tomschimansky.com/")
+
+def tkinterPageButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://docs.python.org/3/library/tkinter.html")
+
+def pillowPageButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://pypi.org/project/pillow/")
+
+def pygamePageButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
+    webbrowser.open("https://www.pygame.org/docs/")
+
+###The configurator events of the Launcher Settings tab go here
 def launcherSettingsFPSCapOptionMenuEvent(value):
     pass
 
@@ -1107,6 +1356,9 @@ def launcherSettingsVSyncSwitchEvent():
     pass
 
 def launcherSettingsApplyButtonEvent():
+    global buttonClick
+    buttonClick += 1
+    buttonClickSound(buttonClick)
     launcherSettings = {
             "fpsCap": int(launcherSettingsFPSCapOptionMenu.get()),
             "vsyncActivated": int(launcherSettingsVSyncSwitch.get()),
@@ -1693,12 +1945,353 @@ def launcherSettingsTab(bool):
 
 def creditsTab(bool):
     if bool == True:
+        creditsFrame = customtkinter.CTkFrame(master = mainFrame,
+                                              width = 1010,
+                                              height = 580,
+                                              fg_color = "transparent")
+        creditsFrame.place(relx = 0.5, rely = 0.54, anchor = tkinter.CENTER)
+        creditsScrollableFrame = customtkinter.CTkScrollableFrame(master = creditsFrame,
+                                                                  width = 880,
+                                                                  height = 580,
+                                                                  fg_color = "transparent")
+        creditsScrollableFrame.pack(padx = 0, pady = 0, expand = True)
         #I'll write the credits here (developper, assets, themes, libraries)
         print("The credits are in this tab")
-        creditsPlaceholderLabel = customtkinter.CTkLabel(master = mainFrame,
-                                      text = "Credits\n(nothing for now)",
-                                      font = customtkinter.CTkFont(size = 20, weight = "bold"))
-        creditsPlaceholderLabel.place(relx = 0.5, rely = 0.5, anchor = tkinter.CENTER)
+        projectTitleLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                   text = "Physics & Chemistry Sandbox",
+                                                   font = customtkinter.CTkFont(size = 30, weight = "bold"))
+        projectTitleLabel.pack(padx = 0, pady = 0)
+
+        eventTitleLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                 text = "A project built for the Stardance Challenge, an event made by Hack Club & NASA.",
+                                                 font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        eventTitleLabel.pack(padx = 0, pady = 0)
+
+        mainDevLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                              text = "Main Developper: NimaxDevs (Amin B.)",
+                                              font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        mainDevLabel.pack(padx = 0, pady = (0, 50))
+
+        assetsUsedTitleLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                      text = "Assets Used",
+                                                      font = customtkinter.CTkFont(size = 30, weight = "bold"))
+        assetsUsedTitleLabel.pack(padx = 0, pady = (0, 10))
+
+        ctkThemesLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                text = "CTkThemesPack: Rime, made by a13xe and webbrain-one (WebBrain)",
+                                                font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        ctkThemesLabel.pack(padx = 0, pady = (0, 5))
+
+        ctkThemesGithubRepoButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                            text = "GitHub Repository",
+                                                            font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                            width = 145,
+                                                            height = 25,
+                                                            corner_radius = 5,
+                                                            border_width = 1,
+                                                            command = ctkThemesGithubRepoButtonEvent)
+        ctkThemesGithubRepoButton.pack(padx = 0, pady = (0, 15))
+
+        projectileSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                                    text = "Projectile Simulation Thumbnail: Bohdan Hyrovych",
+                                                                    font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        projectileSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+        
+        projectileSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                      text = "Author Page",
+                                                                      font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                      width = 145,
+                                                                      height = 25,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      command = projectileSimulationThumbnailButtonEvent)
+        projectileSimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        pendulumSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                              text = "Pendulum Simulation Thumbnail: Pixabay",
+                                                              font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        pendulumSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                
+        pendulumSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                    text = "Author Page",
+                                                                    font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                    width = 145,
+                                                                    height = 25,
+                                                                    corner_radius = 5,
+                                                                    border_width = 1,
+                                                                    command = pendulumSimulationThumbnailButtonEvent)
+        pendulumSimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        springSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                                text = "Spring Simulation Thumbnail: kalhh",
+                                                                font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        springSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                        
+        springSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                  text = "Author Page",
+                                                                  font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                  width = 145,
+                                                                  height = 25,
+                                                                  corner_radius = 5,
+                                                                  border_width = 1,
+                                                                  command = springSimulationThumbnailButtonEvent)
+        springSimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        planetOrbitsSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                                      text = "Planet Simulation Thumbnail: Luis_Humanoide",
+                                                                      font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        planetOrbitsSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                
+        planetOrbitsSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                        text = "Author Page",
+                                                                        font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                        width = 145,
+                                                                        height = 25,
+                                                                        corner_radius = 5,
+                                                                        border_width = 1,
+                                                                        command = planetOrbitsSimulationThumbnailButtonEvent)
+        planetOrbitsSimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        gravitySimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                                 text = "Gravity Simulation Thumbnail: MichaelMaggs (edit by Richard Bartz), CC BY-SA 3.0",
+                                                                 font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        gravitySimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                        
+        gravitySimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                   text = "Image Page",
+                                                                   font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                   width = 145,
+                                                                   height = 25,
+                                                                   corner_radius = 5,
+                                                                   border_width = 1,
+                                                                   command = gravitySimulationThumbnailButtonEvent)
+        gravitySimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        refractionSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                                    text = "Refraction Simulation Thumbnail: Mark Woodbury, Creative Commons Attribution 2.0",
+                                                                    font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        refractionSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                                
+        refractionSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                      text = "Author Page",
+                                                                      font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                      width = 145,
+                                                                      height = 25,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      command = refractionSimulationThumbnailButtonEvent)
+        refractionSimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        fluidSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                               text = "Fluid Simulation Thumbnail: kidsnewshu",
+                                                               font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        fluidSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                                        
+        fluidSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                 text = "Author Page",
+                                                                 font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                 width = 145,
+                                                                 height = 25,
+                                                                 corner_radius = 5,
+                                                                 border_width = 1,
+                                                                 command = fluidSimulationThumbnailButtonEvent)
+        fluidSimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        temperatureSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                                     text = "Temperature Simulation Thumbnail: Marek Piwnicki",
+                                                                     font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        temperatureSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                                                
+        temperatureSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                       text = "Author Page",
+                                                                       font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                       width = 145,
+                                                                       height = 25,
+                                                                       corner_radius = 5,
+                                                                       border_width = 1,
+                                                                       command = temperatureSimulationThumbnailButtonEvent)
+        temperatureSimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        bohrAtomSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                                  text = "Bohr Atomic Representation Simulation Thumbnail: Gerd Altmann",
+                                                                  font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        bohrAtomSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                                                        
+        bohrAtomSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                    text = "Author Page",
+                                                                    font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                    width = 145,
+                                                                    height = 25,
+                                                                    corner_radius = 5,
+                                                                    border_width = 1,
+                                                                    command = bohrAtomSimulationThumbnailButtonEvent)
+        bohrAtomSimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        solutionMakerThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                             text = "Solution Maker Thumbnail: PublicDomainPictures",
+                                                             font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        solutionMakerThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                                                                
+        solutionMakerThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                               text = "Author Page",
+                                                               font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                               width = 145,
+                                                               height = 25,
+                                                               corner_radius = 5,
+                                                               border_width = 1,
+                                                               command = solutionMakerThumbnailButtonEvent)
+        solutionMakerThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        molecularLabThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                            text = "Molecular Lab Thumbnail: Courtesy of MIT News",
+                                                            font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        molecularLabThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                                                                        
+        molecularLabThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                              text = "Image Page",
+                                                              font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                              width = 145,
+                                                              height = 25,
+                                                              corner_radius = 5,
+                                                              border_width = 1,
+                                                              command = molecularLabThumbnailButtonEvent)
+        molecularLabThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        reactionLabThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                           text = "Reaction Lab Thumbnail: Nikthestunned (also at Flickr), CC BY-SA 3.0",
+                                                           font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        reactionLabThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                                                                                
+        reactionLabThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                             text = "Author Page",
+                                                             font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                             width = 145,
+                                                             height = 25,
+                                                             corner_radius = 5,
+                                                             border_width = 1,
+                                                              command = reactionLabThumbnailButtonEvent)
+        reactionLabThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        combustionSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                                    text = "Combustion Simulation Thumbnail: Hegelrast, Creative Commons Attribution-Share Alike 4.0",
+                                                                    font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        combustionSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                                                                                        
+        combustionSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                      text = "Image Page",
+                                                                      font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                      width = 145,
+                                                                      height = 25,
+                                                                      corner_radius = 5,
+                                                                      border_width = 1,
+                                                                      command = combustionSimulationThumbnailButtonEvent)
+        combustionSimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        smokeSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                               text = "Smoke Simulation Thumbnail: Rafael Minguet Delgado",
+                                                               font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        smokeSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                                                                                                
+        smokeSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                 text = "Author Page",
+                                                                 font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                 width = 145,
+                                                                 height = 25,
+                                                                 corner_radius = 5,
+                                                                 border_width = 1,
+                                                                 command = smokeSimulationThumbnailButtonEvent)
+        smokeSimulationThumbnailButton.pack(padx = 0, pady = (0, 15))
+
+        atomsCollisionSimulationThumbnailLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                                        text = "Atoms Collision Simulation Thumbnail: NASA, ESA, J. Hester and A. Loll (Arizona State University),\nPublic Domain",
+                                                                        font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        atomsCollisionSimulationThumbnailLabel.pack(padx = 0, pady = (0, 5))
+                                                                                                                        
+        atomsCollisionSimulationThumbnailButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                                          text = "Image Page",
+                                                                          font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                                          width = 145,
+                                                                          height = 25,
+                                                                          corner_radius = 5,
+                                                                          border_width = 1,
+                                                                          command = atomsCollisionSimulationThumbnailButtonEvent)
+        atomsCollisionSimulationThumbnailButton.pack(padx = 0, pady = (0, 50))
+
+        externalLibrariesTitleLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                             text = "External Libraries",
+                                                             font = customtkinter.CTkFont(size = 30, weight = "bold"))
+        externalLibrariesTitleLabel.pack(padx = 0, pady = (0, 10))
+
+        ctkLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                          text = "CustomTkinter: Whole Launcher",
+                                          font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        ctkLabel.pack(padx = 0, pady = (0, 5))
+        
+        ctkPageButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                text = "Official Page",
+                                                font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                width = 145,
+                                                height = 25,
+                                                corner_radius = 5,
+                                                border_width = 1,
+                                                command = ctkPageButtonEvent)
+        ctkPageButton.pack(padx = 0, pady = (0, 15))
+
+        tkinterLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                              text = "Tkinter: Functions needed for CustomTkinter (anchor points, variables)",
+                                              font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        tkinterLabel.pack(padx = 0, pady = (0, 5))
+                
+        tkinterPageButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                    text = "Official Page",
+                                                    font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                    width = 145,
+                                                    height = 25,
+                                                    corner_radius = 5,
+                                                    border_width = 1,
+                                                    command = tkinterPageButtonEvent)
+        tkinterPageButton.pack(padx = 0, pady = (0, 15))
+        
+        pillowLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                             text = "Pillow: Image Manager (import, rounded corners)",
+                                             font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        pillowLabel.pack(padx = 0, pady = (0, 5))
+                
+        pillowPageButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                   text = "Official Page",
+                                                   font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                   width = 145,
+                                                   height = 25,
+                                                   corner_radius = 5,
+                                                   border_width = 1,
+                                                   command = pillowPageButtonEvent)
+        pillowPageButton.pack(padx = 0, pady = (0, 15))
+
+        pygameLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                             text = "Pygame: Simulations (windows, rendering, real-time calculations)",
+                                             font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        pygameLabel.pack(padx = 0, pady = (0, 5))
+                        
+        pygamePageButton = customtkinter.CTkButton(master = creditsScrollableFrame,
+                                                   text = "Official Page",
+                                                   font = customtkinter.CTkFont(size = 15, weight = "normal"),
+                                                   width = 145,
+                                                   height = 25,
+                                                   corner_radius = 5,
+                                                   border_width = 1,
+                                                   command = pygamePageButtonEvent)
+        pygamePageButton.pack(padx = 0, pady = (0, 50))
+
+        specialThanksTitleLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                              text = "Special Thanks",
+                                              font = customtkinter.CTkFont(size = 30, weight = "bold"))
+        specialThanksTitleLabel.pack(padx = 0, pady = (0, 10))
+
+        thanksLabel = customtkinter.CTkLabel(master = creditsScrollableFrame,
+                                                      text = "I would like to thank Hack Club and NASA as well as the other partnership members\n(GitHub, AMD) for making this project possible. In fact, it has been a chance to put\nthe recent CustomTkinter, Pygame and Python skills that I've acquired into use.\nMoreover, I would also like to thank everyone for following me through my journey by\nreading my devlogs; it really means a lot to me. Lastly, I would like to thank my family\nfor motivating me to continue working on this project, even when a ton of bugs\nand errors had to be fixed.",
+                                                      font = customtkinter.CTkFont(size = 20, weight = "normal"))
+        thanksLabel.pack(padx = 25, pady = (0, 50))
+
 
 #The sub tabs of the physics tab (physics simulations) are here
 def projectileSimulationConfigTab(bool):
@@ -2319,6 +2912,9 @@ def planetOrbitsSimulationConfigTab(bool):
     if bool == True:
         #Function to add & save the infos of the planets
         def planetOrbitsSimulationConfigTabAddPlanetButtonEvent():
+            global buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             configValues = {
                 "planetName": planetOrbitsSimulationConfigTabPlanetNameEntry.get(),
                 "planetColor": planetOrbitsSimulationConfigTabPlanetColorEntry.get(),
@@ -3283,7 +3879,9 @@ def bohrAtomSimulationConfigTab(bool):
     global bohrAtomSimulationConfigTabLaunchButton
     if bool == True:
         def bohrAtomSimulationConfigTabHButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3307,7 +3905,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabHeButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3331,7 +3931,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabLiButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3355,7 +3957,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabBeButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3379,7 +3983,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabBButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3403,7 +4009,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabCButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3427,7 +4035,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabNButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3451,7 +4061,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabOButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3475,7 +4087,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabFButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3499,7 +4113,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabNeButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3523,7 +4139,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabNaButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick 
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3547,7 +4165,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabMgButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3571,7 +4191,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabAlButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick 
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3595,7 +4217,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabSiButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3619,7 +4243,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabPButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")
@@ -3643,7 +4269,9 @@ def bohrAtomSimulationConfigTab(bool):
                 bohrAtomSimulationConfigTabAtomSelected = True
 
         def bohrAtomSimulationConfigTabSButtonEvent():
-            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex 
+            global bohrAtomSimulationConfigTabAtomSelected, bohrAtomSimulationConfigTabAtomSelectionIndex, buttonClick 
+            buttonClick += 1
+            buttonClickSound(buttonClick)
             if bohrAtomSimulationConfigTabAtomSelected == True:
                 bohrAtomSimulationConfigTabHButton.configure(state = "disabled")
                 bohrAtomSimulationConfigTabHeButton.configure(state = "disabled")

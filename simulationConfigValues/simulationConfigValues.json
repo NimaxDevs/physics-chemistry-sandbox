@@ -1,1 +1,1 @@
-{"simulationID": "gravitySimulation", "initMass": 500, "initGravAcc": 10.0, "initHeight": 5}
+{"simulationID": "molecularLab", "initMolecule": "Acetone (C\u2083H\u2086O)", "initHydrogenColor": "Green", "initCarbonColor": "Dark Blue", "initOxygenColor": "Pink"}
