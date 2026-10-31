@@ -1,1 +1,1 @@
-{"simulationID": "projectileSimulation", "initVelocity": 50, "initAngle": 45, "initGravAcc": 10.0, "initMass": 2500, "initDiameter": 3, "dragCoef": 0.5}
+{"simulationID": "pendulumSimulation", "initAngle": 0, "initAngularVel": 0.0, "initLength": 0.6, "initMass": 0.8, "initGravAcc": 10.0, "dampingCoef": 0.5}

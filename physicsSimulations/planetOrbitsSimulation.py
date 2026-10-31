@@ -2,8 +2,50 @@ import pygame
 import math
 from random import randint
 from sys import exit
+import sys
+import builtins
 import json
 import os
+
+def ressource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    
+    if "_MEI" in __file__:
+        parts = os.path.abspath(__file__).split(os.sep)
+        for part in parts:
+            if part.startswith("_MEI"):
+                base_dir = __file__.split(part)[0] + part
+                return os.path.join(base_dir, relative_path)
+                
+    return os.path.join(os.path.abspath("."), relative_path)
+
+_orig_exists = os.path.exists
+def custom_exists(path):
+    if isinstance(path, str) and not os.path.isabs(path):
+        return _orig_exists(ressource_path(path)) or _orig_exists(path)
+    return _orig_exists(path)
+os.path.exists = custom_exists
+
+_orig_getsize = os.path.getsize
+def custom_getsize(path):
+    if isinstance(path, str) and not os.path.isabs(path):
+        try:
+            return _orig_getsize(ressource_path(path))
+        except FileNotFoundError:
+            return _orig_getsize(path)
+    return _orig_getsize(path)
+os.path.getsize = custom_getsize
+
+_original_open = builtins.open
+def custom_open(file, *args, **kwargs):
+    if isinstance(file, str) and not os.path.isabs(file):
+        file = ressource_path(file)
+    return _original_open(file, *args, **kwargs)
+builtins.open = custom_open
+
+_orig_img = pygame.image.load
+pygame.image.load = lambda p: _orig_img(ressource_path(p))
 
 #These lines define the window variables
 frameRate = 60
@@ -34,19 +76,13 @@ clock = pygame.time.Clock()
 pygame.font.init()
 
 #Sets the font of the simulation labels
-if os.path.exists("fonts/segoeuib.ttf"):
-    titleFontPath = "fonts/segoeuib.ttf"
-else:
-    titleFontPath = None
-if os.path.exists("fonts/segoeui.ttf"):
-    regularFontPath = "fonts/segoeui.ttf"
-else:
-    regularFontPath = None   
+titleFontPath = "fonts/segoeuib.ttf"
+regularFontPath = "fonts/segoeui.ttf"
 
 #These lines define the "art" variables
-titleFont = pygame.font.Font(titleFontPath, 25)
-regularFont = pygame.font.Font(regularFontPath, 15)
-planetNameFont = pygame.font.Font(regularFontPath, 10)
+titleFont = pygame.font.Font(ressource_path(titleFontPath), 25)
+regularFont = pygame.font.Font(ressource_path(regularFontPath), 15)
+planetNameFont = pygame.font.Font(ressource_path(regularFontPath), 10)
 whiteColor = (255, 255, 255)
 blackColor = (0, 0, 0)
 

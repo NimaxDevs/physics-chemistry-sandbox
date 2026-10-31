@@ -5,9 +5,40 @@ from PIL import Image, ImageDraw
 import webbrowser
 import json
 import os
+import sys
 import subprocess
 from pygame import mixer
 import time
+import builtins
+
+def ressource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+_orig_exists = os.path.exists
+def custom_exists(path):
+    if isinstance(path, str) and not os.path.isabs(path):
+        return _orig_exists(ressource_path(path)) or _orig_exists(path)
+    return _orig_exists(path)
+os.path.exists = custom_exists
+
+_original_open =  builtins.open
+def custom_open(file, *args, **kwargs):
+    if isinstance(file, str) and not os.path.isabs(file):
+        file = ressource_path(file)
+    return _original_open(file, *args, **kwargs)
+builtins.open = custom_open
+
+_orig_sound = mixer.Sound
+mixer.Sound = lambda p: _orig_sound(ressource_path(p))
+
+_orig_img_open = Image.open
+def custom_img_open(fp, *args, **kwargs):
+    if isinstance(fp, str) and not os.path.isabs(fp):
+        fp = ressource_path(fp)
+    return _orig_img_open(fp, *args, **kwargs)
+Image.open = custom_img_open
 
 #The CTk appearance settings go here
 customtkinter.set_appearance_mode("light")
@@ -18,8 +49,9 @@ app = customtkinter.CTk()
 app.geometry("1100x580")
 app.resizable(False, False)
 app.title("Physics & Chemistry Sandbox Launcher")
-if os.path.exists("images/icons/launcherIcon.ico"):
-    app.iconbitmap("images/icons/launcherIcon.ico")
+iconPath = ressource_path("images/icons/launcherIcon.ico")
+if os.path.exists(iconPath):
+    app.iconbitmap(iconPath)
 
 #This line initializes the Pygame mixer for the launcher UI sounds
 mixer.init()
@@ -984,7 +1016,7 @@ def projectileSimulationConfigTabLaunchButtonEvent():
     projectileSimulationConfigTabLaunchButton.configure(text = "Running...")
 
     #Runs its respective simulation by opening its folder
-    simulationPath = os.path.join("physicsSimulations", "projectileSimulation.py")
+    simulationPath = ressource_path(os.path.join("physicsSimulations", "projectileSimulation.py"))
     subprocess.run(["python", simulationPath])
     projectileSimulationConfigTabLaunchButton.configure(state = "normal")
     projectileSimulationConfigTabLaunchButton.configure(text = "Launch")
@@ -1009,7 +1041,7 @@ def pendulumSimulationConfigTabLaunchButtonEvent():
     pendulumSimulationConfigTabLaunchButton.configure(text = "Running...")
 
     #Runs its respective simulation by opening its folder    
-    simulationPath = os.path.join("physicsSimulations", "pendulumSimulation.py")
+    simulationPath = ressource_path(os.path.join("physicsSimulations", "pendulumSimulation.py"))
     subprocess.run(["python", simulationPath])
     pendulumSimulationConfigTabLaunchButton.configure(state = "normal")
     pendulumSimulationConfigTabLaunchButton.configure(text = "Launch")
@@ -1033,7 +1065,7 @@ def springSimulationConfigTabLaunchButtonEvent():
     springSimulationConfigTabLaunchButton.configure(text = "Running...")
 
     #Runs its respective simulation by opening its folder
-    simulationPath = os.path.join("physicsSimulations", "springSimulation.py")
+    simulationPath = ressource_path(os.path.join("physicsSimulations", "springSimulation.py"))
     subprocess.run(["python", simulationPath])
     springSimulationConfigTabLaunchButton.configure(state = "normal")
     springSimulationConfigTabLaunchButton.configure(text = "Launch")
@@ -1054,7 +1086,7 @@ def planetOrbitsSimulationConfigTabLaunchButtonEvent():
     planetOrbitsSimulationConfigTabLaunchButton.configure(text = "Running...")
     
     #Runs its respective simulation by opening its folder
-    simulationPath = os.path.join("physicsSimulations", "planetOrbitsSimulation.py")
+    simulationPath = ressource_path(os.path.join("physicsSimulations", "planetOrbitsSimulation.py"))
     subprocess.run(["python", simulationPath])
     planetOrbitsSimulationConfigTabLaunchButton.configure(state = "normal")
     planetOrbitsSimulationConfigTabLaunchButton.configure(text = "Launch")
@@ -1076,7 +1108,7 @@ def gravitySimulationConfigTabLaunchButtonEvent():
     gravitySimulationConfigTabLaunchButton.configure(text = "Running...")
 
     #Runs its respective simulation by opening its folder    
-    simulationPath = os.path.join("physicsSimulations", "gravitySimulation.py")
+    simulationPath = ressource_path(os.path.join("physicsSimulations", "gravitySimulation.py"))
     subprocess.run(["python", simulationPath])
     gravitySimulationConfigTabLaunchButton.configure(state = "normal")
     gravitySimulationConfigTabLaunchButton.configure(text = "Launch")
@@ -1099,7 +1131,7 @@ def refractionSimulationConfigTabLaunchButtonEvent():
     refractionSimulationConfigTabLaunchButton.configure(text = "Running...")
 
     #Runs its respective simulation by opening its folder        
-    simulationPath = os.path.join("physicsSimulations", "refractionSimulation.py")
+    simulationPath = ressource_path(os.path.join("physicsSimulations", "refractionSimulation.py"))
     subprocess.run(["python", simulationPath])
     refractionSimulationConfigTabLaunchButton.configure(state = "normal")
     refractionSimulationConfigTabLaunchButton.configure(text = "Launch")
@@ -1128,7 +1160,7 @@ def temperatureSimulationConfigTabLaunchButtonEvent():
     temperatureSimulationConfigTabLaunchButton.configure(text = "Running...")
     
     #Runs its respective simulation by opening its folder
-    simulationPath = os.path.join("physicsSimulations", "temperatureSimulation.py")
+    simulationPath = ressource_path(os.path.join("physicsSimulations", "temperatureSimulation.py"))
     subprocess.run(["python", simulationPath])
     temperatureSimulationConfigTabLaunchButton.configure(state = "normal")
     temperatureSimulationConfigTabLaunchButton.configure(text = "Launch")
@@ -1149,7 +1181,7 @@ def bohrAtomSimulationConfigTabLaunchButtonEvent():
     bohrAtomSimulationConfigTabLaunchButton.configure(text = "Running...")
 
     #Runs its respective simulation by opening its folder       
-    simulationPath = os.path.join("chemistrySimulations", "bohrAtomicSimulation.py")
+    simulationPath = ressource_path(os.path.join("chemistrySimulations", "bohrAtomicSimulation.py"))
     subprocess.run(["python", simulationPath])
     bohrAtomSimulationConfigTabLaunchButton.configure(state = "normal")
     bohrAtomSimulationConfigTabLaunchButton.configure(text = "Launch")
@@ -1175,7 +1207,7 @@ def solutionMakerConfigTabLaunchButtonEvent():
     solutionMakerConfigTabLaunchButton.configure(text = "Running...")
 
     #Runs its respective simulation by opening its folder        
-    simulationPath = os.path.join("chemistrySimulations", "solutionMaker.py")
+    simulationPath = ressource_path(os.path.join("chemistrySimulations", "solutionMaker.py"))
     subprocess.run(["python", simulationPath])
     solutionMakerConfigTabLaunchButton.configure(state = "normal")
     solutionMakerConfigTabLaunchButton.configure(text = "Launch")
