@@ -43,3 +43,7 @@ Platforms supported: Windows only
 3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`).
 4. **Push** to the branch (`git push origin feature/AmazingFeature`).
 5. Open a **Pull Request**.
+
+## 🤖 AI Usage
+Used the answers from the Google Search AI while searching a topic on Stack Overflow to debug **some** of the simulation logic (calculations).
+Besides that, **no AI** was involved in **the code or asset creation.**
