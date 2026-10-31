@@ -1,1 +1,1 @@
-{"simulationID": "pendulumSimulation", "initAngle": 0, "initAngularVel": 0.0, "initLength": 0.6, "initMass": 0.8, "initGravAcc": 10.0, "dampingCoef": 0.5}
+{"simulationID": "molecularLab", "initMolecule": "Glucose (C\u2086H\u2081\u2082O\u2086)", "initHydrogenColor": "Light Blue", "initCarbonColor": "Black", "initOxygenColor": "Red"}

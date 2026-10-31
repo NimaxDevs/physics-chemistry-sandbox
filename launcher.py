@@ -1230,7 +1230,7 @@ def molecularLabConfigTabLaunchButtonEvent():
     molecularLabConfigTabLaunchButton.configure(text = "Running...")
 
     #Runs its respective simulation by opening its folder             
-    simulationPath = os.path.join("chemistrySimulations", "molecularLab.py")
+    simulationPath = ressource_path(os.path.join("chemistrySimulations", "molecularLab.py"))
     subprocess.run(["python", simulationPath])
     molecularLabConfigTabLaunchButton.configure(state = "normal")
     molecularLabConfigTabLaunchButton.configure(text = "Launch")
