@@ -5,6 +5,7 @@
 https://github.com/user-attachments/assets/43fadab9-378f-425e-a772-03a2a1efdd9a
 
 A 2D physics &amp; chemistry sandbox (or simulator) written in **Python** which is based on **Newtonian mechanics, optics, fluid mechanics, thermodynamics, basic chemistry principles and more.** Built as a part of Hack Club's and NASA Stardance Challenge, this project allows you to **combine real-time physics and chemistry equations** to your own liking by creating your own experiences.
+## [Link to the download page of the Launcher to try it!](https://github.com/NimaxDevs/physics-chemistry-sandbox/releases/tag/v0.0.1)
 
 ## Main Features
 A bunch of simulations that well, are under this line:
