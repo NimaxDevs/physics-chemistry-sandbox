@@ -119,12 +119,12 @@ simulatedSolventColorFactor = massConcentration * 0.01
 
 #Extracts the values selected from the launcher simulation configuration tab
 simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
-if os.path.exists(simulationConfigValuesPath) and os.path.getsize(launcherSettingsPath) > 0:
+if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConfigValuesPath) > 0:
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
         values = json.load(f)
         if values.get("simulationID") == "solutionMaker":
             simulatedSolvent = values.get("initSolvent", "Water (H₂O)")
-            if simulatedSolvent == "Water (H₂0)":
+            if simulatedSolvent == "Water (H₂O)":
                 simulatedSolvent = solvents[0][0]
             elif simulatedSolvent == "Ethanol (C₂H₅OH)":
                 simulatedSolvent = solvents[1][0]

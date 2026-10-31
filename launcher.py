@@ -7,6 +7,7 @@ import json
 import os
 import sys
 import subprocess
+import runpy
 from pygame import mixer
 import time
 import builtins
@@ -1017,7 +1018,12 @@ def projectileSimulationConfigTabLaunchButtonEvent():
 
     #Runs its respective simulation by opening its folder
     simulationPath = ressource_path(os.path.join("physicsSimulations", "projectileSimulation.py"))
-    subprocess.run(["python", simulationPath])
+    try:
+        runpy.run_path(simulationPath, run_name = "__main__")
+    except SystemExit:
+        pass
+    finally:
+        mixer.init()
     projectileSimulationConfigTabLaunchButton.configure(state = "normal")
     projectileSimulationConfigTabLaunchButton.configure(text = "Launch")
 
@@ -1042,7 +1048,12 @@ def pendulumSimulationConfigTabLaunchButtonEvent():
 
     #Runs its respective simulation by opening its folder    
     simulationPath = ressource_path(os.path.join("physicsSimulations", "pendulumSimulation.py"))
-    subprocess.run(["python", simulationPath])
+    try:
+        runpy.run_path(simulationPath, run_name = "__main__")
+    except SystemExit:
+        pass
+    finally:
+        mixer.init()
     pendulumSimulationConfigTabLaunchButton.configure(state = "normal")
     pendulumSimulationConfigTabLaunchButton.configure(text = "Launch")
 
@@ -1066,7 +1077,12 @@ def springSimulationConfigTabLaunchButtonEvent():
 
     #Runs its respective simulation by opening its folder
     simulationPath = ressource_path(os.path.join("physicsSimulations", "springSimulation.py"))
-    subprocess.run(["python", simulationPath])
+    try:
+        runpy.run_path(simulationPath, run_name = "__main__")
+    except SystemExit:
+        pass
+    finally:
+        mixer.init()
     springSimulationConfigTabLaunchButton.configure(state = "normal")
     springSimulationConfigTabLaunchButton.configure(text = "Launch")
 
@@ -1087,7 +1103,12 @@ def planetOrbitsSimulationConfigTabLaunchButtonEvent():
     
     #Runs its respective simulation by opening its folder
     simulationPath = ressource_path(os.path.join("physicsSimulations", "planetOrbitsSimulation.py"))
-    subprocess.run(["python", simulationPath])
+    try:
+        runpy.run_path(simulationPath, run_name = "__main__")
+    except SystemExit:
+        pass
+    finally:
+        mixer.init()
     planetOrbitsSimulationConfigTabLaunchButton.configure(state = "normal")
     planetOrbitsSimulationConfigTabLaunchButton.configure(text = "Launch")
 
@@ -1109,7 +1130,12 @@ def gravitySimulationConfigTabLaunchButtonEvent():
 
     #Runs its respective simulation by opening its folder    
     simulationPath = ressource_path(os.path.join("physicsSimulations", "gravitySimulation.py"))
-    subprocess.run(["python", simulationPath])
+    try:
+        runpy.run_path(simulationPath, run_name = "__main__")
+    except SystemExit:
+        pass
+    finally:
+        mixer.init()
     gravitySimulationConfigTabLaunchButton.configure(state = "normal")
     gravitySimulationConfigTabLaunchButton.configure(text = "Launch")
 
@@ -1132,7 +1158,12 @@ def refractionSimulationConfigTabLaunchButtonEvent():
 
     #Runs its respective simulation by opening its folder        
     simulationPath = ressource_path(os.path.join("physicsSimulations", "refractionSimulation.py"))
-    subprocess.run(["python", simulationPath])
+    try:
+        runpy.run_path(simulationPath, run_name = "__main__")
+    except SystemExit:
+        pass
+    finally:
+        mixer.init()
     refractionSimulationConfigTabLaunchButton.configure(state = "normal")
     refractionSimulationConfigTabLaunchButton.configure(text = "Launch")
 
@@ -1161,7 +1192,12 @@ def temperatureSimulationConfigTabLaunchButtonEvent():
     
     #Runs its respective simulation by opening its folder
     simulationPath = ressource_path(os.path.join("physicsSimulations", "temperatureSimulation.py"))
-    subprocess.run(["python", simulationPath])
+    try:
+        runpy.run_path(simulationPath, run_name = "__main__")
+    except SystemExit:
+        pass
+    finally:
+        mixer.init()
     temperatureSimulationConfigTabLaunchButton.configure(state = "normal")
     temperatureSimulationConfigTabLaunchButton.configure(text = "Launch")
 
@@ -1182,7 +1218,12 @@ def bohrAtomSimulationConfigTabLaunchButtonEvent():
 
     #Runs its respective simulation by opening its folder       
     simulationPath = ressource_path(os.path.join("chemistrySimulations", "bohrAtomicSimulation.py"))
-    subprocess.run(["python", simulationPath])
+    try:
+        runpy.run_path(simulationPath, run_name = "__main__")
+    except SystemExit:
+        pass
+    finally:
+        mixer.init()
     bohrAtomSimulationConfigTabLaunchButton.configure(state = "normal")
     bohrAtomSimulationConfigTabLaunchButton.configure(text = "Launch")
     bohrAtomSimulationConfigTabAtomSelectionIndex = 0
@@ -1208,7 +1249,12 @@ def solutionMakerConfigTabLaunchButtonEvent():
 
     #Runs its respective simulation by opening its folder        
     simulationPath = ressource_path(os.path.join("chemistrySimulations", "solutionMaker.py"))
-    subprocess.run(["python", simulationPath])
+    try:
+        runpy.run_path(simulationPath, run_name = "__main__")
+    except SystemExit:
+        pass
+    finally:
+        mixer.init()
     solutionMakerConfigTabLaunchButton.configure(state = "normal")
     solutionMakerConfigTabLaunchButton.configure(text = "Launch")
 
@@ -1231,7 +1277,12 @@ def molecularLabConfigTabLaunchButtonEvent():
 
     #Runs its respective simulation by opening its folder             
     simulationPath = ressource_path(os.path.join("chemistrySimulations", "molecularLab.py"))
-    subprocess.run(["python", simulationPath])
+    try:
+        runpy.run_path(simulationPath, run_name = "__main__")
+    except SystemExit:
+        pass
+    finally:
+        mixer.init()
     molecularLabConfigTabLaunchButton.configure(state = "normal")
     molecularLabConfigTabLaunchButton.configure(text = "Launch")
 
