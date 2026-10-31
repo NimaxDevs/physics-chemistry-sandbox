@@ -10,6 +10,9 @@ vsyncActivated = 0
 flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
+if os.path.exists("images/icons/png/launcherIcon.png"):
+    iconSurface = pygame.image.load("images/icons/png/launcherIcon.png")
+    pygame.display.set_icon(iconSurface)
 
 launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
 if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
@@ -28,9 +31,18 @@ pygame.display.set_caption("Spring Simulation")
 clock = pygame.time.Clock()
 pygame.font.init()
 
+if os.path.exists("fonts/segoeuib.ttf"):
+    titleFontPath = "fonts/segoeuib.ttf"
+else:
+    titleFontPath = None
+if os.path.exists("fonts/segoeui.ttf"):
+    regularFontPath = "fonts/segoeui.ttf"
+else:
+    regularFontPath = None    
+
 #These lines define the "art" variables
-titleFont = pygame.font.Font(None, 30)
-regularFont = pygame.font.Font(None, 20)
+titleFont = pygame.font.Font(titleFontPath, 25)
+regularFont = pygame.font.Font(regularFontPath, 15)
 backgroundColor = (43, 45, 47)
 springLineColor = (99, 113, 123)
 springMassColor = (134, 141, 145)
@@ -112,7 +124,7 @@ while True:
     screen.blit(springInitStiffnessLabel, (20, 100))
     screen.blit(springDampingCoefLabel, (20, 125))
     screen.blit(gLabel, (20, 150))
-    screen.blit(fpsLabel, (1040, 20))
+    screen.blit(fpsLabel, (1030, 20))
 
     #Updates the time by a small step that is going to be used to integrate the values for the spring mass momentum and position by using Euler's Method
     t += dt

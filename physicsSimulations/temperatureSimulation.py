@@ -5,12 +5,17 @@ from sys import exit
 import json
 import os
 
+#Window settings
 frameRate = 60
 vsyncActivated = 0
 flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
+if os.path.exists("images/icons/png/launcherIcon.png"):
+    iconSurface = pygame.image.load("images/icons/png/launcherIcon.png")
+    pygame.display.set_icon(iconSurface)
 
+#Extracts settings from the launcher
 launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
 if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
     with open("launcherSettings/launcherSettings.json", "r") as f:
@@ -21,23 +26,37 @@ else:
     frameRate = 60
     vsyncActivated = 0
 
+#Initializes the Pygame window, clock and font system
 pygame.init()
 screen  = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Temperature Simulation")
 clock = pygame.time.Clock()
 pygame.font.init()
 
-titleFont = pygame.font.Font(None, 30)
-regularFont = pygame.font.Font(None, 20)
+#Sets the font of the simulation labels
+if os.path.exists("fonts/segoeuib.ttf"):
+    titleFontPath = "fonts/segoeuib.ttf"
+else:
+    titleFontPath = None
+if os.path.exists("fonts/segoeui.ttf"):
+    regularFontPath = "fonts/segoeui.ttf"
+else:
+    regularFontPath = None 
+
+#Defines the "art" variables
+titleFont = pygame.font.Font(titleFontPath, 25)
+regularFont = pygame.font.Font(regularFontPath, 15)
 backgroundColor = (43, 45, 47)
 particleColor = (134, 141, 145)
 coldColor = (0, 0, 255)
 heatColor = (255, 0, 0)
 whiteColor = (255, 255, 255)
 
+#Defines some lists to store the positions (x, y) of the simulated particles
 particlesList_x = []
 particlesList_y = []
 
+#Defines some simulation variables
 sizeFactor = 3e11
 initParticleNumber = 50
 initParticleDiameter = 5
@@ -47,6 +66,7 @@ boltzmannConstant = 1.380649e-23
 initDynamicViscosity = 1e1
 particleColor = coldColor
 
+#Extracts the values selected from the launcher simulation configuration tab
 simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
 if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConfigValuesPath) > 0:
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
@@ -64,9 +84,11 @@ else:
     initParticleDiameter = 5
     initTemperature = 30.0
 
+#Defines some simulation control variables
 t = 0
 dt = 0.1
 
+#Function to create the simulated particle initial positions by adding them to their respective x and y lists
 def createParticles():
     global particlesList_x
     global particlesList_y
@@ -74,6 +96,7 @@ def createParticles():
         particlesList_x.append((randint(10, 1090)))
         particlesList_y.append(randint(10, 570))
 
+#Function to update the viscosity of the virtual air dynamically on the screen by using Sutherland's Law for gases (in this case, air) by taking into account a reference air viscosity, temperature (constant) as well as Sutherland's constant for air
 def updateViscosity(initTemperatureKelvin):
     referenceAirViscosity = 1.716e-5
     referenceTemp = 273.15
@@ -83,6 +106,7 @@ def updateViscosity(initTemperatureKelvin):
     
     return viscosity
 
+#Function to update the diffusion coefficient of the particles by getting the current viscosity (using the function above), defining a "safe" check (Sutherland's Law tends to break when reaching absolute zero: in fact, the viscosity reaches a minimum then starts increasing very fast) then calculating the absolute temperature in order to use their results to calculate the real diffusion coefficient (physical) by using Stokes-Einstein equation then converting it to the screen's scale
 def updateDiffusionCoef():
     global diffusionCoef
     
@@ -100,7 +124,8 @@ def updateDiffusionCoef():
     
     return diffusionCoef
 
-def brownianMovement():
+#Function to calculate Brownian Motion for the particles (random jitter by using Standard Normal Distribution) based on the diffusion coefficient calculated by the function above
+def brownianMotion():
     meanSqrt = math.sqrt(2 * diffusionCoef * dt)
     for i in range(len(particlesList_x)):
         Z_x = gauss(0, 1)
@@ -109,9 +134,11 @@ def brownianMovement():
         particlesList_y[i] += meanSqrt * Z_y
         pygame.draw.circle(screen, particleColor, (int(particlesList_x[i]), int(particlesList_y[i])), initParticleDiameter)
 
+#These lines create the particles with the functions mentioned above and update the diffusion coefficient by using the calculations defined on the previous function
 createParticles()
 updateDiffusionCoef()
 
+#Main loop here
 while True:
     screen.fill(backgroundColor)
     for event in pygame.event.get():
@@ -119,9 +146,9 @@ while True:
             pygame.quit()
             exit()
 
+    #Checks if the up and down arrow keys are pressed to increase or decrease the simulation temperature
     keys = pygame.key.get_pressed()
     initTemperatureUpdate = False
-
     if keys[pygame.K_UP]:
         if initTemperature < 1500:
             initTemperature += 1.0
@@ -137,11 +164,14 @@ while True:
             updateDiffusionCoef()
             initTemperatureUpdate = False
 
+    #Updates the diffusion coefficient only if the temperature is increased or decreased by the user for better performance (the diffusion coefficient calculation contains operations that need significant processing power if repeated every frame such as the math.sqrt() function)
     if initTemperatureUpdate == True:
         updateDiffusionCoef()
 
-    brownianMovement()
-    
+    #Updates the position of the particles with the function generating Brownian Motion
+    brownianMotion()
+
+    #Creates labels describing some simulation informations (title, instructions, etc...)
     upperLabel = titleFont.render("Simulating Temperature", True, whiteColor)
     instructionsLabel = regularFont.render("Click on [UP ARROW] to increase the temperature or [DOWN ARROW] to decrease it", True, whiteColor)
     particleNumberLabel = regularFont.render(f"Number Of Particles: {initParticleNumber}", True, whiteColor)
@@ -150,15 +180,18 @@ while True:
     initTemperatureKelvinsLabel = regularFont.render(f"Temperature (°K): {initTemperature + 273.15:.1f}°K", True, whiteColor)
     fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
 
-    screen.blit(upperLabel, (20, 20))
+    #Adds said labels to the screen
+    screen.blit(upperLabel, (20, 15))
     screen.blit(instructionsLabel, (20, 45))
     screen.blit(particleNumberLabel, (20, 75))
     screen.blit(particleDiameterLabel, (20, 100))
     screen.blit(initTemperatureLabel, (20, 125))
     screen.blit(initTemperatureKelvinsLabel, (20, 150))
-    screen.blit(fpsLabel, (1040, 20))
-    
+    screen.blit(fpsLabel, (1030, 20))
+
+    #Updates the time variable with a time step for Euler's Method
     t += dt
 
+    #Updates the screen and clock
     pygame.display.update()
     clock.tick(frameRate)

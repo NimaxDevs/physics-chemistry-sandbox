@@ -11,7 +11,11 @@ vsyncActivated = 0
 flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
+if os.path.exists("images/icons/png/launcherIcon.png"):
+    iconSurface = pygame.image.load("images/icons/png/launcherIcon.png")
+    pygame.display.set_icon(iconSurface)
 
+#Extracts settings from the launcher
 launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
 if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
     with open("launcherSettings/launcherSettings.json", "r") as f:
@@ -29,9 +33,19 @@ pygame.display.set_caption("Projectile Simualtion")
 clock = pygame.time.Clock()
 pygame.font.init()
 
+#Sets the font of the simulation labels
+if os.path.exists("fonts/segoeuib.ttf"):
+    titleFontPath = "fonts/segoeuib.ttf"
+else:
+    titleFontPath = None
+if os.path.exists("fonts/segoeui.ttf"):
+    regularFontPath = "fonts/segoeui.ttf"
+else:
+    regularFontPath = None    
+
 #The "art" variables go here
-titleFont = pygame.font.Font(None, 30)
-regularFont = pygame.font.Font(None, 20)
+titleFont = pygame.font.Font(titleFontPath, 25)
+regularFont = pygame.font.Font(regularFontPath, 15)
 backgroundColor = (43, 45, 47)
 projectileColor = (74, 93, 107)
 groundLineColor = (99, 113, 123)
@@ -180,7 +194,7 @@ while True:
     screen.blit(diameterLabel, (20, 150))
     screen.blit(distanceTraveledLabel, (20, 175))
     screen.blit(currentHeightLabel, (20, 200))
-    screen.blit(fpsLabel, (1040, 20))
+    screen.blit(fpsLabel, (1030, 20))
 
     #These lines update the whole window
     pygame.display.update()

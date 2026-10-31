@@ -4,12 +4,17 @@ from sys import exit
 import json
 import os
 
+#Window settings
 frameRate = 60
 vsyncActivated = 0
 flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
+if os.path.exists("images/icons/png/launcherIcon.png"):
+    iconSurface = pygame.image.load("images/icons/png/launcherIcon.png")
+    pygame.display.set_icon(iconSurface)
 
+#Extracts launcher settings (FPS, V-Sync)
 launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
 if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
     with open("launcherSettings/launcherSettings.json", "r") as f:
@@ -20,44 +25,53 @@ else:
     frameRate = 60
     vsyncActivated = 0
 
+#Initializes the Pygame window, clock and font system
 pygame.init()
 screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Molecular Lab")
 clock = pygame.time.Clock()
 pygame.font.init()
 
-titleFont = pygame.font.Font(None, 30)
-regularFont = pygame.font.Font(None, 20)
+#Sets the font of the simulation labels
+if os.path.exists("fonts/segoeuib.ttf"):
+    titleFontPath = "fonts/segoeuib.ttf"
+else:
+    titleFontPath = None
+if os.path.exists("fonts/segoeui.ttf"):
+    regularFontPath = "fonts/segoeui.ttf"
+else:
+    regularFontPath = None 
+
+#Defines the "art" variables
+titleFont = pygame.font.Font(titleFontPath, 25)
+regularFont = pygame.font.Font(regularFontPath, 15)
 backgroundColor = (43, 45, 47)
 lewisLineColor = (99, 113, 123)
 lightBlueColor = (3, 165, 252)
 lightGrayColor = (148, 148, 148)
 greenColor = (0, 204, 24)
-
 blackColor = (0, 0, 0)
 darkBlueColor = (0, 27, 204)
 darkGrayColor = (77, 77, 77)
 darkGreenColor = (0, 94, 19)
-
 redColor = (255, 0, 0)
 darkRedColor = (150, 0, 0)
 pinkColor = (255, 194, 194)
-
 whiteColor = (255, 255, 255)
 
+#Defines some simulation variables
 carbonAtomRadius = 40
 hydrogenAtomRadius = 30
 oxygenAtomRadius = 35
 hydrogenAtomColor = greenColor
 carbonAtomColor = darkGreenColor
 oxygenAtomColor = darkRedColor
-
 carbonAtomPos_x = 200
 lewisSingleConnexionLineThickness = 5
 lewisDoubleConnexionLineThickness = 15
-
 selectedMolecule = "Glucose (C₆H₁₂O₆)"
 
+#Extracts the values selected from the launcher simulation configuration tab
 simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
 if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConfigValuesPath) > 0:
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
@@ -119,6 +133,7 @@ elif selectedMolecule == "Formaldehyde (CH₂O)":
 else:
     moleculeScreenName = "Unknown"
 
+#Function to draw the spherical carbon dioxide molecule
 def sphericalCarbonDioxideMolecule():
     pygame.draw.circle(screen, oxygenAtomColor, (carbonAtomPos_x - 60, 300), oxygenAtomRadius)
     pygame.draw.circle(screen, oxygenAtomColor, (carbonAtomPos_x + 60, 300), oxygenAtomRadius)
@@ -133,6 +148,7 @@ def sphericalCarbonDioxideMolecule():
     screen.blit(oxygen1Label, oxygen1LabelRect)
     screen.blit(oxygen2Label, oxygen2LabelRect)
 
+#Function to draw the Lewis carbon dioxide molecule
 def lewisCarbonDioxideMolecule():
     pygame.draw.line(screen, lewisLineColor, ((carbonAtomPos_x * 4) - 150, 300), (carbonAtomPos_x * 4, 300), lewisDoubleConnexionLineThickness)
     pygame.draw.line(screen, lewisLineColor, (carbonAtomPos_x * 4, 300), ((carbonAtomPos_x * 4) + 150, 300), lewisDoubleConnexionLineThickness)
@@ -149,6 +165,7 @@ def lewisCarbonDioxideMolecule():
     screen.blit(oxygen1Label, oxygen1LabelRect)
     screen.blit(oxygen2Label, oxygen2LabelRect)
 
+#Function to draw the Lewis glucose molecule
 def lewisGlucoseMolecule():
     pygame.draw.line(screen, lewisLineColor, (50, 150), (150, windowHeight // 2), lewisDoubleConnexionLineThickness)
     pygame.draw.line(screen, lewisLineColor, (50, 430), (150, windowHeight // 2), lewisSingleConnexionLineThickness)
@@ -267,6 +284,7 @@ def lewisGlucoseMolecule():
     screen.blit(oxygen5Label, oxygen5LabelRect)
     screen.blit(hydrogen12Label, hydrogen12LabelRect)
 
+#Function to draw the Lewis ethanol molecule
 def lewisEthanolMolecule():
     pygame.draw.line(screen, lewisLineColor, (50, windowHeight // 2), (350, windowHeight // 2), lewisSingleConnexionLineThickness)
     pygame.draw.line(screen, lewisLineColor, (350, windowHeight // 2), (350, (windowHeight // 2) - 200), lewisSingleConnexionLineThickness)
@@ -310,6 +328,7 @@ def lewisEthanolMolecule():
         hydrogen16LabelRect = hydrogen16Label.get_rect(center = (350 + (i * 250), (windowHeight // 2) + 200))
         screen.blit(hydrogen16Label, hydrogen16LabelRect)
 
+#Function to draw the Lewis acetone molecule
 def lewisAcetoneMolecule():
     pygame.draw.line(screen, lewisLineColor, (50, windowHeight // 2), (350, windowHeight // 2), lewisSingleConnexionLineThickness)
     pygame.draw.line(screen, lewisLineColor, (350, windowHeight // 2), (350, (windowHeight // 2) - 200), lewisSingleConnexionLineThickness)
@@ -352,6 +371,7 @@ def lewisAcetoneMolecule():
     hydrogen20LabelRect = hydrogen20Label.get_rect(center = (1050, windowHeight // 2))
     screen.blit(hydrogen20Label, hydrogen20LabelRect)
 
+#Function to draw the Lewis methanol molecule
 def lewisMethanolMolecule():
     pygame.draw.line(screen, lewisLineColor, (50, windowHeight // 2), (350, windowHeight // 2), lewisSingleConnexionLineThickness)
     pygame.draw.line(screen, lewisLineColor, (350, windowHeight // 2), (350, (windowHeight // 2) - 200), lewisSingleConnexionLineThickness)
@@ -391,6 +411,7 @@ def lewisMethanolMolecule():
     hydrogen24LabelRect = hydrogen24Label.get_rect(center = (350, (windowHeight // 2) + 200))
     screen.blit(hydrogen24Label, hydrogen24LabelRect)
 
+#Function to draw the Lewis formaldehyde molecule
 def lewisFormaldehydeMolecule():
     pygame.draw.line(screen, lewisLineColor, (350, windowHeight // 2), (550, windowHeight // 2), lewisSingleConnexionLineThickness)
     pygame.draw.line(screen, lewisLineColor, (550, windowHeight // 2), (750, windowHeight // 2), lewisSingleConnexionLineThickness)
@@ -415,6 +436,7 @@ def lewisFormaldehydeMolecule():
     oxygen8LabelRect = oxygen8Label.get_rect(center = (550, (windowHeight // 2) - 200))
     screen.blit(oxygen8Label, oxygen8LabelRect)
 
+#Main loop here
 while True:
     screen.fill(backgroundColor)
     for event in pygame.event.get():
@@ -422,6 +444,7 @@ while True:
             pygame.quit()
             exit()
 
+    #These lines load the molecule with respect to the values extracted from the launcher
     if selectedMolecule == "Carbon Dioxide (CO₂)":
         sphericalCarbonDioxideMolecule()
         lewisCarbonDioxideMolecule()
@@ -454,13 +477,16 @@ while True:
         lewisRepresentationLabel = regularFont.render(f"Lewis Representation", True, whiteColor)
         screen.blit(lewisRepresentationLabel, (20, 75))
 
+    #Title, selected molecule and FPS labels
     upperLabel = titleFont.render("Molecular Lab", True, whiteColor)
     simulatedLabel = regularFont.render(f"Molecule: {moleculeScreenName}", True, whiteColor)
     fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
 
+    #Adds said labels to the screen
     screen.blit(upperLabel, (20, 20))
     screen.blit(simulatedLabel, (20, 50))
-    screen.blit(fpsLabel, (1040, 20))
-    
+    screen.blit(fpsLabel, (1030, 20))
+
+    #Updates the screen and clock
     pygame.display.update()
     clock.tick(frameRate)

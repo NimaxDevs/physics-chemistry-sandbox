@@ -11,7 +11,11 @@ vsyncActivated = 0
 flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
+if os.path.exists("images/icons/png/launcherIcon.png"):
+    iconSurface = pygame.image.load("images/icons/png/launcherIcon.png")
+    pygame.display.set_icon(iconSurface)
 
+#While these lines extract settings from the launcher
 launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
 if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
     with open("launcherSettings/launcherSettings.json", "r") as f:
@@ -22,17 +26,27 @@ else:
     frameRate = 60
     vsyncActivated = 0
 
-#While these lines initialize the Pygame window (screen) and change some of its properties (title) as well as the clock
+#These lines initialize the Pygame window (screen) and change some of its properties (title) as well as the clock
 pygame.init()
 screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Planet Orbits Simulation (N-body problem solver)")
 clock = pygame.time.Clock()
 pygame.font.init()
 
+#Sets the font of the simulation labels
+if os.path.exists("fonts/segoeuib.ttf"):
+    titleFontPath = "fonts/segoeuib.ttf"
+else:
+    titleFontPath = None
+if os.path.exists("fonts/segoeui.ttf"):
+    regularFontPath = "fonts/segoeui.ttf"
+else:
+    regularFontPath = None   
+
 #These lines define the "art" variables
-titleFont = pygame.font.Font(None, 30)
-regularFont = pygame.font.Font(None, 20)
-planetNameFont = pygame.font.Font(None, 15)
+titleFont = pygame.font.Font(titleFontPath, 25)
+regularFont = pygame.font.Font(regularFontPath, 15)
+planetNameFont = pygame.font.Font(regularFontPath, 10)
 whiteColor = (255, 255, 255)
 blackColor = (0, 0, 0)
 
@@ -242,7 +256,7 @@ while True:
     fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
     screen.blit(upperLabel, (20, 20))
     screen.blit(instructionsLabel, (20, 45))
-    screen.blit(fpsLabel, (1040, 20))
+    screen.blit(fpsLabel, (1030, 20))
 
     #And finally, these lines update the screen
     pygame.display.update()

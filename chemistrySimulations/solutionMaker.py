@@ -5,12 +5,17 @@ from sys import exit
 import json
 import os
 
+#Window settings
 frameRate = 60
 vsyncActivated = 0
 flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
+if os.path.exists("images/icons/png/launcherIcon.png"):
+    iconSurface = pygame.image.load("images/icons/png/launcherIcon.png")
+    pygame.display.set_icon(iconSurface)
 
+#Extracts settings from the launcher
 launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
 if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
     with open("launcherSettings/launcherSettings.json", "r") as f:
@@ -21,18 +26,31 @@ else:
     frameRate = 60
     vsyncActivated = 0
 
+#Initializes the Pygame window, clock and font system
 pygame.init()
 screen = pygame.display.set_mode((windowWidth, windowHeight), flags, vsync = vsyncActivated)
 pygame.display.set_caption("Solution Maker")
 clock = pygame.time.Clock()
 pygame.font.init()
 
-titleFont = pygame.font.Font(None, 30)
-regularFont = pygame.font.Font(None, 20)
+#Sets the font of the simulation labels
+if os.path.exists("fonts/segoeuib.ttf"):
+    titleFontPath = "fonts/segoeuib.ttf"
+else:
+    titleFontPath = None
+if os.path.exists("fonts/segoeui.ttf"):
+    regularFontPath = "fonts/segoeui.ttf"
+else:
+    regularFontPath = None 
+
+#Defines the "art" variables
+titleFont = pygame.font.Font(titleFontPath, 25)
+regularFont = pygame.font.Font(regularFontPath, 15)
 backgroundColor = (43, 45, 47)
 beakerLineColor = (255, 255, 255, 20)
 whiteColor = (255, 255, 255)
 
+#Defines some simulation variables
 g = 9.8
 vy = 0
 solutes = [("Sodium Chloride", (255, 255, 255), 58.5),
@@ -63,6 +81,7 @@ massConcentration = soluteMass / solventVolume
 molarConcentration = (soluteMass / solutes[simulatedSoluteIndex][2]) / (solventVolume * 1e-3)
 simulatedSolventColorFactor = massConcentration * 0.01
 
+#Extracts the values selected from the launcher simulation configuration tab
 simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
 if os.path.exists(simulationConfigValuesPath) and os.path.getsize(launcherSettingsPath) > 0:
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
@@ -130,21 +149,26 @@ solubilityMatrix = {
     "Sodium Hydroxide":       {"Water": True, "Ethanol": False, "Cyclohexane": False, "Hexane": False, "Acetone": False}
 }
 
+#Defines some simulation control variables
 t = 0
 dt = 0.1
 
+#Checks if the selected solute and solvent are soluble
 isSoluble = solubilityMatrix[simulatedSolute][simulatedSolvent]
 
+#Separates the values from the tuples of the "solutes" list
 for soluteName, soluteColor, soluteMolarMass in solutes:
     if simulatedSolute == soluteName:
         simulatedSoluteColor = soluteColor
         break
 
+#Separates the values from the tuples of the "solvents" list
 for solventName, solventColor, viscosity, diffusionSpeed, dissolutionSpeed in solvents:
     if simulatedSolvent == solventName:
         simulatedSolventColor = solventColor
         break
 
+#Creates the solute particles with some parameters
 def createSoluteParticles():
     soluteParticle = {
         "x": solutePosition_x + randint(0, 20),
@@ -157,10 +181,12 @@ def createSoluteParticles():
     }
     return soluteParticle
 
+#Function to aadd said particles to their respective list
 def addSoluteParticles(simulatedSoluteParticles):
     for i in range(int(simulatedSoluteParticles)):
         soluteParticles.append(createSoluteParticles())
 
+#Function to draw the solute particles on the screen by creating a surface to control its alpha channel value (dissolution effect)
 def drawSoluteParticles(soluteParticles):
     for soluteParticle in soluteParticles:
         rChannel, gChannel, bChannel = soluteParticle["color"]
@@ -168,6 +194,7 @@ def drawSoluteParticles(soluteParticles):
         pygame.draw.circle(soluteParticleSurface, (rChannel, gChannel, bChannel, soluteParticle["alpha"]), (soluteParticle["soluteParticleRadius"], soluteParticle["soluteParticleRadius"]), soluteParticle["soluteParticleRadius"])
         screen.blit(soluteParticleSurface, (int(soluteParticle["x"] - soluteParticle["soluteParticleRadius"]), int(soluteParticle["y"] - soluteParticle["soluteParticleRadius"])))
 
+#Updates the position of the solute particles (with respect to gravity)
 def updateSoluteParticlesPos(soluteParticles):
     accel_y = g 
     currentSolvent = solvents[simulatedSolventIndex]
@@ -207,8 +234,10 @@ def updateSoluteParticlesPos(soluteParticles):
                     soluteParticle["y"] = 500
                     soluteParticle["vy"] = 0
 
+#Adds the solute particles to the list
 addSoluteParticles(simulatedSoluteParticles)
 
+#Main loop here
 while True:
     screen.fill(backgroundColor)
     for event in pygame.event.get():
@@ -216,28 +245,34 @@ while True:
             pygame.quit()
             exit()
 
+    #Separates the color channels of the color of the selected solvent
     if simulatedSolventColor:
         rSimulatedSolventColorChannel, gSimulatedSolventColorChannel, bSimulatedSolventColorChannel, aSimulatedSolventColorChannel = simulatedSolventColor
     else:
         rSimulatedSolventColorChannel, gSimulatedSolventColorChannel, bSimulatedSolventColorChannel, aSimulatedSolventColorChannel = (255, 255, 255, 10)
-    
+
+    #Adds a first layer to the screen representing the base solvent color
     solventSurface = pygame.Surface((250, 300), pygame.SRCALPHA)
     solventSurface.fill((rSimulatedSolventColorChannel, gSimulatedSolventColorChannel, bSimulatedSolventColorChannel, aSimulatedSolventColorChannel))
     screen.blit(solventSurface, ((windowWidth // 2) - 120, 201))
-    
+
+    #Adds a second layer to the screen representing the solvent gaining the solute's color if they are soluble
     if isSoluble and simulatedSoluteColor is not None and simulatedSolventColorIntensity > 0:
         rSoluteChannel, gSoluteChannel, bSoluteChannel = simulatedSoluteColor
         solventTintSurface = pygame.Surface((250, 300), pygame.SRCALPHA)
         solventTintSurface.fill((rSoluteChannel, gSoluteChannel, bSoluteChannel, int(simulatedSolventColorIntensity)))
         screen.blit(solventTintSurface, ((windowWidth // 2) - 120, 201))
 
+    #These lines draw and update the solute particles
     drawSoluteParticles(soluteParticles)
     updateSoluteParticlesPos(soluteParticles)
 
+    #While these lines draw the beaker containing the solution (solute + solvent)
     pygame.draw.line(screen, beakerLineColor, ((windowWidth // 2) - 120, 180), ((windowWidth // 2) - 120, 501), 2)
     pygame.draw.line(screen, beakerLineColor, ((windowWidth // 2) + 130, 180), ((windowWidth // 2) + 130, 501), 2)
     pygame.draw.line(screen, beakerLineColor, ((windowWidth // 2) - 120, 501), ((windowWidth // 2) + 130, 501), 2)
 
+    #Creates labels describing some simulation informations (title, selected solute and solvent, etc...)
     upperLabel = titleFont.render("Solution Maker", True, whiteColor)
     soluteLabel = regularFont.render(f"Solute: {simulatedSolute}", True, whiteColor)
     solventLabel = regularFont.render(f"Solvent: {simulatedSolvent}", True, whiteColor)
@@ -248,6 +283,7 @@ while True:
     solubilityLabel = regularFont.render(f"Soluble: {isSoluble}", True, whiteColor)
     fpsLabel = regularFont.render(f"FPS: {int(clock.get_fps())}", True, whiteColor)
 
+    #Adds said labels to the screen
     screen.blit(upperLabel, (20, 20))
     screen.blit(soluteLabel, (20, 50))
     screen.blit(solventLabel, (20, 75))
@@ -256,9 +292,11 @@ while True:
     screen.blit(solutionMassConcentrationLabel, (20, 150))
     screen.blit(solutionMolarConcentrationLabel, (20, 175))
     screen.blit(solubilityLabel, (20, 200))
-    screen.blit(fpsLabel, (1040, 20))
+    screen.blit(fpsLabel, (1030, 20))
 
+    #Updates the time variable with a time step for Euler's Method (calculations of the particle positions)
     t += dt
-    
+
+    #Updates the screen and clock
     pygame.display.update()
     clock.tick(frameRate)

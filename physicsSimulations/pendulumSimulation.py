@@ -10,7 +10,11 @@ vsyncActivated = 0
 flags = pygame.SCALED
 windowWidth = 1100
 windowHeight = 580
+if os.path.exists("images/icons/png/launcherIcon.png"):
+    iconSurface = pygame.image.load("images/icons/png/launcherIcon.png")
+    pygame.display.set_icon(iconSurface)
 
+#And these lines extract settings from the launcher
 launcherSettingsPath = os.path.join ("launcherSettings", "launcherSettings.json")
 if os.path.exists(launcherSettingsPath) and os.path.getsize(launcherSettingsPath) > 0:
     with open("launcherSettings/launcherSettings.json", "r") as f:
@@ -28,9 +32,19 @@ pygame.display.set_caption("Pendulum Simulation")
 clock = pygame.time.Clock()
 pygame.font.init()
 
+#Sets the font of the simulation labels
+if os.path.exists("fonts/segoeuib.ttf"):
+    titleFontPath = "fonts/segoeuib.ttf"
+else:
+    titleFontPath = None
+if os.path.exists("fonts/segoeui.ttf"):
+    regularFontPath = "fonts/segoeui.ttf"
+else:
+    regularFontPath = None    
+
 #Defines the "art" variables
-titleFont = pygame.font.Font(None, 30)
-regularFont = pygame.font.Font(None, 20)
+titleFont = pygame.font.Font(titleFontPath, 25)
+regularFont = pygame.font.Font(regularFontPath, 15)
 backgroundColor = (43, 45, 47)
 pendulumLineColor = (99, 113, 123)
 pendulumMassColor = (134, 141, 145)
@@ -46,6 +60,7 @@ g = 9.8
 pendulumAngularVelocity = 0
 pendulumDamping = 0.5
 
+#Extracts the values selected from the launcher simulation configuration tab
 simulationConfigValuesPath = os.path.join ("simulationConfigValues", "simulationConfigValues.json")
 if os.path.exists(simulationConfigValuesPath) and os.path.getsize(simulationConfigValuesPath) > 0:
     with open("simulationConfigValues/simulationConfigValues.json", "r") as f:
@@ -83,7 +98,7 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-
+    #Updates the time variable with a time step for Euler's Method
     t += dt
 
     #Updates the angular velocity of the pendulum in radians per second using a formula which takes the pendulum's length, inital launch angle, damping coefficient, mass and previous angular velocity
@@ -115,7 +130,7 @@ while True:
     screen.blit(pendulumAngularVelocityLabel, (20, 100))
     screen.blit(pendulumMassLabel, (20, 125))
     screen.blit(gLabel, (20, 150))
-    screen.blit(fpsLabel, (1040, 20))
+    screen.blit(fpsLabel, (1030, 20))
 
     #Lastly, these lines update the whole screen (or window)
     pygame.display.update()
