@@ -1,7 +1,7 @@
 # 🔬 physics-chemistry-sandbox 🧪
 <img width="1640" height="664" alt="Physics   Chemistry Banner" src="https://github.com/user-attachments/assets/25c0fa6f-bc97-4531-88c1-5d413c9e022e" />
 
-![hippo](https://s6.ezgif.com/tmp/ezgif-6237778b0449a6ac.gif)
+<img width="1280" height="720" alt="Main Launcher Flow" src="https://github.com/user-attachments/assets/4814988e-0f53-44e6-8df0-a7f34b6b46be" />
 
 A 2D physics &amp; chemistry sandbox (or simulator) written in **Python** which is based on **Newtonian mechanics, optics, fluid mechanics, thermodynamics, basic chemistry principles and more.** Built as a part of Hack Club's and NASA Stardance Challenge, this project allows you to **combine real-time physics and chemistry equations** to your own liking by creating your own experiences.
 ## [Link to the download page of the Launcher to try it!](https://github.com/NimaxDevs/physics-chemistry-sandbox/releases/tag/v0.0.1)
