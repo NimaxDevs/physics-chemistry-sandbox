@@ -36,6 +36,9 @@ A bunch of simulations that well, are under this line:
 Just downolad the `.exe` file from the Releases tab of the GitHub repository and run it on your computer!
 Platforms supported: Windows only
 
+# 🖥️ Performance requirements
+The project needs a GPU (can be any GPU) to be able to launch.
+
 ## 🤖 AI Usage
 Used the answers from the Google Search AI while searching a topic on Stack Overflow to debug **some** of the simulation logic (calculations).
 Besides that, **no AI** was involved in **the code or asset creation.**
