@@ -36,13 +36,6 @@ A bunch of simulations that well, are under this line:
 Just downolad the `.exe` file from the Releases tab of the GitHub repository and run it on your computer!
 Platforms supported: Windows only
 
-# Contributions, bug reports, and feature requests are welcome! 
-1. **Fork** the project.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`).
-4. **Push** to the branch (`git push origin feature/AmazingFeature`).
-5. Open a **Pull Request**.
-
 ## 🤖 AI Usage
 Used the answers from the Google Search AI while searching a topic on Stack Overflow to debug **some** of the simulation logic (calculations).
 Besides that, **no AI** was involved in **the code or asset creation.**
